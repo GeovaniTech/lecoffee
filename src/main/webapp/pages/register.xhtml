@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	lang="pt-BR"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	
+	<h:head>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LeCoffee - Login</title>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
+		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
+		<h:outputStylesheet library="css" name="access.css" />
+	</h:head>
+	
+	<h:body>
+		<div class="section">
+           	<form action="#">
+           		<div class="access">
+ 	           		<div class="logo">
+	           			<h1><span>Le</span>Coffee</h1>
+	           		</div>
+	                
+	                <div class="fields-login">
+	                    <h2>Bem-vindo(a)</h2>
+		                <h:inputText a:placeholder="E-mail" class="field"/>
+		                <h:inputSecret a:placeholder="Senha" class="field" />
+		                <button>Cadastrar-se</button>
+		                <a href="#">Logue-se Aqui.</a>
+	                </div>
+	                
+		            <div class="atendimento">
+		                <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
+		                <a href="#"><i class="fi fi-brands-instagram"></i></a>
+		                <a href="#"><i class="fi fi-brands-facebook"></i></a>
+		            </div>       		
+           		</div>
+            </form>
+		</div>
+	</h:body>
+</html>

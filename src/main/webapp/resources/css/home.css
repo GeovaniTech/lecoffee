@@ -3,8 +3,9 @@
 #home {
     background-image: url(/lecoffee/resources/images/background.png);
     background-repeat: no-repeat;
-    background-size: 100%;
-    background-position-y: 100%;
+   	background-position: center;
+   	background-size: cover;
+    
 }
 
 .header {
@@ -46,6 +47,14 @@ nav a:hover {
     color: #5e8c6a;
 }
 
+.acessar-conta {
+	color: var(--green);
+}
+
+.acessar-conta:hover {
+	color: var(--brown);
+}
+
 .title {
     width: 800px;
     margin-top: 180px;
@@ -77,4 +86,8 @@ nav a:hover {
 
 .atendimento a:hover {
     color: rgba(162, 139, 139, 0.704);
+}
+
+@media (max-width: 800px) {
+
 }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	lang="pt-BR"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<h:body>
+		<ui:composition template="/template/layout.xhtml">
+			<ui:define name="body">
+				<h:outputStylesheet library="css" name="home.css"/>
+				<h:outputStylesheet library="css" name="mais-vendidos.css"/>
+				<!-- INICIO -->
+				<div class="section" id="home">
+		            <div class="header">
+		                <div>
+		                    <h1><span>Le</span>Coffee</h1>
+		                </div>
+		                <nav>
+		                    <a href="#">Promoção</a>
+		                    <a href="#">Cafés</a>
+		                    <a href="#">Brownies</a>
+		                    <a href="#">Cookies</a>
+		                    <a href="#">Pães</a>
+		                    <a href="#">Todos</a>
+		                    <a href="#" class="acessar-conta">Acessar Conta</a>
+		                </nav>
+		            </div>
+		
+		            <div class="title">
+		                <p>A melhor <span>cafeteria</span> de Blumenau e região.</p>
+		                <button style="transform: 1.01">Ver Produtos</button>
+		            </div>
+		
+		            <div class="atendimento">
+		                <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
+		                <a href="#"><i class="fi fi-brands-instagram"></i></a>
+		                <a href="#"><i class="fi fi-brands-facebook"></i></a>
+		            </div>
+				</div>	
+				
+				<!-- MAIS VENDIDOS-->
+				<div class="section" id="mais-vendidos">
+					<h2>Mais Vendidos</h2>	
+		            
+		            <div class="container-mais-vendidos">
+		                <div class="card-mais-vendidos">
+		                    <h:graphicImage library="images" name="brownie.jpeg" class="img-card" />
+		                    <div class="infos">
+		                        <p>Brownie</p>
+		                        <div class="divider"></div>
+		                        <p><strong>R$ 8,50</strong></p>
+		                    </div>
+		                    <button>Adicionar ao Carrinho</button>
+		                </div>			
+    		            
+    		            <div class="card-mais-vendidos">
+		                    <h:graphicImage library="images" name="mocca2.webp" class="img-card" />
+		                    <div class="infos">
+		                        <p>Mocha Late</p>
+		                        <div class="divider"></div>
+		                        <p><strong>R$ 8,50</strong></p>
+		                    </div>
+		                    <button>Adicionar ao Carrinho</button>
+		                </div>	
+
+		                <div class="card-mais-vendidos">
+		                    <h:graphicImage library="images" name="brownie.jpeg" class="img-card" />
+		                    <div class="infos">
+		                        <p>Brownie</p>
+		                        <div class="divider"></div>
+		                        <p><strong>R$ 8,50</strong></p>
+		                    </div>
+		                    <button>Adicionar ao Carrinho</button>
+		                </div>			
+    		            
+    		            <div class="card-mais-vendidos">
+		                    <h:graphicImage library="images" name="mocca2.webp" class="img-card" />
+		                    <div class="infos">
+		                        <p>Mocha Late</p>
+		                        <div class="divider"></div>
+		                        <p><strong>R$ 8,50</strong></p>
+		                    </div>
+		                    <button>Adicionar ao Carrinho</button>
+		                </div>	
+					</div>
+				</div>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</html>
