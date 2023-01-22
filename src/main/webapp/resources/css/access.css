@@ -35,7 +35,9 @@ h1 span {
 	padding: 30px;
 	background-color: white;
 	width: 390px;
+	border-radius: 15px;
 	height: 70vh;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 4px 16px 0 rgba(0,0,0,0.15);
 }
 
 .access > * {
@@ -114,9 +116,10 @@ button:hover {
 		padding: 30px;
 	}
 	
-	.body {
+	body {
 		width: 0px;
 		height: 0px;
+		background-color: white !important;
 	}
 	
 	.fields-login {
