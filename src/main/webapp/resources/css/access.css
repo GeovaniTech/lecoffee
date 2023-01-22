@@ -47,7 +47,7 @@ h1 span {
     border: 0px;
     font-size: 18px;
     padding-bottom: 5px;
-    border-bottom: 3px solid var(--brown);
+    border-bottom: 2px solid var(--brown);
     outline: none;
 }
 
