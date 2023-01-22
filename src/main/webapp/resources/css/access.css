@@ -2,7 +2,8 @@
 
 * {
 	padding: 0px;
-	margin: 0px;	
+	margin: 0px;
+	box-sizing: border-box;	
 }
 
 :root {
@@ -108,8 +109,20 @@ button:hover {
 
 @media (max-width: 800px) {
 	.access {
-		width: 100%;
-		width: 100%;
+		width: 100vw;
+		height: 100vh;
 		padding: 30px;
+	}
+	
+	.body {
+		width: 0px;
+		height: 0px;
+	}
+	
+	.fields-login {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 }
