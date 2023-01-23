@@ -78,6 +78,25 @@ button {
     cursor: pointer;
 }
 
+.buttonClass {
+    background-color: var(--green) !important;
+    border: none !important;
+    color: white !important;
+    padding: 5px 52px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 16px !important;
+    border-radius: 35px !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: 0.4s !important;
+    cursor: pointer !important;
+}
+
+.buttonClass:hover {
+		background-color: #728e79 !important;
+}
+
 button:hover {
     background-color: #728e79;
 }

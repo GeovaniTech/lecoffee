@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Poppins&display=swap');
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --brown: #2F1F10;
+    --green: #5e8c6a;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #FAFAFA;
+}
+
+.section {
+    height: 100vh;
+    width: 99.5vw;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Grape Nuts', cursive;
+    padding: 20px;
+    background-color: var(--green);
+    color: white;
+    font-size: 35px;
+}
+
+button {
+    background-color: var(--green);
+    border: none;
+    color: white;
+    padding: 15px 52px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 35px;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #728e79;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    width: 12px;
+    box-shadow: inset 0 0 .3rem #00000050;
+    background-color: #fff ;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--green);
+}

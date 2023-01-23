@@ -13,6 +13,11 @@ public class MBRegister extends AbstractBean {
 	private String email;
 	private String senha;
 	private String confirmaSenha;
+	
+	public void cadastrar() {
+		msg.teste();
+	}
+	
 	public String getEmail() {
 		return email;
 	}

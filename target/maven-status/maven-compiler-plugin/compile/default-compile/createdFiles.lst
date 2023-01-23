@@ -1,0 +1,7 @@
+utils\LeCoffeeSession.class
+model\Client.class
+managedBean\MBRegister.class
+utils\AbstractBean.class
+utils\Message.class
+to\TOClient.class
+utils\MessageFun.class
