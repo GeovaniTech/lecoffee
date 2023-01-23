@@ -28,13 +28,32 @@
 	           		</div>
 	                
 	                <div class="fields-login">
-	                	<p:messages id="messages" showDetail="true" closable="true">
+	                	<p:messages id="messages" closable="true">
 				           <p:autoUpdate></p:autoUpdate>
 				        </p:messages>
 	                    <h2>Bem-vindo(a)</h2>
-		                <h:inputText a:placeholder="E-mail" class="field"/>
-		                <h:inputSecret a:placeholder="Senha" class="field" />
-		                <h:inputSecret a:placeholder="Repita a Senha" class="field" />
+		                
+		                <h:inputText 
+		                	value="#{MBRegister.email}"
+        			       	required="true" 
+		                	requiredMessage="E-mail é obrigatório!"
+		                	a:placeholder="E-mail" 
+		                	class="field" />
+		                
+		                <h:inputSecret 
+		                	value="#{MBRegister.senha}"
+		                	required="true" 
+		                	requiredMessage="Senha é obrigatório!"
+		                	a:placeholder="Senha" 
+		                	class="field" />
+		                
+		                <h:inputSecret 
+		                	value="#{MBRegister.confirmaSenha}"
+			                required="true" 
+			                requiredMessage="Repetir a senha é obrigatório!"
+			                a:placeholder="Repita a Senha" 
+			                class="field" />
+			                
         		        <p:commandButton
 		                	id="btnRegister"
 		                	value="Acessar"
@@ -43,6 +62,7 @@
 		                	update="messages"
 		                	styleClass="buttonClass"
 		                	style="margin-bottom: 15px;" /> 
+		                
 		                <a href="login.xhtml">Logue-se Aqui.</a>
 	                </div>
 	                
