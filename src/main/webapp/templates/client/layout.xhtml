@@ -14,6 +14,7 @@
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 		<h:outputStylesheet library="css" name="layout.css"/>
+		<h:outputStylesheet library="css" name="constant-pattern.css"/>
 	</h:head>
 	
 	<h:body>
@@ -21,7 +22,7 @@
 	
 		<div id="menu">
 			<ui:insert name="menu">
-				<ui:include src="/template/header.xhtml" />
+				<ui:include src="/templates/client/header.xhtml" />
 			</ui:insert>
 		</div>
 		
@@ -33,7 +34,7 @@
 		
 		<div id="footer">
 			<ui:insert name="footer">
-				<ui:include src="/template/footer.xhtml"/>
+				<ui:include src="/templates/client/footer.xhtml"/>
 			</ui:insert>
 		</div>
 	</h:body>

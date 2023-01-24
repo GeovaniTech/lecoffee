@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.header {
+	width: 250px;
+	height: 100vw;
+	position: fixed;
+	background: var(--green);
+}
+
