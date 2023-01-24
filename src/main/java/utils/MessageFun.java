@@ -8,7 +8,15 @@ public class MessageFun {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, titulo, descricao));
 	}
 	
-	public void teste() {
-		createMessage(FacesMessage.SEVERITY_ERROR, "Teste", "Teste2");
+	public void emailJaExistente() {
+		createMessage(FacesMessage.SEVERITY_ERROR, "E-mail já está em uso por outro usuário.", null);
+	}
+	
+	public void emailInvalido() {
+		createMessage(FacesMessage.SEVERITY_ERROR, "E-mail informado é inválido.", null);
+	}
+	
+	public void senhasNaoSaoIguais() {
+		createMessage(FacesMessage.SEVERITY_WARN, "Senhas não estão iguais.", null);
 	}
 }

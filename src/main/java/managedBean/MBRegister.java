@@ -3,6 +3,7 @@ package managedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import manter.client.ManterClientSBean;
 import utils.AbstractBean;
 
 @Named("MBRegister")
@@ -13,9 +14,14 @@ public class MBRegister extends AbstractBean {
 	private String email;
 	private String senha;
 	private String confirmaSenha;
+	private ManterClientSBean sbean;
+	
+	public MBRegister() {
+		sbean = new ManterClientSBean();
+	}
 	
 	public void cadastrar() {
-		msg.teste();
+		sbean.save(email, senha, confirmaSenha);
 	}
 	
 	public String getEmail() {
@@ -35,5 +41,11 @@ public class MBRegister extends AbstractBean {
 	}
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
+	}
+	public ManterClientSBean getSbean() {
+		return sbean;
+	}
+	public void setSbean(ManterClientSBean sbean) {
+		this.sbean = sbean;
 	}
 }
