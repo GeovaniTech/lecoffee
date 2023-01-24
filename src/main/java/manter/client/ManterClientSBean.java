@@ -8,6 +8,7 @@ import model.Client;
 import utils.AbstractManter;
 import utils.EmailValidator;
 import utils.PasswordEncryption;
+import utils.RedirectUrl;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -39,6 +40,8 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 		em.getTransaction().begin();
 		em.persist(client);
 		em.getTransaction().commit();
+		
+		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
 		
 		return true;
 	}
@@ -77,6 +80,7 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 					.getSingleResult();
 			
 			getSession().setAttribute("client", client);
+			RedirectUrl.redirecionarPara("/lecoffee/pages/client/home.xhtml");
 		} catch (Exception e) {
 			e.printStackTrace();
 			msg.informacoesInvalidas();
