@@ -7,6 +7,7 @@ import javax.ejb.TransactionManagementType;
 import model.Client;
 import utils.AbstractManter;
 import utils.EmailValidator;
+import utils.PasswordEncryption;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -32,7 +33,7 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 		Client client = new Client();
 		
 		client.setEmail(email);
-		client.setSenha(password);
+		client.setSenha(PasswordEncryption.encrypt(password));
 		
 		em.getTransaction().begin();
 		em.persist(client);
