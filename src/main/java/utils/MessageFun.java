@@ -19,4 +19,8 @@ public class MessageFun {
 	public void senhasNaoSaoIguais() {
 		createMessage(FacesMessage.SEVERITY_WARN, "Senhas não estão iguais.", null);
 	}
+	
+	public void informacoesInvalidas() {
+		createMessage(FacesMessage.SEVERITY_ERROR, "Informações Inválidas", null);
+	}
 }

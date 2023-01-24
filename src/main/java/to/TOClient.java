@@ -4,6 +4,7 @@ public class TOClient {
 	private int id;
 	private String nome;
 	private String email;
+	private String nivel;
 	
 	public int getId() {
 		return id;
@@ -22,6 +23,12 @@ public class TOClient {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getNivel() {
+		return nivel;
+	}
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
 	}
 }
 

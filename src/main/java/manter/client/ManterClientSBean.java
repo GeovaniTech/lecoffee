@@ -34,6 +34,7 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 		
 		client.setEmail(email);
 		client.setSenha(PasswordEncryption.encrypt(password));
+		client.setNivel("client");
 		
 		em.getTransaction().begin();
 		em.persist(client);
@@ -55,12 +56,31 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 					.setParameter("email", email)
 					.getSingleResult();
 			
-			return true;
+			return client != null;
 		} catch (Exception e) {
-			// TODO: handle exception
+			return false;
 		}
+	}
+
+	@Override
+	public void logar(String email, String password) {
+		StringBuilder sql = new StringBuilder();
 		
-		return false;
+		sql.append(" SELECT C ");
+		sql.append(" FROM ").append(Client.class.getName()).append(" C ");
+		sql.append(" WHERE C.email = :email AND C.senha = :password");
+		
+		try {
+			Client client = em.createQuery(sql.toString(), Client.class)
+					.setParameter("email", email)
+					.setParameter("password", PasswordEncryption.encrypt(password))
+					.getSingleResult();
+			
+			getSession().setAttribute("client", client);
+		} catch (Exception e) {
+			e.printStackTrace();
+			msg.informacoesInvalidas();
+		}
 	}
 	
 	

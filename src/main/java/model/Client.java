@@ -13,6 +13,7 @@ public class Client {
 	private String nome;
 	private String email;
 	private String senha;
+	private String nivel;
 	
 	public int getId() {
 		return id;
@@ -37,5 +38,11 @@ public class Client {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getNivel() {
+		return nivel;
+	}
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
 	}
 }
