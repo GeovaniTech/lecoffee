@@ -1,10 +1,13 @@
 package to;
 
+import model.Cart;
+
 public class TOClient {
 	private int id;
 	private String nome;
 	private String email;
 	private String nivel;
+	private Cart cart;
 	
 	public int getId() {
 		return id;
@@ -29,6 +32,12 @@ public class TOClient {
 	}
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
+	}
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 }
 
