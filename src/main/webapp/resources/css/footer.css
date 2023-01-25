@@ -5,7 +5,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
     text-align: left;
     padding: 40px;
     background-color: var(--brown);
