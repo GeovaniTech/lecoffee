@@ -8,7 +8,9 @@
 
 :root {
     --brown: #2F1F10;
+    --brown-mouse: #352415;
     --green: #5e8c6a;
+    --green-mouse: #70997b;
 }
 
 html {
@@ -18,6 +20,17 @@ html {
 body {
     background-color: #FAFAFA;
 }
+
+h1 {
+    font-family: 'Grape Nuts', cursive;
+    font-size: 50px;
+    margin-right: 60px;
+}
+
+h1 span {
+    color: var(--green);
+}
+
 
 *::-webkit-scrollbar {
     width: 10px;

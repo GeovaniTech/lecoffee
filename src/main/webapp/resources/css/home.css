@@ -44,7 +44,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #5e8c6a;
+    color: var(--green);
 }
 
 .acessar-conta {
