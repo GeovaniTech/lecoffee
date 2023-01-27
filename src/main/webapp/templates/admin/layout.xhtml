@@ -19,7 +19,7 @@
 		
 		<c:choose>
 			<c:when test="#{MBDarkMode.darkMode eq 'true'}">
-				<h:outputStylesheet library="css" name="dark-mode.css"/>
+				<h:outputStylesheet library="dark-mode" name="constant-dark-mode.css"/>
 			</c:when>
 		
 			<c:otherwise test="#{MBDarkMode.darkMode == false}">

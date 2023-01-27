@@ -4,10 +4,19 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	
 	<h:body>
-		<h:outputStylesheet library="css" name="admin-header.css"/>
+		<c:choose>
+			<c:when test="#{MBDarkMode.darkMode eq 'true'}">
+				<h:outputStylesheet library="dark-mode" name="admin-header-dark-mode.css"/>
+			</c:when>
+			
+			<c:otherwise>
+				<h:outputStylesheet library="css" name="admin-header.css"/>
+			</c:otherwise>
+		</c:choose>
 		
 		<div class="header">
 			<div class="logo">
@@ -15,42 +24,42 @@
 			</div>
 			
 			<div class="menu">
-				<a href="#">
+				<a href="/lecoffee/pages/admin/pedidos.xhtml" id="menu-pedidos">
 					<span class="material-symbols-outlined google-icons">
 						bakery_dining
 					</span>
 					Pedidos
 				</a>
 				
-				<a href="#">
+				<a href="/lecoffee/pages/admin/products.xhtml" id="menu-produtos">
 					<span class="material-symbols-outlined google-icons">
 						shopping_cart
 					</span>
 					Produtos
 				</a>
 				
-				<a href="#">
+				<a href="/lecoffee/pages/admin/ganhos.xhtml" id="menu-ganhos">
 					<span class="material-symbols-outlined google-icons">
 						currency_bitcoin
 					</span>
 					Ganhos
 				</a>
 				
-				<a href="#">
+				<a href="/lecoffee/pages/admin/avaliacoes.xhtml" id="menu-avaliacoes">
 					<span class="material-symbols-outlined google-icons">
 						star
 					</span>
 					Avaliações
 				</a>
 				
-				<a href="#">
+				<a href="/lecoffee/pages/admin/clientes.xhtml" id="menu-clientes">
 					<span class="material-symbols-outlined google-icons">
 						group
 					</span>
 					Clientes
 				</a>
 				
-				<a href="#">
+				<a href="/lecoffee/pages/admin/chats.xhtml" id="menu-chats">
 					<span class="material-symbols-outlined google-icons">
 						forum
 					</span>

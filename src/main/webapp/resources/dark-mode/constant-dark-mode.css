@@ -11,6 +11,11 @@
     --brown-mouse: #352415;
     --green: #474843;
     --green-mouse: #70997b;
+   	--black: #353432;
+	--gray: #666666;
+	--white: #fffff7;
+	--white-mouse: #fffffe;
+	--background-body: #1b191b;
 }
 
 html {
@@ -18,17 +23,14 @@ html {
 }
 
 body {
-    background-color: black;
+    background-color: #111315;
 }
 
 h1 {
     font-family: 'Grape Nuts', cursive;
     font-size: 50px;
     margin-right: 60px;
-}
-
-h1 span {
-    color: var(--green);
+    color: var(--white);
 }
 
 

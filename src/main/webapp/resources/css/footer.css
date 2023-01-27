@@ -11,6 +11,9 @@
     background-color: var(--brown);
     color: rgba(255, 255, 255, 0.907);
     font-family: 'Poppins', sans-serif;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer h2 {
