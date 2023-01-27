@@ -18,13 +18,13 @@
 		<h:outputStylesheet library="css" name="admin-layout.css"/>
 		
 		<c:choose>
-			<c:when test="#{MBDarkMode.darkMode == true}">
+			<c:when test="#{MBDarkMode.darkMode eq 'true'}">
 				<h:outputStylesheet library="css" name="dark-mode.css"/>
 			</c:when>
 		
-			<c:when test="#{MBDarkMode.darkMode == false}">
-				<h:outputStylesheet library="css" name="dark-mode.css"/>
-			</c:when>
+			<c:otherwise test="#{MBDarkMode.darkMode == false}">
+				<h:outputStylesheet library="css" name="constant-pattern.css"/>
+			</c:otherwise>
 		</c:choose>
 	</h:head>
 	

@@ -17,7 +17,7 @@ html {
     scroll-behavior: smooth;
 }
 
-body, .body {
+body {
     background-color: black;
 }
 
@@ -43,5 +43,5 @@ h1 span {
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #474843;
+    background-color: var(--green);
 }

@@ -8,7 +8,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:components="http://java.sun.com/jsf/composite/components"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	
 	<h:head>
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,7 +17,15 @@
 		<title>LeCoffee - Cadastro</title>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
-		<h:outputStylesheet library="css" name="access.css" />
+		<c:choose>
+			<c:when test="#{MBDarkMode.darkMode eq 'true'}">
+				<h:outputStylesheet library="css" name="access-dark.css" />
+			</c:when>
+			
+			<c:otherwise>
+				<h:outputStylesheet library="css" name="access.css" />
+			</c:otherwise>
+		</c:choose>
 	</h:head>
 	
 	<h:body>
