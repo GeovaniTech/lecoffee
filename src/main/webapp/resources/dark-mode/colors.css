@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+:root {
+    --brown: #2F1F10;
+    --brown-mouse: #352415;
+    --green: #474843;
+    --green-mouse: #70997b;
+	
+	--text: #868B90;
+	--text-mouse: #fffff7;
+	--background-general: #1A1C1E;
+	--background-general-mouse: #272A30;
+	--background-body: #111315;
+}	

@@ -8,15 +8,7 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	
 	<h:body>
-		<c:choose>
-			<c:when test="#{MBDarkMode.darkMode eq 'true'}">
-				<h:outputStylesheet library="dark-mode" name="admin-header-dark-mode.css"/>
-			</c:when>
-			
-			<c:otherwise>
-				<h:outputStylesheet library="css" name="admin-header.css"/>
-			</c:otherwise>
-		</c:choose>
+		<h:outputStylesheet library="pattern-css" name="admin-header.css"/>
 		
 		<div class="header">
 			<div class="logo">
@@ -68,9 +60,23 @@
 
 				<a href="/lecoffee/pages/client/home.xhtml">
 					<span class="material-symbols-outlined google-icons">
-					web
+						web
 					</span>
 					Landing Page
+				</a>
+				
+				<a href="/lecoffee/pages/admin/configuracoes.xhtml" id="menu-configs">
+					<span class="material-symbols-outlined google-icons">
+					settings
+					</span>
+					Configurações
+				</a>
+
+				<a href="/lecoffee/pages/login.xhtml">
+					<span class="material-symbols-outlined google-icons">
+						logout
+					</span>
+					Logout
 				</a>
 			</div>
 		</div>

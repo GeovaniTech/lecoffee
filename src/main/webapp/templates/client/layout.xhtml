@@ -14,14 +14,14 @@
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
-		<h:outputStylesheet library="css" name="layout.css"/>
+		<h:outputStylesheet library="pattern-css" name="layout.css"/>
 		
 		<c:if test="#{MBDarkMode.darkMode == true}">
-			<h:outputStylesheet library="css" name="constant-pattern-dark-mode.css"/>
+			<h:outputStylesheet library="dark-mode" name="colors.css"/>
 		</c:if>
 		
 		<c:if test="#{MBDarkMode.darkMode == false}">
-			<h:outputStylesheet library="css" name="constant-pattern.css"/>
+			<h:outputStylesheet library="light-mode" name="colors.css"/>
 		</c:if>
 	</h:head>
 	

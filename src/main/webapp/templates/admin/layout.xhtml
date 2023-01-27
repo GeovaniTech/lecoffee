@@ -15,15 +15,15 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
-		<h:outputStylesheet library="css" name="admin-layout.css"/>
-		
+		<h:outputStylesheet library="pattern-css" name="admin-layout.css"/>
+		<h:outputStylesheet library="pattern-css" name="constant-pattern.css"/>
 		<c:choose>
 			<c:when test="#{MBDarkMode.darkMode eq 'true'}">
-				<h:outputStylesheet library="dark-mode" name="constant-dark-mode.css"/>
+				<h:outputStylesheet library="dark-mode" name="colors.css"/>
 			</c:when>
 		
 			<c:otherwise test="#{MBDarkMode.darkMode == false}">
-				<h:outputStylesheet library="css" name="constant-pattern.css"/>
+				<h:outputStylesheet library="light-mode" name="colors.css"/>
 			</c:otherwise>
 		</c:choose>
 	</h:head>
