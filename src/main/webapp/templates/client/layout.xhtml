@@ -4,7 +4,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsf/core">
 	
 	<h:head>
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,7 +15,14 @@
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 		<h:outputStylesheet library="css" name="layout.css"/>
-		<h:outputStylesheet library="css" name="constant-pattern.css"/>
+		
+		<c:if test="#{MBDarkMode.darkMode == true}">
+			<h:outputStylesheet library="css" name="constant-pattern-dark-mode.css"/>
+		</c:if>
+		
+		<c:if test="#{MBDarkMode.darkMode == false}">
+			<h:outputStylesheet library="css" name="constant-pattern.css"/>
+		</c:if>
 	</h:head>
 	
 	<h:body>

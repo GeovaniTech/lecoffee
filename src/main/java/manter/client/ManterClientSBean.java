@@ -82,7 +82,7 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 			getSession().setAttribute("client", client);
 			
 			if(client.getNivel().equals("admin")) {
-				RedirectUrl.redirecionarPara("/lecoffee/pages/admin/home.xhtml");
+				RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
 			} else {
 				RedirectUrl.redirecionarPara("/lecoffee/pages/client/home.xhtml");
 			}
