@@ -15,7 +15,7 @@
 			<ui:define name="body">
 				<style>
 					#menu-configs {
-						background-color:#272A30;
+						background-color: var(--background-general-mouse);
 						color: var(--text-mouse);
 					}
 				</style>
@@ -29,15 +29,11 @@
       			    		value="#{MBAppConfigs.darkMode}" 
       			    		onIcon="pi pi-sun" 
       			    		offIcon="pi pi-moon">
-      			    	
+      			    		
+      			    		<p:ajax 
+      			    			event="change"
+      			    			process="@form"/>
       			    	</p:toggleSwitch>
-      			    	
-						<h:panelGrid columns="1">
-	      			    	<p:commandButton 
-	      			    		value="Save Changes"
-	      			    		action="done?faces-redirect=true"
-	      			    		process="@form" />
-						</h:panelGrid>
 					</h:form>
 				</div>
 			</ui:define>
