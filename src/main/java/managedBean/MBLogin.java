@@ -5,6 +5,7 @@ import javax.inject.Named;
 
 import manter.client.ManterClientSBean;
 import utils.AbstractBean;
+import utils.RedirectUrl;
 
 @Named("MBLogin")
 @ViewScoped
@@ -21,6 +22,11 @@ public class MBLogin extends AbstractBean {
 
 	public void logar() {
 		sBean.logar(email, password);
+	}
+	
+	public void logout() {
+		getSession().setAttribute("client", null);
+		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
 	}
 	
 	public String getEmail() {

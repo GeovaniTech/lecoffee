@@ -5,6 +5,12 @@ import javax.servlet.http.HttpSession;
 
 public class LeCoffeeSession {
 	protected HttpSession getSession() {
-		return(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		
+		if(session == null) {
+			session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		}
+		
+		return session;
 	}
 }

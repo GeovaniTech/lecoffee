@@ -10,18 +10,26 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 	
-	<h:body>
-		<ui:composition template="/templates/admin/layout.xhtml">
-			<ui:define name="body">
-				<style>
-					#menu-produtos {
-						background-color: var(--background-general-mouse);
-						color: var(--text-mouse);
-					}
-				</style>
+	<ui:composition template="/templates/admin/layout.xhtml">
+		<ui:define name="body">
+			<style>
+				#menu-produtos {
+					background-color: var(--background-general-mouse);
+					color: var(--text-mouse);
+				}
+			</style>
+			
+			<h2>Produtos</h2>
+			
+			<p:tabView>
+				<p:tab title="Produtos">
 				
-				<h2>Produtos</h2>
-			</ui:define>
-		</ui:composition>
-	</h:body>
+				</p:tab>
+				
+				<p:tab title="Promoções">
+				
+				</p:tab>
+			</p:tabView>
+		</ui:define>
+	</ui:composition>
 </html>

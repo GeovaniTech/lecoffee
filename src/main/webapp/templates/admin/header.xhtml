@@ -72,12 +72,17 @@
 					Configurações
 				</a>
 
-				<a href="/lecoffee/pages/login.xhtml">
+				<a href="#" onclick="btnLogout()" type="button">
 					<span class="material-symbols-outlined google-icons">
 						logout
 					</span>
 					Logout
 				</a>
+				
+				<p:remoteCommand 
+					id="btnLogout"
+					name="btnLogout"
+					action="#{MBLogin.logout()}"/>
 			</div>
 		</div>
 	</h:body>
