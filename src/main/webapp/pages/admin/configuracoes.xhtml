@@ -21,6 +21,25 @@
 				</style>
 				
 				<h2>Configurações</h2>
+				
+				<div class="select-theme">
+					<h:form>
+				        <h5>Dark Mode</h5>
+      			    	<p:toggleSwitch 
+      			    		value="#{MBAppConfigs.darkMode}" 
+      			    		onIcon="pi pi-sun" 
+      			    		offIcon="pi pi-moon">
+      			    	
+      			    	</p:toggleSwitch>
+      			    	
+						<h:panelGrid columns="1">
+	      			    	<p:commandButton 
+	      			    		value="Save Changes"
+	      			    		action="done?faces-redirect=true"
+	      			    		process="@form" />
+						</h:panelGrid>
+					</h:form>
+				</div>
 			</ui:define>
 		</ui:composition>
 	</h:body>

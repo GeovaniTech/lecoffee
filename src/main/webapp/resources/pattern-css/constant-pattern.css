@@ -4,6 +4,7 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 html {
@@ -22,6 +23,7 @@ h1 {
 
 h1 span {
     color: var(--green);
+    font-family: 'Grape Nuts', cursive;
 }
 
 

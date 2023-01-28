@@ -10,13 +10,13 @@ import javax.inject.Named;
 public class MBAppConfigs implements Serializable {
 	private static final long serialVersionUID = -2862315075236619884L;
 	
-	private String darkMode = "true";
+	private boolean darkMode = false;
 
-	public String getDarkMode() {
+	public boolean isDarkMode() {
 		return darkMode;
 	}
 
-	public void setDarkMode(String darkMode) {
+	public void setDarkMode(boolean darkMode) {
 		this.darkMode = darkMode;
 	}
 }
