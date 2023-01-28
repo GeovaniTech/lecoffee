@@ -18,6 +18,10 @@ body {
 	font-family: 'Poppins', sans-serif;
 }
 
+h1 {
+	color: var(--text-mouse);
+}
+
 h1 span {
 	color: var(--green);
 }
@@ -28,10 +32,11 @@ h1 span {
 	justify-content: space-evenly;
 	align-items: center;
 	padding: 30px;
-	background-color: white;
+	background-color: var(--background-general-mouse);
 	width: 390px;
 	border-radius: 15px;
 	height: 70vh;
+	color: var(--text-mouse);
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 4px 16px 0 rgba(0,0,0,0.15);
 }
 
@@ -44,12 +49,18 @@ h1 span {
     border: 0px;
     font-size: 18px;
     padding-bottom: 5px;
-    border-bottom: 2px solid var(--brown);
+    background-color: var(--background-general-mouse);
+    border-bottom: 2px solid var(--text-mouse);
     outline: none;
+    color: var(--text-mouse);
+}
+
+.access .field::placeholder {
+	color: var(--text) !important;
 }
 
 .access a {
-	color: var(--brown);
+	color: var(--text-mouse);
 	transition: 0.4s;
 	font-size: 18px;
 }
@@ -89,11 +100,11 @@ button {
 }
 
 .buttonClass:hover {
-		background-color: #728e79 !important;
+		background-color: var(--green-mouse) !important;
 }
 
 button:hover {
-    background-color: #728e79;
+    background-color: var(--green-mouse);
 }
 
 .atendimento {
@@ -103,7 +114,7 @@ button:hover {
 .atendimento a {
     text-decoration: none;
     margin-right: 10px;
-    color: gray;
+    color: var(--text-mouse);
     font-size: 30px;
     transition: 0.4s;
 }

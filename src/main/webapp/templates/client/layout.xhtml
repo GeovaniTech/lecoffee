@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://xmlns.jcp.org/jsf/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	
 	<h:head>
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,14 +15,17 @@
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 		<h:outputStylesheet library="pattern-css" name="layout.css"/>
+		<h:outputStylesheet library="pattern-css" name="constant-pattern.css"/>
 		
-		<c:if test="#{MBDarkMode.darkMode == true}">
-			<h:outputStylesheet library="dark-mode" name="colors.css"/>
-		</c:if>
-		
-		<c:if test="#{MBDarkMode.darkMode == false}">
-			<h:outputStylesheet library="light-mode" name="colors.css"/>
-		</c:if>
+		<c:choose>
+			<c:when test="#{MBAppConfigs.darkMode == true}">
+				<h:outputStylesheet library="dark-mode" name="colors.css"/>
+			</c:when>
+			
+			<c:otherwise test="#{MBAppConfigs.darkMode == false}">
+				<h:outputStylesheet library="light-mode" name="colors.css"/>
+			</c:otherwise>
+		</c:choose>
 	</h:head>
 	
 	<h:body>

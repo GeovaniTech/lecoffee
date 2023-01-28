@@ -19,7 +19,7 @@
 		<h:outputStylesheet library="pattern-css" name="access.css"/>
 		
 		<c:choose>
-			<c:when test="#{MBDarkMode.darkMode eq 'true'}">
+			<c:when test="#{MBAppConfigs.darkMode eq 'true'}">
 				<h:outputStylesheet library="dark-mode" name="colors.css" />
 			</c:when>
 			

@@ -5,9 +5,9 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-@Named("MBDarkMode")
+@Named("MBAppConfigs")
 @SessionScoped
-public class MBDarkMode implements Serializable {
+public class MBAppConfigs implements Serializable {
 	private static final long serialVersionUID = -2862315075236619884L;
 	
 	private String darkMode = "true";
