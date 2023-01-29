@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+/* ############## TOP MENU ############## */
+
+.menu-top {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+
+/* ############## LEFT MENU ############## */
+
 .header {
 	width: 250px;
 	height: 100vw;

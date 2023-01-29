@@ -10,6 +10,20 @@
 	<h:body>
 		<h:outputStylesheet library="pattern-css" name="admin-header.css"/>
 		
+		<div class="top_header">
+			<div class="btn-menu">
+				<span class="material-symbols-outlined">
+					menu
+				</span>
+			</div>
+			
+			<div class="name-page">
+				<ui:insert name="name_page">
+					<h:outputText value="Name Teste" />
+				</ui:insert>
+			</div>
+		</div>
+		
 		<div class="header">
 			<div class="logo">
 				<h1><span>Le</span>Coffee</h1>
