@@ -12,13 +12,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.faces.FacesException;
-import javax.servlet.http.HttpSession;
+
+import utils.Message;
  
-public class ViewExpiredExceptionHandler extends ExceptionHandlerWrapper {
+public class ViewExpiredExceptionHandler extends ExceptionHandlerWrapper implements Message {
 
     private ExceptionHandler wrapped;
-
-    public ViewExpiredExceptionHandler(ExceptionHandler wrapped) {
+    
+    @SuppressWarnings("deprecation")
+	public ViewExpiredExceptionHandler(ExceptionHandler wrapped) {
         this.wrapped = wrapped;
     }
 
@@ -36,8 +38,9 @@ public class ViewExpiredExceptionHandler extends ExceptionHandlerWrapper {
                 try {
                     requestMap.put("javax.servlet.error.exception_name", vee.getClass().getName());
                     requestMap.put("javax.servlet.error.message", vee.getMessage());
+
                     nav.handleNavigation(fc, null, "/login.xhtml?faces-redirect=true");
-                    fc.renderResponse();
+                    fc.renderResponse(); 
                 } finally {
                     i.remove();
                 }

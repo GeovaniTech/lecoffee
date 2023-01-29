@@ -7,7 +7,8 @@ public class ViewExpiredExceptionHandlerFactory extends ExceptionHandlerFactory 
 
     private ExceptionHandlerFactory parent;
 
-    public ViewExpiredExceptionHandlerFactory(ExceptionHandlerFactory parent) {
+    @SuppressWarnings("deprecation")
+	public ViewExpiredExceptionHandlerFactory(ExceptionHandlerFactory parent) {
         this.parent = parent;
     }
 

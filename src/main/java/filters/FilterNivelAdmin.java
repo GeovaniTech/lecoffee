@@ -13,18 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Client;
-import utils.RedirectUrl;
 
-/**
- * Servlet Filter implementation class FilterNivelAdmin
- */
 public class FilterNivelAdmin implements Filter {
-
-    /**
-     * Default constructor. 
-     */
     public FilterNivelAdmin() {
-        // TODO Auto-generated constructor stub
+       
     }
 
 	public void destroy() {

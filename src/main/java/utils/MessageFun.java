@@ -23,4 +23,8 @@ public class MessageFun {
 	public void informacoesInvalidas() {
 		createMessage(FacesMessage.SEVERITY_ERROR, "Informações Inválidas", null);
 	}
+	
+	public void sessaoExpirada() {
+		createMessage(FacesMessage.SEVERITY_WARN, "Sessão Expirada", null);
+	}
 }
