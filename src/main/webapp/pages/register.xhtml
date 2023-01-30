@@ -7,14 +7,13 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:components="http://java.sun.com/jsf/composite/components"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	
 	<h:head>
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>LeCoffee - Cadastro</title>
+		<title>LeCoffee - Login</title>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<h:outputStylesheet library="pattern-css" name="access.css"/>
@@ -27,63 +26,75 @@
 			<c:otherwise>
 				<h:outputStylesheet library="light-mode" name="colors.css" />
 			</c:otherwise>
-		</c:choose>	
+		</c:choose>		
 	</h:head>
 	
 	<h:body>
-		<div class="section">
-           	<h:form>
-           		<div class="access">
- 	           		<div class="logo">
-	           			<h1><span>Le</span>Coffee</h1>
-	           		</div>
+		<div class="container">
+			<div class="logo">
+				<h1><span>Le</span>Coffee</h1>
+			</div>
+			
+			<div class="center">
+				<h2>Bem vindo(a)</h2>
+				
+				<h:form class="form">
+		        	<p:messages id="messages" closable="true"  autoUpdate="true" style="width: 100%;" />
+		
+	                <h:inputText 
+	                	value="#{MBRegister.email}"
+       			       	required="true" 
+	                	requiredMessage="E-mail é obrigatório!"
+	                	a:placeholder="E-mail" 
+	                	class="field" />
 	                
-	                <div class="fields-login">
-	                	<p:messages id="messages" closable="true">
-				           <p:autoUpdate></p:autoUpdate>
-				        </p:messages>
-	                    <h2>Bem-vindo(a)</h2>
-		                
-		                <h:inputText 
-		                	value="#{MBRegister.email}"
-        			       	required="true" 
-		                	requiredMessage="E-mail é obrigatório!"
-		                	a:placeholder="E-mail" 
-		                	class="field" />
-		                
-		                <h:inputSecret 
-		                	value="#{MBRegister.senha}"
-		                	required="true" 
-		                	requiredMessage="Senha é obrigatório!"
-		                	a:placeholder="Senha" 
-		                	class="field" />
-		                
-		                <h:inputSecret 
-		                	value="#{MBRegister.confirmaSenha}"
-			                required="true" 
-			                requiredMessage="Repetir a senha é obrigatório!"
-			                a:placeholder="Repita a Senha" 
-			                class="field" />
-			                
-        		        <p:commandButton
-		                	id="btnRegister"
-		                	value="Acessar"
-		                	widgetVar="btnRegister"
-		                	action="#{MBRegister.cadastrar()}"
-		                	update="messages"
-		                	styleClass="buttonClass"
-		                	style="margin-bottom: 15px;" /> 
-		                
-		                <a href="login.xhtml">Logue-se Aqui.</a>
-	                </div>
+	                <h:inputSecret 
+	                	value="#{MBRegister.senha}"
+	                	required="true" 
+	                	requiredMessage="Senha é obrigatório!"
+	                	a:placeholder="Senha" 
+	                	class="field" />
 	                
-		            <div class="atendimento">
-		                <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
-		                <a href="#"><i class="fi fi-brands-instagram"></i></a>
-		                <a href="#"><i class="fi fi-brands-facebook"></i></a>
-		            </div>       		
-           		</div>
-            </h:form>
-		</div>
+	                <h:inputSecret 
+	                	value="#{MBRegister.confirmaSenha}"
+		                required="true" 
+		                requiredMessage="Repetir a senha é obrigatório!"
+		                a:placeholder="Repita a Senha" 
+		                class="field" />
+		                
+       		        <p:commandButton
+	                	id="btnRegister"
+	                	value="Acessar"
+	                	widgetVar="btnRegister"
+	                	action="#{MBRegister.cadastrar()}"
+	                	update="messages"
+	                	styleClass="buttonClass"
+	                	style="margin-bottom: 15px;" /> 
+				</h:form>
+				
+				<div class="options">				
+					<h:form class="form-darkmode">
+						<h5>Dark Mode</h5>
+			    		<p:toggleSwitch
+				    		value="#{MBAppConfigs.darkMode}" 
+				    		onIcon="pi pi-sun" 
+				    		offIcon="pi pi-moon">
+			
+				    		<p:ajax 
+				    			event="change"
+				    			process="@form"/>
+			    		</p:toggleSwitch>
+					</h:form>
+					
+					<a href="login.xhtml">Logue-se</a>
+				</div>
+			</div>
+						
+	        <div class="atendimento">
+	            <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
+	            <a href="#"><i class="fi fi-brands-instagram"></i></a>
+	            <a href="#"><i class="fi fi-brands-facebook"></i></a>
+	        </div>	
+		</div>    		
 	</h:body>
 </html>
