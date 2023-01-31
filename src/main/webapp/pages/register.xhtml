@@ -29,72 +29,74 @@
 		</c:choose>		
 	</h:head>
 	
-	<h:body>
-		<div class="container">
-			<div class="logo">
-				<h1><span>Le</span>Coffee</h1>
-			</div>
-			
-			<div class="center">
-				<h2>Bem vindo(a)</h2>
+	<f:view locale="#{MBAppConfigs.language}" id="view-locale">	
+		<h:body>
+			<div class="container">
+				<div class="logo">
+					<h1><span>Le</span>Coffee</h1>
+				</div>
 				
-				<h:form class="form">
-		        	<p:messages id="messages" closable="true"  autoUpdate="true" style="width: 100%;" />
-		
-	                <h:inputText 
-	                	value="#{MBRegister.email}"
-       			       	required="true" 
-	                	requiredMessage="E-mail é obrigatório!"
-	                	a:placeholder="E-mail" 
-	                	class="field" />
-	                
-	                <h:inputSecret 
-	                	value="#{MBRegister.senha}"
-	                	required="true" 
-	                	requiredMessage="Senha é obrigatório!"
-	                	a:placeholder="Senha" 
-	                	class="field" />
-	                
-	                <h:inputSecret 
-	                	value="#{MBRegister.confirmaSenha}"
-		                required="true" 
-		                requiredMessage="Repetir a senha é obrigatório!"
-		                a:placeholder="Repita a Senha" 
-		                class="field" />
+				<div class="center">
+					<h2>#{label.welcome}</h2>
+					
+					<h:form class="form">
+			        	<p:messages id="messages" closable="true"  autoUpdate="true" style="width: 100%;" />
+			
+		                <h:inputText 
+		                	value="#{MBRegister.email}"
+	       			       	required="true" 
+		                	requiredMessage="#{label.email_required}"
+		                	a:placeholder="#{label.email}" 
+		                	class="field" />
 		                
-       		        <p:commandButton
-	                	id="btnRegister"
-	                	value="Acessar"
-	                	widgetVar="btnRegister"
-	                	action="#{MBRegister.cadastrar()}"
-	                	update="messages"
-	                	styleClass="buttonClass"
-	                	style="margin-bottom: 15px;" /> 
-				</h:form>
-				
-				<div class="options">				
-					<h:form class="form-darkmode">
-						<h5>Dark Mode</h5>
-			    		<p:toggleSwitch
-				    		value="#{MBAppConfigs.darkMode}" 
-				    		onIcon="pi pi-sun" 
-				    		offIcon="pi pi-moon">
-			
-				    		<p:ajax 
-				    			event="change"
-				    			process="@form"/>
-			    		</p:toggleSwitch>
+		                <h:inputSecret 
+		                	value="#{MBRegister.senha}"
+		                	required="true" 
+		                	requiredMessage="#{label.password_required}"
+		                	a:placeholder="#{label.password}" 
+		                	class="field" />
+		                
+		                <h:inputSecret 
+		                	value="#{MBRegister.confirmaSenha}"
+			                required="true" 
+			                requiredMessage="#{label.repeat_password_required}"
+			                a:placeholder="#{label.repeat_password}" 
+			                class="field" />
+			                
+	       		        <p:commandButton
+		                	id="btnRegister"
+		                	value="#{label.register}"
+		                	widgetVar="btnRegister"
+		                	action="#{MBRegister.cadastrar()}"
+		                	update="messages"
+		                	styleClass="buttonClass"
+		                	style="margin-bottom: 15px;" /> 
 					</h:form>
 					
-					<a href="login.xhtml">Logue-se</a>
-				</div>
-			</div>
+					<div class="options">				
+						<h:form class="form-darkmode">
+							<h5>#{label.dark_mode}</h5>
+				    		<p:toggleSwitch
+					    		value="#{MBAppConfigs.darkMode}" 
+					    		onIcon="pi pi-sun" 
+					    		offIcon="pi pi-moon">
+				
+					    		<p:ajax 
+					    			event="change"
+					    			process="@form"/>
+				    		</p:toggleSwitch>
+						</h:form>
 						
-	        <div class="atendimento">
-	            <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
-	            <a href="#"><i class="fi fi-brands-instagram"></i></a>
-	            <a href="#"><i class="fi fi-brands-facebook"></i></a>
-	        </div>	
-		</div>    		
-	</h:body>
+						<a href="login.xhtml">#{label.login}</a>
+					</div>
+				</div>
+							
+		        <div class="atendimento">
+		            <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
+		            <a href="#"><i class="fi fi-brands-instagram"></i></a>
+		            <a href="#"><i class="fi fi-brands-facebook"></i></a>
+		        </div>	
+			</div>    		
+		</h:body>
+	</f:view>
 </html>

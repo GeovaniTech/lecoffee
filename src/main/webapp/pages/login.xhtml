@@ -15,6 +15,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>LeCoffee - Login</title>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<h:outputStylesheet library="pattern-css" name="access.css"/>
 		
@@ -46,7 +47,7 @@
 							value="#{MBLogin.email}"
 							a:placeholder="#{label.email}"
 							required="true"
-							requiredMessage="#{email_required}"
+							requiredMessage="#{label.email_required}"
 							class="field" />
 						
 			            <h:inputSecret 
@@ -66,8 +67,10 @@
 				           	style="margin-bottom: 15px;" />
 					</h:form>
 					
-					<div class="options">				
-						<h:form class="form-darkmode">
+					<div class="options">
+						<h:form 
+							class="form-darkmode">
+							
 							<h5>#{label.dark_mode}</h5>
 				    		<p:toggleSwitch
 					    		value="#{MBAppConfigs.darkMode}" 
@@ -78,20 +81,9 @@
 					    			event="change"
 					    			process="@form"/>
 				    		</p:toggleSwitch>
-				    		
-				    		<p:selectOneMenu
-				    			value="#{MBAppConfigs.language}"
-				    			onchange="this.form.submit()">
-				    		
-				    			<f:selectItems 
-				    				var="locale"	
-				    				value="#{MBAppConfigs.localeList}"
-				    				itemLabel="#{locale.displayLanguage}"
-				    				itemValue="#{locale.language}" />
-				    		</p:selectOneMenu>
-						</h:form>
+						</h:form>	
 						
-						<a href="register.xhtml">#{label.register}</a>
+						<a href="/lecoffee/pages/register.xhtml">#{label.register}</a>
 					</div>
 				</div>
 							
@@ -100,7 +92,7 @@
 		            <a href="#"><i class="fi fi-brands-instagram"></i></a>
 		            <a href="#"><i class="fi fi-brands-facebook"></i></a>
 		        </div>	
-			</div>    		
+			</div>    	
 		</h:body>
 	</f:view>
 </html>

@@ -21,6 +21,7 @@ h2, h5 {
 
 h5 {
 	margin-bottom: 5px;
+	text-align: left !important;
 }
 
 body {
@@ -74,7 +75,7 @@ body {
 form {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
 }
 
@@ -108,7 +109,7 @@ form > .field, button {
     text-decoration: none;
     margin-right: 10px;
     color: var(--text-mouse);
-    font-size: 40px;
+    font-size: 35px;
     transition: 0.4s;
 }
 
@@ -156,6 +157,12 @@ button {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: flex-start;
+	text-align: left;
+}
+
+.google-icons {
+	color: var(--text-mouse);
+	font-size: 30px !important;
 }
 
 *::-webkit-scrollbar {

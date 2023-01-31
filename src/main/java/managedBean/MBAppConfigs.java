@@ -22,7 +22,7 @@ public class MBAppConfigs implements Serializable {
 		localeList.add(new Locale("pt"));
 		localeList.add(new Locale("en"));
 		
-		language = "pt";
+		language = Locale.getDefault().getLanguage();
 	}
 	
 	public boolean isDarkMode() {
