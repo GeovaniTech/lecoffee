@@ -1,15 +1,20 @@
 @charset "UTF-8";
 
-/* ############## TOP MENU ############## */
+/* ############## TOP HEADER ############## */
 
-.menu-top {
+.top-header {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	background-color: var(--background-general);
+	width: 100%;
+	height: 8vh;
+	position: fixed;
+	top: 0px;
 }
 
 
-/* ############## LEFT MENU ############## */
+/* ############## LEFT HEADER ############## */
 
 .header {
 	width: 250px;

@@ -12,7 +12,6 @@
     </factory>
     	
  	<application>
- 		
  		  <locale-config>
 		    <default-locale>pt</default-locale>
 		    <supported-locale>en</supported-locale>

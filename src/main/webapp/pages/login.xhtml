@@ -29,65 +29,78 @@
 		</c:choose>		
 	</h:head>
 	
-	<h:body>
-		<div class="container">
-			<div class="logo">
-				<h1><span>Le</span>Coffee</h1>
-			</div>
-			
-			<div class="center">
-				<h2>Bem vindo(a)</h2>
+	<f:view locale="#{MBAppConfigs.language}" id="view-locale">	
+		<h:body>
+			<div class="container">
+				<div class="logo">
+					<h1><span>Le</span>Coffee</h1>
+				</div>
 				
-				<h:form class="form">
-		        	<p:messages id="messages" closable="true"  autoUpdate="true" style="width: 100%;" />
-		
-					<h:inputText 
-						value="#{MBLogin.email}"
-						a:placeholder="E-mail"
-						required="true"
-						requiredMessage="E-mail é obrigatório"
-						class="field" />
+				<div class="center">
+					<h2>#{label.welcome}</h2>
 					
-		            <h:inputSecret 
-			           	value="#{MBLogin.password}"
-			           	required="true" 
-			           	requiredMessage="Senha é obrigatório!"
-			           	a:placeholder="Senha" 
-			           	class="field" />
-		
-		            <p:commandButton
-			           	id="btnRegister"
-			           	value="Acessar"
-			           	widgetVar="btnRegister"
-			           	action="#{MBLogin.logar()}"
-			           	update="messages"
-			           	styleClass="buttonClass"
-			           	style="margin-bottom: 15px;" />
-				</h:form>
-				
-				<div class="options">				
-					<h:form class="form-darkmode">
-						<h5>Dark Mode</h5>
-			    		<p:toggleSwitch
-				    		value="#{MBAppConfigs.darkMode}" 
-				    		onIcon="pi pi-sun" 
-				    		offIcon="pi pi-moon">
+					<h:form class="form">
+			        	<p:messages id="messages" closable="true"  autoUpdate="true" style="width: 100%;" />
 			
-				    		<p:ajax 
-				    			event="change"
-				    			process="@form"/>
-			    		</p:toggleSwitch>
+						<h:inputText 
+							value="#{MBLogin.email}"
+							a:placeholder="#{label.email}"
+							required="true"
+							requiredMessage="#{email_required}"
+							class="field" />
+						
+			            <h:inputSecret 
+				           	value="#{MBLogin.password}"
+				           	required="true" 
+				           	requiredMessage="#{label.password_required}"
+				           	a:placeholder="#{label.password}" 
+				           	class="field" />
+			
+			            <p:commandButton
+				           	id="btnRegister"
+				           	value="#{label.access}"
+				           	widgetVar="btnRegister"
+				           	action="#{MBLogin.logar()}"
+				           	update="messages"
+				           	styleClass="buttonClass"
+				           	style="margin-bottom: 15px;" />
 					</h:form>
 					
-					<a href="register.xhtml">Cadastrar-se</a>
-				</div>
-			</div>
+					<div class="options">				
+						<h:form class="form-darkmode">
+							<h5>#{label.dark_mode}</h5>
+				    		<p:toggleSwitch
+					    		value="#{MBAppConfigs.darkMode}" 
+					    		onIcon="pi pi-sun" 
+					    		offIcon="pi pi-moon">
+				
+					    		<p:ajax 
+					    			event="change"
+					    			process="@form"/>
+				    		</p:toggleSwitch>
+				    		
+				    		<p:selectOneMenu
+				    			value="#{MBAppConfigs.language}"
+				    			onchange="this.form.submit()">
+				    		
+				    			<f:selectItems 
+				    				var="locale"	
+				    				value="#{MBAppConfigs.localeList}"
+				    				itemLabel="#{locale.displayLanguage}"
+				    				itemValue="#{locale.language}" />
+				    		</p:selectOneMenu>
+						</h:form>
 						
-	        <div class="atendimento">
-	            <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
-	            <a href="#"><i class="fi fi-brands-instagram"></i></a>
-	            <a href="#"><i class="fi fi-brands-facebook"></i></a>
-	        </div>	
-		</div>    		
-	</h:body>
+						<a href="register.xhtml">#{label.register}</a>
+					</div>
+				</div>
+							
+		        <div class="atendimento">
+		            <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
+		            <a href="#"><i class="fi fi-brands-instagram"></i></a>
+		            <a href="#"><i class="fi fi-brands-facebook"></i></a>
+		        </div>	
+			</div>    		
+		</h:body>
+	</f:view>
 </html>
