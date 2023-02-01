@@ -1,11 +1,19 @@
 @charset "UTF-8";
 
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	color: var(--text-mouse);
+}
+
 .footer {
 	margin-left: 250px;
 }
 
 .body {
-	margin-top: 15px;
+	margin-top: 60px;
 	margin-left: 250px;
 }
 

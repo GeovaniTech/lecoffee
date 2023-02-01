@@ -10,7 +10,7 @@
 	<h:body>
 		<h:outputStylesheet library="pattern-css" name="admin-header.css"/>
 		
-		<div class="top-0header">
+		<div class="top-header">
 			<div class="btn-menu">
 				<span class="material-symbols-outlined">
 					menu
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		
-		<div class="header">
+				<div class="header">
 			<div class="logo">
 				<h1><span>Le</span>Coffee</h1>
 			</div>
@@ -86,7 +86,7 @@
 					Configurações
 				</a>
 
-				<a href="#" onclick="btnLogout()" type="button">
+				<a href="#" onclick="btnLogout();" type="button">
 					<span class="material-symbols-outlined google-icons">
 						logout
 					</span>
@@ -98,6 +98,7 @@
 					name="btnLogout"
 					action="#{MBLogin.logout()}"/>
 			</div>
-		</div>
+			</div>
+			
 	</h:body>
 </html>

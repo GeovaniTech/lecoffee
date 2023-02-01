@@ -5,12 +5,32 @@
 .top-header {
 	display: flex;
 	flex-direction: row;
+	justify-content: flex-start;
 	align-items: center;
 	background-color: var(--background-general);
 	width: 100%;
-	height: 8vh;
+	height: 60px;
 	position: fixed;
 	top: 0px;
+	padding-left: 250px;
+}
+
+.btn-menu {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-menu span {
+	font-size: 40px !important;
+	margin: 10px;
+	color: var(--text);
+	transition: 0.4s;
+}
+
+.btn-menu span:hover {
+	color: var(--text-mouse);
 }
 
 /* ############## LEFT HEADER ############## */
@@ -26,10 +46,15 @@
 	font-family: 'Poppins', sans-serif;
 }
 
+.logo {
+	height: 60px;
+}
+
 h1 {
 	padding-bottom: 2px;
 	border-bottom: 1px solid rgb(210, 208, 208);
 	width: 100%;
+	height: 100%;
 }
 
 .menu {
@@ -63,4 +88,9 @@ h1 {
 .google-icons {
 	font-size: 30px !important;
 	margin-right: 10px;
+	color: var(--text);
+}
+
+.google-icons:hover {
+	color: var(--text-mouse);
 }
