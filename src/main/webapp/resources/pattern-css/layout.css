@@ -3,6 +3,10 @@
     width: 99.5vw;
 }
 
+.ui-toggleswitch > * {
+	color: black !important;
+}
+
 h2 {
     text-align: center;
     font-family: 'Grape Nuts', cursive;

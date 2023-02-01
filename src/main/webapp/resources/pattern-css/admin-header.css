@@ -36,6 +36,7 @@
 
 .name-page {
 	font-size: 20px;
+	color: var(--text-mouse);
 }
 
 /* ############## LEFT HEADER ############## */
@@ -70,6 +71,7 @@ h1 {
 	justify-content: center;
 	align-items: center;
 	text-align: left;
+	margin-top: 5px;
 }
 
 .menu a {
@@ -87,9 +89,17 @@ h1 {
 	margin: 5px;
 }
 
+.menu a span {
+	transition: 0.4s;
+}
+
 .menu a:hover {
 	color: var(--text-mouse);
 	background-color: var(--background-general-mouse);
+}
+
+.menu a:hover span {
+	color: var(--text-mouse);
 }
 
 .google-icons {
