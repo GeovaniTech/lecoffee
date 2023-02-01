@@ -12,15 +12,21 @@
 	
 	<h:body>
 		<ui:composition template="/templates/admin/layout.xhtml">
+			<ui:define name="name_page">
+				<h:outputText value="#{label.earnings}" />
+			</ui:define>
+			
 			<ui:define name="body">
 				<style>
 					#menu-ganhos {
 						background-color: var(--background-general-mouse);
 						color: var(--text-mouse);
 					}
+					
+					#menu-ganhos > * {
+						color: var(--text-mouse);
+					}
 				</style>
-				
-				<h2>Ganhos</h2>
 			</ui:define>
 		</ui:composition>
 	</h:body>

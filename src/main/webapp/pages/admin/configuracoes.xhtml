@@ -12,16 +12,18 @@
 	
 	<h:body>
 		<ui:composition template="/templates/admin/layout.xhtml">			
-				<ui:define name="name_page">
-					<h:outputText value="#{label.settings}" />
-				</ui:define>
+			<ui:define name="name_page">
+				<h:outputText value="#{label.settings}" />
+			</ui:define>
 			
 			<ui:define name="body">
-			
-
 				<style>
 					#menu-configs {
 						background-color: var(--background-general-mouse);
+						color: var(--text-mouse);
+					}
+					
+					#menu-configs > span {
 						color: var(--text-mouse);
 					}
 				</style>

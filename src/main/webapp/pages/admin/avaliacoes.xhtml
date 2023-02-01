@@ -12,6 +12,10 @@
 	
 	<h:body>
 		<ui:composition template="/templates/admin/layout.xhtml">
+			<ui:define name="name_page">
+				<h:outputText value="#{label.assessments}" />
+			</ui:define>
+			
 			<ui:define name="body">
 				<style>
 					#menu-avaliacoes {
@@ -23,8 +27,6 @@
 						color: var(--text-mouse) !important;
 					}
 				</style>
-				
-				<h2>Avaliações</h2>
 			</ui:define>
 		</ui:composition>
 	</h:body>

@@ -12,15 +12,21 @@
 	
 	<h:body>
 		<ui:composition template="/templates/admin/layout.xhtml">
+			<ui:define name="name_page">
+				<h:outputText value="#{label.customers}" />
+			</ui:define>
+			
 			<ui:define name="body">
 				<style>
 					#menu-clientes {
 						background-color: var(--background-general-mouse);
 						color: var(--text-mouse);
 					}
+					
+					#menu-clientes > * {
+						color: var(--text-mose);
+					}
 				</style>
-				
-				<h2>Clientes</h2>
 			</ui:define>
 		</ui:composition>
 	</h:body>
