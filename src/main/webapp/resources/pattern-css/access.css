@@ -179,7 +179,7 @@ button {
     background-color: var(--green);
 }
 
-@media (max-width: 1200px) {
+@media (max-height: 850px) {
 	.container {
 		height: 90vh;
 	}
