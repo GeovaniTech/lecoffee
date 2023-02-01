@@ -19,9 +19,7 @@
 			</div>
 			
 			<div class="name-page">
-				<ui:insert name="name_page">
-					<h:outputText value="Name Teste" />
-				</ui:insert>
+				<ui:insert name="name_page" />
 			</div>
 		</div>
 		
@@ -35,63 +33,63 @@
 					<span class="material-symbols-outlined google-icons">
 						bakery_dining
 					</span>
-					Pedidos
+					#{label.orders}
 				</a>
 				
 				<a href="/lecoffee/pages/admin/products.xhtml" id="menu-produtos">
 					<span class="material-symbols-outlined google-icons">
 						shopping_cart
 					</span>
-					Produtos
+					#{label.products}
 				</a>
 				
 				<a href="/lecoffee/pages/admin/ganhos.xhtml" id="menu-ganhos">
 					<span class="material-symbols-outlined google-icons">
 						currency_bitcoin
 					</span>
-					Ganhos
+					#{label.earnings}
 				</a>
 				
 				<a href="/lecoffee/pages/admin/avaliacoes.xhtml" id="menu-avaliacoes">
 					<span class="material-symbols-outlined google-icons">
 						star
 					</span>
-					Avaliações
+					#{label.assessments}
 				</a>
 				
 				<a href="/lecoffee/pages/admin/clientes.xhtml" id="menu-clientes">
 					<span class="material-symbols-outlined google-icons">
 						group
 					</span>
-					Clientes
+					#{label.customers}
 				</a>
 				
 				<a href="/lecoffee/pages/admin/chats.xhtml" id="menu-chats">
 					<span class="material-symbols-outlined google-icons">
 						forum
 					</span>
-					Chats
+					#{label.chats}
 				</a>
 
 				<a href="/lecoffee/pages/client/home.xhtml">
 					<span class="material-symbols-outlined google-icons">
 						web
 					</span>
-					Landing Page
+					#{label.landing_page}
 				</a>
 				
 				<a href="/lecoffee/pages/admin/configuracoes.xhtml" id="menu-configs">
 					<span class="material-symbols-outlined google-icons">
 						settings
 					</span>
-					Configurações
+					#{label.settings}
 				</a>
 
 				<a href="#" onclick="btnLogout();" type="button">
 					<span class="material-symbols-outlined google-icons">
 						logout
 					</span>
-					Logout
+					#{label.logout}
 				</a>
 				
 				<p:remoteCommand 

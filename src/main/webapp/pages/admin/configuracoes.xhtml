@@ -11,8 +11,14 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 	
 	<h:body>
-		<ui:composition template="/templates/admin/layout.xhtml">
+		<ui:composition template="/templates/admin/layout.xhtml">			
+				<ui:define name="name_page">
+					<h:outputText value="#{label.settings}" />
+				</ui:define>
+			
 			<ui:define name="body">
+			
+
 				<style>
 					#menu-configs {
 						background-color: var(--background-general-mouse);
@@ -20,11 +26,11 @@
 					}
 				</style>
 				
-				<h2>Configurações</h2>
+				
 				
 				<div class="select-theme">
 					<h:form>
-				        <h5>Dark Mode</h5>
+				        <h5>#{label.dark_mode}</h5>
       			    	<p:toggleSwitch 
       			    		value="#{MBAppConfigs.darkMode}" 
       			    		onIcon="pi pi-sun" 

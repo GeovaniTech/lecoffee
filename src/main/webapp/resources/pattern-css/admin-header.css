@@ -34,6 +34,10 @@
 	color: var(--text-mouse);
 }
 
+.name-page {
+	font-size: 20px;
+}
+
 /* ############## LEFT HEADER ############## */
 
 .header {
