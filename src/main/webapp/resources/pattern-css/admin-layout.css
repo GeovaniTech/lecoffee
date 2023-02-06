@@ -21,7 +21,6 @@ h5, p, h2 {
 }
 
 .body {
-	
 	margin: 10px;
 	margin-top: 70px;
 	margin-left: 260px;
@@ -31,3 +30,46 @@ h5, p, h2 {
 h2 {
 	color: var(--text-mouse);
 }
+
+.horizontal-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;	
+}
+
+.vertical-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.horizontal-left {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;	
+}
+
+.vertical-left {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.horizontal-right {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;	
+}
+
+.vertical-right {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+}
+

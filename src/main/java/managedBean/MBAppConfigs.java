@@ -1,12 +1,16 @@
 package managedBean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 @Named("MBAppConfigs")
 @SessionScoped
@@ -23,6 +27,11 @@ public class MBAppConfigs implements Serializable {
 		localeList.add(new Locale("en"));
 		
 		language = Locale.getDefault().getLanguage();
+	}
+	
+	public void refreshPage() throws IOException {
+	    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
 	}
 	
 	public boolean isDarkMode() {
