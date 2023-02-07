@@ -25,6 +25,11 @@
 				#menu-produtos > * {
 					color: var(--text-mouse);
 				}
+				
+				.form-product > * {
+					margin-bottom: 5px;
+					width: 100% !important;
+				}
 			</style>
 			
 			<div class="top-buttons">
@@ -44,8 +49,27 @@
 				position="center"
 				widgetVar="dialog-new-product">
 				
-				<p:commandButton 
-					value="teste" />
+				<h:form 
+					class="vertical-left form-product">
+					<p:inputText 
+						placeholder="#{label.name}" />
+					
+					<p:inputText 
+						placeholder="#{label.price}" />
+					
+					<p:textEditor 
+						placeholder="#{label.description}"
+						secure="false"
+						height="250" />
+					
+					<h3>#{label.upload_files}</h3>
+					
+					<p:fileUpload 
+						/>
+					
+					<p:commandButton 
+						value="#{label.finish_registration}" />
+				</h:form>
 			</p:dialog>
 		</ui:define>
 	</ui:composition>
