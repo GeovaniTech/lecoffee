@@ -1,9 +1,5 @@
 package managedBean;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -19,7 +15,6 @@ public class MBLogin extends AbstractBean {
 	private String email;
 	private String password;
 	private ManterClientSBean sBean;
-	
 	
 	public MBLogin() {		
 		sBean = new ManterClientSBean();
