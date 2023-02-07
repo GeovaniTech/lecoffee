@@ -26,16 +26,14 @@
 					color: var(--text-mouse);
 				}
 			</style>
-		
-			<p:tabView>
-				<p:tab title="Produtos">
-				
-				</p:tab>
-				
-				<p:tab title="Promoções">
-				
-				</p:tab>
-			</p:tabView>
+			
+			<div class="top-buttons">
+				<h:form>
+					<p:commandButton 
+						 value="#{label.new_product}"
+						 icon="pi pi-plus" />
+				</h:form>
+			</div>
 		</ui:define>
 	</ui:composition>
 </html>
