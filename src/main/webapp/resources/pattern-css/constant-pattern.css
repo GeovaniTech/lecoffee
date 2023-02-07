@@ -107,6 +107,22 @@ h1 span {
 	background-color: var(--green-mouse) !important;
 }
 
+.ui-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+.ui-dialog-titlebar {
+	color: var(--text-mouse) !important;
+	background-color: var(--background-general) !important;
+}
+
+.ui-dialog-content {
+	background-color: var(--background-general) !important;
+}
+
 *::-webkit-scrollbar {
     width: 10px;
 }

@@ -31,9 +31,22 @@
 				<h:form>
 					<p:commandButton 
 						 value="#{label.new_product}"
+						 onclick="PF('dialog-new-product').show()"
 						 icon="pi pi-plus" />
 				</h:form>
 			</div>
+			
+			<p:dialog
+				header="#{label.products}"
+				dynamic="true"
+				resizable="false"
+				draggable="false"
+				position="center"
+				widgetVar="dialog-new-product">
+				
+				<p:commandButton 
+					value="teste" />
+			</p:dialog>
 		</ui:define>
 	</ui:composition>
 </html>
