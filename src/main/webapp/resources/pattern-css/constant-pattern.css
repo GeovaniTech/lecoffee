@@ -27,6 +27,74 @@ h1 span {
     font-family: 'Grape Nuts', cursive;
 }
 
+.horizontal-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;	
+}
+
+.vertical-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.horizontal-left {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;	
+}
+
+.vertical-left {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.horizontal-right {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;	
+}
+
+.vertical-right {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.ui-selectonemenu > * {
+	color: var(--text-mouse) !important;
+}	
+
+.ui-selectonemenu {
+	border-color: var(--background-general) !important;
+	background-color: var(--background-general) !important;	
+}
+
+.ui-selectonemenu-items {
+	background-color: var(--background-general) !important;
+}
+
+.ui-selectonemenu-item {
+	color: var(--text) !important;
+	background-color: var(--background-general) !important;	
+}
+
+.ui-selectonemenu-item:hover {
+	color: var(--text-mouse) !important;
+	background-color: var(--background-general-mouse) !important;	
+}
+
+.ui-selectonemenu-trigger {
+	background-color: var(--background-general-mouse) !important;	
+}
 
 *::-webkit-scrollbar {
     width: 10px;

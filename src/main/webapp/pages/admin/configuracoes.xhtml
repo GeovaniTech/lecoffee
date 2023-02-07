@@ -37,6 +37,24 @@
 				</style>
 				
 				<div class="horizontal-left">		
+					<div class="select-language align-options">
+						<h:form>
+							<h5>#{label.language}</h5>
+							<p:selectOneMenu 
+								value="#{MBAppConfigs.language}"
+								style="width: 200px;">
+								
+								<f:selectItems 
+									var="language"
+									value="#{MBAppConfigs.localeList}"
+									itemLabel="#{language.displayLanguage}"
+									itemValue="#{language.language}" />
+									
+								 <f:ajax render="all" listener="#{MBAppConfigs.refreshPage()}"/>	
+							</p:selectOneMenu>
+						</h:form>
+					</div>
+					
 					<div class="select-theme align-options">
 						<h:form>
 					        <h5>#{label.dark_mode}</h5>
@@ -50,23 +68,6 @@
 	      			    			event="change"
 	      			    			process="@form"/>
 	      			    	</p:toggleSwitch>
-						</h:form>
-					</div>
-					
-					<div class="select-language align-options">
-						<h:form>
-							<h5>#{label.language}</h5>
-							<h:selectOneMenu 
-								value="#{MBAppConfigs.language}">
-								
-								<f:selectItems 
-									var="language"
-									value="#{MBAppConfigs.localeList}"
-									itemLabel="#{language.displayLanguage}"
-									itemValue="#{language.language}" />
-									
-								 <f:ajax render="all" listener="#{MBAppConfigs.refreshPage()}"/>	
-							</h:selectOneMenu>
 						</h:form>
 					</div>
 				</div>
