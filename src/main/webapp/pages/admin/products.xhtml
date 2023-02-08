@@ -48,20 +48,30 @@
 				resizable="false"
 				draggable="false"
 				position="center"
+				width="720"
 				widgetVar="dialog-new-product">
 				
 				<h:form 
 					class="vertical-left form-product">
-					<h:inputText 
-						a:placeholder="#{label.name}" />
 					
-					<h:inputText
-						a:placeholder="#{label.price}" />
+					<h:panelGrid columns="2">
+						<div>
+							<h:outputLabel value="#{label.name}" class="label" />
+							<h:inputText 
+								id="name"
+								a:placeholder="#{label.name}" />
+						</div>
+
+						<div>
+							<h:outputLabel value="#{label.price}" class="label" />
+							<h:inputText
+								a:placeholder="#{label.price}" />
+						</div>
+					</h:panelGrid>
 					
-					<p:textEditor 
-						placeholder="#{label.description}"
-						secure="false"
-						height="250" />
+					<h:outputLabel value="#{label.description}" class="label" />
+					<p:inputTextarea 
+						placeholder="tseet"/>
 					
 					<h3>#{label.upload_files}</h3>
 					

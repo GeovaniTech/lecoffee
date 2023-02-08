@@ -133,6 +133,12 @@ input {
     color: var(--text-mouse);
 }
 
+.ui-inputtextarea {
+	color: var(--text-mouse) !important;
+	border-color: var(--background-general-mouse) !important;
+	background-color: var(--background-general-mouse) !important;
+}
+
 *::-webkit-scrollbar {
     width: 10px;
 }
