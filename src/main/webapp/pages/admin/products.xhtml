@@ -53,21 +53,16 @@
 				
 				<h:form 
 					class="vertical-left form-product">
-					
-					<h:panelGrid columns="2">
-						<div>
-							<h:outputLabel value="#{label.name}" class="label" />
-							<h:inputText 
-								id="name"
-								a:placeholder="#{label.name}" />
-						</div>
+		
+					<h:outputLabel value="#{label.name}" class="label" for="name" />
+					<h:inputText 
+						id="name"
+						a:placeholder="Insert the #{label.name}" />
 
-						<div>
-							<h:outputLabel value="#{label.price}" class="label" />
-							<h:inputText
-								a:placeholder="#{label.price}" />
-						</div>
-					</h:panelGrid>
+					<h:outputLabel value="#{label.price}" class="label" for="price" />
+					<h:inputText
+						id="price"
+						a:placeholder="#{label.price}" />
 					
 					<h:outputLabel value="#{label.description}" class="label" />
 					<p:inputTextarea 
