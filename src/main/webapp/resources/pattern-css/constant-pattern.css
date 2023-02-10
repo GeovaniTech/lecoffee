@@ -123,14 +123,14 @@ h1 span {
 	background-color: var(--background-general) !important;
 }
 
-input {
-    font-size: 16px;
-    padding: 8px;
-    background-color: var(--background-general-mouse);
-    border: 1px solid var(--border-radius);
-    border-radius: 5px;
-    outline: none;
-    color: var(--text-mouse);
+.ui-inputtext {
+    font-size: 16px !important;
+    padding: 8px !important;
+    background-color: var(--background-general-mouse) !important;
+    border: 1px solid var(--border-radius) !important;
+    border-radius: 5px !important;
+    outline: none !important;
+    color: var(--text-mouse) !important;
 }
 
 .ui-inputtextarea {
