@@ -52,34 +52,57 @@
 			<p:scrollPanel
 				mode="native" 
 				style="max-height: 80vh; width: 100%;">
+				
 				<h:form 
 					class="vertical-left form-product">
+					
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
 		
 					<h:outputLabel value="#{label.name}" class="label" for="name" />
 					<p:inputText 
 						id="name"
 						value="#{MBTab_products.product.name}"
+						required="true"
+						requiredMessage="#{label.name_required}"
 						placeholder="#{label.insert_the} #{label.name}" />
 
 					<h:outputLabel value="#{label.price}" class="label" for="price" />
 					<p:inputText
 						id="price"
 						value="#{MBTab_products.product.price}"
+						required="true"
+						requiredMessage="#{label.price_required}"
 						placeholder="#{label.insert_the} #{label.price}" />
 					
 					<h:outputLabel value="#{label.description}" class="label" for="description" />
 					<p:inputTextarea 
 						id="description"
 						value="#{MBTab_products.product.description}"
+						required="true"
+						requiredMessage="#{label.description_required}"
 						placeholder="#{label.insert_the} #{label.description}"/>
 					
 					<h:outputLabel value="#{label.upload_files}" class="label" />
 					<p:fileUpload
 						multiple="true"
+						mode="advanced" 
+						showButtons="false"
+						label="#{label.search}" 
+						cancelLabel="#{label.cancel}"
+						uploadLabel="#{label.upload_files}"
+						update="growl"
+						listener="#{MBTab_products.addImages}" 
+						process="@this"
 					 />
 					
 					<p:commandButton 
-						value="#{label.finish_registration}" />
+						value="#{label.finish_registration}"
+						action="#{MBTab_products.save()}"
+						update="@form, messages" />
 				</h:form>
 			</p:scrollPanel>
 		</p:dialog>	

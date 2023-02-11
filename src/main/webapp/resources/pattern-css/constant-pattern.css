@@ -156,6 +156,10 @@ h1 span {
 .ui-fileupload-content {
 	border-color: var(--second-color-widget) !important;
 	background-color: var(--second-color-widget) !important;
+	
+}
+.ui-fileupload-content div {
+	color: var(--text-mouse) !important;
 }
 
 .ui-tabs {
@@ -196,6 +200,10 @@ h1 span {
 
 .ui-state-hover a {
 	color: var(--text-mouse) !important;
+}
+
+.ui-messages > div  {
+	padding: 10px !important;
 }
 
 *::-webkit-scrollbar {

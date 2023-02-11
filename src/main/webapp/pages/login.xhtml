@@ -42,7 +42,12 @@
 					<h2>#{label.welcome}</h2>
 					
 					<h:form class="form">
-			        	<p:messages id="messages" closable="true"  autoUpdate="true" style="width: 100%;" />
+			        	<p:messages 
+			        		id="messages" 
+			        		autoUpdate="true" 
+			        		style="width: 100%;"
+			        		showIcon="false"
+			        		showDetail="false" />
 			
 						<h:inputText 
 							value="#{MBLogin.email}"

@@ -13,29 +13,18 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 
 	@Override
 	public void save(Product product) {
-		if(validFields(product)) {
-			em.getTransaction().begin();
-			em.persist(product);
-			em.getTransaction().commit();
-			
-			//Message
-		} else {
-			//Message
-		}
+		product.setStatus("active");
+		
+		em.getTransaction().begin();
+		em.persist(product);
+		em.getTransaction().commit();
 	}
 
 	@Override
 	public void change(Product product) {
-		if(validFields(product)) {
-			em.getTransaction().begin();
-			em.merge(product);
-			em.getTransaction().commit();
-			
-			//Message
-		} else {
-			//Message
-		}
-		
+		em.getTransaction().begin();
+		em.persist(product);
+		em.getTransaction().commit();
 	}
 
 	@Override
@@ -48,19 +37,6 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 	public void findById(int id) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public boolean validFields(Product product) {
-		if(product.getName() != null
-			&& product.getDescription() != null
-			&& product.getImages() != null
-			&& product.getPrice() != null) {
-			
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	@Override
