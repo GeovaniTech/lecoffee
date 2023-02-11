@@ -48,34 +48,40 @@
 				resizable="false"
 				draggable="false"
 				position="center"
-				width="720"
+				width="720px"
 				widgetVar="dialog-new-product">
 				
-				<h:form 
-					class="vertical-left form-product">
-		
-					<h:outputLabel value="#{label.name}" class="label" for="name" />
-					<p:inputText 
-						id="name"
-						placeholder="Insert the #{label.name}" />
-
-					<h:outputLabel value="#{label.price}" class="label" for="price" />
-					<p:inputText
-						id="price"
-						placeholder="#{label.price}" />
-					
-					<h:outputLabel value="#{label.description}" class="label" />
-					<p:inputTextarea 
-						placeholder="tseet"/>
-					
-					<h3>#{label.upload_files}</h3>
-					
-					<p:fileUpload 
-						/>
-					
-					<p:commandButton 
-						value="#{label.finish_registration}" />
-				</h:form>
+				<p:scrollPanel
+					mode="native" 
+					style="max-height: 80vh; width: 100%;">
+					<h:form 
+						class="vertical-left form-product">
+			
+						<h:outputLabel value="#{label.name}" class="label" for="name" />
+						<p:inputText 
+							id="name"
+							placeholder="#{label.insert_the} #{label.name}" />
+	
+						<h:outputLabel value="#{label.price}" class="label" for="price" />
+						<p:inputText
+							id="price"
+							placeholder="#{label.insert_the} #{label.price}" />
+						
+						<h:outputLabel value="#{label.description}" class="label" />
+						
+						<p:inputTextarea 
+							placeholder="#{label.insert_the} #{label.description}"/>
+						
+						<h:outputLabel value="#{label.upload_files}" class="label" />
+						
+						<p:fileUpload
+							multiple="true"
+						 />
+						
+						<p:commandButton 
+							value="#{label.finish_registration}" />
+					</h:form>
+				</p:scrollPanel>
 			</p:dialog>
 		</ui:define>
 	</ui:composition>

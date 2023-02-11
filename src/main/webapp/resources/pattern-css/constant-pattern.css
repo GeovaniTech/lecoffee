@@ -139,6 +139,21 @@ h1 span {
 	background-color: var(--background-general-mouse) !important;
 }
 
+.ui-fileupload-buttonbar {
+	border-color: var(--background-general-mouse) !important;
+	background-color: var(--background-general-mouse) !important;	
+}
+
+ .ui-scrollpanel {
+	border-color: var(--background-general) !important;
+	background-color: var(--background-general) !important;	
+}
+
+.ui-fileupload-content {
+	border-color: var(--second-color-widget) !important;
+	background-color: var(--second-color-widget) !important;
+}
+
 *::-webkit-scrollbar {
     width: 10px;
 }
