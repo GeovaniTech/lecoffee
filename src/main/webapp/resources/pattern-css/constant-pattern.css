@@ -115,11 +115,13 @@ h1 span {
 }
 
 .ui-dialog-titlebar {
+	padding: 10px !important;
 	color: var(--text-mouse) !important;
 	background-color: var(--background-general) !important;
 }
 
 .ui-dialog-content {
+	padding: 5px !important;
 	background-color: var(--background-general) !important;
 }
 
@@ -147,11 +149,53 @@ h1 span {
  .ui-scrollpanel {
 	border-color: var(--background-general) !important;
 	background-color: var(--background-general) !important;	
+  	padding: 5px !important;
+ 	margin: 0px !important;
 }
 
 .ui-fileupload-content {
 	border-color: var(--second-color-widget) !important;
 	background-color: var(--second-color-widget) !important;
+}
+
+.ui-tabs {
+	background-color: var(--background-general) !important;
+	color: var(--green) !important;
+}
+
+.ui-tabs-nav:before {
+	border-color: gray !important;
+}
+
+.ui-tabs-header {
+	border-color: gray !important;
+	background-color: var(--background-general) !important;
+}
+
+.ui-tabs-header:hover {
+	border-color: var(--text-mouse) !important;
+}
+
+.ui-tabs-nav {
+	background-color: var(--background-general) !important;
+	border-color: var(--green) !important;
+}
+
+.ui-tabs-panel {
+	border-color: var(--background-general-mouse) !important;
+	background-color: var(--background-general-mouse) !important;	
+}
+
+.ui-tabs-selected a {
+	color: var(--text-mouse) !important;	
+}
+
+.ui-tabs-selected {
+	border-color: var(--text-mouse) !important;
+}
+
+.ui-state-hover a {
+	color: var(--text-mouse) !important;
 }
 
 *::-webkit-scrollbar {

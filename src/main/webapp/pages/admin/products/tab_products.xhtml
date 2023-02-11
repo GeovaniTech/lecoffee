@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	
+	<h:body>
+		<style>
+			#menu-produtos {
+				background-color: var(--background-general-mouse);
+				color: var(--text-mouse);
+			}
+			
+			#menu-produtos > * {
+				color: var(--text-mouse);
+			}
+			
+			.form-product > * {
+				margin-bottom: 5px;
+				width: 100% !important;
+			}
+		</style>
+		
+		<div class="top-buttons">
+			<h:form>
+				<p:commandButton 
+					 value="#{label.new_product}"
+					 onclick="PF('dialog-new-product').show()"
+					 icon="pi pi-plus" />
+			</h:form>
+		</div>
+		
+		<p:dialog
+			header="#{label.products}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			width="720px"
+			widgetVar="dialog-new-product">
+			
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh; width: 100%;">
+				<h:form 
+					class="vertical-left form-product">
+		
+					<h:outputLabel value="#{label.name}" class="label" for="name" />
+					<p:inputText 
+						id="name"
+						placeholder="#{label.insert_the} #{label.name}" />
+
+					<h:outputLabel value="#{label.price}" class="label" for="price" />
+					<p:inputText
+						id="price"
+						placeholder="#{label.insert_the} #{label.price}" />
+					
+					<h:outputLabel value="#{label.description}" class="label" />
+					
+					<p:inputTextarea 
+						placeholder="#{label.insert_the} #{label.description}"/>
+					
+					<h:outputLabel value="#{label.upload_files}" class="label" />
+					
+					<p:fileUpload
+						multiple="true"
+					 />
+					
+					<p:commandButton 
+						value="#{label.finish_registration}" />
+				</h:form>
+			</p:scrollPanel>
+		</p:dialog>	
+	</h:body>
+</html>
