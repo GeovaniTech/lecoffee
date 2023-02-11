@@ -12,24 +12,11 @@
 	
 	<ui:composition template="/templates/admin/layout.xhtml">
 		<ui:define name="name_page">
-			<h:outputText value="#{label.products}" />
+			<h:outputText value="#{label.page_not_found}" />
 		</ui:define>
 		
 		<ui:define name="body">
-			<p:tabView>
-				<p:tab 
-					id="products"
-					title="#{label.products}">
-					
-					<ui:include src="tab_products.xhtml" />
-				</p:tab>
-				
-				<p:tab
-					id="promotions"
-					title="#{label.promotions}">
-					<ui:include src="tab_promotions.xhtml"></ui:include>
-				</p:tab>
-			</p:tabView>
+			
 		</ui:define>
 	</ui:composition>
 </html>

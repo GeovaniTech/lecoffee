@@ -16,6 +16,7 @@ public class Product {
 	private String name;
 	private String description;
 	private Double price;
+	private String status;
 	
 	@OneToMany
 	private List<File> images;
@@ -50,4 +51,11 @@ public class Product {
 	public void setImages(List<File> images) {
 		this.images = images;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }
+

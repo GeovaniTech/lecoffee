@@ -22,14 +22,21 @@
 				margin-bottom: 5px;
 				width: 100% !important;
 			}
+			
+			.form-top-buttons > * {
+				margin-right: 5px !important;
+			}
 		</style>
 		
 		<div class="top-buttons">
-			<h:form>
+			<h:form class="form-top-buttons">
 				<p:commandButton 
 					 value="#{label.new_product}"
 					 onclick="PF('dialog-new-product').show()"
 					 icon="pi pi-plus" />
+					
+				<p:commandButton 
+					icon="pi pi-filter"/>
 			</h:form>
 		</div>
 		
@@ -51,20 +58,22 @@
 					<h:outputLabel value="#{label.name}" class="label" for="name" />
 					<p:inputText 
 						id="name"
+						value="#{MBTab_products.product.name}"
 						placeholder="#{label.insert_the} #{label.name}" />
 
 					<h:outputLabel value="#{label.price}" class="label" for="price" />
 					<p:inputText
 						id="price"
+						value="#{MBTab_products.product.price}"
 						placeholder="#{label.insert_the} #{label.price}" />
 					
-					<h:outputLabel value="#{label.description}" class="label" />
-					
+					<h:outputLabel value="#{label.description}" class="label" for="description" />
 					<p:inputTextarea 
+						id="description"
+						value="#{MBTab_products.product.description}"
 						placeholder="#{label.insert_the} #{label.description}"/>
 					
 					<h:outputLabel value="#{label.upload_files}" class="label" />
-					
 					<p:fileUpload
 						multiple="true"
 					 />
