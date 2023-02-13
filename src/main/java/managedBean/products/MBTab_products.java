@@ -26,32 +26,39 @@ public class MBTab_products extends AbstractBean {
 	
 	public MBTab_products() {
 		product = new Product();
-		product.setImages(new ArrayList<File>());
 		sBean = new KeepProductSBean();
 		products = new ArrayList<Product>();
+		list();
 	}
 	
 	public void save() {
 		sBean.save(product);
+		product = new Product();
+		
+		list();
 	}
 
 	public void change() {
 		sBean.change(product);
+		product = new  Product();
+		
+		list();
 	}
 	
 	public void disable() {
 		sBean.disable(product);
-	}
-	
-	public void addImages(FileUploadEvent event) throws IOException {
-		File file = FileUtil.convertPrimefacesFile(event.getFile());
 		
-		product.getImages().add(file);
-		
+		list();
 	}
 	
 	public void list() {
+		this.setProducts(sBean.list());
+	}
+	
+	public void addImage(FileUploadEvent event) throws IOException {
+		File file = FileUtil.convertPrimefacesFile(event.getFile());
 		
+		product.setImageBytes(file.getBytes());
 	}
 	
 	public Product getProduct() {

@@ -1,5 +1,7 @@
 package manter.product;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -40,9 +42,14 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 	}
 
 	@Override
-	public void list() {
-		// TODO Auto-generated method stub
+	public List<Product> list() {
+		StringBuilder sql = new StringBuilder();
 		
+		sql.append(" SELECT P FROM ");
+		sql.append(Product.class.getName()).append(" P ");
+		
+		return em.createQuery(sql.toString(), Product.class)
+				.getResultList();
 	}
 	
 }

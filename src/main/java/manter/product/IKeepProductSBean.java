@@ -1,5 +1,7 @@
 package manter.product;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import model.Product;
@@ -10,6 +12,6 @@ public interface IKeepProductSBean  {
 	public void change(Product product);
 	public void disable(Product product);
 	public void findById(int id);
-	public void list();
+	public List<Product> list();
 	
 }

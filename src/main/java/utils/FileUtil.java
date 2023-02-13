@@ -3,12 +3,9 @@ package utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
-
 import org.primefaces.model.file.UploadedFile;
-
 import keep.file.KeepFileSBean;
 import model.File;
 
@@ -45,6 +42,7 @@ public class FileUtil {
 		
 		return baos.toByteArray();
 	}
+
 	
 	public static void download(File file) throws IOException {
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -60,9 +58,5 @@ public class FileUtil {
 
 	public KeepFileSBean getsBean() {
 		return sBean;
-	}
-
-	public void setsBean(KeepFileSBean sBean) {
-		this.sBean = sBean;
 	}
 }

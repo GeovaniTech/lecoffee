@@ -1,12 +1,10 @@
 package model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Lob;
 
 @Entity
 public class Product {
@@ -16,10 +14,10 @@ public class Product {
 	private String name;
 	private String description;
 	private Double price;
-	private String status;
+	private String status;	
 	
-	@OneToMany
-	private List<File> images;
+	@Lob
+	private byte[] imageBytes;
 	
 	public int getId() {
 		return id;
@@ -45,17 +43,17 @@ public class Product {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	public List<File> getImages() {
-		return images;
-	}
-	public void setImages(List<File> images) {
-		this.images = images;
-	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public byte[] getImageBytes() {
+		return imageBytes;
+	}
+	public void setImageBytes(byte[] imageBytes) {
+		this.imageBytes = imageBytes;
 	}
 }
 

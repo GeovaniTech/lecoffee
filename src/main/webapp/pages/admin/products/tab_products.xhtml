@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<h:body>
 		<style>
@@ -26,6 +27,11 @@
 			.form-top-buttons > * {
 				margin-right: 5px !important;
 			}
+			
+			.container-products {
+				flex-wrap: wrap;
+				margin-top: 20px;
+			}
 		</style>
 		
 		<div class="top-buttons">
@@ -38,6 +44,12 @@
 				<p:commandButton 
 					icon="pi pi-filter"/>
 			</h:form>
+			
+			<div class="container-products horizontal-evenly">
+				<ui:repeat var="product" value="#{MBTab_products.products}">
+					
+				</ui:repeat>
+			</div>
 		</div>
 		
 		<p:dialog
@@ -95,7 +107,7 @@
 						cancelLabel="#{label.cancel}"
 						uploadLabel="#{label.upload_files}"
 						update="growl"
-						listener="#{MBTab_products.addImages}" 
+						listener="#{MBTab_products.addImage}" 
 						process="@this"
 					 />
 					

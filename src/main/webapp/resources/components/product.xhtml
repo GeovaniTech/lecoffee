@@ -9,7 +9,10 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<composite:interface>
-	
+		<composite:attribute name="name" />
+		<composite:attribute name="price" />
+		<composite:attribute name="description" />
+		<composite:attribute name="image" />
 	</composite:interface>
 	
 	<composite:implementation>
@@ -20,11 +23,38 @@
 			    font-size: 25px;
 			    text-align: center;
 			    margin: 10px;
-			    background-color: white;
+			    color: var(--text-mouse);
+			    background-color: var(--background-general);
 			    padding: 30px;
 			    border-radius: 10px;
 			    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);			
 			}
+			
+			.card > * {
+			    width: 100%;
+			    margin-bottom: 10px;
+			}
+			
+			.card {
+			    width: 275px;
+			    height: 200px;
+			    border-radius: 20px;
+			}
+			
+			.divider {
+			    border-bottom: 2px solid rgb(203, 203, 203);
+			    width: 200px;
+			}
 		</style>
+		
+		<div class="card">
+            <p:graphicImage value="#{cc.attrs.image}" stream="true" alt="image" cache="false" />
+            <div class="infos">
+                <p>Moka Late</p>
+                <div class="divider"></div>
+                <p><strong>R$ 8,50</strong></p>
+            </div>
+            <p:commandButton value="Add"/>
+		</div>
 	</composite:implementation>
 </html>
