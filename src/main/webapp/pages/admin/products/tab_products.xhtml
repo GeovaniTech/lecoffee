@@ -32,10 +32,12 @@
 				<ui:repeat var="product" value="#{MBTab_products.products}">
 					<components:product 
 						name="#{product.name}"
+						productId="#{product.id}"
 						description="#{product.description}"
 						price="#{product.price}"
 						imageBytes="#{product.imageBytes}"
-						optionsRendered="true" />
+						rating="#{product.rating}"
+						optionsRendered="false" />
 				</ui:repeat>
 			</h:form>
 		</div>

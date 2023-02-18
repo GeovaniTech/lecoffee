@@ -1,5 +1,6 @@
 package manter.product;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -15,11 +16,17 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 
 	@Override
 	public void save(Product product) {
-		product.setStatus("active");
-		
-		em.getTransaction().begin();
-		em.persist(product);
-		em.getTransaction().commit();
+		if(product.getImageBytes() != null) {
+			product.setStatus("active");
+			product.setCreationDate(new Date());
+			product.setRating(0);
+			
+			em.getTransaction().begin();
+			em.persist(product);
+			em.getTransaction().commit();
+		} else {
+			msg.informacoesInvalidas();
+		}
 	}
 
 	@Override

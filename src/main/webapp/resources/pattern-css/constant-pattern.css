@@ -227,6 +227,10 @@ h1 span {
 	padding: 10px !important;
 }
 
+.ui-rating > input {
+	color: var(--green) !important;
+}
+
 *::-webkit-scrollbar {
     width: 10px;
 }

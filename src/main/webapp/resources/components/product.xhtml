@@ -9,11 +9,13 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<composite:interface>
+		<composite:attribute name="productId"></composite:attribute>
 		<composite:attribute name="name" />
 		<composite:attribute name="price" />
 		<composite:attribute name="description" />
 		<composite:attribute name="imageBytes" />
 		<composite:attribute name="optionsRendered" />
+		<composite:attribute name="rating" />
 	</composite:interface>
 	
 	<composite:implementation>
@@ -22,7 +24,8 @@
             <div class="infos">
                 <p>#{cc.attrs.name}</p>
                 <div class="divider"></div>
-                <p><strong>#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}</strong></p>
+                <p>#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}</p>
+                <p:rating value="#{cc.attrs.rating}" disabled="true" />
             </div>
 			<div class="options">
             	<p:commandButton 
@@ -38,6 +41,7 @@
 	            
 	            <p:commandButton 
 	            	value="#{label.remove}"
+	            	action="#{MBTab_products.disable(cc.attrs.productId)}"
 	            	icon="pi pi-times"
        	 			rendered="#{cc.attrs.optionsRendered == false ? false : true}"
 	            	styleClass="rounded-button ui-button-flat ui-button-plain" />
