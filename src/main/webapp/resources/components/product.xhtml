@@ -16,37 +16,6 @@
 	</composite:interface>
 	
 	<composite:implementation>
-		<style>
-			.card {
-			    width: 350px;
-			    font-family: 'Poppins', sans-serif;
-			    font-size: 25px;
-			    text-align: center;
-			    margin: 10px;
-			    color: var(--text-mouse);
-			    background-color: var(--background-general);
-			    padding: 30px;
-			    border-radius: 10px;
-			    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);			
-			}
-			
-			.card > * {
-			    width: 100%;
-			    margin-bottom: 10px;
-			}
-			
-			.card {
-			    width: 275px;
-			    height: 200px;
-			    border-radius: 20px;
-			}
-			
-			.divider {
-			    border-bottom: 2px solid rgb(203, 203, 203);
-			    width: 200px;
-			}
-		</style>
-		
 		<div class="card">
             <h:graphicImage value="data:image/png;base64,#{MBTab_products.getRenderedImage(cc.attrs.imageBytes)}" />
             <div class="infos">

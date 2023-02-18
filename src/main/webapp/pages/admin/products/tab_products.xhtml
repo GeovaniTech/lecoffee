@@ -10,30 +10,8 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<h:body>
-		<style>
-			#menu-produtos {
-				background-color: var(--background-general-mouse);
-				color: var(--text-mouse);
-			}
-			
-			#menu-produtos > * {
-				color: var(--text-mouse);
-			}
-			
-			.form-product > * {
-				margin-bottom: 5px;
-				width: 100% !important;
-			}
-			
-			.form-top-buttons > * {
-				margin-right: 5px !important;
-			}
-			
-			.container-products {
-				flex-wrap: wrap;
-				margin-top: 20px;
-			}
-		</style>
+		<h:outputStylesheet library="pattern-css" name="product.css" />
+		<h:outputStylesheet library="pattern-css" name="tab-products.css" />
 		
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
@@ -43,13 +21,16 @@
 					 icon="pi pi-plus" />
 					
 				<p:commandButton 
-					icon="pi pi-filter"/>
+					icon="pi pi-filter" />
 			</h:form>
 			
 			<div class="container-products horizontal-evenly">
 				<ui:repeat var="product" value="#{MBTab_products.products}">
 					<components:product 
-						imageBytes="#{product.imageBytes}"/>
+						name="#{product.name}"
+						description="#{product.description}"
+						price="#{product.price}"
+						imageBytes="#{product.imageBytes}" />
 				</ui:repeat>
 			</div>
 		</div>
