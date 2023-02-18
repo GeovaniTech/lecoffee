@@ -48,9 +48,8 @@
 			
 			<div class="container-products horizontal-evenly">
 				<ui:repeat var="product" value="#{MBTab_products.products}">
-					<h:graphicImage value="#{imageServlet.streamedContent}">
-					    <f:param name="objId_#{product.id}" value="#{product.id}" />
-					</h:graphicImage>
+					<components:product 
+						imageBytes="#{product.imageBytes}"/>
 				</ui:repeat>
 			</div>
 		</div>

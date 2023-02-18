@@ -29,14 +29,4 @@
     <filter-name>FilterNivelAdmin</filter-name>
     <url-pattern>/pages/admin/*</url-pattern>
   </filter-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ImageServlet</display-name>
-    <servlet-name>ImageServlet</servlet-name>
-    <servlet-class>utils.ImageServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ImageServlet</servlet-name>
-    <url-pattern>/ImageServlet</url-pattern>
-  </servlet-mapping>
 </web-app>

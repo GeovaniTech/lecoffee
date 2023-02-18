@@ -14,6 +14,7 @@ import model.File;
 import model.Product;
 import utils.AbstractBean;
 import utils.FileUtil;
+import utils.ImageUtil;
 
 @Named("MBTab_products")
 @ViewScoped
@@ -59,6 +60,10 @@ public class MBTab_products extends AbstractBean {
 		File file = FileUtil.convertPrimefacesFile(event.getFile());
 		
 		product.setImageBytes(file.getBytes());
+	}
+	
+	public String getRenderedImage(byte[] imageBytes) {
+		return ImageUtil.geRenderedImage(imageBytes);
 	}
 	
 	public Product getProduct() {
