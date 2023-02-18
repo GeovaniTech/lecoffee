@@ -13,6 +13,8 @@
 		<h:outputStylesheet library="pattern-css" name="product.css" />
 		<h:outputStylesheet library="pattern-css" name="tab-products.css" />
 		
+		<p:remoteCommand name="updateProductsContainer" update="container-products" />
+		
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
@@ -24,16 +26,18 @@
 					icon="pi pi-filter" />
 			</h:form>
 			
-			<div class="container-products horizontal-evenly">
+			<h:form 
+				id="container-products"
+				class="container-products horizontal-evenly">
 				<ui:repeat var="product" value="#{MBTab_products.products}">
 					<components:product 
 						name="#{product.name}"
 						description="#{product.description}"
 						price="#{product.price}"
 						imageBytes="#{product.imageBytes}"
-						optionsRendered="false" />
+						optionsRendered="true" />
 				</ui:repeat>
-			</div>
+			</h:form>
 		</div>
 		
 		<p:dialog
@@ -97,8 +101,10 @@
 					
 					<p:commandButton 
 						value="#{label.finish_registration}"
+						process="@form"
 						action="#{MBTab_products.save()}"
-						update="@form, messages" />
+						update=" messages"
+						oncomplete="updateProductsContainer()" />
 				</h:form>
 			</p:scrollPanel>
 		</p:dialog>	

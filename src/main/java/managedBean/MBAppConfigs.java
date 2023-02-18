@@ -13,6 +13,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import utils.ImageUtil;
+
 @Named("MBAppConfigs")
 @SessionScoped
 public class MBAppConfigs implements Serializable {
@@ -36,6 +38,10 @@ public class MBAppConfigs implements Serializable {
         String formattedValue = brazilianFormat.format(value);
 		
         return formattedValue;
+	}
+	
+	public String getRenderedImage(byte[] imageBytes) {
+		return ImageUtil.geRenderedImage(imageBytes);
 	}
 	
 	public void refreshPage() throws IOException {

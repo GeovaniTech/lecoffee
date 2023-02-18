@@ -18,7 +18,7 @@
 	
 	<composite:implementation>
 		<div class="card">
-            <h:graphicImage value="data:image/png;base64,#{MBTab_products.getRenderedImage(cc.attrs.imageBytes)}" />
+            <h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
             <div class="infos">
                 <p>#{cc.attrs.name}</p>
                 <div class="divider"></div>
@@ -26,18 +26,18 @@
             </div>
 			<div class="options">
             	<p:commandButton 
-            		value="Add"
+            		value="#{label.buy}"
             		style="width: 100%" 
             		rendered="#{cc.attrs.optionsRendered == false ? true : false}" />
             		
  				<p:commandButton
- 					value="EDIT"
+ 					value="#{label.edit}"
  					icon="pi pi-pencil"
  					rendered="#{cc.attrs.optionsRendered == false ? false : true}"
  					styleClass="rounded-button ui-button-flat ui-button-plain" />
 	            
 	            <p:commandButton 
-	            	value="REMOVE"
+	            	value="#{label.remove}"
 	            	icon="pi pi-times"
        	 			rendered="#{cc.attrs.optionsRendered == false ? false : true}"
 	            	styleClass="rounded-button ui-button-flat ui-button-plain" />
