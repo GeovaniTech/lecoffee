@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    padding: 200px;
+    padding: 150px;
     padding-top: 50px;
 }
 
@@ -20,12 +20,28 @@
     color: var(--text-mouse);
     padding: 30px;
     border-radius: 10px;
+    transition: 0.4s;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.card:hover {
+	transform: scale(1.04);
 }
 
 .card > * {
     width: 100%;
     margin-bottom: 10px;
+}
+
+.card .options {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.card .options button {
+	margin-right: 5px;
 }
 
 .card img {

@@ -13,17 +13,35 @@
 		<composite:attribute name="price" />
 		<composite:attribute name="description" />
 		<composite:attribute name="imageBytes" />
+		<composite:attribute name="optionsRendered" />
 	</composite:interface>
 	
 	<composite:implementation>
 		<div class="card">
             <h:graphicImage value="data:image/png;base64,#{MBTab_products.getRenderedImage(cc.attrs.imageBytes)}" />
             <div class="infos">
-                <p>Moka Late</p>
+                <p>#{cc.attrs.name}</p>
                 <div class="divider"></div>
-                <p><strong>R$ 8,50</strong></p>
+                <p><strong>#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}</strong></p>
             </div>
-            <p:commandButton value="Add"/>
+			<div class="options">
+            	<p:commandButton 
+            		value="Add"
+            		style="width: 100%" 
+            		rendered="#{cc.attrs.optionsRendered == false ? true : false}" />
+            		
+ 				<p:commandButton
+ 					value="EDIT"
+ 					icon="pi pi-pencil"
+ 					rendered="#{cc.attrs.optionsRendered == false ? false : true}"
+ 					styleClass="rounded-button ui-button-flat ui-button-plain" />
+	            
+	            <p:commandButton 
+	            	value="REMOVE"
+	            	icon="pi pi-times"
+       	 			rendered="#{cc.attrs.optionsRendered == false ? false : true}"
+	            	styleClass="rounded-button ui-button-flat ui-button-plain" />
+			</div>
 		</div>
 	</composite:implementation>
 </html>

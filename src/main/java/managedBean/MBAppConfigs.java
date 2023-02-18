@@ -2,6 +2,7 @@ package managedBean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -27,6 +28,14 @@ public class MBAppConfigs implements Serializable {
 		localeList.add(new Locale("en"));
 		
 		language = Locale.getDefault().getLanguage();
+	}
+	
+	public String getBrazilianCurrency(Double value) {
+        Locale localeBR = new Locale("pt", "BR");
+        NumberFormat brazilianFormat = NumberFormat.getCurrencyInstance(localeBR);
+        String formattedValue = brazilianFormat.format(value);
+		
+        return formattedValue;
 	}
 	
 	public void refreshPage() throws IOException {
