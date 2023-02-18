@@ -11,7 +11,7 @@ public interface IKeepProductSBean  {
 	public void save(Product product);
 	public void change(Product product);
 	public void disable(Product product);
-	public void findById(int id);
+	public Product findById(int id);
 	public List<Product> list();
 	
 }

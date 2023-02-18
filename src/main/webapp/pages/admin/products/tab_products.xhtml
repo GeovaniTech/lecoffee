@@ -6,6 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<h:body>
@@ -47,7 +48,9 @@
 			
 			<div class="container-products horizontal-evenly">
 				<ui:repeat var="product" value="#{MBTab_products.products}">
-					
+					<h:graphicImage value="#{imageServlet.streamedContent}">
+					    <f:param name="objId_#{product.id}" value="#{product.id}" />
+					</h:graphicImage>
 				</ui:repeat>
 			</div>
 		</div>

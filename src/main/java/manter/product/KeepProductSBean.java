@@ -36,9 +36,10 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 	}
 
 	@Override
-	public void findById(int id) {
-		// TODO Auto-generated method stub
+	public Product findById(int id) {
+		Product product = em.find(Product.class, id);
 		
+		return product;
 	}
 
 	@Override
