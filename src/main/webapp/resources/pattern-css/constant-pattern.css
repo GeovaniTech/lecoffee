@@ -27,6 +27,15 @@ h1 span {
     font-family: 'Grape Nuts', cursive;
 }
 
+.general-dialog-forms > * {
+	margin-bottom: 5px;
+	width: 100% !important;
+}
+
+.form-top-buttons > * {
+	margin-right: 5px !important;
+}
+
 .horizontal-center {
 	display: flex;
 	flex-direction: row;

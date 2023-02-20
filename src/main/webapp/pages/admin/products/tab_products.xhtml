@@ -32,22 +32,22 @@
 				<p:commandButton 
 					icon="pi pi-filter" />
 			</h:form>
-			
-			<h:form 
-				id="container-products"
-				class="container-products horizontal-evenly">
-				<ui:repeat var="product" value="#{MBTab_products.products}">
-					<components:product 
-						name="#{product.name}"
-						productId="#{product.id}"
-						description="#{product.description}"
-						price="#{product.price}"
-						imageBytes="#{product.imageBytes}"
-						rating="#{product.rating}"
-						optionsRendered="true" />
-				</ui:repeat>
-			</h:form>
 		</div>
+		
+		<h:form 
+			id="container-products"
+			class="container-products horizontal-evenly">
+			<ui:repeat var="product" value="#{MBTab_products.products}">
+				<components:product 
+					name="#{product.name}"
+					productId="#{product.id}"
+					description="#{product.description}"
+					price="#{product.price}"
+					imageBytes="#{product.imageBytes}"
+					rating="#{product.rating}"
+					optionsRendered="true" />
+			</ui:repeat>
+		</h:form>
 		
 		<p:dialog
 			header="#{label.products}"
@@ -63,7 +63,7 @@
 				style="max-height: 80vh; width: 100%;">
 				
 				<h:form 
-					class="vertical-left form-product">
+					class="vertical-left general-dialog-forms">
 					
 					<p:messages 
 						id="messages" 

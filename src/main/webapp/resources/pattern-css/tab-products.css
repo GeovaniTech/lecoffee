@@ -9,15 +9,6 @@
 	color: var(--text-mouse);
 }
 
-.form-product > * {
-	margin-bottom: 5px;
-	width: 100% !important;
-}
-
-.form-top-buttons > * {
-	margin-right: 5px !important;
-}
-
 .container-products {
 	flex-wrap: wrap;
 	margin-top: 20px;

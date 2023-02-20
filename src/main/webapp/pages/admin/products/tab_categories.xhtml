@@ -12,6 +12,55 @@
 	<h:body>
 		<h:outputStylesheet library="pattern-css" name="product.css" />
 		
+		<div class="top-buttons">
+			<h:form class="form-top-buttons">
+				<p:commandButton 
+					 value="#{label.new_category}"
+					 onclick="PF('dialog-new-category').show()"
+					 icon="pi pi-plus" />
+					
+				<p:commandButton 
+					value="#{label.remove_all}"
+					action="#{MBTab_products.removeAll()}"
+					icon="pi pi-times"
+					styleClass="ui-button-danger" />
+					
+				<p:commandButton 
+					icon="pi pi-filter" />
+			</h:form>
+		</div>
 		
+		<p:dialog
+			id="dialog-new-category"
+			widgetVar="dialog-new-category"
+			header="#{label.categories}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			width="720px">
+			
+			<h:form class="vertical-left general-dialog-forms">
+				<p:messages 
+					id="messages" 
+					showDetail="false"
+					showIcon="false"
+	        		autoUpdate="true"  />
+	        		
+				<h:outputLabel value="#{label.name}" class="label" for="name" />
+				<p:inputText 
+					id="name"
+					value="#{MBTab_products.product.name}"
+					required="true"
+					requiredMessage="#{label.name_required}"
+					placeholder="#{label.insert_the} #{label.name}" />
+					
+				<p:commandButton 
+					value="#{label.finish_registration}"
+					process="@form"
+					action="#{MBTab_products.save()}"
+					update=" messages" />
+			</h:form>
+		</p:dialog>
 	</h:body>
 </html>
