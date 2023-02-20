@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -19,6 +20,9 @@ public class Product {
 	private String status;	
 	private Integer rating;
 	private Date creationDate;
+	
+	@OneToOne
+	private Category category;
 	
 	@Lob
 	private byte[] imageBytes;
@@ -70,6 +74,12 @@ public class Product {
 	}
 	public void setRating(Integer rating) {
 		this.rating = rating;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }
 

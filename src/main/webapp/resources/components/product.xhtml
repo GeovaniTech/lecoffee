@@ -36,15 +36,13 @@
  				<p:commandButton
  					value="#{label.edit}"
  					icon="pi pi-pencil"
- 					rendered="#{cc.attrs.optionsRendered == false ? false : true}"
- 					styleClass="rounded-button ui-button-flat ui-button-plain" />
+ 					rendered="#{cc.attrs.optionsRendered == false ? false : true}" />
 	            
 	            <p:commandButton 
 	            	value="#{label.remove}"
 	            	action="#{MBTab_products.disable(cc.attrs.productId)}"
 	            	icon="pi pi-times"
-       	 			rendered="#{cc.attrs.optionsRendered == false ? false : true}"
-	            	styleClass="rounded-button ui-button-flat ui-button-plain" />
+       	 			rendered="#{cc.attrs.optionsRendered == false ? false : true}" />
 			</div>
 		</div>
 	</composite:implementation>

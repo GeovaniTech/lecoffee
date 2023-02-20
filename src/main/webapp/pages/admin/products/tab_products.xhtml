@@ -23,6 +23,13 @@
 					 icon="pi pi-plus" />
 					
 				<p:commandButton 
+					value="#{label.remove_all}"
+					action="#{MBTab_products.removeAll()}"
+					oncomplete="updateProductsContainer()"
+					icon="pi pi-times"
+					styleClass="ui-button-danger" />
+					
+				<p:commandButton 
 					icon="pi pi-filter" />
 			</h:form>
 			
@@ -37,7 +44,7 @@
 						price="#{product.price}"
 						imageBytes="#{product.imageBytes}"
 						rating="#{product.rating}"
-						optionsRendered="false" />
+						optionsRendered="true" />
 				</ui:repeat>
 			</h:form>
 		</div>

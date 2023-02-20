@@ -13,5 +13,6 @@ public interface IKeepProductSBean  {
 	public void disable(Product product);
 	public Product findById(int id);
 	public List<Product> list();
+	public void removeAll();
 	
 }
