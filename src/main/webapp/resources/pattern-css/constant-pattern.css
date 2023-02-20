@@ -28,7 +28,7 @@ h1 span {
 }
 
 .general-dialog-forms > * {
-	margin-bottom: 5px;
+	margin-bottom: 5px !important;
 	width: 100% !important;
 }
 
@@ -238,6 +238,18 @@ h1 span {
 
 .ui-rating > input {
 	color: var(--green) !important;
+}
+
+.ui-datatable thead th {
+	background-color: var(--background-general) !important;
+	color: var(--text-mouse) !important;	
+	border: 0px !important;
+}
+
+.ui-datatable tbody td {
+	background-color: var(--second-color-widget) !important;
+	color: var(--text-mouse) !important;	
+	border-color: var(--text) !important;
 }
 
 *::-webkit-scrollbar {

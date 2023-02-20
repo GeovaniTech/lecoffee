@@ -11,6 +11,10 @@
 	
 	<h:body>
 		<h:outputStylesheet library="pattern-css" name="product.css" />
+		<h:outputStylesheet library="pattern-css" name="tab_categories.css" />
+		
+		<p:remoteCommand 
+			name="updateTableCategories" update="tableCategories" />
 		
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
@@ -22,7 +26,8 @@
 				<p:commandButton 
 					value="#{label.remove_all}"
 					action="#{MBTab_products.removeAll()}"
-					icon="pi pi-times"
+					oncomplete="updateTableCategories()"
+					icon="pi pi-trash"
 					styleClass="ui-button-danger" />
 					
 				<p:commandButton 
@@ -40,27 +45,59 @@
 			position="center"
 			width="720px">
 			
-			<h:form class="vertical-left general-dialog-forms">
-				<p:messages 
-					id="messages" 
-					showDetail="false"
-					showIcon="false"
-	        		autoUpdate="true"  />
-	        		
-				<h:outputLabel value="#{label.name}" class="label" for="name" />
-				<p:inputText 
-					id="name"
-					value="#{MBTab_products.product.name}"
-					required="true"
-					requiredMessage="#{label.name_required}"
-					placeholder="#{label.insert_the} #{label.name}" />
-					
-				<p:commandButton 
-					value="#{label.finish_registration}"
-					process="@form"
-					action="#{MBTab_products.save()}"
-					update=" messages" />
+			<h:form>
+				<div class="vertical-left container-categories">
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
+		        		
+					<h:outputLabel value="#{label.name}" class="label" for="name" />
+					<p:inputText 
+						id="name"
+						value="#{MBTab_category.category.name}"
+						required="true"
+						requiredMessage="#{label.name_required}"
+						placeholder="#{label.insert_the} #{label.name}" />
+						
+					<p:commandButton 
+						value="#{label.finish_registration}"
+						process="@form"
+						action="#{MBTab_category.save()}"
+						oncomplete="updateTableCategories()"
+						update=" messages" />
+				</div>
 			</h:form>
 		</p:dialog>
+		
+		<h:form 
+			id="tableCategories"
+			style="margin-top: 10px;">
+			
+			<p:dataTable
+				var="category"
+				value="#{MBTab_category.categories}">
+				
+				<p:column headerText="#{label.name}">
+					<h:outputLabel value="#{category.name}" />
+				</p:column>
+				
+				<p:column headerText="#{label.status}">
+					<h:outputLabel value="#{category.status}" />
+				</p:column>
+				
+				<p:column headerText="#{label.options}">
+					<p:commandButton 
+						value="#{label.edit}"
+						icon="pi pi-pencil"
+						style="margin-right: 5px;" />
+					
+					<p:commandButton 
+						value="#{label.disable}"
+						icon="pi pi-times" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</h:body>
 </html>

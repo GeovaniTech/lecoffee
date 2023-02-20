@@ -15,21 +15,46 @@ import utils.AbstractBean;
 public class MBTab_categories extends AbstractBean {
 	private static final long serialVersionUID = 2137478986375484379L;
 	
-	private List<Category> cagories;
+	private List<Category> categories;
 	private KeepCategorySBean sbean;
 	private Category category;
 	
 	public MBTab_categories() {
-		cagories = new ArrayList<Category>();
+		categories = new ArrayList<Category>();
+		sbean = new KeepCategorySBean();
 		category = new Category();
+		
+		list();
 	}
 	
-	public List<Category> getCagories() {
-		return cagories;
+	public void save() {
+		sbean.save(this.getCategory());
+		list();
 	}
-	public void setCagories(List<Category> cagories) {
-		this.cagories = cagories;
+	
+	public void change() {
+		sbean.change(this.getCategory());
+		list();
 	}
+	
+	public void disable() {
+		sbean.disable(this.getCategory());
+		list();
+	}
+	
+	public void list() {
+		this.setCategories(sbean.list());
+	}
+	
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
 	public KeepCategorySBean getSbean() {
 		return sbean;
 	}
