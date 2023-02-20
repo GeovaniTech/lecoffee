@@ -29,16 +29,22 @@ public class MBTab_categories extends AbstractBean {
 	
 	public void save() {
 		sbean.save(this.getCategory());
+		
+		this.setCategory(new Category());
 		list();
 	}
 	
 	public void change() {
 		sbean.change(this.getCategory());
+		
+		this.setCategory(new Category());
 		list();
 	}
 	
 	public void disable() {
 		sbean.disable(this.getCategory());
+		
+		this.setCategory(new Category());
 		list();
 	}
 	
@@ -46,6 +52,10 @@ public class MBTab_categories extends AbstractBean {
 		this.setCategories(sbean.list());
 	}
 	
+	public void removeAll() {
+		sbean.removeAll();
+		list();
+	}
 
 	public List<Category> getCategories() {
 		return categories;

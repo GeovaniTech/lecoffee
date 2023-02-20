@@ -2,6 +2,7 @@
 
 .container-categories {
 	padding: 10px;
+	padding-top: 0px;
 }
 
 .container-categories > * {
