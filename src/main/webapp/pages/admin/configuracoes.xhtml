@@ -17,24 +17,7 @@
 			</ui:define>
 			
 			<ui:define name="body">
-				<style>
-					#menu-configs {
-						background-color: var(--background-general-mouse);
-						color: var(--text-mouse);
-					}
-					
-					#menu-configs > span {
-						color: var(--text-mouse);
-					}
-					
-					.align-options {
-						margin-right: 30px;
-					}
-					
-					.horizontal-left {
-						align-items: flex-start;
-					}
-				</style>
+				<h:outputStylesheet library="pattern-css" name="configs.css"/>
 				
 				<div class="horizontal-left">		
 					<div class="select-language align-options">
@@ -66,7 +49,8 @@
 	      			    		
 	      			    		<p:ajax 
 	      			    			event="change"
-	      			    			process="@form"/>
+	      			    			process="@form"
+	      			    			oncomplete="#{MBAppConfigs.changeCookieDarkMode()}"/>
 	      			    	</p:toggleSwitch>
 						</h:form>
 					</div>
