@@ -32,12 +32,7 @@
 	</h:head>
 	
 	<f:view locale="#{MBAppConfigs.language}" id="view-locale">	
-		<h:body>
-			<p:remoteCommand 
-				name="updateCookie"
-				action="#{MBAppConfigs.changeCookieDarkMode()}"
-				 />
-				
+		<h:body>				
 			<div class="container">
 				<div class="logo">
 					<h1><span>Le</span>Coffee</h1>
@@ -90,7 +85,6 @@
 				
 					    		<p:ajax 
 					    			event="change"
-					    			oncomplete="updateCookieDarkMode()"
 					    			process="@form"/>
 				    		</p:toggleSwitch>
 						</h:form>	

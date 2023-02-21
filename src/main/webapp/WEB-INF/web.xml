@@ -9,7 +9,7 @@
   </welcome-file-list>
   <error-page>
     <error-code>404</error-code>
-    <location>/pages/not_found.xhtml</location>
+    <location>/pages/errors/not_found.xhtml</location>
   </error-page>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
