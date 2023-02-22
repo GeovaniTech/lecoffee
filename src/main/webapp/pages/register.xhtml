@@ -20,7 +20,7 @@
 		<h:outputStylesheet library="pattern-css" name="access.css"/>
 		
 		<c:choose>
-			<c:when test="#{MBAppConfigs.darkMode eq 'true'}">
+			<c:when test="#{MBAppConfigs.appConfigs.darkMode eq 'true'}">
 				<h:outputStylesheet library="dark-mode" name="colors.css" />
 			</c:when>
 			
@@ -30,7 +30,7 @@
 		</c:choose>		
 	</h:head>
 	
-	<f:view locale="#{MBAppConfigs.language}" id="view-locale">	
+	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
 		<h:body>
 			<div class="container">
 				<div class="logo">

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Client;
+import to.TOClient;
 
 public class FilterNivelAdmin implements Filter {
     public FilterNivelAdmin() {
@@ -30,7 +30,7 @@ public class FilterNivelAdmin implements Filter {
 		HttpSession session = request.getSession(true);
 		
 		
-		Client client = (Client) session.getAttribute("client");
+		TOClient client = (TOClient) session.getAttribute("client");
 		
 		if(client == null || client.getNivel().equals("client")) {
 			response.setStatus(401);

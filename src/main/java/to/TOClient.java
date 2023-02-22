@@ -1,5 +1,6 @@
 package to;
 
+import model.AppConfigs;
 import model.Cart;
 
 public class TOClient {
@@ -7,6 +8,7 @@ public class TOClient {
 	private String nome;
 	private String email;
 	private String nivel;
+	private AppConfigs preferences;
 	private Cart cart;
 	
 	public int getId() {
@@ -38,6 +40,12 @@ public class TOClient {
 	}
 	public void setCart(Cart cart) {
 		this.cart = cart;
+	}
+	public AppConfigs getPreferences() {
+		return preferences;
+	}
+	public void setPreferences(AppConfigs preferences) {
+		this.preferences = preferences;
 	}
 }
 

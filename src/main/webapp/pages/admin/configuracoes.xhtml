@@ -24,7 +24,7 @@
 						<h:form>
 							<h5>#{label.language}</h5>
 							<p:selectOneMenu 
-								value="#{MBAppConfigs.language}"
+								value="#{MBAppConfigs.appConfigs.language}"
 								style="width: 200px;">
 								
 								<f:selectItems 
@@ -42,7 +42,7 @@
 						<h:form>
 					        <h5>#{label.dark_mode}</h5>
 	      			    	<p:toggleSwitch 
-	      			    		value="#{MBAppConfigs.darkMode}" 
+	      			    		value="#{MBAppConfigs.appConfigs.darkMode}" 
 	      			    		onIcon="pi pi-sun" 
 	      			    		offIcon="pi pi-moon"
 	      			    		styleClass="dark-mode">

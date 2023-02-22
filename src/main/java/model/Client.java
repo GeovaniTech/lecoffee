@@ -17,6 +17,9 @@ public class Client {
 	private String nivel;
 	
 	@OneToOne
+	private AppConfigs preferences;
+	
+	@OneToOne
 	private Cart cart;
 	
 	public int getId() {
@@ -48,5 +51,17 @@ public class Client {
 	}
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
+	}
+	public AppConfigs getPreferences() {
+		return preferences;
+	}
+	public void setPreferences(AppConfigs preferences) {
+		this.preferences = preferences;
+	}
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 }

@@ -4,7 +4,9 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
+import model.AppConfigs;
 import model.Client;
+import to.TOClient;
 import utils.AbstractManter;
 import utils.EmailValidator;
 import utils.PasswordEncryption;
@@ -45,6 +47,21 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 		
 		return true;
 	}
+	
+	@Override
+	public void change(TOClient client) {
+		Client model = new Client();
+		
+		model.setId(client.getId());
+		model.setNome(client.getNome());
+		model.setEmail(client.getEmail());
+		model.setCart(client.getCart());
+		model.setPreferences(client.getPreferences());
+		
+		em.getTransaction().begin();
+		em.merge(model);
+		em.getTransaction().commit();
+	}
 
 	@Override
 	public boolean verifyClient(String email) {
@@ -79,7 +96,16 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 					.setParameter("password", PasswordEncryption.encrypt(password))
 					.getSingleResult();
 			
-			getSession().setAttribute("client", client);
+			TOClient toClient = new TOClient();
+			
+			toClient.setEmail(client.getEmail());
+			toClient.setCart(client.getCart());
+			toClient.setPreferences(client.getPreferences());
+			toClient.setNome(client.getNome());
+			toClient.setNivel(client.getNivel());
+			toClient.setId(client.getId());
+			
+			getSession().setAttribute("client", toClient);
 			
 			if(client.getNivel().equals("admin")) {
 				RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
@@ -92,6 +118,13 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 			msg.informacoesInvalidas();
 		}
 	}
-	
-	
+
+	@Override
+	public void saveNewPreferences(AppConfigs preferences) {
+		TOClient client = getClient();
+		client.setPreferences(preferences);
+		
+		change(client);
+		
+	}
 }
