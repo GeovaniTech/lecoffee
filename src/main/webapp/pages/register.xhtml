@@ -73,23 +73,7 @@
 		                	styleClass="buttonClass"
 		                	style="margin-bottom: 15px;" /> 
 					</h:form>
-					
-					<div class="options">				
-						<h:form class="form-darkmode">
-							<h5>#{label.dark_mode}</h5>
-				    		<p:toggleSwitch
-					    		value="#{MBAppConfigs.darkMode}" 
-					    		onIcon="pi pi-sun" 
-					    		offIcon="pi pi-moon">
-				
-					    		<p:ajax 
-					    			event="change"
-					    			process="@form"/>
-				    		</p:toggleSwitch>
-						</h:form>
-						
-						<a href="login.xhtml">#{label.login}</a>
-					</div>
+					<a href="login.xhtml">#{label.login}</a>
 				</div>
 							
 		        <div class="atendimento">
