@@ -32,7 +32,10 @@
 	</h:head>
 	
 	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
-		<h:body>				
+		<h:body>	
+			<p:remoteCommand 
+				name="updateConfigs"
+				action="#{MBAppConfigs.updateConfigs()}"/>			
 			<div class="container">
 				<div class="logo">
 					<h1><span>Le</span>Coffee</h1>
@@ -70,7 +73,8 @@
 				           	action="#{MBLogin.logar()}"
 				           	update="messages"
 				           	styleClass="buttonClass"
-				           	style="margin-bottom: 15px;" />
+				           	style="margin-bottom: 15px;"
+				           	oncomplete="updateConfigs();" />
 					</h:form>						
 					<a href="/lecoffee/pages/register.xhtml">#{label.register}</a>
 				</div>

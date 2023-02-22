@@ -19,6 +19,10 @@
 			<ui:define name="body">
 				<h:outputStylesheet library="pattern-css" name="configs.css"/>
 				
+				<p:remoteCommand 
+					name="updateConfigs"
+					action="#{MBAppConfigs.setNewPreferences()}"/>
+				
 				<div class="horizontal-left">		
 					<div class="select-language align-options">
 						<h:form>
@@ -33,7 +37,10 @@
 									itemLabel="#{language.displayLanguage}"
 									itemValue="#{language.language}" />
 									
-								 <f:ajax render="all" listener="#{MBAppConfigs.refreshPage()}"/>	
+								 <p:ajax 
+								 	render="all" 
+								 	listener="#{MBAppConfigs.refreshPage()}"
+								 	oncomplete="updateConfigs();" /> 
 							</p:selectOneMenu>
 						</h:form>
 					</div>
@@ -42,14 +49,16 @@
 						<h:form>
 					        <h5>#{label.dark_mode}</h5>
 	      			    	<p:toggleSwitch 
-	      			    		value="#{MBAppConfigs.appConfigs.darkMode}" 
+	      			    		value="#{MBAppConfigs.appConfigs.darkMode}"
+	      			    		valueChangeListener="#{MBAppConfigs.setNewPreferences()}"
 	      			    		onIcon="pi pi-sun" 
 	      			    		offIcon="pi pi-moon"
 	      			    		styleClass="dark-mode">
 	      			    		
 	      			    		<p:ajax 
 	      			    			event="change"
-	      			    			process="@form" />
+	      			    			process="@form"
+	      			    			oncomplete="updateConfigs();" />
 	      			    	</p:toggleSwitch>
 						</h:form>
 					</div>

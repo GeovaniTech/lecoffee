@@ -50,16 +50,23 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 	
 	@Override
 	public void change(TOClient client) {
-		Client model = new Client();
+		StringBuilder sql = new StringBuilder();
 		
-		model.setId(client.getId());
-		model.setNome(client.getNome());
-		model.setEmail(client.getEmail());
-		model.setCart(client.getCart());
-		model.setPreferences(client.getPreferences());
+		sql.append(" UPDATE ").append(Client.class.getName()).append(" C ");
+		sql.append(" SET C.nome = :nome, ");
+		sql.append(" C.email = :email, ");
+		sql.append(" C.cart = :cart, ");
+		sql.append(" C.preferences = :preferences ");
+		sql.append(" WHERE C.id = :id_client");
 		
 		em.getTransaction().begin();
-		em.merge(model);
+		em.createQuery(sql.toString())
+			.setParameter("nome", client.getNome())
+			.setParameter("email", client.getEmail())
+			.setParameter("cart", client.getCart())
+			.setParameter("preferences", client.getPreferences())
+			.setParameter("id_client", client.getId())
+			.executeUpdate();
 		em.getTransaction().commit();
 	}
 

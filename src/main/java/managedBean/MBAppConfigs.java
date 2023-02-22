@@ -13,6 +13,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import keep.appConfigs.KeepAppConfigs;
+import manter.client.ManterClientSBean;
 import model.AppConfigs;
 import to.TOClient;
 import utils.ImageUtil;
@@ -25,12 +27,17 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 
 	private AppConfigs appConfigs;
 	private List<Locale> localeList;
+	private ManterClientSBean clientSBean;
+	private KeepAppConfigs appConfigsSBean;
 
 	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 
 	public MBAppConfigs() {
 		this.appConfigs = new AppConfigs();
 		this.localeList = new ArrayList<Locale>();
+		this.clientSBean = new ManterClientSBean();
+		this.appConfigsSBean = new KeepAppConfigs();
+		
 		localeList.add(new Locale("pt"));
 		localeList.add(new Locale("en"));
 		
@@ -45,9 +52,23 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 			appConfigs.setLanguage(Locale.getDefault().getLanguage());
 		} else if (client.getPreferences().getLanguage() != null) {
 			appConfigs.setLanguage(client.getPreferences().getLanguage());
-		} else {
 			appConfigs.setDarkMode(client.getPreferences().isDarkMode());
 		}
+	}
+	
+	public void setNewPreferences() {
+		TOClient client = getClient();
+		
+		if(client.getPreferences() == null) {
+			appConfigsSBean.save(appConfigs);
+		} else {
+			appConfigs.setId(client.getPreferences().getId());
+			appConfigsSBean.change(appConfigs);
+		}
+		
+		client.setPreferences(appConfigs);
+		
+		clientSBean.change(client);
 	}
 
 	public String getBrazilianCurrency(Double value) {
@@ -91,4 +112,21 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	public void setAppConfigs(AppConfigs appConfigs) {
 		this.appConfigs = appConfigs;
 	}
+
+	public ManterClientSBean getClientSBean() {
+		return clientSBean;
+	}
+
+	public void setClientSBean(ManterClientSBean clientSBean) {
+		this.clientSBean = clientSBean;
+	}
+
+	public KeepAppConfigs getAppConfigsSBean() {
+		return appConfigsSBean;
+	}
+
+	public void setAppConfigsSBean(KeepAppConfigs appConfigsSBean) {
+		this.appConfigsSBean = appConfigsSBean;
+	}
+	
 }
