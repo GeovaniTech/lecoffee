@@ -160,6 +160,7 @@ h1 span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
+  width: 720px !important;
 }
 
 .ui-dialog-titlebar {
@@ -285,7 +286,7 @@ h1 span {
 }
 
 /* MEDIA QUERIES */
-@media (max-width <= 400px) {
+@media (max-width: 600px) {
 	.ui-dialog {
 		width: 100% !important;
 		
