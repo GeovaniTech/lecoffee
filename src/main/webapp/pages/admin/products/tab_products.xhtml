@@ -18,19 +18,19 @@
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
-					 value="#{label.new_product}"
 					 onclick="PF('dialog-new-product').show()"
-					 icon="pi pi-plus" />
+					 icon="pi pi-plus"
+					 styleClass="optionsButtonStyle" />
 					
 				<p:commandButton 
-					value="#{label.remove_all}"
 					action="#{MBTab_products.removeAll()}"
 					oncomplete="updateProductsContainer()"
-					icon="pi pi-times"
-					styleClass="ui-button-danger" />
+					icon="pi pi-trash"
+					styleClass="optionsButtonStyle" />
 					
 				<p:commandButton 
-					icon="pi pi-filter" />
+					icon="pi pi-filter"
+					styleClass="optionsButtonStyle" />
 			</h:form>
 		</div>
 		

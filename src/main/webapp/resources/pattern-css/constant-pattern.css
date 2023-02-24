@@ -137,6 +137,24 @@ h1 span {
 	background-color: var(--green-mouse) !important;
 }
 
+.optionsButtonStyle {
+	background-color: var(--background-general) !important;
+	border-color: transparent !important;
+	border-radius: 20px !important;
+	transition: 0.4s !important;
+	color: var(--text-mouse) !important;	
+	padding: 5px !important;
+}
+
+ .ui-button.ui-button-icon-only .ui-button-text {
+	padding: 0px !important;	
+}
+
+.optionsButtonStyle:hover {
+	border-color: transparent !important;
+	background-color: var(--background-general-mouse) !important;
+}
+
 .ui-dialog {
   position: absolute;
   top: 50%;

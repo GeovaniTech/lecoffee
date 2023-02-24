@@ -19,18 +19,19 @@
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
-					 value="#{label.new_category}"
 					 onclick="PF('dialog-new-category').show()"
-					 icon="pi pi-plus" />
+					 icon="pi pi-plus"
+					 styleClass="optionsButtonStyle" />
 					
 				<p:commandButton 
-					value="#{label.remove_all}"
 					action="#{MBTab_category.removeAll()}"
 					oncomplete="updateTableCategories()"
-					icon="pi pi-trash" />
+					icon="pi pi-trash"
+					styleClass="optionsButtonStyle" />
 					
 				<p:commandButton 
-					icon="pi pi-filter" />
+					icon="pi pi-filter"
+					styleClass="optionsButtonStyle" />
 			</h:form>
 		</div>
 		

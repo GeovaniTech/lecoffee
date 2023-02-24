@@ -27,6 +27,8 @@
                 <p>#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}</p>
                 <p:rating value="#{cc.attrs.rating}" disabled="true" />
             </div>
+            
+            
 			<div class="options">
             	<p:commandButton 
             		value="#{label.buy}"
@@ -34,14 +36,14 @@
             		rendered="#{cc.attrs.optionsRendered == false ? true : false}" />
             		
  				<p:commandButton
- 					value="#{label.edit}"
  					icon="pi pi-pencil"
+ 					styleClass="optionsButtonStyle"
  					rendered="#{cc.attrs.optionsRendered == false ? false : true}" />
 	            
 	            <p:commandButton 
-	            	value="#{label.remove}"
 	            	action="#{MBTab_products.disable(cc.attrs.productId)}"
 	            	icon="pi pi-times"
+	            	styleClass="optionsButtonStyle"
        	 			rendered="#{cc.attrs.optionsRendered == false ? false : true}" />
 			</div>
 		</div>
