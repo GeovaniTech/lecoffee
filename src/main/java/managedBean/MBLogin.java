@@ -1,9 +1,13 @@
 package managedBean;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import manter.client.ManterClientSBean;
+import to.TOClient;
 import utils.AbstractBean;
 import utils.RedirectUrl;
 
@@ -25,8 +29,21 @@ public class MBLogin extends AbstractBean {
 	}
 	
 	public void logout() {
-		getSession().setAttribute("client", null);
+		createCookiePreferences();
+		
+		getSession().invalidate();
 		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
+	}
+	
+	public void createCookiePreferences() {
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		TOClient client = getClient();
+		
+		Cookie darkMode = new Cookie("darkMode", "" + client.getPreferences().isDarkMode());
+		Cookie language = new Cookie("language", "" + client.getPreferences().getLanguage());
+		
+		response.addCookie(darkMode);
+		response.addCookie(language);
 	}
 	
 	public String getEmail() {

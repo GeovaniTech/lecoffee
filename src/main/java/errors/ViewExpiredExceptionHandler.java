@@ -7,6 +7,11 @@ import javax.faces.context.ExceptionHandlerWrapper;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import to.TOClient;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -39,6 +44,8 @@ public class ViewExpiredExceptionHandler extends ExceptionHandlerWrapper impleme
                     requestMap.put("javax.servlet.error.exception_name", vee.getClass().getName());
                     requestMap.put("javax.servlet.error.message", vee.getMessage());
 
+                    createCookiePreferences();
+                    
                     nav.handleNavigation(fc, null, "/login.xhtml?faces-redirect=true");
                     fc.renderResponse(); 
                 } finally {
@@ -49,6 +56,23 @@ public class ViewExpiredExceptionHandler extends ExceptionHandlerWrapper impleme
         getWrapped().handle();
     }
 
+	public void createCookiePreferences() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		
+		if(session == null) {
+			session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		}
+		
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		TOClient client = (TOClient) session.getAttribute("client");
+		
+		Cookie darkMode = new Cookie("darkMode", "" + client.getPreferences().isDarkMode());
+		Cookie language = new Cookie("language", "" + client.getPreferences().getLanguage());
+		
+		response.addCookie(darkMode);
+		response.addCookie(language);
+	}
+    
     @Override
     public ExceptionHandler getWrapped() {
         return wrapped;

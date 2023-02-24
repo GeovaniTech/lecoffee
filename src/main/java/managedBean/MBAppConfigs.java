@@ -11,7 +11,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import keep.appConfigs.KeepAppConfigs;
 import manter.client.ManterClientSBean;
@@ -31,7 +33,9 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	private KeepAppConfigs appConfigsSBean;
 
 	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-
+	private HttpServletRequest httpServletRequest = (HttpServletRequest) externalContext.getRequest();
+	private HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();
+	
 	public MBAppConfigs() {
 		this.appConfigs = new AppConfigs();
 		this.localeList = new ArrayList<Locale>();
@@ -47,13 +51,48 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	public void updateConfigs() {
 		TOClient client = getClient();
 
-		if (client == null) {
-			appConfigs.setDarkMode(false);
-			appConfigs.setLanguage(Locale.getDefault().getLanguage());
-		} else if (client.getPreferences().getLanguage() != null) {
-			appConfigs.setLanguage(client.getPreferences().getLanguage());
+		if(client == null) {
+			if(getLanguageCookie() != null) {
+				appConfigs.setLanguage(getLanguageCookie());
+			} else {
+				appConfigs.setLanguage(Locale.getDefault().getLanguage());
+			}
+			
+			if(getDarkModeCookie()) {
+				appConfigs.setDarkMode(getDarkModeCookie());
+			} else {
+				appConfigs.setDarkMode(false);
+			}
+		} else {
 			appConfigs.setDarkMode(client.getPreferences().isDarkMode());
+			appConfigs.setLanguage(client.getPreferences().getLanguage());
 		}
+	}
+	
+	public String getLanguageCookie() {
+	  Cookie[] cookies = httpServletRequest.getCookies();
+	  if(cookies!=null) {
+	    for (Cookie cookie : cookies) {
+	      if(cookie.getName().equals("language")) {
+	        return cookie.getValue();
+	      }
+	    }
+	  }
+	  
+	  return null;
+	}
+	
+	public boolean getDarkModeCookie() {
+		  Cookie[] cookies = httpServletRequest.getCookies();
+		  if(cookies!=null) {
+		    for (Cookie cookie : cookies) {
+		      if(cookie.getName().equals("darkMode")) {
+		        return Boolean.parseBoolean(cookie.getValue());
+		      }
+		    }
+		  }
+		  
+		  return false;
 	}
 	
 	public void setNewPreferences() {
@@ -128,5 +167,20 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	public void setAppConfigsSBean(KeepAppConfigs appConfigsSBean) {
 		this.appConfigsSBean = appConfigsSBean;
 	}
-	
+
+	public HttpServletRequest getHttpServletRequest() {
+		return httpServletRequest;
+	}
+
+	public void setHttpServletRequest(HttpServletRequest httpServletRequest) {
+		this.httpServletRequest = httpServletRequest;
+	}
+
+	public HttpServletResponse getHttpServletResponse() {
+		return httpServletResponse;
+	}
+
+	public void setHttpServletResponse(HttpServletResponse httpServletResponse) {
+		this.httpServletResponse = httpServletResponse;
+	}
 }

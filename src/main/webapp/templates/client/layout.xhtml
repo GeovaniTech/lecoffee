@@ -18,11 +18,11 @@
 		<h:outputStylesheet library="pattern-css" name="constant-pattern.css"/>
 		
 		<c:choose>
-			<c:when test="#{MBAppConfigs.darkMode == true}">
+			<c:when test="#{MBAppConfigs.appConfigs.darkMode == true}">
 				<h:outputStylesheet library="dark-mode" name="colors.css"/>
 			</c:when>
 			
-			<c:otherwise test="#{MBAppConfigs.darkMode == false}">
+			<c:otherwise>
 				<h:outputStylesheet library="light-mode" name="colors.css"/>
 			</c:otherwise>
 		</c:choose>
