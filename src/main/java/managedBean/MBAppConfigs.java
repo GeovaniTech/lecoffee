@@ -67,6 +67,8 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 			appConfigs.setDarkMode(client.getPreferences().isDarkMode());
 			appConfigs.setLanguage(client.getPreferences().getLanguage());
 		}
+		
+		createCookiePreferences();
 	}
 	
 	public String getLanguageCookie() {
@@ -125,6 +127,24 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	public void refreshPage() throws IOException {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+	}
+	
+	public void createCookiePreferences() {
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		TOClient client = getClient();
+		
+		if(client != null) {
+			Cookie darkMode = new Cookie("darkMode", "" + client.getPreferences().isDarkMode());
+			darkMode.setMaxAge(Integer.MAX_VALUE);
+			darkMode.setPath("/");
+			
+			Cookie language = new Cookie("language", "" + client.getPreferences().getLanguage());
+			language.setMaxAge(Integer.MAX_VALUE);
+			language.setPath("/");
+			
+			response.addCookie(darkMode);
+			response.addCookie(language);
+		}
 	}
 
 	// Getters and Setters

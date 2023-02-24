@@ -39,11 +39,18 @@ public class MBLogin extends AbstractBean {
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		TOClient client = getClient();
 		
-		Cookie darkMode = new Cookie("darkMode", "" + client.getPreferences().isDarkMode());
-		Cookie language = new Cookie("language", "" + client.getPreferences().getLanguage());
-		
-		response.addCookie(darkMode);
-		response.addCookie(language);
+		if(client != null) {
+			Cookie darkMode = new Cookie("darkMode", "" + client.getPreferences().isDarkMode());
+			darkMode.setMaxAge(Integer.MAX_VALUE);
+			darkMode.setPath("/");
+			
+			Cookie language = new Cookie("language", "" + client.getPreferences().getLanguage());
+			language.setMaxAge(Integer.MAX_VALUE);
+			language.setPath("/");
+			
+			response.addCookie(darkMode);
+			response.addCookie(language);
+		}
 	}
 	
 	public String getEmail() {
