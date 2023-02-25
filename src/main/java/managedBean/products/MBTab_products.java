@@ -23,8 +23,10 @@ public class MBTab_products extends AbstractBean {
 	private Product product;
 	private KeepProductSBean sBean;
 	private List<Product> products;
+	private boolean status;
 	
 	public MBTab_products() {
+		this.status = true;
 		product = new Product();
 		sBean = new KeepProductSBean();
 		products = new ArrayList<Product>();
@@ -32,6 +34,7 @@ public class MBTab_products extends AbstractBean {
 	}
 	
 	public void save() {
+		product.setStatus(this.isStatus() ? "active" : "disable");
 		sBean.save(product);
 		product = new Product();
 		
@@ -89,5 +92,17 @@ public class MBTab_products extends AbstractBean {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

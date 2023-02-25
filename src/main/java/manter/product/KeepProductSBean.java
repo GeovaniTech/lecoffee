@@ -17,7 +17,6 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 	@Override
 	public void save(Product product) {
 		if(product.getImageBytes() != null) {
-			product.setStatus("active");
 			product.setCreationDate(new Date());
 			product.setRating(0);
 			

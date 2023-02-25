@@ -106,18 +106,19 @@
 								<h:outputText value="#{label.status}" class="label" for="status" />
 								<p:toggleSwitch 
 									id="status"
+									value="#{MBTab_products.status}"
 									style="width: 47px !important;"/>
 							</div>
 							
 							<div class="horizontal-left">
 								<h:outputLabel value="#{label.category}" class="label" for="category" />
 								<p:selectOneMenu 
-									value="">
+									value="#{MBTab_products.product.category.id}">
 									<f:selectItems 
 										var="category"
 										value="#{MBTab_category.categories}"
 										itemLabel="#{category.name}"
-										itemValue="#{category}" />
+										itemValue="#{category.id}" />
 								</p:selectOneMenu>
 							</div>
 						</h:panelGrid>
@@ -141,7 +142,7 @@
 						process="@form"
 						action="#{MBTab_products.save()}"
 						update=" messages"
-						oncomplete="updateProductsContainer()" />
+						oncomplete="remoteUpdate()" />
 				</h:form>
 			</p:scrollPanel>
 		</p:dialog>	

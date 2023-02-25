@@ -21,6 +21,10 @@ public class Product {
 	private Integer rating;
 	private Date creationDate;
 	
+	public Product() {
+		this.category = new Category();
+	}
+
 	@OneToOne
 	private Category category;
 	
