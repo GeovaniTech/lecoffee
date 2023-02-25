@@ -42,6 +42,7 @@ public class MBTab_products extends AbstractBean {
 	}
 
 	public void change() {
+		product.setStatus(this.isStatus() ? "active" : "disable");
 		sBean.change(product);
 		product = new  Product();
 		

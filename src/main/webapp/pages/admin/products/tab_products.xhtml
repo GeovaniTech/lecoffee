@@ -100,28 +100,26 @@
 						requiredMessage="#{label.description_required}"
 						placeholder="#{label.insert_the} #{label.description}"/>
 					
-					<div>
-						<h:panelGrid columns="2">
-							<div class="horizontal-left">
-								<h:outputText value="#{label.status}" class="label" for="status" />
-								<p:toggleSwitch 
-									id="status"
-									value="#{MBTab_products.status}"
-									style="width: 47px !important;"/>
-							</div>
-							
-							<div class="horizontal-left">
-								<h:outputLabel value="#{label.category}" class="label" for="category" />
-								<p:selectOneMenu 
-									value="#{MBTab_products.product.category.id}">
-									<f:selectItems 
-										var="category"
-										value="#{MBTab_category.categories}"
-										itemLabel="#{category.name}"
-										itemValue="#{category.id}" />
-								</p:selectOneMenu>
-							</div>
-						</h:panelGrid>
+					<div class="horizontal-top-left">
+						<div class="vertical-left">
+							<h:outputLabel value="#{label.category}" class="label" for="category" />
+							<p:selectOneMenu 
+								value="#{MBTab_products.product.category.id}"
+								style="width: 200px; margin-right: 30px;">
+								<f:selectItems 
+									var="category"
+									value="#{MBTab_category.categories}"
+									itemLabel="#{category.name}"
+									itemValue="#{category.id}" />
+							</p:selectOneMenu>
+						</div>
+						<div class="vertical-left">
+							<h:outputText value="#{label.status}" class="label" for="status" />
+							<p:toggleSwitch 
+								id="status"
+								value="#{MBTab_products.status}"
+								style="width: 47px !important;"/>
+						</div>
 					</div>
 					
 					<h:outputLabel value="#{label.upload_files}" class="label" />
@@ -193,6 +191,28 @@
 						requiredMessage="#{label.description_required}"
 						placeholder="#{label.insert_the} #{label.description}"/>
 					
+					<div class="horizontal-top-left">
+						<div class="vertical-left">
+							<h:outputLabel value="#{label.category}" class="label" for="category" />
+							<p:selectOneMenu 
+								value="#{MBTab_products.product.category.id}"
+								style="width: 200px; margin-right: 30px;">
+								<f:selectItems 
+									var="category"
+									value="#{MBTab_category.categories}"
+									itemLabel="#{category.name}"
+									itemValue="#{category.id}" />
+							</p:selectOneMenu>
+						</div>
+						<div class="vertical-left">
+							<h:outputText value="#{label.status}" class="label" for="status" />
+							<p:toggleSwitch 
+								id="status"
+								value="#{MBTab_products.status}"
+								style="width: 47px !important;"/>
+						</div>
+					</div>
+					
 					<h:outputLabel value="#{label.upload_files}" class="label" />
 					<p:fileUpload
 						multiple="true"
@@ -201,13 +221,13 @@
 						label="#{label.search}" 
 						cancelLabel="#{label.cancel}"
 						uploadLabel="#{label.upload_files}"
-						update="growl"
+						update="growl, @form"
 						listener="#{MBTab_products.addImage}" 
 						process="@this"
 					 />
 					
 					<p:commandButton 
-						value="#{label.finish_registration}"
+						value="#{label.change}"
 						process="@form"
 						action="#{MBTab_products.change()}"
 						update=" messages"

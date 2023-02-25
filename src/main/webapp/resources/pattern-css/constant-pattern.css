@@ -36,13 +36,6 @@ h1 span {
 	margin-right: 5px !important;
 }
 
-.horizontal-left {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;	
-}
-
 .horizontal-center {
 	display: flex;
 	flex-direction: row;
@@ -97,6 +90,13 @@ h1 span {
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: center;	
+}
+
+.horizontal-top-left {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
 }
 
 .vertical-right {
