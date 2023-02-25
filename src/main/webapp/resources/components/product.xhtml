@@ -16,10 +16,15 @@
 		<composite:attribute name="imageBytes" />
 		<composite:attribute name="optionsRendered" />
 		<composite:attribute name="rating" />
+		<composite:attribute name="remoteUpdate" />
+		<composite:attribute name="dialogChange"  />
+		<composite:attribute name="status" />
+		<composite:attribute name="disableFunction" method-signature="void disable()" />
+		<composite:attribute name="setProductFunction" method-signature="void setProduct()" />
 	</composite:interface>
 	
 	<composite:implementation>
-		<div class="card">
+		<div class="card" style="#{cc.attrs.status eq 'disable' ? 'opacity: 0.33;' : ''}">
             <h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
             <div class="infos">
                 <p>#{cc.attrs.name}</p>
@@ -36,15 +41,20 @@
             		rendered="#{cc.attrs.optionsRendered == false ? true : false}" />
             		
  				<p:commandButton
+ 					action="#{cc.attrs.setProductFunction}"
+ 					onclick="#{cc.attrs.remoteUpdate}"
+ 					oncomplete="#{cc.attrs.dialogChange}"
  					icon="pi pi-pencil"
  					styleClass="optionsButtonStyle"
+ 					style="opacity: 1 !important;"
  					rendered="#{cc.attrs.optionsRendered == false ? false : true}" />
 	            
 	            <p:commandButton 
-	            	action="#{MBTab_products.disable(cc.attrs.productId)}"
+	            	action="#{cc.attrs.disableFunction}"
 	            	icon="pi pi-times"
 	            	styleClass="optionsButtonStyle"
-       	 			rendered="#{cc.attrs.optionsRendered == false ? false : true}" />
+       	 			rendered="#{cc.attrs.optionsRendered == false or cc.attrs.status eq 'disable' ? false : true}"
+       	 			oncomplete="#{cc.attrs.remoteUpdate}" />
 			</div>
 		</div>
 	</composite:implementation>

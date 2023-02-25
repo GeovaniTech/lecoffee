@@ -51,7 +51,7 @@ public class MBTab_products extends AbstractBean {
 		list();
 	}
 	
-	public void disable() {
+	public void disable(Product product) {
 		sBean.disable(product);
 		
 		list();

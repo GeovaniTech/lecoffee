@@ -13,7 +13,7 @@
 		<h:outputStylesheet library="pattern-css" name="product.css" />
 		<h:outputStylesheet library="pattern-css" name="tab-products.css" />
 		
-		<p:remoteCommand name="updateProductsContainer" update="container-products" />
+		<p:remoteCommand name="remoteUpdate" update="container-products, dialog-change-product" />
 		
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
@@ -24,13 +24,14 @@
 					
 				<p:commandButton 
 					action="#{MBTab_products.removeAll()}"
-					oncomplete="updateProductsContainer()"
+					oncomplete="remoteUpdate()"
 					icon="pi pi-trash"
 					styleClass="optionsButtonStyle" />
 					
 				<p:commandButton 
 					icon="pi pi-filter"
 					styleClass="optionsButtonStyle" />
+
 			</h:form>
 		</div>
 		
@@ -45,7 +46,12 @@
 					price="#{product.price}"
 					imageBytes="#{product.imageBytes}"
 					rating="#{product.rating}"
-					optionsRendered="true" />
+					optionsRendered="true"
+					remoteUpdate="remoteUpdate()"
+					status="#{product.status}"
+					setProductFunction="#{MBTab_products.setProduct(product)}"
+					disableFunction="#{MBTab_products.disable(product)}"
+					dialogChange="PF('dialog-change-product').show()" />
 			</ui:repeat>
 		</h:form>
 		
@@ -55,9 +61,100 @@
 			resizable="false"
 			draggable="false"
 			position="center"
-
 			widgetVar="dialog-new-product">
 			
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh; width: 100%;">
+				
+				<h:form 
+					class="vertical-left general-dialog-forms">
+					
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
+		
+					<h:outputLabel value="#{label.name}" class="label" for="name" />
+					<p:inputText 
+						id="name"
+						value="#{MBTab_products.product.name}"
+						required="true"
+						requiredMessage="#{label.name_required}"
+						placeholder="#{label.insert_the} #{label.name}" />
+
+					<h:outputLabel value="#{label.price}" class="label" for="price" />
+					<p:inputText
+						id="price"
+						value="#{MBTab_products.product.price}"
+						required="true"
+						requiredMessage="#{label.price_required}"
+						placeholder="#{label.insert_the} #{label.price}" />
+					
+					<h:outputLabel value="#{label.description}" class="label" for="description" />
+					<p:inputTextarea 
+						id="description"
+						value="#{MBTab_products.product.description}"
+						required="true"
+						requiredMessage="#{label.description_required}"
+						placeholder="#{label.insert_the} #{label.description}"/>
+					
+					<div>
+						<h:panelGrid columns="2">
+							<div class="horizontal-left">
+								<h:outputText value="#{label.status}" class="label" for="status" />
+								<p:toggleSwitch 
+									id="status"
+									style="width: 47px !important;"/>
+							</div>
+							
+							<div class="horizontal-left">
+								<h:outputLabel value="#{label.category}" class="label" for="category" />
+								<p:selectOneMenu 
+									value="">
+									<f:selectItems 
+										var="category"
+										value="#{MBTab_category.categories}"
+										itemLabel="#{category.name}"
+										itemValue="#{category}" />
+								</p:selectOneMenu>
+							</div>
+						</h:panelGrid>
+					</div>
+					
+					<h:outputLabel value="#{label.upload_files}" class="label" />
+					<p:fileUpload
+						multiple="true"
+						mode="advanced" 
+						showButtons="false"
+						label="#{label.search}" 
+						cancelLabel="#{label.cancel}"
+						uploadLabel="#{label.upload_files}"
+						update="growl"
+						listener="#{MBTab_products.addImage}" 
+						process="@this"
+					 />
+					
+					<p:commandButton 
+						value="#{label.finish_registration}"
+						process="@form"
+						action="#{MBTab_products.save()}"
+						update=" messages"
+						oncomplete="updateProductsContainer()" />
+				</h:form>
+			</p:scrollPanel>
+		</p:dialog>	
+		
+		<p:dialog
+			id="dialog-change-product"
+			header="#{label.products}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			widgetVar="dialog-change-product">
+
 			<p:scrollPanel
 				mode="native" 
 				style="max-height: 80vh; width: 100%;">
@@ -111,11 +208,11 @@
 					<p:commandButton 
 						value="#{label.finish_registration}"
 						process="@form"
-						action="#{MBTab_products.save()}"
+						action="#{MBTab_products.change()}"
 						update=" messages"
-						oncomplete="updateProductsContainer()" />
+						oncomplete="remoteUpdate()" />
 				</h:form>
-			</p:scrollPanel>
-		</p:dialog>	
+			</p:scrollPanel>		
+		</p:dialog>
 	</h:body>
 </html>

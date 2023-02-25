@@ -36,6 +36,13 @@ h1 span {
 	margin-right: 5px !important;
 }
 
+.horizontal-left {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;	
+}
+
 .horizontal-center {
 	display: flex;
 	flex-direction: row;
@@ -286,7 +293,7 @@ h1 span {
 }
 
 /* MEDIA QUERIES */
-@media (max-width: 600px) {
+@media (max-width: 719px) {
 	.ui-dialog {
 		width: 100% !important;
 		
