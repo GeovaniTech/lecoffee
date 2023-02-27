@@ -12,6 +12,7 @@ import org.primefaces.event.FileUploadEvent;
 import manter.product.KeepProductSBean;
 import model.File;
 import model.Product;
+import to.TOProductFilter;
 import utils.AbstractBean;
 import utils.FileUtil;
 
@@ -21,6 +22,7 @@ public class MBTab_products extends AbstractBean {
 	private static final long serialVersionUID = 9160760899720982450L;
 	
 	private Product product;
+	private TOProductFilter productFilter;
 	private KeepProductSBean sBean;
 	private List<Product> products;
 	private boolean status;
@@ -105,5 +107,13 @@ public class MBTab_products extends AbstractBean {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public TOProductFilter getProductFilter() {
+		return productFilter;
+	}
+
+	public void setProductFilter(TOProductFilter productFilter) {
+		this.productFilter = productFilter;
 	}
 }

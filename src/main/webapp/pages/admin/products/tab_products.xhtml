@@ -10,10 +10,17 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<h:body>
-		<h:outputStylesheet library="pattern-css" name="product.css" />
-		<h:outputStylesheet library="pattern-css" name="tab-products.css" />
+		<h:outputStylesheet 
+			name="product.css"
+			library="pattern-css" />
 		
-		<p:remoteCommand name="remoteUpdate" update="container-products, dialog-change-product" />
+		<h:outputStylesheet 
+			name="tab-products.css"
+			library="pattern-css" />
+		
+		<p:remoteCommand 
+			name="remoteUpdate" 
+			update="container-products, dialog-change-product" />
 		
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
@@ -29,6 +36,7 @@
 					styleClass="optionsButtonStyle" />
 					
 				<p:commandButton 
+					onclick="PF('dialog-filters-product').show()"
 					icon="pi pi-filter"
 					styleClass="optionsButtonStyle" />
 
@@ -139,7 +147,7 @@
 						value="#{label.finish_registration}"
 						process="@form"
 						action="#{MBTab_products.save()}"
-						update=" messages"
+						update=" messages, @form"
 						oncomplete="remoteUpdate()" />
 				</h:form>
 			</p:scrollPanel>
@@ -234,6 +242,27 @@
 						oncomplete="remoteUpdate()" />
 				</h:form>
 			</p:scrollPanel>		
+		</p:dialog>
+		
+		<p:dialog
+			id="dialog-filters-product"
+			header="#{label.filters}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			widgetVar="dialog-filters-product">
+			
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh; width: 100%;">
+				
+				<h:form class="general-dialog-forms">
+					<components:inputFilter 
+						label="#{label.name}"
+						toInputFilter="#{MBTab_products.productFilter.name}" />
+				</h:form>
+			</p:scrollPanel>
 		</p:dialog>
 	</h:body>
 </html>
