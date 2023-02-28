@@ -11,14 +11,30 @@
 		<h:outputStylesheet library="pattern-css" name="admin-header.css" />
 	
 		<div class="top-header" id="top-header">
-			<div class="btn-menu" onclick="openMenu();">
-				<span class="material-symbols-outlined">
-					menu
-				</span>
+			<div class="left-items horizontal-center">
+				<div class="btn-menu" onclick="openMenu();">
+					<span class="material-symbols-outlined">
+						menu
+					</span>
+				</div>
+				
+				<div class="name-page">
+					<ui:insert name="name_page" />
+				</div>
 			</div>
 			
-			<div class="name-page">
-				<ui:insert name="name_page" />
+			<div class="right-items horizontal-center">
+				<div class="horizontal-center">
+					<span class="material-symbols-outlined google-icons">
+						account_circle
+					</span>
+				</div>
+				
+				<div class="horizontal-center">
+					<span class="material-symbols-outlined google-icons">
+						notifications
+					</span>
+				</div>
 			</div>
 		</div>
 		
