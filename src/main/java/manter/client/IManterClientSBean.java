@@ -12,4 +12,5 @@ public interface IManterClientSBean {
 	public boolean verifyClient(String email);
 	public void logar(String email, String password);
 	public void saveNewPreferences(AppConfigs preferences);
+	public TOClient findByEmail(String email);
 }

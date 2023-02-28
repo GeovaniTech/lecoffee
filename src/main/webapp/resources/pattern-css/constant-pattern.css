@@ -30,6 +30,8 @@ h1 span {
 .general-dialog-forms > * {
 	margin-bottom: 5px !important;
 	width: 100% !important;
+	display: flex !important;
+	flex-wrap: wrap !important;
 }
 
 .form-top-buttons > * {
@@ -163,11 +165,11 @@ h1 span {
 }
 
 .ui-dialog {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  width: 720px !important;
+  	position: absolute;
+ 	top: 50%;
+  	left: 50%;
+ 	transform: translate(-50%, -50%); 
+ 	width: 720px !important;
 }
 
 .ui-dialog-titlebar {

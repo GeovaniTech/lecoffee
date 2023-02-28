@@ -25,7 +25,7 @@
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
-					 onclick="PF('dialog-new-product').show()"
+					 action="#{MBAppConfigs.seeUser()}"
 					 icon="pi pi-plus"
 					 styleClass="optionsButtonStyle" />
 					
@@ -255,12 +255,18 @@
 			
 			<p:scrollPanel
 				mode="native" 
-				style="max-height: 80vh; width: 100%;">
+				style="max-height: 80vh; width: 100%; flex-wrap: wrap;">
 				
 				<h:form class="general-dialog-forms">
-					<components:inputFilter 
-						label="#{label.name}"
-						toInputFilter="#{MBTab_products.productFilter.name}" />
+					<h:panelGrid columns="2">
+						<components:inputFilter 
+							label="#{label.name}"
+							toInputFilter="#{MBTab_products.productFilter.name}" />
+					
+						<components:inputFilter 
+							label="#{label.description}"
+							toInputFilter="#{MBTab_products.productFilter.description}" />
+					</h:panelGrid>
 				</h:form>
 			</p:scrollPanel>
 		</p:dialog>

@@ -21,6 +21,7 @@ import model.AppConfigs;
 import to.TOClient;
 import utils.ImageUtil;
 import utils.LeCoffeeSession;
+import utils.RedirectUrl;
 
 @Named("MBAppConfigs")
 @SessionScoped
@@ -45,7 +46,12 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		localeList.add(new Locale("pt"));
 		localeList.add(new Locale("en"));
 		
+		redirectUserFromCookie();
 		updateConfigs();
+	}
+	
+	public void seeUser() {
+		System.out.println(getClient().getEmail());
 	}
 
 	public void updateConfigs() {
@@ -95,6 +101,37 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		  }
 		  
 		  return false;
+	}
+	
+	public String getUserCookie() {
+		  Cookie[] cookies = httpServletRequest.getCookies();
+		  if(cookies!=null) {
+		    for (Cookie cookie : cookies) {
+		      if(cookie.getName().equals("userSession")) {
+		        return cookie.getValue();
+		      }
+		    }
+		  }
+		  
+		  return null;
+	}
+	
+	public void redirectUserFromCookie() {
+		String user = getUserCookie();
+		
+		if(user != null) {
+			TOClient toClient = clientSBean.findByEmail(user);
+			
+			getSession().setAttribute("client", toClient);
+			
+			if(toClient.getNivel().equals("admin")) {
+				RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
+			} else {
+				RedirectUrl.redirecionarPara("/lecoffee/pages/client/home.xhtml");
+			}
+		}
+		
+		
 	}
 	
 	public void setNewPreferences() {
