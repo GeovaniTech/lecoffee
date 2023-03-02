@@ -49,10 +49,6 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		redirectUserFromCookie();
 		updateConfigs();
 	}
-	
-	public void seeUser() {
-		System.out.println(getClient().getEmail());
-	}
 
 	public void updateConfigs() {
 		TOClient client = getClient();
@@ -130,8 +126,6 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 				RedirectUrl.redirecionarPara("/lecoffee/pages/client/home.xhtml");
 			}
 		}
-		
-		
 	}
 	
 	public void setNewPreferences() {
