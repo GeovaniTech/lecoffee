@@ -99,8 +99,13 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 	}
 
 	@Override
-	public void logar(String email, String password) {
+	public boolean logar(String email, String password) {
 		StringBuilder sql = new StringBuilder();
+		
+		if(!EmailValidator.validateEmail(email)) {
+			msg.emailInvalido();
+			return false;
+		}
 		
 		sql.append(" SELECT C ");
 		sql.append(" FROM ").append(Client.class.getName()).append(" C ");
@@ -136,12 +141,16 @@ public class ManterClientSBean extends AbstractManter implements IManterClientSB
 				} else {
 					RedirectUrl.redirecionarPara("/lecoffee/pages/client/home.xhtml");
 				}
+				
+				return true;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			msg.informacoesInvalidas();
 		}
+		
+		return false;
 	}
 
 	@Override

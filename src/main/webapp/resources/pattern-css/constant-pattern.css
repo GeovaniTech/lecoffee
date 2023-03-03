@@ -30,8 +30,7 @@ h1 span {
 .general-dialog-forms > * {
 	margin-bottom: 5px !important;
 	width: 100% !important;
-	display: flex !important;
-	flex-wrap: wrap !important;
+
 }
 
 .form-top-buttons > * {
