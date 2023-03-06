@@ -1,4 +1,4 @@
-package manter.client;
+package keep.client;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -19,7 +19,7 @@ import utils.RedirectUrl;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class ManterClientSBean extends AbstractManter implements IManterClientSBean, IManterClientSBeanRemote {
+public class KeepClientSBean extends AbstractManter implements IKeepClientSBean, IKeepClientSBeanRemote {
 	
 	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	private HttpServletRequest httpServletRequest = (HttpServletRequest) externalContext.getRequest();

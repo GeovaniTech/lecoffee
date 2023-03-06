@@ -1,4 +1,4 @@
-package manter.product;
+package keep.product;
 
 import javax.ejb.Remote;
 

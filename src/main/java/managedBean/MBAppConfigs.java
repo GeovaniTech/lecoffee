@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import keep.appConfigs.KeepAppConfigs;
-import manter.client.ManterClientSBean;
+import keep.client.KeepClientSBean;
 import model.AppConfigs;
 import to.TOClient;
 import utils.ImageUtil;
@@ -30,7 +30,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 
 	private AppConfigs appConfigs;
 	private List<Locale> localeList;
-	private ManterClientSBean clientSBean;
+	private KeepClientSBean clientSBean;
 	private KeepAppConfigs appConfigsSBean;
 
 	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -40,37 +40,18 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	public MBAppConfigs() {
 		this.appConfigs = new AppConfigs();
 		this.localeList = new ArrayList<Locale>();
-		this.clientSBean = new ManterClientSBean();
+		this.clientSBean = new KeepClientSBean();
 		this.appConfigsSBean = new KeepAppConfigs();
 		
 		localeList.add(new Locale("pt"));
 		localeList.add(new Locale("en"));
 		
-		redirectUserFromCookie();
 		updateConfigs();
+		redirectUserFromCookie();
 	}
 
 	public void updateConfigs() {
-		TOClient client = getClient();
-
-		if(client == null) {
-			if(getLanguageCookie() != null) {
-				appConfigs.setLanguage(getLanguageCookie());
-			} else {
-				appConfigs.setLanguage(Locale.getDefault().getLanguage());
-			}
-			
-			if(getDarkModeCookie()) {
-				appConfigs.setDarkMode(getDarkModeCookie());
-			} else {
-				appConfigs.setDarkMode(false);
-			}
-		} else {
-			appConfigs.setDarkMode(client.getPreferences().isDarkMode());
-			appConfigs.setLanguage(client.getPreferences().getLanguage());
-		}
 		
-		createCookiePreferences();
 	}
 	
 	public String getLanguageCookie() {
@@ -203,11 +184,11 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		this.appConfigs = appConfigs;
 	}
 
-	public ManterClientSBean getClientSBean() {
+	public KeepClientSBean getClientSBean() {
 		return clientSBean;
 	}
 
-	public void setClientSBean(ManterClientSBean clientSBean) {
+	public void setClientSBean(KeepClientSBean clientSBean) {
 		this.clientSBean = clientSBean;
 	}
 

@@ -6,7 +6,8 @@ import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import manter.client.ManterClientSBean;
+import keep.client.KeepClientSBean;
+
 import to.TOClient;
 import utils.AbstractBean;
 import utils.RedirectUrl;
@@ -18,10 +19,10 @@ public class MBLogin extends AbstractBean {
 	
 	private String email;
 	private String password;
-	private ManterClientSBean sBean;
+	private KeepClientSBean sBean;
 	
 	public MBLogin() {		
-		sBean = new ManterClientSBean();
+		sBean = new KeepClientSBean();
 	}
 
 	public void logar() {
@@ -69,11 +70,11 @@ public class MBLogin extends AbstractBean {
 		this.password = password;
 	}
 
-	public ManterClientSBean getsBean() {
+	public KeepClientSBean getsBean() {
 		return sBean;
 	}
 
-	public void setsBean(ManterClientSBean sBean) {
+	public void setsBean(KeepClientSBean sBean) {
 		this.sBean = sBean;
 	}
 }

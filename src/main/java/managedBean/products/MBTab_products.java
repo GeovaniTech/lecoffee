@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
 
-import manter.product.KeepProductSBean;
+import keep.product.KeepProductSBean;
 import model.File;
 import model.Product;
 import to.TOProductFilter;

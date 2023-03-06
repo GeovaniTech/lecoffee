@@ -1,4 +1,4 @@
-package manter.product;
+package keep.product;
 
 import java.util.Date;
 import java.util.List;
