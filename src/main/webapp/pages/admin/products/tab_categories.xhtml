@@ -59,6 +59,7 @@
 						value="#{MBTab_category.category.name}"
 						required="true"
 						requiredMessage="#{label.name_required}"
+						
 						placeholder="#{label.insert_the} #{label.name}" />
 						
 					<p:commandButton 
@@ -71,7 +72,7 @@
 			</h:form>
 		</p:dialog>
 		
-		<h:form 
+		<h:form
 			id="tableCategories"
 			style="margin-top: 10px;">
 			
@@ -79,7 +80,7 @@
 				var="category"
 				value="#{MBTab_category.categories}">
 				
-				<p:column headerText="#{label.name}">
+				<p:column headerText="#{label.name}" filterBy="#{category.name}">
 					<h:outputLabel value="#{category.name}" />
 				</p:column>
 				

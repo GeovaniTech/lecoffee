@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+  	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<composite:interface>
+		<composite:attribute name="toInputNumberFilter" />
+		<composite:attribute name="label" />
+	</composite:interface>
+	
+	<composite:implementation>
+		<p>#{cc.attrs.label}</p>
+		<div class="horizontal-top-left">
+			<p:calendar 
+				value="#{cc.attrs.toInputNumberFilter.from}" />
+			
+			<p>#{label.to}</p>
+			
+			<p:calendar 
+				value="#{cc.attrs.toInputNumberFilter.to}"/>
+		</div>
+	</composite:implementation>	
+</html>
