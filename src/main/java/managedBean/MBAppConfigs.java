@@ -19,6 +19,7 @@ import keep.appConfigs.KeepAppConfigs;
 import keep.client.KeepClientSBean;
 import model.AppConfigs;
 import to.TOClient;
+import utils.Encryption;
 import utils.ImageUtil;
 import utils.LeCoffeeSession;
 import utils.RedirectUrl;
@@ -97,7 +98,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		String user = getUserCookie();
 		
 		if(user != null) {
-			TOClient toClient = clientSBean.findByEmail(user);
+			TOClient toClient = clientSBean.findByEmail(Encryption.decryptNormalText(user));
 			
 			getSession().setAttribute("client", toClient);
 			

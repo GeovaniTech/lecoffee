@@ -10,6 +10,8 @@ import keep.client.KeepClientSBean;
 
 import to.TOClient;
 import utils.AbstractBean;
+import utils.Cookies;
+import utils.Encryption;
 import utils.RedirectUrl;
 
 @Named("MBLogin")
@@ -20,13 +22,31 @@ public class MBLogin extends AbstractBean {
 	private String email;
 	private String password;
 	private KeepClientSBean sBean;
+	private Cookies cookies;
 	
 	public MBLogin() {		
 		sBean = new KeepClientSBean();
+		redirectUserFromCookie();
 	}
 
 	public void logar() {
 		sBean.logar(email, password);
+	}
+	
+	public void redirectUserFromCookie() {
+		String user = cookies.getUserCookie();
+		
+		if(user != null) {
+			TOClient toClient = sBean.findByEmail(Encryption.decryptNormalText(user));
+			
+			getSession().setAttribute("client", toClient);
+			
+			if(toClient.getNivel().equals("admin")) {
+				RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
+			} else {
+				RedirectUrl.redirecionarPara("/lecoffee/pages/client/home.xhtml");
+			}
+		}
 	}
 	
 	public void logout() {
@@ -77,4 +97,13 @@ public class MBLogin extends AbstractBean {
 	public void setsBean(KeepClientSBean sBean) {
 		this.sBean = sBean;
 	}
+
+	public Cookies getCookies() {
+		return cookies;
+	}
+
+	public void setCookies(Cookies cookies) {
+		this.cookies = cookies;
+	}
+	
 }

@@ -3,7 +3,9 @@ package keep.client;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import model.AppConfigs;
 import model.Client;
@@ -120,10 +122,11 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				toClient.setId(client.getId());
 				
 				getSession().setAttribute("client", toClient);
-				Cookie userCookie = new Cookie("userSession", client.getEmail());
+				Cookie userCookie = new Cookie("userSession", Encryption.encryptNormalText(client.getEmail()));
 				
 				userCookie.setMaxAge(60*60*24*30);
 				userCookie.setPath("/");
+				HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 				
 				response.addCookie(userCookie);
 				
