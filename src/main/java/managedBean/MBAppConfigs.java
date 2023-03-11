@@ -55,6 +55,21 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		
 	}
 	
+	public void logout() {
+		createCookiePreferences();
+		
+		Cookie userSession = new Cookie("userSession", "");
+		userSession.setMaxAge(60*60*24*30);
+		userSession.setPath("/");
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		
+		response.addCookie(userSession);
+		
+		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
+		
+		getSession().invalidate();
+	}
+	
 	public String getLanguageCookie() {
 	  Cookie[] cookies = httpServletRequest.getCookies();
 	  if(cookies!=null) {

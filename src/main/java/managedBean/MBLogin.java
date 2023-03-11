@@ -22,7 +22,6 @@ public class MBLogin extends AbstractBean {
 	private String email;
 	private String password;
 	private KeepClientSBean sBean;
-	private Cookies cookies;
 	
 	public MBLogin() {		
 		sBean = new KeepClientSBean();
@@ -34,7 +33,7 @@ public class MBLogin extends AbstractBean {
 	}
 	
 	public void redirectUserFromCookie() {
-		String user = cookies.getUserCookie();
+		String user = Cookies.getUserCookie();
 		
 		if(user != null) {
 			TOClient toClient = sBean.findByEmail(Encryption.decryptNormalText(user));
@@ -52,8 +51,16 @@ public class MBLogin extends AbstractBean {
 	public void logout() {
 		createCookiePreferences();
 		
+		Cookie userSession = new Cookie("userSession", "");
+		userSession.setMaxAge(60*60*24*30);
+		userSession.setPath("/");
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		
+		response.addCookie(userSession);
+		
+		//RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
+		
 		getSession().invalidate();
-		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
 	}
 	
 	public void createCookiePreferences() {
@@ -96,14 +103,5 @@ public class MBLogin extends AbstractBean {
 
 	public void setsBean(KeepClientSBean sBean) {
 		this.sBean = sBean;
-	}
-
-	public Cookies getCookies() {
-		return cookies;
-	}
-
-	public void setCookies(Cookies cookies) {
-		this.cookies = cookies;
-	}
-	
+	}	
 }

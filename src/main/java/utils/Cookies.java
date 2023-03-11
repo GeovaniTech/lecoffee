@@ -1,10 +1,12 @@
 package utils;
 
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-public class Cookies extends LeCoffeeSession {	
-	public String getUserCookie() {
+public class Cookies {	
+	public static String getUserCookie() {
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
@@ -14,14 +16,5 @@ public class Cookies extends LeCoffeeSession {
 			}
 		}
 		return null;
-	}
-	
-	//Getters and setters
-	public HttpServletRequest getRequest() {
-		return request;
-	}
-
-	public void setRequest(HttpServletRequest request) {
-		this.request = request;
 	}
 }
