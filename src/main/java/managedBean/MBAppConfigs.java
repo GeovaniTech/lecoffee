@@ -45,26 +45,48 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		localeList.add(new Locale("en"));
 		
 		updateConfigs();
-		redirectUserFromCookie();
 	}
 
 	public void updateConfigs() {
-		
+		try {
+			TOClient client = getClient();
+			
+			if(client != null) {
+				appConfigs.setDarkMode(client.getPreferences().isDarkMode());
+				appConfigs.setLanguage(client.getPreferences().getLanguage());
+			} else {
+				if(Cookies.getLanguageCookie() != null) {
+					appConfigs.setLanguage(Cookies.getLanguageCookie());
+				} else {
+					appConfigs.setLanguage(Locale.getDefault().getLanguage());
+				}
+				
+				appConfigs.setDarkMode(Cookies.getDarkModeCookie());
+			}
+		} catch (Exception e) {
+			if(Cookies.getLanguageCookie() != null) {
+				appConfigs.setLanguage(Cookies.getLanguageCookie());
+			} else {
+				appConfigs.setLanguage(Locale.getDefault().getLanguage());
+			}
+			
+			appConfigs.setDarkMode(Cookies.getDarkModeCookie());
+		}
 	}
 	
 	public void logout() {
 		createCookiePreferences();
 		
-		Cookie userSession = new Cookie("userSession", "");
+		Cookie userSession = new Cookie("userSession", null);
 		userSession.setMaxAge(60*60*24*30);
 		userSession.setPath("/");
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		
 		response.addCookie(userSession);
 		
-		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
+		finishSession();
 		
-		getSession().invalidate();
+		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
 	}
 	
 	public void redirectUserFromCookie() {

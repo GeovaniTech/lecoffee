@@ -24,6 +24,12 @@ public class LeCoffeeSession {
 	protected TOClient getClient() {
 		return (TOClient) getSession().getAttribute("client");
 	}
+	
+	protected void finishSession() {
+		getSession().setAttribute("client", null);
+		getSession().invalidate();
+		getSession();
+	}
 
 	public HttpServletRequest getRequest() {
 		return request;

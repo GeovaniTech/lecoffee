@@ -36,7 +36,7 @@ public class Cookies {
 		return null;
 	}
 
-	public boolean getDarkModeCookie() {
+	public static boolean getDarkModeCookie() {
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
 		Cookie[] cookies = request.getCookies();

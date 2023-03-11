@@ -35,7 +35,7 @@ public class MBLogin extends AbstractBean {
 	public void redirectUserFromCookie() {
 		String user = Cookies.getUserCookie();
 		
-		if(user != null) {
+		if(user != null && !user.equals("")) {
 			TOClient toClient = sBean.findByEmail(Encryption.decryptNormalText(user));
 			
 			getSession().setAttribute("client", toClient);
@@ -60,7 +60,7 @@ public class MBLogin extends AbstractBean {
 		
 		//RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
 		
-		getSession().invalidate();
+		finishSession();
 	}
 	
 	public void createCookiePreferences() {
