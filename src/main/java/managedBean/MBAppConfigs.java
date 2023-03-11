@@ -19,6 +19,7 @@ import keep.appConfigs.KeepAppConfigs;
 import keep.client.KeepClientSBean;
 import model.AppConfigs;
 import to.TOClient;
+import utils.Cookies;
 import utils.Encryption;
 import utils.ImageUtil;
 import utils.LeCoffeeSession;
@@ -33,10 +34,6 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	private List<Locale> localeList;
 	private KeepClientSBean clientSBean;
 	private KeepAppConfigs appConfigsSBean;
-
-	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-	private HttpServletRequest httpServletRequest = (HttpServletRequest) externalContext.getRequest();
-	private HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();
 	
 	public MBAppConfigs() {
 		this.appConfigs = new AppConfigs();
@@ -70,47 +67,8 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		getSession().invalidate();
 	}
 	
-	public String getLanguageCookie() {
-	  Cookie[] cookies = httpServletRequest.getCookies();
-	  if(cookies!=null) {
-	    for (Cookie cookie : cookies) {
-	      if(cookie.getName().equals("language")) {
-	        return cookie.getValue();
-	      }
-	    }
-	  }
-	  
-	  return null;
-	}
-	
-	public boolean getDarkModeCookie() {
-		  Cookie[] cookies = httpServletRequest.getCookies();
-		  if(cookies!=null) {
-		    for (Cookie cookie : cookies) {
-		      if(cookie.getName().equals("darkMode")) {
-		        return Boolean.parseBoolean(cookie.getValue());
-		      }
-		    }
-		  }
-		  
-		  return false;
-	}
-	
-	public String getUserCookie() {
-		  Cookie[] cookies = httpServletRequest.getCookies();
-		  if(cookies!=null) {
-		    for (Cookie cookie : cookies) {
-		      if(cookie.getName().equals("userSession")) {
-		        return cookie.getValue();
-		      }
-		    }
-		  }
-		  
-		  return null;
-	}
-	
 	public void redirectUserFromCookie() {
-		String user = getUserCookie();
+		String user = Cookies.getUserCookie();
 		
 		if(user != null) {
 			TOClient toClient = clientSBean.findByEmail(Encryption.decryptNormalText(user));
@@ -184,14 +142,6 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		this.localeList = localeList;
 	}
 
-	public ExternalContext getExternalContext() {
-		return externalContext;
-	}
-
-	public void setExternalContext(ExternalContext externalContext) {
-		this.externalContext = externalContext;
-	}
-
 	public AppConfigs getAppConfigs() {
 		return appConfigs;
 	}
@@ -214,21 +164,5 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 
 	public void setAppConfigsSBean(KeepAppConfigs appConfigsSBean) {
 		this.appConfigsSBean = appConfigsSBean;
-	}
-
-	public HttpServletRequest getHttpServletRequest() {
-		return httpServletRequest;
-	}
-
-	public void setHttpServletRequest(HttpServletRequest httpServletRequest) {
-		this.httpServletRequest = httpServletRequest;
-	}
-
-	public HttpServletResponse getHttpServletResponse() {
-		return httpServletResponse;
-	}
-
-	public void setHttpServletResponse(HttpServletResponse httpServletResponse) {
-		this.httpServletResponse = httpServletResponse;
 	}
 }
