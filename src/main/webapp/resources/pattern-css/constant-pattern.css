@@ -189,7 +189,7 @@ h1 span {
 	background-color: var(--background-general) !important;
 }
 
-.ui-inputtext {
+.ui-inputtext, .ui-inputfield {
     font-size: 16px !important;
     padding: 8px !important;
     background-color: var(--background-general-mouse) !important;
@@ -197,6 +197,19 @@ h1 span {
     border-radius: 5px !important;
     outline: none !important;
     color: var(--text-mouse) !important;
+}
+
+.ui-datepicker-header, .ui-datepicker {
+	background-color: var(--background-general-mouse) !important;
+	color: var(--text-mouse) !important;
+}
+
+body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepicker-calendar td>span {
+	color: var(--text);
+}
+
+.ui-datepicker-today > a {
+	color: var(--green) !important;
 }
 
 .ui-inputtextarea {

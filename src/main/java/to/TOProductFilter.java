@@ -1,10 +1,16 @@
 package to;
 
-public class TOProductFilter {
+import java.io.Serializable;
+
+public class TOProductFilter implements Serializable {
+	private static final long serialVersionUID = 1004274014603699692L;
+	
 	private TOInputFilter name;
 	private TOInputFilter description;
 	private TOInputNumberFilter price;
-	
+	private TODateRangeFilter dateCreation;
+
+	//Getters and Setters
 	public TOInputFilter getName() {
 		return name;
 	}
@@ -27,5 +33,13 @@ public class TOProductFilter {
 
 	public void setPrice(TOInputNumberFilter price) {
 		this.price = price;
+	}
+
+	public TODateRangeFilter getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(TODateRangeFilter dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 }
