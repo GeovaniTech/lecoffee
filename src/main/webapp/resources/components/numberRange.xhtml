@@ -14,15 +14,24 @@
 	</composite:interface>
 	
 	<composite:implementation>
+		<style>
+			.input-width > * {
+				width: 100px;
+			}
+		</style>
 		<p>#{cc.attrs.label}</p>
-		<div class="horizontal-top-left">
-			<p:calendar 
-				value="#{cc.attrs.toInputNumberFilter.from}" />
+		<div class="horizontal-center-left">
+			<p:inputNumber
+				value="#{cc.attrs.toInputNumberFilter.from}"
+				styleClass="input-width" />
 			
-			<p>#{label.to}</p>
+			<div class="p-to-from">
+				<p>#{label.to}</p>
+			</div>
 			
-			<p:calendar 
-				value="#{cc.attrs.toInputNumberFilter.to}"/>
+			<p:inputNumber
+				value="#{cc.attrs.toInputNumberFilter.to}"
+				styleClass="input-width" />
 		</div>
 	</composite:implementation>	
 </html>

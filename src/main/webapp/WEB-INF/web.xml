@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>lecoffee</display-name>
-  <session-config>
-    <session-timeout>120</session-timeout>
-  </session-config>
-  <welcome-file-list>
-    <welcome-file>/pages/login.xhtml</welcome-file>
-  </welcome-file-list>
-  <error-page>
-    <error-code>404</error-code>
-    <location>/pages/errors/not_found.xhtml</location>
-  </error-page>
-  <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <display-name>FilterNivelAdmin</display-name>
-    <filter-name>FilterNivelAdmin</filter-name>
-    <filter-class>filters.FilterNivelAdmin</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>FilterNivelAdmin</filter-name>
-    <url-pattern>/pages/admin/*</url-pattern>
-  </filter-mapping>
+	<display-name>lecoffee</display-name>
+	
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+	
+	<welcome-file-list>
+		<welcome-file>/pages/login.xhtml</welcome-file>
+	</welcome-file-list>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/pages/errors/not_found.xhtml</location>
+	</error-page>
+	
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+		<display-name>FilterNivelAdmin</display-name>
+		<filter-name>FilterNivelAdmin</filter-name>
+		<filter-class>filters.FilterNivelAdmin</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>FilterNivelAdmin</filter-name>
+		<url-pattern>/pages/admin/*</url-pattern>
+	</filter-mapping>
 </web-app>

@@ -258,15 +258,17 @@
 				style="max-height: 80vh; width: 100%; flex-wrap: wrap;">
 				
 				<h:form class="general-dialog-forms">
-					<h:panelGrid columns="2">
-						<components:inputFilter 
-							label="#{label.name}"
-							toInputFilter="#{MBTab_products.productFilter.name}" />
+					<components:inputFilter 
+						label="#{label.name}"
+						toInputFilter="#{MBTab_products.productFilter.name}" />
+				
+					<components:inputFilter 
+						label="#{label.description}"
+						toInputFilter="#{MBTab_products.productFilter.description}" />
 					
-						<components:inputFilter 
-							label="#{label.description}"
-							toInputFilter="#{MBTab_products.productFilter.description}" />
-					</h:panelGrid>
+					<components:numberRange 
+						label="#{label.price}"
+						toInputNumberFilter="#{MBTab_products.productFilter.price}" />
 				</h:form>
 			</p:scrollPanel>
 		</p:dialog>

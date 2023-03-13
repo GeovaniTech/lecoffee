@@ -48,21 +48,6 @@ public class MBLogin extends AbstractBean {
 		}
 	}
 	
-	public void logout() {
-		createCookiePreferences();
-		
-		Cookie userSession = new Cookie("userSession", "");
-		userSession.setMaxAge(60*60*24*30);
-		userSession.setPath("/");
-		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		
-		response.addCookie(userSession);
-		
-		//RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
-		
-		finishSession();
-	}
-	
 	public void createCookiePreferences() {
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		TOClient client = getClient();
