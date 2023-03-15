@@ -296,7 +296,7 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 .ui-datatable tbody td {
 	background-color: var(--second-color-widget) !important;
 	color: var(--text-mouse) !important;	
-	border-color: var(--text) !important;
+	border-color: var(--bottom-row-table) !important;
 }
 
 .p-to-from {

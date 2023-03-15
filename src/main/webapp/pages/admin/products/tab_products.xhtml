@@ -74,29 +74,30 @@
 			<h:panelGroup rendered="#{MBTab_products.tableView == true ? true : false}">
 				<p:dataTable 
 					var="product"
-					value="#{MBTab_products.products}">
+					value="#{MBTab_products.products}"
+					reflow="true">
 				
-					<p:column>
+					<p:column headerText="#{label.name}">
 						<h:outputLabel value="#{product.name}" />
 					</p:column>
 					
-					<p:column>
+					<p:column headerText="#{label.price}">
 						<h:outputLabel value="#{MBAppConfigs.getBrazilianCurrency(product.price)}" />
 					</p:column>
 					
-					<p:column>
+					<p:column headerText="#{label.category}">
 						<h:outputLabel value="#{product.category.name}" />
 					</p:column>
 					
-					<p:column>
+					<p:column headerText="#{label.status}">
 						<h:outputLabel value="#{product.status}" />
 					</p:column>
 					
-					<p:column>
+					<p:column headerText="#{label.rating}">
 						<h:outputLabel value="#{product.rating}" />
 					</p:column>
 					
-					<p:column>
+					<p:column headerText="#{label.creation_date}">
 						<h:outputLabel value="#{product.creationDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputLabel>
