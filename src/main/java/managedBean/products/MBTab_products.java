@@ -27,6 +27,8 @@ public class MBTab_products extends AbstractBean {
 	private List<Product> products;
 	private boolean status;
 	
+	private boolean tableView;
+	
 	public MBTab_products() {
 		this.status = true;
 		product = new Product();
@@ -65,6 +67,10 @@ public class MBTab_products extends AbstractBean {
 	
 	public void list() {
 		this.setProducts(sBean.list());
+	}
+	
+	public void changeTableView() {
+		this.tableView = !this.tableView;
 	}
 	
 	public void addImage(FileUploadEvent event) throws IOException {
@@ -116,4 +122,12 @@ public class MBTab_products extends AbstractBean {
 	public void setProductFilter(TOProductFilter productFilter) {
 		this.productFilter = productFilter;
 	}
+
+	public boolean isTableView() {
+		return tableView;
+	}
+
+	public void setTableView(boolean tableView) {
+		this.tableView = tableView;
+	}	
 }

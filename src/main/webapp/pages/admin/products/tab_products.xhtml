@@ -39,6 +39,12 @@
 					onclick="PF('dialog-filters-product').show()"
 					icon="pi pi-filter"
 					styleClass="optionsButtonStyle" />
+				
+				<p:commandButton 
+					action="#{MBTab_products.changeTableView()}"
+					oncomplete="remoteUpdate()"
+					icon="pi pi-eye"
+					styleClass="optionsButtonStyle" />
 
 			</h:form>
 		</div>
@@ -46,21 +52,57 @@
 		<h:form 
 			id="container-products"
 			class="container-products horizontal-evenly">
-			<ui:repeat var="product" value="#{MBTab_products.products}">
-				<components:product 
-					name="#{product.name}"
-					productId="#{product.id}"
-					description="#{product.description}"
-					price="#{product.price}"
-					imageBytes="#{product.imageBytes}"
-					rating="#{product.rating}"
-					optionsRendered="true"
-					remoteUpdate="remoteUpdate()"
-					status="#{product.status}"
-					setProductFunction="#{MBTab_products.setProduct(product)}"
-					disableFunction="#{MBTab_products.disable(product)}"
-					dialogChange="PF('dialog-change-product').show()" />
-			</ui:repeat>
+			
+			<h:panelGroup rendered="#{MBTab_products.tableView == false ? true : false}">
+				<ui:repeat var="product" value="#{MBTab_products.products}" >
+					<components:product 
+						name="#{product.name}"
+						productId="#{product.id}"
+						description="#{product.description}"
+						price="#{product.price}"
+						imageBytes="#{product.imageBytes}"
+						rating="#{product.rating}"
+						optionsRendered="true"
+						remoteUpdate="remoteUpdate()"
+						status="#{product.status}"
+						setProductFunction="#{MBTab_products.setProduct(product)}"
+						disableFunction="#{MBTab_products.disable(product)}"
+						dialogChange="PF('dialog-change-product').show()" />
+				</ui:repeat>
+			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{MBTab_products.tableView == true ? true : false}">
+				<p:dataTable 
+					var="product"
+					value="#{MBTab_products.products}">
+				
+					<p:column>
+						<h:outputLabel value="#{product.name}" />
+					</p:column>
+					
+					<p:column>
+						<h:outputLabel value="#{MBAppConfigs.getBrazilianCurrency(product.price)}" />
+					</p:column>
+					
+					<p:column>
+						<h:outputLabel value="#{product.category.name}" />
+					</p:column>
+					
+					<p:column>
+						<h:outputLabel value="#{product.status}" />
+					</p:column>
+					
+					<p:column>
+						<h:outputLabel value="#{product.rating}" />
+					</p:column>
+					
+					<p:column>
+						<h:outputLabel value="#{product.creationDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputLabel>
+					</p:column>
+				</p:dataTable>
+			</h:panelGroup>
 		</h:form>
 		
 		<p:dialog
