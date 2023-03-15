@@ -76,11 +76,32 @@
 					widgetVar="tableProducts"
 					var="product"
 					value="#{MBTab_products.products}"
-					reflow="true">
-				
+					reflow="true"
+					styleClass="#{MBTab_products.toggleFilter == false ? 'hide-filters' : ''}">
+					
+					<p:column styleClass="toggleFilter">
+						<f:facet name="header">
+							<p:commandLink
+								action="#{MBTab_products.changeToggleFilter()}"
+								oncomplete="remoteUpdate();">
+								
+								<i class="pi pi-filter"></i>
+							</p:commandLink>
+						</f:facet>
+					</p:column>
+					
 					<p:column 
 						headerText="#{label.name}"
 						filterBy="#{product.name}">
+						
+						<f:facet name="filter">
+							<p:inputText>
+								<p:ajax 
+									event="keyup" 
+									delay="500"
+									oncomplete="PF('tableProducts').filter()" />
+							</p:inputText>
+						</f:facet>
 						
 						<h:outputLabel value="#{product.name}" />
 					</p:column>
@@ -88,6 +109,15 @@
 					<p:column 
 						headerText="#{label.price}"
 						filterBy="#{product.price}">
+						
+						<f:facet name="filter">
+							<p:inputText>
+								<p:ajax 
+									event="keyup" 
+									delay="500"
+									oncomplete="PF('tableProducts').filter()" />
+							</p:inputText>
+						</f:facet>
 						
 						<h:outputLabel value="#{MBAppConfigs.getBrazilianCurrency(product.price)}" />
 					</p:column>
@@ -151,6 +181,15 @@
 					<p:column 
 						headerText="#{label.rating}"
 						filterBy="#{product.rating}">
+						
+						<f:facet name="filter">
+							<p:inputText>
+								<p:ajax 
+									event="keyup" 
+									delay="500"
+									oncomplete="PF('tableProducts').filter()" />
+							</p:inputText>
+						</f:facet>
 						
 						<h:outputLabel value="#{product.rating}" />
 					</p:column>

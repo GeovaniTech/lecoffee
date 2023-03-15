@@ -299,6 +299,33 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	border-color: var(--bottom-row-table) !important;
 }
 
+.hide-filters .ui-column-customfilter {
+	display: none;
+}
+
+.toggleFilter {
+	width: 20px;
+}
+
+.toggleFilter button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.toggleFilter a {
+	margin: 0px;
+	padding: 0px;
+}
+
+.toggleFilter i {
+	font-size: 25px;
+	margin-top: 5px;
+	margin-left: 4px;
+	
+	color: var(--text-mouse);
+}
+
 .p-to-from {
 	display: flex;
 	justify-content: center;

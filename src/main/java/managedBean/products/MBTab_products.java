@@ -13,12 +13,12 @@ import keep.product.KeepProductSBean;
 import model.File;
 import model.Product;
 import to.TOProductFilter;
-import utils.AbstractBean;
+import utils.AbstractFilterBean;
 import utils.FileUtil;
 
 @Named("MBTab_products")
 @ViewScoped
-public class MBTab_products extends AbstractBean {
+public class MBTab_products extends AbstractFilterBean {
 	private static final long serialVersionUID = 9160760899720982450L;
 	
 	private Product product;
@@ -31,6 +31,7 @@ public class MBTab_products extends AbstractBean {
 	
 	public MBTab_products() {
 		this.status = true;
+		this.setToggleFilter(false);
 		product = new Product();
 		sBean = new KeepProductSBean();
 		products = new ArrayList<Product>();
