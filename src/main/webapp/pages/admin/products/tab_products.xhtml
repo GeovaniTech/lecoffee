@@ -73,31 +73,100 @@
 			
 			<h:panelGroup rendered="#{MBTab_products.tableView == true ? true : false}">
 				<p:dataTable 
+					widgetVar="tableProducts"
 					var="product"
 					value="#{MBTab_products.products}"
 					reflow="true">
 				
-					<p:column headerText="#{label.name}">
+					<p:column 
+						headerText="#{label.name}"
+						filterBy="#{product.name}">
+						
 						<h:outputLabel value="#{product.name}" />
 					</p:column>
 					
-					<p:column headerText="#{label.price}">
+					<p:column 
+						headerText="#{label.price}"
+						filterBy="#{product.price}">
+						
 						<h:outputLabel value="#{MBAppConfigs.getBrazilianCurrency(product.price)}" />
 					</p:column>
 					
-					<p:column headerText="#{label.category}">
+					<p:column 
+						headerText="#{label.category}"
+						filterBy="#{product.category.name}">
+						
+						<f:facet name="filter">
+							<p:selectOneMenu
+								style="width: 200px;">
+								
+								<f:selectItem
+									itemLabel="#{label.none}"
+									itemValue="" />
+								
+								<f:selectItems 
+									var="category"
+									value="#{MBTab_category.categories}"
+									itemLabel="#{category.name}"
+									itemValue="#{category.name}" />
+									
+								<p:ajax 
+									event="valueChange" 
+									oncomplete="PF('tableProducts').filter()" />
+							</p:selectOneMenu>
+						</f:facet>
+						
 						<h:outputLabel value="#{product.category.name}" />
 					</p:column>
 					
-					<p:column headerText="#{label.status}">
-						<h:outputLabel value="#{product.status}" />
+					<p:column 
+						headerText="#{label.status}"
+						filterBy="#{product.status}">
+						
+						<f:facet name="filter">
+							<p:selectOneMenu
+								style="width: 200px;">
+								
+								<f:selectItem
+									itemLabel="#{label.none}"
+									itemValue="" />
+								
+								<f:selectItem
+									itemLabel="#{label.active}"
+									itemValue="active" />
+								
+								<f:selectItem 
+									itemLabel="#{label.disable}"
+									itemValue="disable"/>
+								
+								<p:ajax 
+									event="valueChange" 
+									oncomplete="PF('tableProducts').filter()" />
+							</p:selectOneMenu>
+						</f:facet>
+						
+						<h:outputLabel value="#{product.status eq 'active' ? label.active : label.disabled}" />
 					</p:column>
 					
-					<p:column headerText="#{label.rating}">
+					<p:column 
+						headerText="#{label.rating}"
+						filterBy="#{product.rating}">
+						
 						<h:outputLabel value="#{product.rating}" />
 					</p:column>
 					
-					<p:column headerText="#{label.creation_date}">
+					<p:column 
+						headerText="#{label.creation_date}"
+						filterBy="#{product.creationDate}">
+						
+						<f:facet name="filter">
+							<p:datePicker>
+								<p:ajax 
+									event="valueChange" 
+									oncomplete="PF('tableProducts').filter()" />
+							</p:datePicker>
+						</f:facet>
+						
 						<h:outputLabel value="#{product.creationDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputLabel>
