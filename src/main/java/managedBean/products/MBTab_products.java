@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
 import keep.product.KeepProductSBean;
@@ -52,6 +53,12 @@ public class MBTab_products extends AbstractFilterBean {
 		product = new  Product();
 		
 		list();
+	}
+	
+	public void openChangeDialog(Product product) {
+		this.product = product;
+		
+		PrimeFaces.current().executeScript("PF('dialog-change-product').show()");
 	}
 	
 	public void removeAll() {

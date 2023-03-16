@@ -22,6 +22,11 @@
 			name="remoteUpdate" 
 			update="container-products, dialog-change-product" />
 		
+		<p:remoteCommand 
+			name="openDialogChange"
+			update="dialog-change-product"
+			oncomplete="PF('dialog-change-product').show()"/>
+		
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
@@ -71,13 +76,20 @@
 				</ui:repeat>
 			</h:panelGroup>
 			
-			<h:panelGroup rendered="#{MBTab_products.tableView == true ? true : false}">
+			<h:panelGroup rendered="#{MBTab_products.tableView == true ? true : false}">				
 				<p:dataTable 
 					widgetVar="tableProducts"
 					var="product"
 					value="#{MBTab_products.products}"
+					selectionMode="single"
+					selection="#{MBTab_products.product}"
+					rowKey="#{product.id}"
 					reflow="true"
 					styleClass="#{MBTab_products.toggleFilter == false ? 'hide-filters' : ''}">
+					
+					 <p:ajax 
+					 	event="rowSelect" 
+					 	oncomplete="openDialogChange()" />
 					
 					<p:column styleClass="toggleFilter">
 						<f:facet name="header">

@@ -299,6 +299,10 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	border-color: var(--bottom-row-table) !important;
 }
 
+body .ui-datatable .ui-datatable-data > tr:hover > th, td {
+	background-color: var(--bottom-row-table) !important;
+}
+
 .hide-filters .ui-column-customfilter {
 	display: none;
 }
