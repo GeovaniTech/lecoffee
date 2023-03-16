@@ -199,16 +199,21 @@
 						filterBy="#{product.creationDate}">
 						
 						<f:facet name="filter">
-							<p:datePicker>
+							<p:datePicker pattern="dd/MM/yyyy" >
 								<p:ajax 
 									event="valueChange" 
+									oncomplete="PF('tableProducts').filter()" />
+								
+								<p:ajax 
+									delay="500"
+									event="keyup" 
 									oncomplete="PF('tableProducts').filter()" />
 							</p:datePicker>
 						</f:facet>
 						
-						<h:outputLabel value="#{product.creationDate}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputLabel>
+						<h:outputText value="#{product.creationDate.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						</h:outputText>
 					</p:column>
 				</p:dataTable>
 			</h:panelGroup>
