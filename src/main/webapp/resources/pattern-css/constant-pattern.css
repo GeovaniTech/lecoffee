@@ -293,6 +293,10 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	border: 0px !important;
 }
 
+.ui-datatable {
+	width: 100% !important;
+}
+
 .ui-datatable tbody td {
 	background-color: var(--second-color-widget) !important;
 	color: var(--text-mouse) !important;	

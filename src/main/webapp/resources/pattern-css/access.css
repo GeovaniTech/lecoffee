@@ -28,7 +28,6 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
 	height: 100vh;
 	background-color: var(--background-body);
 }
@@ -111,6 +110,17 @@ form > .field, button {
     color: var(--text-mouse);
     font-size: 35px;
     transition: 0.4s;
+}
+
+.img-atendimento {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+  height: 40px;
+  width: 40px;
+}
+
+.img-atendimento:hover {
+	color: var(--green) !important;
 }
 
 .atendimento a:hover {
