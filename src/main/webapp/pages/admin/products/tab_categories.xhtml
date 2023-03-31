@@ -80,25 +80,44 @@
 				var="category"
 				value="#{MBTab_category.categories}">
 				
-				<p:column headerText="#{label.name}" filterBy="#{category.name}">
+				<p:column 
+					headerText="#{label.name}" 
+					filterBy="#{category.name}">
+					
+					<f:facet name="filter">
+						<p:inputText />
+					</f:facet>
+					
 					<h:outputLabel value="#{category.name}" />
 				</p:column>
 				
-				<p:column headerText="#{label.status}">
-					<h:outputLabel value="#{category.status}" />
-				</p:column>
-				
-				<p:column headerText="#{label.options}">
-					<p:commandButton 
-						title="#{label.edit}"
-						icon="pi pi-pencil"
-						style="margin-right: 5px;"
-						styleClass="optionsButtonStyle" />
+				<p:column 
+					filterBy="#{category.status}"
+					headerText="#{label.status}">
 					
-					<p:commandButton 
-						title="#{label.disable}"
-						icon="pi pi-times"
-						styleClass="optionsButtonStyle" />
+					<f:facet name="filter">
+						<p:selectOneMenu
+							style="width: 200px;">
+							
+							<f:selectItem
+								itemLabel="#{label.none}"
+								itemValue="" />
+							
+							<f:selectItem
+								itemLabel="#{label.active}"
+								itemValue="active" />
+							
+							<f:selectItem 
+								itemLabel="#{label.disabled}"
+								itemValue="disable"/>
+							
+							<p:ajax 
+								event="valueChange" 
+								oncomplete="PF('tableProducts').filter()" />
+						</p:selectOneMenu>
+					</f:facet>
+				
+					<h:outputLabel value="#{category.status}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

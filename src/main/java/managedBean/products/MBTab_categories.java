@@ -17,7 +17,8 @@ public class MBTab_categories extends AbstractBean {
 	
 	private List<Category> categories;
 	private KeepCategorySBean sbean;
-	private Category category;
+	private Category category;	
+	private boolean onFilter;
 	
 	public MBTab_categories() {
 		categories = new ArrayList<Category>();
@@ -55,6 +56,15 @@ public class MBTab_categories extends AbstractBean {
 	public void removeAll() {
 		sbean.removeAll();
 		list();
+	}
+	
+	//Getters and Setters
+	public boolean isOnFilter() {
+		return onFilter;
+	}
+
+	public void setOnFilter(boolean onFilter) {
+		this.onFilter = onFilter;
 	}
 
 	public List<Category> getCategories() {

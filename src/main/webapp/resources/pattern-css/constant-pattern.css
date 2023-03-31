@@ -293,12 +293,9 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	border: 0px !important;
 }
 
-.ui-datatable {
-	width: 100% !important;
-}
-
 .ui-datatable tr.ui-state-highlight {
 	background-color: var(--green) !important;
+	color: white !important;
 }
 
 .ui-datatable tbody tr {
@@ -308,7 +305,6 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 }
 
 .ui-datatable tbody tr:hover {
-		background-color: var(--green) !important;
 	background-color: var(--backgroud-general-mouse) !important;
 	color: var(--text-mouse) !important;	
 	border-color: var(--bottom-row-table) !important;
