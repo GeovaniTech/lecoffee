@@ -24,8 +24,13 @@ public class MBTab_categories extends AbstractBean {
 		categories = new ArrayList<Category>();
 		sbean = new KeepCategorySBean();
 		category = new Category();
+		onFilter = false;
 		
 		list();
+	}
+	
+	public void toggleFilter() {
+		onFilter = !onFilter;
 	}
 	
 	public void save() {
