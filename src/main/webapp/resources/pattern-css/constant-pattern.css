@@ -27,6 +27,37 @@ h1 span {
     font-family: 'Grape Nuts', cursive;
 }
 
+h2, h3, h4, h5, p, h2, .label {
+	color: var(--text-mouse);
+}
+
+.label {
+	margin-top: 5px;
+}
+
+h5 {
+	margin-bottom: 5px;
+}
+
+.ui-toggleswitch .ui-toggleswitch-checked > * {
+	color: black !important;
+}
+
+.footer {
+	margin-left: 250px;
+}
+
+.body {
+	margin: 10px;
+	margin-top: 70px;
+	margin-left: 260px;
+	transition: 0.4s;
+}
+
+h2 {
+	color: var(--text-mouse);
+}
+
 .general-dialog-forms > * {
 	margin-bottom: 5px !important;
 	width: 100% !important;

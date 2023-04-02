@@ -178,13 +178,13 @@
 								itemLabel="#{label.none}"
 								itemValue="" />
 							
-							<f:selectItem
-								itemLabel="#{label.active}"
-								itemValue="active" />
-							
-							<f:selectItem 
-								itemLabel="#{label.disabled}"
-								itemValue="disable"/>
+								<f:selectItem
+									itemLabel="#{label.active}"
+									itemValue="active" />
+								
+								<f:selectItem 
+									itemLabel="#{label.disabled}"
+									itemValue="disable"/>
 							
 							<p:ajax 
 								event="valueChange" 
@@ -192,7 +192,7 @@
 						</p:selectOneMenu>
 					</f:facet>
 				
-					<h:outputLabel value="#{category.status}" />
+					<h:outputLabel value="#{category.status eq 'active' ? label.active : label.disabled}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
