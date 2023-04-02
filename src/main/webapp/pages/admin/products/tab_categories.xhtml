@@ -15,7 +15,7 @@
 		
 		<p:remoteCommand 
 			name="updateTableCategories" update="tableCategories" />
-		
+				
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
@@ -34,7 +34,7 @@
 					styleClass="optionsButtonStyle" />
 			</h:form>
 		</div>
-		
+			
 		<p:dialog
 			id="dialog-new-category"
 			widgetVar="dialog-new-category"
@@ -60,7 +60,6 @@
 						value="#{MBTab_category.category.name}"
 						required="true"
 						requiredMessage="#{label.name_required}"
-						
 						placeholder="#{label.insert_the} #{label.name}" />
 						
 					<p:commandButton 
@@ -72,6 +71,48 @@
 				</div>
 			</h:form>
 		</p:dialog>
+		
+		<p:dialog
+			id="dialog-change-category"
+			widgetVar="editCategory"
+			header="#{label.categories}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			width="720px">
+		
+			<h:form>
+				<div class="vertical-left container-categories">
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
+		        		
+					<h:outputLabel value="#{label.name}" class="label" for="name" />
+					
+					<p:inputText 
+						id="name"
+						value="#{MBTab_category.category.name}"
+						required="true"
+						requiredMessage="#{label.name_required}"
+						placeholder="#{label.insert_the} #{label.name}" />
+						
+					<p:commandButton 
+						value="#{label.change}"
+						process="@form"
+						action="#{MBTab_category.change()}"
+						oncomplete="updateTableCategories()"
+						update=" messages" />
+				</div>
+			</h:form>
+		</p:dialog>
+		
+		<p:remoteCommand 
+			name="openDialogEditCategory"
+			update="dialog-change-category"
+			oncomplete="PF('editCategory').show()" />
 		
 		<h:form
 			id="tableCategories"
@@ -93,7 +134,11 @@
 				scrollable="true"
 				scrollWidth="100%"
 				styleClass="#{MBTab_category.onFilter == false ? 'hide-filters' : ''}">
-				
+
+				<p:ajax 
+				 	event="rowSelect" 
+				 	oncomplete="openDialogEditCategory();" />		
+
 				<p:column styleClass="toggleFilter">
 					<f:facet name="header">
 						<p:commandLink
