@@ -39,11 +39,6 @@
 					oncomplete="remoteUpdate()"
 					icon="pi pi-trash"
 					styleClass="optionsButtonStyle" />
-					
-				<p:commandButton 
-					onclick="PF('dialog-filters-product').show()"
-					icon="pi pi-filter"
-					styleClass="optionsButtonStyle" />
 				
 				<p:commandButton 
 					action="#{MBTab_products.changeTableView()}"
@@ -412,38 +407,6 @@
 				</h:form>
 			</p:scrollPanel>		
 		</p:dialog>
-		
-		<p:dialog
-			id="dialog-filters-product"
-			header="#{label.filters}"
-			dynamic="true"
-			resizable="false"
-			draggable="false"
-			position="center"
-			widgetVar="dialog-filters-product">
-			
-			<p:scrollPanel
-				mode="native" 
-				style="max-height: 80vh; width: 100%; flex-wrap: wrap;">
-				
-				<h:form class="general-dialog-forms">
-					<components:inputFilter 
-						label="#{label.name}"
-						toInputFilter="#{MBTab_products.productFilter.name}" />
-				
-					<components:inputFilter 
-						label="#{label.description}"
-						toInputFilter="#{MBTab_products.productFilter.description}" />
-					
-					<components:numberRange 
-						label="#{label.price}"
-						toInputNumberFilter="#{MBTab_products.productFilter.price}" />
-					
-					<components:dateRange 
-						label="#{label.date}"
-						toInputDateFilter="#{MBTab_products.productFilter.dateCreation}" />
-				</h:form>
-			</p:scrollPanel>
-		</p:dialog>
+
 	</h:body>
 </html>
