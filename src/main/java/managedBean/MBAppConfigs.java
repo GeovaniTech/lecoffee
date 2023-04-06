@@ -118,6 +118,8 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		client.setPreferences(appConfigs);
 		
 		clientSBean.change(client);
+		
+		createCookiePreferences();
 	}
 
 	public String getBrazilianCurrency(Double value) {

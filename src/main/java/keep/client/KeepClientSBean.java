@@ -140,7 +140,6 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			msg.informacoesInvalidas();
 		}
 		
