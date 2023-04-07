@@ -28,6 +28,14 @@
 			oncomplete="PF('dialog-change-product').show()"/>
 		
 		<div class="top-buttons">
+			<components:cofirmDeletesDialog 
+				id="deleteProducts"
+				widgetVar="dialog-remove-all-products"
+				header="#{label.products}"
+				description="#{label.remove_all_products}"
+				onConfirmAction="#{MBTab_products.removeAll()}"
+				onComplete="remoteUpdate()" />
+				
 			<h:form class="form-top-buttons">
 				<p:commandButton 
 					 onclick="PF('dialog-new-product').show()"
@@ -35,8 +43,7 @@
 					 styleClass="optionsButtonStyle" />
 					
 				<p:commandButton 
-					action="#{MBTab_products.removeAll()}"
-					oncomplete="remoteUpdate()"
+					onclick="PF('dialog-remove-all-products').show()"
 					icon="pi pi-trash"
 					styleClass="optionsButtonStyle" />
 				
@@ -45,7 +52,6 @@
 					oncomplete="remoteUpdate()"
 					icon="pi pi-eye"
 					styleClass="optionsButtonStyle" />
-
 			</h:form>
 		</div>
 		
