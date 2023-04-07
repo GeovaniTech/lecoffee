@@ -318,6 +318,11 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	color: var(--green) !important;
 }
 
+.ui-datatable {
+	width: 100% !important;
+	overflow-x: auto !important;
+}
+
 .ui-datatable thead th {
 	background-color: var(--background-general) !important;
 	color: var(--text-mouse) !important;	

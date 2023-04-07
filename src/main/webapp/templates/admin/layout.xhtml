@@ -18,6 +18,12 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<link rel="shortcut icon" href="/lecoffee/resources/images/logo.ico" type="image/x-icon" />
 		
+		<script>
+			$(document).on('click', '#btn-menu', function() {
+			   $(window).trigger('resize');
+			});
+		</script>
+				
 		<h:outputStylesheet library="pattern-css" name="constant-pattern.css"/>
 		
 		<c:choose>
@@ -32,7 +38,7 @@
 	</h:head>
 	
 	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
-		<h:body>
+		<h:body id="body">
 			<p:growl id="growl" showDetail="true" />
 			
 			<div id="menu">
