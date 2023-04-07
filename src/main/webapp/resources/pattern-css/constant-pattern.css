@@ -348,6 +348,7 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 
 .hide-filters .ui-column-customfilter {
 	display: none;
+	overflow-x: auto !important;
 }
 
 .toggleFilter {
@@ -399,6 +400,5 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 @media (max-width: 719px) {
 	.ui-dialog {
 		width: 100% !important;
-		
 	}
 }
