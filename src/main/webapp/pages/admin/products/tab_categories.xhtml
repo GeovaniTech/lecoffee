@@ -17,16 +17,23 @@
 			name="updateTableCategories" update="tableCategories" />
 				
 		<div class="top-buttons">
+			<components:cofirmDeletesDialog 
+				id="confirmDeletesCategories"
+				widgetVar="dialogConfirmDeletesCategories"
+				header="#{label.categories}"
+				description="Deseja prosseguir com as excluções de todas as categorias?"
+				onConfirmAction="#{MBTab_category.removeAll()}"
+				onComplete="updateTableCategories" />
+				
 			<h:form class="form-top-buttons">
 				<p:commandButton 
 					 onclick="PF('dialog-new-category').show()"
 					 icon="pi pi-plus"
 					 styleClass="optionsButtonStyle" />
-					
+				
 				<p:commandButton 
-					action="#{MBTab_category.removeAll()}"
-					oncomplete="updateTableCategories()"
 					icon="pi pi-trash"
+					onclick="PF('dialogConfirmDeletesCategories').show()"
 					styleClass="optionsButtonStyle" />
 			</h:form>
 		</div>

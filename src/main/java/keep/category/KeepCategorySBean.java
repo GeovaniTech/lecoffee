@@ -68,6 +68,14 @@ public class KeepCategorySBean extends AbstractManter implements IkeepCategorySB
 	public void removeAll() {
 		StringBuilder sql = new StringBuilder();
 		
+		sql.append("DELETE FROM ").append(Product.class.getName()).append(" P ");
+		
+		em.getTransaction().begin();
+		em.createQuery(sql.toString()).executeUpdate();
+		em.getTransaction().commit();
+		
+		sql = new StringBuilder();
+		
 		sql.append(" DELETE FROM ");
 		sql.append(Category.class.getName()).append(" C ");
 		

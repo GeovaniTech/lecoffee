@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.content i {
+	font-size: 100px;
+	margin-bottom: 20px;
+	color: var(--text-mouse) !important;
+}
+
+.content p {
+	text-align: center;
+	font-size: 18px;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.confirm {
+	background-color: red !important;
+	border-color: red !important;
+	transition: 0.4s !important;
+	margin-right: 10px !important;
+}
+
+.confirm:hover {
+	background-color: rgb(217, 115, 115) !important;
+	border-color: rgb(217, 115, 115) !important;
+}
+
+.buttons > button {
+	width: 250px;
+}
