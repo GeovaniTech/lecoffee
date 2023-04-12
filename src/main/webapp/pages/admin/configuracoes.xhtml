@@ -41,7 +41,7 @@
 								 <p:ajax 
 								 	render="all" 
 								 	listener="#{MBAppConfigs.refreshPage()}"
-								 	oncomplete="updateConfigs();" /> 
+								 	oncomplete="updateConfigs()" /> 
 							</p:selectOneMenu>
 						</h:form>
 					</div>
@@ -59,7 +59,7 @@
 	      			    		<p:ajax 
 	      			    			event="change"
 	      			    			process="@form"
-	      			    			oncomplete="updateConfigs();" />
+	      			    			oncomplete="updateConfigs()" />
 	      			    	</p:toggleSwitch>
 						</h:form>
 					</div>
