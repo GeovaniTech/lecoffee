@@ -27,6 +27,7 @@
 	<composite:implementation>
 		<div class="card" style="#{cc.attrs.status eq 'disable' ? 'opacity: 0.33;' : ''}">
             <h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
+            
             <div class="infos">
                 <p>#{cc.attrs.name}</p>
                 <div class="divider"></div>
