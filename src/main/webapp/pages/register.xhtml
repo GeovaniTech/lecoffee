@@ -18,15 +18,20 @@
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
 		<link rel="shortcut icon" href="/lecoffee/resources/images/logo.ico" type="image/x-icon" />
-		<h:outputStylesheet library="pattern-css" name="access.css"/>
+		
+		<h:outputStylesheet library="css" name="/pattern-css/patterns/others.css" />
+		<h:outputStylesheet library="css" name="/pattern-css/patterns/texts.css" />
+		<h:outputStylesheet library="css" name="/pattern-css/patterns/alignments.css" />
+		<h:outputStylesheet library="css" name="/pattern-css/patterns/components-primefaces.css" />
+		<h:outputStylesheet library="css" name="/login/access.css" />
 		
 		<c:choose>
 			<c:when test="#{MBAppConfigs.appConfigs.darkMode eq 'true'}">
-				<h:outputStylesheet library="dark-mode" name="colors.css" />
+				<h:outputStylesheet library="css" name="/pattern-css/dark-mode/colors.css" />
 			</c:when>
 			
 			<c:otherwise>
-				<h:outputStylesheet library="light-mode" name="colors.css" />
+				<h:outputStylesheet library="css" name="/pattern-css/light-mode/colors.css" />
 			</c:otherwise>
 		</c:choose>		
 	</h:head>
