@@ -15,6 +15,10 @@
 	color: var(--green);
 }
 
+.logo h1 {
+	font-size: 65px;
+}
+
 h2, h5 {
 	color: var(--text-mouse);
 }
