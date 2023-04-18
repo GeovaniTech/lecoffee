@@ -17,17 +17,21 @@
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet" />
 		<link rel="shortcut icon" href="/lecoffee/resources/images/logo.ico" type="image/x-icon" />
 		
-		<h:outputStylesheet library="pattern-css" name="constant-pattern.css"/>
+		<h:outputStylesheet library="css" name="/patterns/others.css" />
+		<h:outputStylesheet library="css" name="/patterns/texts.css" />
+		<h:outputStylesheet library="css" name="/patterns/alignments.css" />
+		<h:outputStylesheet library="css" name="/patterns/components-primefaces.css" />
+		<h:outputStylesheet library="css" name="/client/layout/body" />
 		
 		<c:choose>
-			<c:when test="#{MBAppConfigs.appConfigs.darkMode == true}">
-				<h:outputStylesheet library="dark-mode" name="colors.css"/>
+			<c:when test="#{MBAppConfigs.appConfigs.darkMode eq 'true'}">
+				<h:outputStylesheet library="css" name="/colors/dark-mode/colors.css" />
 			</c:when>
 			
 			<c:otherwise>
-				<h:outputStylesheet library="light-mode" name="colors.css"/>
+				<h:outputStylesheet library="css" name="/colors/light-mode/colors.css" />
 			</c:otherwise>
-		</c:choose>
+		</c:choose>		
 	</h:head>
 	
 	<h:body>
