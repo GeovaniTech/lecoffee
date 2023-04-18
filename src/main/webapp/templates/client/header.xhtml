@@ -11,7 +11,8 @@
 		<h:outputStylesheet library="css" name="/client/layout/header.css" />
 		
 		<p:remoteCommand 
-			name="openDialogOptions" />
+			name="openDialogOptions"
+			oncomplete="PF('dialog-options').show()" />
 		
 		<div class="desktop-menu horizontal-evenly">
 			<h1><span>Le</span>Coffee</h1>
@@ -26,8 +27,11 @@
 			
 			<div>
 				<a class="system-links" href="/lecoffee/pages/login.xhtml" style="display: #{MBAppConfigs.userLogged == true ? 'none' : ''}">#{label.login}</a>
+				<a class="system-links" href="#" style="display: #{MBAppConfigs.userLogged == false ? 'none' : ''}">#{label.my_account}</a>
 				<a class="system-links" onclick="openDialogOptions();">#{label.options}</a>
 			</div>
 		</div>
+		
+		<ui:include src="/pages/client/dialog_options.xhtml" />
 	</h:body>
 </html>
