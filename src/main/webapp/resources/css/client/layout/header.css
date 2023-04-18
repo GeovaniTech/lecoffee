@@ -19,6 +19,7 @@
 	cursor: pointer;
 	font-size: 20px;
 	color: var(--text-mouse);
+	text-decoration: none;
 }
 
 .desktop-menu div a:hover {

@@ -45,6 +45,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		localeList.add(new Locale("en"));
 		
 		updateConfigs();
+		redirectUserFromCookie();
 	}
 
 	public void updateConfigs() {
@@ -100,7 +101,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 			if(toClient.getNivel().equals("admin")) {
 				RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
 			} else {
-				RedirectUrl.redirecionarPara("/lecoffee/pages/client/home.xhtml");
+				RedirectUrl.redirecionarPara("/lecoffee/pages/client/landing-page.xhtml");
 			}
 		}
 	}
@@ -155,6 +156,20 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 			response.addCookie(darkMode);
 			response.addCookie(language);
 		}
+	}
+	
+	public boolean isUserLogged() {
+		try {
+			TOClient client = getClient();
+			
+			if(client != null) {
+				return true;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		
+		return false;
 	}
 
 	// Getters and Setters
