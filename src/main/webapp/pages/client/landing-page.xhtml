@@ -7,14 +7,16 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:components="http://java.sun.com/jsf/composite/components">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	
 	<h:body>
 		<ui:composition template="/templates/client/layout.xhtml">
 			<ui:define name="body">
+				<h:outputStylesheet library="css" name="/client/landing-page/patterns.css" />
 				<div class="sections">
 					<div class="home">
-						<ui:include src="/lecoffee/pages/client/home.xhtml" />
+						<ui:include src="/pages/client/home.xhtml" />
 					</div>
 				</div>
 			</ui:define>

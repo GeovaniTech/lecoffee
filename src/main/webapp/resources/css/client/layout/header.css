@@ -1,1 +1,33 @@
 @charset "UTF-8";
+
+.desktop-menu {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	background-color: var(--background-general);
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14);
+}
+
+.desktop-menu h1 {
+	margin-right: 30px;
+}
+
+.desktop-menu div a {
+	margin: 10px;
+	transition: 0.4s;
+	cursor: pointer;
+	font-size: 20px;
+	color: var(--text-mouse);
+}
+
+.desktop-menu div a:hover {
+	color: var(--green);
+}
+
+.system-links {
+	background-color: var(--background-general-mouse);
+	color: var(--brown);
+	padding: 7px 30px;
+	border-radius: 10px;
+}

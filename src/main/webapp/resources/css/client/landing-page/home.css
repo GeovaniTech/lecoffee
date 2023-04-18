@@ -1,2 +1,13 @@
 @charset "UTF-8";
 
+.background {
+	display: flex;
+	position: fixed;
+	top: 0px;
+	z-index: -1;
+}
+
+.background img {
+	height: 100vh;
+	width: 100vw;
+}

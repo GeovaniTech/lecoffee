@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
-	lang="pt-BR"
+	lang="#{MBAppConfigs.appConfigs.language}"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
@@ -11,5 +11,14 @@
 	
 	<h:body>
 		<h:outputStylesheet library="css" name="/client/landing-page/home.css" />
+			
+		<div class="background">
+			<h:graphicImage library="images" name="background-home.png" />
+		</div>
+		
+		<div class="conteiner-welcome">
+			<p></p>
+			
+		</div>
 	</h:body>
 </html>

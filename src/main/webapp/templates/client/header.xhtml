@@ -9,5 +9,22 @@
 	
 	<h:body>
 		<h:outputStylesheet library="css" name="/client/layout/header.css" />
+		
+		<div class="desktop-menu horizontal-evenly">
+			<h1><span>Le</span>Coffee</h1>
+			
+			<div class="horizontal-evenly">
+				<a>#{label.coffee}</a>
+				<a>#{label.tea}</a>
+				<a>#{label.cookies}</a>
+				<a>#{label.cakes}</a>
+				<a>#{label.snacks}</a>
+			</div>
+			
+			<div>
+				<a class="system-links">#{label.login}</a>
+				<a class="system-links">#{label.options}</a>
+			</div>
+		</div>
 	</h:body>
 </html>
