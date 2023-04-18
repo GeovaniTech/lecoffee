@@ -109,16 +109,18 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	public void setNewPreferences() {
 		TOClient client = getClient();
 		
-		if(client.getPreferences() == null) {
-			appConfigsSBean.save(appConfigs);
-		} else {
-			appConfigs.setId(client.getPreferences().getId());
-			appConfigsSBean.change(appConfigs);
+		if(client != null) {
+			if(client.getPreferences() == null) {
+				appConfigsSBean.save(appConfigs);
+			} else {
+				appConfigs.setId(client.getPreferences().getId());
+				appConfigsSBean.change(appConfigs);
+			}
+			
+			client.setPreferences(appConfigs);
+			
+			clientSBean.change(client);
 		}
-		
-		client.setPreferences(appConfigs);
-		
-		clientSBean.change(client);
 		
 		createCookiePreferences();
 	}

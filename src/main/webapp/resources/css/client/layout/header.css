@@ -9,10 +9,6 @@
 	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14);
 }
 
-.desktop-menu h1 {
-	margin-right: 30px;
-}
-
 .desktop-menu div a {
 	margin: 10px;
 	transition: 0.4s;
@@ -20,6 +16,9 @@
 	font-size: 20px;
 	color: var(--text-mouse);
 	text-decoration: none;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .desktop-menu div a:hover {
@@ -27,8 +26,15 @@
 }
 
 .system-links {
-	background-color: var(--background-general-mouse);
-	color: var(--brown);
-	padding: 7px 30px;
+	padding: 10px;
+	padding-left: 12px;
+	color: var(--text);
+	text-decoration: none;
+	transition: 0.4s;
+	font-size: 18px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 	border-radius: 10px;
+	margin: 5px;
 }

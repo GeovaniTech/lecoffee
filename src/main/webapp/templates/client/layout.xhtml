@@ -6,7 +6,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core">
 	
 	<h:head>
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,12 +17,13 @@
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet" />
 		<link rel="shortcut icon" href="/lecoffee/resources/images/logo.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		
 		<h:outputStylesheet library="css" name="/patterns/others.css" />
 		<h:outputStylesheet library="css" name="/patterns/texts.css" />
 		<h:outputStylesheet library="css" name="/patterns/alignments.css" />
 		<h:outputStylesheet library="css" name="/patterns/components-primefaces.css" />
-		<h:outputStylesheet library="css" name="/client/layout/body" />
+		<h:outputStylesheet library="css" name="/client/layout/body.css" />
 		
 		<c:choose>
 			<c:when test="#{MBAppConfigs.appConfigs.darkMode eq 'true'}">
@@ -33,26 +35,27 @@
 			</c:otherwise>
 		</c:choose>		
 	</h:head>
-	
-	<h:body>
-		<p:growl id="growl" showDetail="true" />
-	
-		<div id="menu">
-			<ui:insert name="menu">
-				<ui:include src="/templates/client/header.xhtml" />
-			</ui:insert>
-		</div>
+	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
+		<h:body>
+			<p:growl id="growl" showDetail="true" />
 		
-		<div id="body">
-			<ui:insert name="body">
-				
-			</ui:insert>
-		</div>
-		
-		<div id="footer">
-			<ui:insert name="footer">
-				<ui:include src="/templates/client/footer.xhtml"/>
-			</ui:insert>
-		</div>
-	</h:body>
+			<div id="menu">
+				<ui:insert name="menu">
+					<ui:include src="/templates/client/header.xhtml" />
+				</ui:insert>
+			</div>
+			
+			<div id="body">
+				<ui:insert name="body">
+					
+				</ui:insert>
+			</div>
+			
+			<div id="footer">
+				<ui:insert name="footer">
+					<ui:include src="/templates/client/footer.xhtml"/>
+				</ui:insert>
+			</div>
+		</h:body>
+	</f:view>
 </html>

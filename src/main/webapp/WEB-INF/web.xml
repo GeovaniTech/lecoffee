@@ -7,7 +7,7 @@
 	</session-config>
 	
 	<welcome-file-list>
-		<welcome-file>/pages/login.xhtml</welcome-file>
+		<welcome-file>/pages/client/landing-page.xhtml</welcome-file>
 	</welcome-file-list>
 	
 	<error-page>

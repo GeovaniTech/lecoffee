@@ -1,2 +1,11 @@
 @charset "UTF-8";
 
+.google-icons {
+	font-size: 30px !important;
+	margin-right: 10px;
+	color: var(--text);
+}
+
+.google-icons:hover {
+	color: var(--text-mouse);
+}
