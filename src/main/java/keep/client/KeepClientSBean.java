@@ -46,7 +46,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		em.persist(client);
 		em.getTransaction().commit();
 		
-		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
+		RedirectUrl.redirecionarPara("/lecoffee/login");
 		
 		return true;
 	}
@@ -131,9 +131,9 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				response.addCookie(userCookie);
 				
 				if(client.getNivel().equals("admin")) {
-					RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
+					RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
 				} else {
-					RedirectUrl.redirecionarPara("/lecoffee/pages/client/landing-page.xhtml");
+					RedirectUrl.redirecionarPara("/lecoffee/home");
 				}
 				
 				return true;

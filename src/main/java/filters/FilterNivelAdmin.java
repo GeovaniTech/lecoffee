@@ -34,7 +34,7 @@ public class FilterNivelAdmin implements Filter {
 		
 		if(client == null || client.getNivel().equals("client")) {
 			response.setStatus(401);
-			response.sendRedirect("/lecoffee/pages/login.xhtml");
+			response.sendRedirect("/lecoffee/login");
 		} else if(client.getNivel().equals("admin")) {
 			chain.doFilter(request, response);
 		}

@@ -87,7 +87,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		
 		finishSession();
 		
-		RedirectUrl.redirecionarPara("/lecoffee/pages/login.xhtml");
+		RedirectUrl.redirecionarPara("/lecoffee/login");
 	}
 	
 	public void redirectUserFromCookie() {
@@ -99,9 +99,9 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 			getSession().setAttribute("client", toClient);
 			
 			if(toClient.getNivel().equals("admin")) {
-				RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
+				RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
 			} else {
-				RedirectUrl.redirecionarPara("/lecoffee/pages/client/landing-page.xhtml");
+				RedirectUrl.redirecionarPara("/lecoffee/home");
 			}
 		}
 	}

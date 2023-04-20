@@ -3,8 +3,53 @@
   xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/pages/login.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="register">
+		<pattern value="/register" />
+		<view-id value="/pages/register.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="adminPedidos">
+		<pattern value="/admin/pedidos" />
+		<view-id value="/pages/admin/pedidos.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="adminProdutos">
+		<pattern value="/admin/produtos" />
+		<view-id value="/pages/admin/products/products.xhtml"/>
+	</url-mapping>	
+	
+	<url-mapping id="adminGanhos">
+		<pattern value="/admin/ganhos" />
+		<view-id value="/pages/admin/ganhos.xhtml"/>
+	</url-mapping>	
+	
+	<url-mapping id="adminAvaliacoes">
+		<pattern value="/admin/avaliacoes" />
+		<view-id value="/pages/admin/avaliacoes.xhtml"/>
+	</url-mapping>	
+
+	<url-mapping id="adminClientes">
+		<pattern value="/admin/clientes" />
+		<view-id value="/pages/admin/clientes.xhtml"/>
+	</url-mapping>	
+
+	<url-mapping id="adminChats">
+		<pattern value="/admin/chats" />
+		<view-id value="/pages/admin/chats.xhtml"/>
+	</url-mapping>	
+
+	<url-mapping id="adminConfiguracoes">
+		<pattern value="/admin/configuracoes" />
+		<view-id value="/pages/admin/configuracoes.xhtml"/>
+	</url-mapping>	
+
 	<url-mapping id="home">
-		<pattern value="/home"></pattern>
-		<view-id value="/pages/client/landing-page.xhtml"/>
+		<pattern value="/home" />
+		<view-id value="/pages/client/landing-page.xhtml" />
 	</url-mapping>
 </pretty-config>
