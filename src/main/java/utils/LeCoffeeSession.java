@@ -27,10 +27,9 @@ public class LeCoffeeSession {
 	
 	protected void finishSession() {
 		getSession().setAttribute("client", null);
-		getSession().invalidate();
-		getSession();
 	}
-
+	
+	//Setters and Getters
 	public HttpServletRequest getRequest() {
 		return request;
 	}

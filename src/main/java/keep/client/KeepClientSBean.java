@@ -133,7 +133,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				if(client.getNivel().equals("admin")) {
 					RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
 				} else {
-					RedirectUrl.redirecionarPara("/lecoffee/pages/client/home.xhtml");
+					RedirectUrl.redirecionarPara("/lecoffee/pages/client/landing-page.xhtml");
 				}
 				
 				return true;

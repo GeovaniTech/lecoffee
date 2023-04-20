@@ -40,6 +40,7 @@
 	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
 		<h:body>	
 			<p:remoteCommand 
+				autoRun="false"
 				name="updateConfigs"
 				action="#{MBAppConfigs.updateConfigs()}"/>			
 			
