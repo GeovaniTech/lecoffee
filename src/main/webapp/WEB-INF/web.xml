@@ -34,7 +34,7 @@
 	
 	<filter-mapping>
 		<filter-name>FilterNivelAdmin</filter-name>
-		<url-pattern>/pages/admin/*</url-pattern>
+		<url-pattern>/admin/*</url-pattern>
 	</filter-mapping>
 	
 	<context-param>

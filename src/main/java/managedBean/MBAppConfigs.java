@@ -93,7 +93,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	public void redirectUserFromCookie() {
 		String user = Cookies.getUserCookie();
 		
-		if(user != null) {
+		if(user != null && !user.isEmpty()) {
 			TOClient toClient = clientSBean.findByEmail(Encryption.decryptNormalText(user));
 			
 			getSession().setAttribute("client", toClient);
