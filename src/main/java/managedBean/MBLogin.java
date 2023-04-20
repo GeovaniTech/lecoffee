@@ -41,9 +41,9 @@ public class MBLogin extends AbstractBean {
 			getSession().setAttribute("client", toClient);
 			
 			if(toClient.getNivel().equals("admin")) {
-				RedirectUrl.redirecionarPara("/lecoffee/pages/admin/pedidos.xhtml");
+				RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
 			} else {
-				RedirectUrl.redirecionarPara("/lecoffee/pages/client/landing-page.xhtml");
+				RedirectUrl.redirecionarPara("/lecoffee/home");
 			}
 		}
 	}
