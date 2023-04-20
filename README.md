@@ -4,4 +4,5 @@
 
 System is developing to help an Coffee shop, help to public new products, orders, custumers, landing page...
 
-Public Access: <a href="https://www.devpree.com.br/lecoffee" target="_blank">devpree/lecoffee</a>
+Public Access: [www.devpree.com.br](https://www.devpree.com.br/lecoffee)
+
