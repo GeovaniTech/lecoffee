@@ -25,26 +25,43 @@
 				<a>#{label.snacks}</a>
 			</div>
 			
-			<div class="horizontal-evenly">
-				<a class="system-links" href="/lecoffee/login" style="display: #{MBAppConfigs.userLogged == true ? 'none' : ''}">
+			<div class="horizontal-center">
+				<a class="system-links" href="#">
 					<span class="material-symbols-outlined google-icons">
-						person
+						shopping_basket
 					</span>
-					#{label.login}
 				</a>
 				
-				<a class="system-links" href="#" style="display: #{MBAppConfigs.userLogged == false ? 'none' : ''}">
+				<a class="system-links" href="/lecoffee/login" style="display: #{MBAppConfigs.userLogged == true ? 'none' : ''}">
 					<span class="material-symbols-outlined google-icons">
-						person
+						account_circle
 					</span>
-					#{label.my_account}</a>
+				</a>
 				
+				<p:commandLink
+					id="my_account"
+					style="text-decoration: none; display: #{MBAppConfigs.userLogged == false ? 'none' : ''}"
+					styleClass="system-links">
+					
+					<span class="material-symbols-outlined google-icons">
+						account_circle
+					</span>
+				 	
+			 	</p:commandLink>
+
 				<a class="system-links" onclick="openDialogOptions();">
 					<span class="material-symbols-outlined google-icons">
 						settings
 					</span>
-					#{label.options}
 				</a>
+				
+				<p:overlayPanel for="my_account">
+					<p>#{MBAppConfigs.clientLogged.email}</p>
+					
+					<p:commandButton 
+						value="#{label.logout}"
+						action="#{MBAppConfigs.logout()}" />
+				</p:overlayPanel>
 			</div>
 		</div>
 		

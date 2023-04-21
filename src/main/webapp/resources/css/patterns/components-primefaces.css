@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+/* #################### SELECTONEMENU ####################*/
+
 .ui-selectonemenu > * {
 	color: var(--text-mouse) !important;
 }	
@@ -26,6 +28,8 @@
 .ui-selectonemenu-trigger {
 	background-color: var(--background-general-mouse) !important;	
 }
+
+/* #################### BUTTON ####################*/
 
 .ui-button {
 	color: white !important;
@@ -56,6 +60,8 @@
 	background-color: var(--background-general-mouse) !important;
 }
 
+/* #################### DIALOG ####################*/
+
 .ui-dialog {
   	position: absolute;
  	top: 50%;
@@ -75,6 +81,8 @@
 	background-color: var(--background-general) !important;
 }
 
+/* #################### INPUTEXT/INPUTFIELD ####################*/
+
 .ui-inputtext, .ui-inputfield {
     font-size: 16px !important;
     padding: 8px !important;
@@ -84,6 +92,8 @@
     outline: none !important;
     color: var(--text-mouse) !important;
 }
+
+/* #################### DATAPICKER ####################*/
 
 .ui-datepicker-header, .ui-datepicker {
 	background-color: var(--background-general-mouse) !important;
@@ -98,11 +108,15 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	color: var(--green) !important;
 }
 
+/* #################### INPUTTEXTAREA ####################*/
+
 .ui-inputtextarea {
 	color: var(--text-mouse) !important;
 	border-color: var(--background-general-mouse) !important;
 	background-color: var(--background-general-mouse) !important;
 }
+
+/* #################### FILEUPLOAD ####################*/
 
 .ui-fileupload-buttonbar {
 	border-color: var(--background-general-mouse) !important;
@@ -124,6 +138,8 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 .ui-fileupload-content div {
 	color: var(--text-mouse) !important;
 }
+
+/* #################### TABVIEW/TABS ####################*/
 
 .ui-tabs {
 	background-color: var(--background-general) !important;
@@ -165,13 +181,19 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	color: var(--text-mouse) !important;
 }
 
+/* #################### MESSAGES ####################*/
+
 .ui-messages > div  {
 	padding: 10px !important;
 }
 
+/* #################### RATING ####################*/
+
 .ui-rating > input {
 	color: var(--green) !important;
 }
+
+/* #################### DATATABLE ####################*/
 
 .ui-datatable {
 	width: 100% !important;
@@ -199,4 +221,9 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	background-color: var(--backgroud-general-mouse) !important;
 	color: var(--text-mouse) !important;	
 	border-color: var(--bottom-row-table) !important;
+}
+
+/* #################### OVERLAYPANEl ####################*/
+.ui-overlaypanel {
+	background-color: var(--background-general) !important;
 }

@@ -34,15 +34,18 @@
 }
 
 .system-links {
-	padding: 10px;
-	padding-left: 12px;
 	color: var(--text);
 	text-decoration: none;
 	transition: 0.4s;
-	font-size: 18px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	border-radius: 10px;
-	margin: 5px;
+	margin-right: 5px !important;
+}
+
+.system-links span {
+	font-size: 35px !important;
+	margin: 0px !important;
+	color: var(--text-mouse);
 }

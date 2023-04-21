@@ -34,6 +34,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	private List<Locale> localeList;
 	private KeepClientSBean clientSBean;
 	private KeepAppConfigs appConfigsSBean;
+	private TOClient clientLogged;
 	
 	public MBAppConfigs() {
 		this.appConfigs = new AppConfigs();
@@ -97,6 +98,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 			TOClient toClient = clientSBean.findByEmail(Encryption.decryptNormalText(user));
 			
 			getSession().setAttribute("client", toClient);
+			this.setClientLogged(toClient);
 			
 			if(toClient.getNivel().equals("admin")) {
 				RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
@@ -205,5 +207,13 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 
 	public void setAppConfigsSBean(KeepAppConfigs appConfigsSBean) {
 		this.appConfigsSBean = appConfigsSBean;
+	}
+
+	public TOClient getClientLogged() {
+		return clientLogged;
+	}
+
+	public void setClientLogged(TOClient clientLogged) {
+		this.clientLogged = clientLogged;
 	}
 }
