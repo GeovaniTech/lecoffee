@@ -9,6 +9,7 @@
 	
 	<h:body>
 		<h:outputStylesheet library="css" name="/admin/admin-header.css" />
+		<h:outputStylesheet library="css" name="/configs/configs.css" />
 		
 		<div class="top-header" id="top-header">
 			<div class="left-items horizontal-center">
@@ -34,6 +35,18 @@
 					<span class="material-symbols-outlined google-icons">
 						notifications
 					</span>
+				</div>
+				
+				<div class="horizontal-center">
+					<p:commandLink
+						id="options"
+						style="text-decoration: none;"
+						styleClass="horizontal-center">
+						
+						<span class="material-symbols-outlined google-icons">
+							settings
+						</span>
+					</p:commandLink>
 				</div>
 			</div>
 		</div>
@@ -92,13 +105,6 @@
 					</span>
 					#{label.landing_page}
 				</a>
-				
-				<a href="/lecoffee/admin/configuracoes" id="menu-configs">
-					<span class="material-symbols-outlined google-icons">
-						settings
-					</span>
-					#{label.settings}
-				</a>
 
 				<a href="#" onclick="btnLogout();" type="button">
 					<span class="material-symbols-outlined google-icons">
@@ -114,6 +120,7 @@
 			</div>
 		</div>
 		
+		<ui:include src="/templates/admin/overlayOptions.xhtml" />
 		<script src="/lecoffee/resources/js/menu.js"/>	
 	</h:body>
 </html>
