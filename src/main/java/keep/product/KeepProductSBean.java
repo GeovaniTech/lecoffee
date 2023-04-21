@@ -54,7 +54,7 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 		
 		sql.append(" SELECT P FROM ");
 		sql.append(Product.class.getName()).append(" P ");
-		
+		sql.append(" ORDER BY P.status ASC ");
 		return em.createQuery(sql.toString(), Product.class)
 				.getResultList();
 	}
