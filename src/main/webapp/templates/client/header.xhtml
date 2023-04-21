@@ -46,25 +46,26 @@
 					<span class="material-symbols-outlined google-icons">
 						account_circle
 					</span>
-				 	
 			 	</p:commandLink>
-
-				<a class="system-links" onclick="openDialogOptions();">
+			 	
+			 	<p:commandLink
+			 		id="options"
+			 		style="text-decoration: none;"
+			 		styleClass="system-links">
+					
 					<span class="material-symbols-outlined google-icons">
 						settings
 					</span>
-				</a>
+			 	</p:commandLink>
 				
-				<p:overlayPanel for="my_account">
-					<p>#{MBAppConfigs.clientLogged.email}</p>
-					
-					<p:commandButton 
-						value="#{label.logout}"
-						action="#{MBAppConfigs.logout()}" />
+				<p:overlayPanel for="options">
+				
 				</p:overlayPanel>
 			</div>
 		</div>
 		
+		<ui:include src="/templates/client/overlayOptions.xhtml" />
+		<ui:include src="/templates/client/overlayMyAccount.xhtml" />
 		<ui:include src="/pages/client/dialog_options.xhtml" />
 	</h:body>
 </html>
