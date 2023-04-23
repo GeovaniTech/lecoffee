@@ -24,7 +24,7 @@
 							style="width: 200px;">
 	
 							<f:selectItems var="language" value="#{MBAppConfigs.localeList}"
-								itemLabel="#{language.displayLanguage}"
+								itemLabel="#{language.language eq 'pt' ? label.portuguese : label.english}"
 								itemValue="#{language.language}" />
 	
 							<p:ajax render="all" listener="#{MBAppConfigs.refreshPage()}"
