@@ -21,6 +21,11 @@
 			name="openDialogChange"
 			update="dialog-change-product"
 			oncomplete="PF('dialog-change-product').show()"/>
+			
+		<p:remoteCommand 
+			name="clearObjectProduct"
+			action="#{MBTab_products.setNewProduct}"
+			update="dialog-new-product" />
 		
 		<div class="top-buttons">
 			<components:cofirmDeletesDialog 
@@ -32,12 +37,13 @@
 				onComplete="remoteUpdate()" />
 				
 			<h:form class="form-top-buttons">
-				<p:commandButton 
-					 onclick="PF('dialog-new-product').show()"
-					 icon="pi pi-plus"
-					 styleClass="optionsButtonStyle" />
-					
-				<p:commandButton 
+			<p:commandButton 
+				onclick="clearObjectProduct();" 
+				oncomplete="PF('dialog-new-product').show();"
+				icon="pi pi-plus" 
+				styleClass="optionsButtonStyle" />
+
+			<p:commandButton 
 					onclick="PF('dialog-remove-all-products').show()"
 					icon="pi pi-trash"
 					styleClass="optionsButtonStyle" />
@@ -228,11 +234,13 @@
 		</h:form>
 		
 		<p:dialog
+			id="dialog-new-product"
 			header="#{label.products}"
 			dynamic="true"
 			resizable="false"
 			draggable="false"
 			position="center"
+			modal="true"
 			widgetVar="dialog-new-product">
 			
 			<p:scrollPanel
@@ -324,8 +332,9 @@
 			resizable="false"
 			draggable="false"
 			position="center"
+			modal="true"
 			widgetVar="dialog-change-product">
-
+			
 			<p:scrollPanel
 				mode="native" 
 				style="max-height: 80vh; width: 100%;">
@@ -407,6 +416,5 @@
 				</h:form>
 			</p:scrollPanel>		
 		</p:dialog>
-
 	</h:body>
 </html>

@@ -14,7 +14,14 @@
 		<h:outputStylesheet library="css" name="/products/tab_categories.css" />
 		
 		<p:remoteCommand 
-			name="updateTableCategories" update="tableCategories" />
+			name="updateTableCategories" 
+			update="tableCategories"
+			oncomplete="remoteUpdate();" />
+		
+		<p:remoteCommand 
+			name="clearObjectCategory"
+			action="#{MBTab_category.setNewCategory()}"
+			update="dialog-new-category" />
 				
 		<div class="top-buttons">
 			<components:cofirmDeletesDialog 
@@ -27,7 +34,8 @@
 				
 			<h:form class="form-top-buttons">
 				<p:commandButton 
-					 onclick="PF('dialog-new-category').show()"
+					 onclick="clearObjectCategory();"
+					 oncomplete="PF('dialog-new-category').show();"
 					 icon="pi pi-plus"
 					 styleClass="optionsButtonStyle" />
 				
@@ -46,6 +54,7 @@
 			resizable="false"
 			draggable="false"
 			position="center"
+			modal="true"
 			width="720px">
 			
 			<h:form>
@@ -69,7 +78,7 @@
 						value="#{label.finish_registration}"
 						process="@form"
 						action="#{MBTab_category.save()}"
-						oncomplete="updateTableCategories()"
+						oncomplete="updateTableCategories(); clearObjectCategory();"
 						update=" messages" />
 				</div>
 			</h:form>
@@ -83,6 +92,7 @@
 			resizable="false"
 			draggable="false"
 			position="center"
+			modal="true"
 			width="720px">
 		
 			<h:form>
@@ -106,7 +116,7 @@
 						value="#{label.change}"
 						process="@form"
 						action="#{MBTab_category.change()}"
-						oncomplete="updateTableCategories()"
+						oncomplete="updateTableCategories();"
 						update=" messages" />
 				</div>
 			</h:form>

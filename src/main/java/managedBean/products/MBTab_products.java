@@ -33,30 +33,32 @@ public class MBTab_products extends AbstractFilterBean {
 	public MBTab_products() {
 		this.status = true;
 		this.setToggleFilter(false);
-		product = new Product();
+		this.setNewProduct();
 		sBean = new KeepProductSBean();
 		products = new ArrayList<Product>();
 		list();
 	}
 	
 	public void save() {
-		product.setStatus(this.isStatus() ? "active" : "disable");
-		sBean.save(product);
-		product = new Product();
+		this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
+		sBean.save(this.getProduct());
+		
+		this.setNewProduct();
 		
 		list();
 	}
 
 	public void change() {
-		product.setStatus(this.isStatus() ? "active" : "disable");
-		sBean.change(product);
-		product = new  Product();
+		this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
+		sBean.change(this.getProduct());
+		
+		this.setNewProduct();
 		
 		list();
 	}
 	
 	public void openChangeDialog(Product product) {
-		this.product = product;
+		this.setProduct(product);
 		
 		PrimeFaces.current().executeScript("PF('dialog-change-product').show()");
 	}
@@ -84,7 +86,11 @@ public class MBTab_products extends AbstractFilterBean {
 	public void addImage(FileUploadEvent event) throws IOException {
 		File file = FileUtil.convertPrimefacesFile(event.getFile());
 		
-		product.setImageBytes(file.getBytes());
+		this.getProduct().setImageBytes(file.getBytes());
+	}
+	
+	public void setNewProduct() {
+		this.setProduct(new Product());
 	}
 	
 	public Product getProduct() {

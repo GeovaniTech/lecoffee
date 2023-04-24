@@ -63,6 +63,10 @@ public class MBTab_categories extends AbstractBean {
 		list();
 	}
 	
+	public void setNewCategory() {
+		this.setCategory(new Category());
+	}
+	
 	//Getters and Setters
 	public boolean isOnFilter() {
 		return onFilter;
