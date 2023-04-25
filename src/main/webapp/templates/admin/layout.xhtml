@@ -46,8 +46,16 @@
 			</div>
 			
 			<div id="body-main" class="body">
-				<ui:insert name="body">
+				<p:ajaxStatus>
+					<f:facet name="start">
+						<div class="ajax-loading" />
+					</f:facet>
+					
+					<f:facet name="complete" />
+				</p:ajaxStatus>
 				
+				<ui:insert name="body">
+
 				</ui:insert>
 			</div>
 		</h:body>

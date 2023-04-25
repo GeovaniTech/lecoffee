@@ -38,6 +38,14 @@
 	
 	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
 		<h:body>
+			<p:ajaxStatus>
+				<f:facet name="start">
+					<div class="ajax-loading" />
+				</f:facet>
+				
+				<f:facet name="complete" />
+			</p:ajaxStatus>
+			
 			<div class="container">
 				<div class="logo">
 					<h1><span>Le</span>Coffee</h1>
