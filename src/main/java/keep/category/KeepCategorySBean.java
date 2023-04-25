@@ -64,11 +64,31 @@ public class KeepCategorySBean extends AbstractManter implements IkeepCategorySB
 		
 		sql.append(" UPDATE ").append(Product.class.getName()).append(" P ");
 		sql.append(" SET P.status = 'disabled' " );
-		sql.append(" WHERE p.category.id = :categoryId ");
+		sql.append(" WHERE P.category.id = :categoryId ");
 		
+		em.getTransaction().begin();
 		em.createQuery(sql.toString())
 			.setParameter("categoryId", category.getId())
 			.executeUpdate();
+		em.getTransaction().commit();
+	}
+	
+	@Override
+	public void active(Category category) {
+		category.setStatus("active");
+		change(category);
+		
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" UPDATE ").append(Product.class.getName()).append(" P ");
+		sql.append(" SET P.status = 'active' " );
+		sql.append(" WHERE P.category.id = :categoryId ");
+		
+		em.getTransaction().begin();
+		em.createQuery(sql.toString())
+			.setParameter("categoryId", category.getId())
+			.executeUpdate();
+		em.getTransaction().commit();
 	}
 
 	@Override

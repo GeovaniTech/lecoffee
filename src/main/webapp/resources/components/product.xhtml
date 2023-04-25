@@ -22,6 +22,7 @@
 		<composite:attribute name="status" />
 		<composite:attribute name="disableFunction" method-signature="void disable()" />
 		<composite:attribute name="setProductFunction" method-signature="void setProduct()" />
+		<composite:attribute name="onclickButtonEdit" />
 	</composite:interface>
 	
 	<composite:implementation>
@@ -51,6 +52,7 @@
  					rendered="#{cc.attrs.optionsRendered == false ? false : true}" />
 	            
 	            <p:commandButton 
+	           		onclick="#{cc.attrs.onclickButtonEdit}"
 	            	action="#{cc.attrs.disableFunction}"
 	            	icon="pi pi-times"
 	            	styleClass="optionsButtonStyle"

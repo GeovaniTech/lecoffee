@@ -19,8 +19,13 @@
 		
 		<p:remoteCommand 
 			name="openDialogChange"
+			action="#{MBTab_products.initFilters()}"
 			update="dialog-change-product"
 			oncomplete="PF('dialog-change-product').show()"/>
+			
+		<p:remoteCommand 
+			name="initFilters"
+			action="#{MBTab_products.initFilters()}" />
 			
 		<p:remoteCommand 
 			name="clearObjectProduct"
@@ -74,7 +79,7 @@
 						status="#{product.status}"
 						setProductFunction="#{MBTab_products.setProduct(product)}"
 						disableFunction="#{MBTab_products.disable(product)}"
-						dialogChange="PF('dialog-change-product').show()" />
+						dialogChange="openDialogChange();" />
 				</ui:repeat>
 			</h:panelGroup>
 			
@@ -378,9 +383,10 @@
 							<p:selectOneMenu 
 								value="#{MBTab_products.product.category.id}"
 								style="width: 200px; margin-right: 30px;">
+								
 								<f:selectItems 
 									var="category"
-									value="#{MBTab_category.categories}"
+									value="#{MBTab_products.categoriesFilter}"
 									itemLabel="#{category.name}"
 									itemValue="#{category.id}" />
 							</p:selectOneMenu>

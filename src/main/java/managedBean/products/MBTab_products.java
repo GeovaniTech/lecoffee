@@ -3,6 +3,7 @@ package managedBean.products;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -10,7 +11,9 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
+import keep.category.KeepCategorySBean;
 import keep.product.KeepProductSBean;
+import model.Category;
 import model.File;
 import model.Product;
 import to.TOProductFilter;
@@ -28,6 +31,9 @@ public class MBTab_products extends AbstractFilterBean {
 	private List<Product> products;
 	private boolean status;
 	
+	private List<Category> categoriesFilter;
+	private KeepCategorySBean sBeanCategory;
+	
 	private boolean tableView;
 	
 	public MBTab_products() {
@@ -36,7 +42,15 @@ public class MBTab_products extends AbstractFilterBean {
 		this.setNewProduct();
 		sBean = new KeepProductSBean();
 		products = new ArrayList<Product>();
+		categoriesFilter = new ArrayList<Category>();
+		sBeanCategory = new KeepCategorySBean();
 		list();
+	}
+	
+	public void initFilters() {
+		this.setCategoriesFilter(this.getsBeanCategory().list().stream()
+                .filter(category -> "active".equals(category.getStatus()))
+                .collect(Collectors.toList()));
 	}
 	
 	public void save() {
@@ -143,5 +157,21 @@ public class MBTab_products extends AbstractFilterBean {
 
 	public void setTableView(boolean tableView) {
 		this.tableView = tableView;
+	}
+
+	public List<Category> getCategoriesFilter() {
+		return categoriesFilter;
+	}
+
+	public void setCategoriesFilter(List<Category> categoriesFilter) {
+		this.categoriesFilter = categoriesFilter;
+	}
+
+	public KeepCategorySBean getsBeanCategory() {
+		return sBeanCategory;
+	}
+
+	public void setsBeanCategory(KeepCategorySBean sBeanCategory) {
+		this.sBeanCategory = sBeanCategory;
 	}	
 }
