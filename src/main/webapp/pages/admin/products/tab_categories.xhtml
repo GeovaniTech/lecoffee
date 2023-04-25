@@ -16,7 +16,7 @@
 		<p:remoteCommand 
 			name="updateTableCategories" 
 			update="tableCategories"
-			oncomplete="remoteUpdate(); initFilters();" />
+			oncomplete="updateProducts(); remoteUpdate(); initFilters();" />
 		
 		<p:remoteCommand 
 			name="clearObjectCategory"
@@ -111,12 +111,23 @@
 								styleClass="mg-r-5" />
 						
 							<p:commandButton 
+								rendered="#{MBTab_category.category.status eq 'active' ? true : false}"
 								value="#{label.disable}"
 								icon="pi pi-stop"
 								process="@form"
 								action="#{MBTab_category.disable()}"
 								oncomplete="updateTableCategories();"
 								update=" messages"
+								styleClass="disableStyle mg-r-5" />
+								
+							<p:commandButton 
+								rendered="#{MBTab_category.category.status eq 'active' ? false : true}"
+								value="#{label.actived}"
+								icon="pi pi-history"
+								process="@form"
+								action="#{MBTab_category.active()}"
+								oncomplete="updateTableCategories();"
+								update="messages"
 								styleClass="disableStyle mg-r-5" />
 							
 							<p:commandButton 

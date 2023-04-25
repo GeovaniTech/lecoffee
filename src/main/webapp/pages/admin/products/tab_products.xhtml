@@ -14,6 +14,10 @@
 		<h:outputStylesheet library="css" name="/products/tab-products.css"  />
 		
 		<p:remoteCommand 
+			name="updateProducts"
+			action="#{MBTab_products.list()}" />
+		
+		<p:remoteCommand 
 			name="remoteUpdate" 
 			update="container-products, dialog-change-product" />
 		
