@@ -58,17 +58,4 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 		return em.createQuery(sql.toString(), Product.class)
 				.getResultList();
 	}
-
-	@Override
-	public void removeAll() {
-		StringBuilder sql = new StringBuilder();
-		
-		sql.append(" DELETE FROM ");
-		sql.append(Product.class.getName()).append(" P ");
-		
-		em.getTransaction().begin();
-		em.createQuery(sql.toString()).executeUpdate();
-		em.getTransaction().commit();
-	}
-	
 }

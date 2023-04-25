@@ -75,12 +75,6 @@ public class MBTab_products extends AbstractFilterBean {
 		PrimeFaces.current().executeScript("PF('dialog-change-product').show()");
 	}
 	
-	public void removeAll() {
-		sBean.removeAll();
-		
-		list();
-	}
-	
 	public void disable(Product product) {
 		sBean.disable(product);
 		
