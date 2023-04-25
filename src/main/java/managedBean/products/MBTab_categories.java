@@ -6,6 +6,8 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+
 import keep.category.KeepCategorySBean;
 import model.Category;
 import utils.AbstractBean;
@@ -54,12 +56,15 @@ public class MBTab_categories extends AbstractBean {
 		list();
 	}
 	
+	
 	public void list() {
 		this.setCategories(sbean.list());
 	}
 	
-	public void removeAll() {
-		sbean.removeAll();
+	public void remove() {
+		this.getSbean().remove(this.getCategory());
+		
+		this.setNewCategory();
 		list();
 	}
 	

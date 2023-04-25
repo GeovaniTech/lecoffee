@@ -25,7 +25,7 @@
 	</composite:interface>
 	
 	<composite:implementation>
-		<div class="card" style="#{cc.attrs.status eq 'disable' ? 'opacity: 0.33;' : ''}">
+		<div class="card" style="#{cc.attrs.status eq 'disabled' ? 'opacity: 0.33;' : ''}">
             <h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
             
             <div class="infos">

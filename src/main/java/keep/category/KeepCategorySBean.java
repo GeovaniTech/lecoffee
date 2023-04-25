@@ -29,6 +29,31 @@ public class KeepCategorySBean extends AbstractManter implements IkeepCategorySB
 		em.merge(category);
 		em.getTransaction().commit();
 	}
+	
+	@Override
+	public void remove(Category category) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" DELETE FROM ").append(Product.class.getName()).append(" P ");
+		sql.append(" WHERE P.category.id = :categoryId ");
+		
+		em.getTransaction().begin();
+		em.createQuery(sql.toString())
+			.setParameter("categoryId", category.getId())
+			.executeUpdate();
+		em.getTransaction().commit();
+		
+		sql = new StringBuilder();
+		
+		sql.append("DELETE FROM ").append(Category.class.getName()).append(" C ");
+		sql.append(" WHERE C.id = :categoryId ");
+		
+		em.getTransaction().begin();
+		em.createQuery(sql.toString())
+			.setParameter("categoryId", category.getId())
+			.executeUpdate();
+		em.getTransaction().commit();
+	}
 
 	@Override
 	public void disable(Category category) {
@@ -38,7 +63,7 @@ public class KeepCategorySBean extends AbstractManter implements IkeepCategorySB
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" UPDATE ").append(Product.class.getName()).append(" P ");
-		sql.append(" SET P.status = 'disable' " );
+		sql.append(" SET P.status = 'disabled' " );
 		sql.append(" WHERE p.category.id = :categoryId ");
 		
 		em.createQuery(sql.toString())
@@ -63,25 +88,4 @@ public class KeepCategorySBean extends AbstractManter implements IkeepCategorySB
 		return em.createQuery(sql.toString(), Category.class)
 					.getResultList();
 	}
-
-	@Override
-	public void removeAll() {
-		StringBuilder sql = new StringBuilder();
-		
-		sql.append("DELETE FROM ").append(Product.class.getName()).append(" P ");
-		
-		em.getTransaction().begin();
-		em.createQuery(sql.toString()).executeUpdate();
-		em.getTransaction().commit();
-		
-		sql = new StringBuilder();
-		
-		sql.append(" DELETE FROM ");
-		sql.append(Category.class.getName()).append(" C ");
-		
-		em.getTransaction().begin();
-		em.createQuery(sql.toString()).executeUpdate();
-		em.getTransaction().commit();
-	}
-	
 }

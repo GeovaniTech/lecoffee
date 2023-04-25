@@ -37,7 +37,7 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 
 	@Override
 	public void disable(Product product) {
-		product.setStatus("disable");
+		product.setStatus("disabled");
 		change(product);
 	}
 
