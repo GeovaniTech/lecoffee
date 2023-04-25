@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* #################### SELECTONEMENU ####################*/
+/* #################### SELECTONEMENU #################### */
 
 .ui-selectonemenu > * {
 	color: var(--text-mouse) !important;
@@ -29,7 +29,7 @@
 	background-color: var(--background-general-mouse) !important;	
 }
 
-/* #################### BUTTON ####################*/
+/* #################### BUTTON #################### */
 
 .ui-button {
 	color: white !important;
@@ -60,7 +60,29 @@
 	background-color: var(--background-general-mouse) !important;
 }
 
-/* #################### DIALOG ####################*/
+.deleteStyle {
+	background-color: red !important;
+	border-color: red !important;
+	transition: 0.4s !important;
+}
+
+.deleteStyle:hover {
+	background-color: rgb(217, 115, 115) !important;
+	border-color: rgb(217, 115, 115) !important;
+}
+
+.disableStyle {
+    background-color: #fbc02d !important;
+    color: #212529 !important;
+    border: 1px solid #fbc02d !important;
+}
+
+.disableStyle:hover {
+    background-color: #fab710 !important;
+    color: #212529 !important;
+    border-color: #fab710 !important;
+}
+/* #################### DIALOG #################### */
 
 .ui-dialog {
   	position: absolute;
@@ -81,7 +103,7 @@
 	background-color: var(--background-general) !important;
 }
 
-/* #################### INPUTEXT/INPUTFIELD ####################*/
+/* #################### INPUTEXT/INPUTFIELD #################### */
 
 .ui-inputtext, .ui-inputfield {
     font-size: 16px !important;
@@ -93,7 +115,7 @@
     color: var(--text-mouse) !important;
 }
 
-/* #################### DATAPICKER ####################*/
+/* #################### DATAPICKER #################### */
 
 .ui-datepicker-header, .ui-datepicker {
 	background-color: var(--background-general-mouse) !important;
@@ -108,7 +130,7 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	color: var(--green) !important;
 }
 
-/* #################### INPUTTEXTAREA ####################*/
+/* #################### INPUTTEXTAREA #################### */
 
 .ui-inputtextarea {
 	color: var(--text-mouse) !important;
@@ -116,7 +138,7 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	background-color: var(--background-general-mouse) !important;
 }
 
-/* #################### FILEUPLOAD ####################*/
+/* #################### FILEUPLOAD #################### */
 
 .ui-fileupload-buttonbar {
 	border-color: var(--background-general-mouse) !important;
@@ -139,7 +161,7 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	color: var(--text-mouse) !important;
 }
 
-/* #################### TABVIEW/TABS ####################*/
+/* #################### TABVIEW/TABS #################### */
 
 .ui-tabs {
 	background-color: var(--background-general) !important;
@@ -181,19 +203,19 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	color: var(--text-mouse) !important;
 }
 
-/* #################### MESSAGES ####################*/
+/* #################### MESSAGES #################### */
 
 .ui-messages > div  {
 	padding: 10px !important;
 }
 
-/* #################### RATING ####################*/
+/* #################### RATING #################### */
 
 .ui-rating > input {
 	color: var(--green) !important;
 }
 
-/* #################### DATATABLE ####################*/
+/* #################### DATATABLE #################### */
 
 .ui-datatable {
 	width: 100% !important;
@@ -223,7 +245,16 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	border-color: var(--bottom-row-table) !important;
 }
 
-/* #################### OVERLAYPANEl ####################*/
+/* #################### OVERLAYPANEl #################### */
 .ui-overlaypanel {
 	background-color: var(--background-general) !important;
 }
+
+/* #################### TOOLBAR #################### */
+.ui-toolbar {
+	margin-top: 15px !important; 
+	padding: 5px !important;
+	background-color: var(--background-general-mouse) !important;
+	border-color: var(--background-general-mouse) !important;
+}
+

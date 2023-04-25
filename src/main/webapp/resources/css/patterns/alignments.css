@@ -76,3 +76,13 @@
 	justify-content: flex-end;
 	align-items: center;
 }
+
+/* #################### MARGINS #################### */
+
+.mg-r-5 {
+	margin-right: 5px !important;
+}
+
+.mg-r-10 {
+	margin-right: 10px !important;
+}
