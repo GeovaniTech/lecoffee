@@ -108,4 +108,16 @@ public class KeepCategorySBean extends AbstractManter implements IkeepCategorySB
 		return em.createQuery(sql.toString(), Category.class)
 					.getResultList();
 	}
+
+	@Override
+	public List<Category> listActives() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" SELECT C FROM ");
+		sql.append(Category.class.getName()).append(" C ");
+		sql.append(" WHERE C.status = 'active' ");
+		
+		return em.createQuery(sql.toString(), Category.class)
+				.getResultList();
+	}
 }

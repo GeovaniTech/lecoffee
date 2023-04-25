@@ -16,7 +16,7 @@
 		<p:remoteCommand 
 			name="updateTableCategories" 
 			update="tableCategories"
-			oncomplete="remoteUpdate();" />
+			oncomplete="remoteUpdate(); initFilters();" />
 		
 		<p:remoteCommand 
 			name="clearObjectCategory"

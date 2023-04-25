@@ -33,7 +33,7 @@ public class MBTab_products extends AbstractFilterBean {
 	
 	private List<Category> categoriesFilter;
 	private KeepCategorySBean sBeanCategory;
-	
+		
 	private boolean tableView;
 	
 	public MBTab_products() {
@@ -48,9 +48,7 @@ public class MBTab_products extends AbstractFilterBean {
 	}
 	
 	public void initFilters() {
-		this.setCategoriesFilter(this.getsBeanCategory().list().stream()
-                .filter(category -> "active".equals(category.getStatus()))
-                .collect(Collectors.toList()));
+		this.setCategoriesFilter(this.getsBeanCategory().listActives());
 	}
 	
 	public void save() {

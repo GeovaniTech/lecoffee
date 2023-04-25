@@ -14,5 +14,6 @@ public interface IkeepCategorySBean {
 	public void active(Category category);
 	public void remove(Category category);
 	public List<Category> list();
+	public List<Category> listActives();
 	public Category findById(int id);
 }
