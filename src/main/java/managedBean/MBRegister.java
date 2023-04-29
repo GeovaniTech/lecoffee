@@ -4,6 +4,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import io.jsonwebtoken.JwtException;
 import keep.client.KeepClientSBean;
 import utils.AbstractBean;
 import utils.EmailUtil;
@@ -54,13 +55,18 @@ public class MBRegister extends AbstractBean {
 	}
 	
 	public void cadastrar() {
-		String emailFromToken = JwtTokenUtil.getEmailFromToken(this.getToken());
-		
-		if(emailFromToken != null && !emailFromToken.equals("")) {
-			sbean.save(emailFromToken, senha, confirmaSenha);
+		try {
+			String emailFromToken = JwtTokenUtil.getEmailFromToken(this.getToken());
+			
+			if(emailFromToken != null && !emailFromToken.equals("")) {
+				sbean.save(emailFromToken, senha, confirmaSenha);
+			}
+			
+			reset();
+		} catch (JwtException e) {
+			e.printStackTrace();
+			System.out.println(" ################### TOKE EXPIRADO ###################");
 		}
-		
-		reset();
 	}
 	
 	public void reset() {

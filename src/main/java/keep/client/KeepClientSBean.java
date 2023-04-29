@@ -22,6 +22,11 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	
 	@Override
 	public boolean save(String email, String password, String repetedPasswrod) {		
+		if(verifyClient(email)) {
+			msg.emailJaExistente();
+			return false;
+		}
+		
 		Client client = new Client();
 		
 		client.setEmail(email);
