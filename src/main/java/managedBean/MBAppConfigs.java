@@ -148,7 +148,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		TOClient client = getClient();
 		
-		if(client != null) {
+		if(client != null && client.getPreferences() != null) {
 			Cookie darkMode = new Cookie("darkMode", "" + client.getPreferences().isDarkMode());
 			darkMode.setMaxAge(Integer.MAX_VALUE);
 			darkMode.setPath("/");

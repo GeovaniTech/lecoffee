@@ -13,6 +13,7 @@ import to.TOClient;
 import utils.AbstractManter;
 import utils.EmailUtil;
 import utils.Encryption;
+import utils.JwtTokenUtil;
 import utils.RedirectUrl;
 
 @Stateless
@@ -130,7 +131,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				
 				response.addCookie(userCookie);
 				
-				EmailUtil.sendMail(email, "Você fez login", "Olá, você acabou de logar no Lecoffee");
+				EmailUtil.sendMail(email, "LeCoffee - Confirmação de email", "Você acabou de se cadastrar na LeCoffee, para prosseguir confirme o seu cadastro acessando o link abaixo: \n"  + JwtTokenUtil.generateEmailToken(email));
 				
 				if(client.getNivel().equals("admin")) {
 					RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
@@ -142,6 +143,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			}
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			msg.informacoesInvalidas();
 		}
 		
