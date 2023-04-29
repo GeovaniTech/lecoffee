@@ -11,7 +11,7 @@ import model.AppConfigs;
 import model.Client;
 import to.TOClient;
 import utils.AbstractManter;
-import utils.EmailValidator;
+import utils.EmailUtil;
 import utils.Encryption;
 import utils.RedirectUrl;
 
@@ -21,7 +21,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	
 	@Override
 	public boolean save(String email, String password, String repetedPasswrod) {
-		if(!EmailValidator.validateEmail(email)) {
+		if(!EmailUtil.validateEmail(email)) {
 			msg.emailInvalido();
 			return false;
 		}
@@ -96,7 +96,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	public boolean logar(String email, String password) {
 		StringBuilder sql = new StringBuilder();
 		
-		if(!EmailValidator.validateEmail(email)) {
+		if(!EmailUtil.validateEmail(email)) {
 			msg.emailInvalido();
 			return false;
 		}
@@ -129,6 +129,8 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 				
 				response.addCookie(userCookie);
+				
+				EmailUtil.sendMail(email, "Você fez login", "Olá, você acabou de logar no Lecoffee");
 				
 				if(client.getNivel().equals("admin")) {
 					RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
