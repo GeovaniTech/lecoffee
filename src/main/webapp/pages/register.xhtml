@@ -38,6 +38,16 @@
 	
 	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
 		<h:body>
+			<f:metadata>
+				<f:viewParam name="token" value="#{MBRegister.token}" />
+			</f:metadata>
+			
+			<h:form>
+				<p:remoteCommand 
+					autoRun="true"
+					action="#{MBRegister.cadastrar()}"/>
+			</h:form>
+		
 			<p:ajaxStatus>
 				<f:facet name="start">
 					<div class="ajax-loading" />
@@ -82,7 +92,7 @@
 		                	id="btnRegister"
 		                	value="#{label.register}"
 		                	widgetVar="btnRegister"
-		                	action="#{MBRegister.cadastrar()}"
+		                	action="#{MBRegister.fazerValidacoes()}"
 		                	update="messages"
 		                	styleClass="buttonClass"
 		                	style="margin-bottom: 15px;" /> 

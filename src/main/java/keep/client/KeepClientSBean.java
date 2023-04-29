@@ -21,22 +21,7 @@ import utils.RedirectUrl;
 public class KeepClientSBean extends AbstractManter implements IKeepClientSBean, IKeepClientSBeanRemote {
 	
 	@Override
-	public boolean save(String email, String password, String repetedPasswrod) {
-		if(!EmailUtil.validateEmail(email)) {
-			msg.emailInvalido();
-			return false;
-		}
-		
-		if(!password.equals(repetedPasswrod)) {
-			msg.senhasNaoSaoIguais();
-			return false;
-		}
-		
-		if(verifyClient(email)) {
-			msg.emailJaExistente();
-			return false;
-		}
-		
+	public boolean save(String email, String password, String repetedPasswrod) {		
 		Client client = new Client();
 		
 		client.setEmail(email);
@@ -130,8 +115,6 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 				
 				response.addCookie(userCookie);
-				
-				EmailUtil.sendMail(email, "LeCoffee - Confirmação de email", "Você acabou de se cadastrar na LeCoffee, para prosseguir confirme o seu cadastro acessando o link abaixo: \n"  + JwtTokenUtil.generateEmailToken(email));
 				
 				if(client.getNivel().equals("admin")) {
 					RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
