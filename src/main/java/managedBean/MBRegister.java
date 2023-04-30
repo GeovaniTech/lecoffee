@@ -60,13 +60,13 @@ public class MBRegister extends AbstractBean {
 		description.append("Estamos felizes em tê-lo(a) como nosso(a) cliente.</p>");
 		description.append("Para finalizar o seu cadastro, por favor, confirme a sua conta clicando no link abaixo:</p>");
 		description.append("<p><a href=http://localhost:8081/lecoffee/pages/register.xhtml?token=");
-		description.append(JwtTokenUtil.generateEmailToken(email) + "</p>");
-		description.append("Finalizar Cadastro</a> <br>");
+		description.append(JwtTokenUtil.generateEmailToken(email) + ">");
+		description.append("Finalizar Cadastro</a></p>");
 		description.append("<p>Caso você não tenha criado uma conta na LeCoffee ");
 		description.append("ou acredite que este email tenha sido enviado por engano, por favor, desconsidere esta mensagem.</p>");
 		description.append("Atenciosamente, <br>");
 		description.append("A equipe LeCoffee <br>");
-		description.append("<img src=\"/lecoffee/src/main/webapp/resources/images/logo2.png\" alt=\"Logo da LeCoffee\">");
+		description.append("<img src=\"cid:logo2.png\" alt=\"Logo da LeCoffee\">");
 		
 		EmailUtil.sendMail(email, title, description.toString());	
 	}
