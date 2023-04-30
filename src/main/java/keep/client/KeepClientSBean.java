@@ -38,7 +38,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		em.persist(client);
 		em.getTransaction().commit();
 		
-		RedirectUrl.redirecionarPara("/lecoffee/login");
+		RedirectUrl.redirecionarPara("/lecoffee/login/finished");
 		
 		return true;
 	}

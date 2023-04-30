@@ -3,8 +3,8 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 	<url-mapping id="login">
-		<pattern value="/login" />
-		<view-id value="/pages/login.xhtml" />
+		<pattern value="/login/#{registerFinished}" />
+		<view-id value="/pages/login.xhtml?registerFinished=#{registerFinished}" />
 	</url-mapping>
 	
 	<url-mapping id="register">

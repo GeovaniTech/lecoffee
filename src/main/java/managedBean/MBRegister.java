@@ -67,6 +67,8 @@ public class MBRegister extends AbstractBean {
 		description.append("A equipe LeCoffee <br>");
 		
 		EmailUtil.sendMail(email, title, description.toString());	
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("confirmation_email_sent"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void cadastrar() {

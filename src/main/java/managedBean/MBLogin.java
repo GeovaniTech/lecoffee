@@ -1,5 +1,6 @@
 package managedBean;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -13,6 +14,7 @@ import utils.AbstractBean;
 import utils.Cookies;
 import utils.EmailUtil;
 import utils.Encryption;
+import utils.MessageUtil;
 import utils.RedirectUrl;
 
 @Named("MBLogin")
@@ -23,6 +25,7 @@ public class MBLogin extends AbstractBean {
 	private String email;
 	private String password;
 	private KeepClientSBean sBean;
+	private String registerFinished;
 	
 	public MBLogin() {		
 		sBean = new KeepClientSBean();
@@ -67,6 +70,12 @@ public class MBLogin extends AbstractBean {
 		}
 	}
 	
+	public void sendRegisterFinishedMessage() {
+		if(this.getRegisterFinished().equals("finished")) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("registration_completed_successfully"), null, FacesMessage.SEVERITY_INFO);
+		}
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -89,5 +98,13 @@ public class MBLogin extends AbstractBean {
 
 	public void setsBean(KeepClientSBean sBean) {
 		this.sBean = sBean;
-	}	
+	}
+
+	public String getRegisterFinished() {
+		return registerFinished;
+	}
+
+	public void setRegisterFinished(String registerFinished) {
+		this.registerFinished = registerFinished;
+	}
 }

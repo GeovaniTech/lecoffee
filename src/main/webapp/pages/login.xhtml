@@ -47,10 +47,25 @@
 				<f:facet name="complete" />
 			</p:ajaxStatus>
 			
-			<p:remoteCommand 
-				autoRun="false"
-				name="updateConfigs"
-				action="#{MBAppConfigs.updateConfigs()}"/>			
+			<f:metadata>
+				<f:viewParam name="registerFinished" value="#{MBLogin.registerFinished}"></f:viewParam>
+			</f:metadata>
+
+				<p:remoteCommand 
+					autoRun="true"
+					action="#{MBLogin.sendRegisterFinishedMessage()}"
+					update="formLogin:messages" />
+			
+			<h:form>
+
+					
+				<p:remoteCommand 
+					autoRun="false"
+					name="updateConfigs"
+					action="#{MBAppConfigs.updateConfigs()}"/>				
+			</h:form>
+			
+		
 			
 			<div class="container">
 				<div class="logo horizontal-center">
@@ -60,7 +75,7 @@
 				<div class="center">
 					<h2>#{label.welcome}</h2>
 					
-					<h:form class="form">
+					<h:form id="formLogin" class="form">
 			        	<p:messages 
 			        		id="messages" 
 			        		autoUpdate="true" 
