@@ -71,7 +71,7 @@ public class MBLogin extends AbstractBean {
 	}
 	
 	public void sendRegisterFinishedMessage() {
-		if(this.getRegisterFinished().equals("finished")) {
+		if(this.getRegisterFinished() != null && this.getRegisterFinished().equals("finished")) {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("registration_completed_successfully"), null, FacesMessage.SEVERITY_INFO);
 		}
 	}
