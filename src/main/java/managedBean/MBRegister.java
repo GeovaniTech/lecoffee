@@ -66,7 +66,6 @@ public class MBRegister extends AbstractBean {
 		description.append("ou acredite que este email tenha sido enviado por engano, por favor, desconsidere esta mensagem.</p>");
 		description.append("Atenciosamente, <br>");
 		description.append("A equipe LeCoffee <br>");
-		description.append("<img src=\"cid:logo2.png\" alt=\"Logo da LeCoffee\">");
 		
 		EmailUtil.sendMail(email, title, description.toString());	
 	}
