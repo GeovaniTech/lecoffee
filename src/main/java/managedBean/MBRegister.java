@@ -1,7 +1,6 @@
 package managedBean;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import io.jsonwebtoken.JwtException;
@@ -51,15 +50,27 @@ public class MBRegister extends AbstractBean {
 	}
 	
 	public void sendConfirmationToken() {
-		EmailUtil.sendMail(email, "LeCoffee - Confirmação de email", "Você acabou de se cadastrar na LeCoffee, para prosseguir confirme o seu cadastro acessando o link abaixo: \n" + "http://localhost:8081/lecoffee/pages/register.xhtml?token=" + JwtTokenUtil.generateEmailToken(email));	
+		String title = "LeCoffee - Confirmação de email";
+		
+		StringBuilder description = new StringBuilder();
+		
+		description.append("Você acabou de se cadastrar na LeCoffee, ");
+		description.append("para prosseguir confirme o seu cadastro acessando o link abaixo: \n");
+		description.append("<a href=http://localhost:8081/lecoffee/pages/register.xhtml?token=");
+		description.append(JwtTokenUtil.generateEmailToken(email));
+		description.append(">Finalizar Cadastro</a>");
+		
+		EmailUtil.sendMail(email, title, description.toString());	
 	}
 	
 	public void cadastrar() {
 		try {
-			String emailFromToken = JwtTokenUtil.getEmailFromToken(this.getToken());
-			
-			if(emailFromToken != null && !emailFromToken.equals("")) {
-				sbean.save(emailFromToken, senha, confirmaSenha);
+			if(this.getToken() != null) {
+				String emailFromToken = JwtTokenUtil.getEmailFromToken(this.getToken());
+				
+				if(emailFromToken != null && !emailFromToken.equals("")) {
+					sbean.save(emailFromToken, senha, confirmaSenha);
+				}
 			}
 			
 			reset();
@@ -76,6 +87,7 @@ public class MBRegister extends AbstractBean {
 		this.setToken(null);
 	}
 	
+	//Getters and Setters
 	public String getEmail() {
 		return email;
 	}
@@ -100,11 +112,9 @@ public class MBRegister extends AbstractBean {
 	public void setSbean(KeepClientSBean sbean) {
 		this.sbean = sbean;
 	}
-
 	public String getToken() {
 		return token;
 	}
-
 	public void setToken(String token) {
 		this.token = token;
 	}

@@ -40,11 +40,11 @@ public class EmailUtil {
         		};
         	});
         	
-        	Message message = new MimeMessage(session);
+        	MimeMessage message = new MimeMessage(session);
         	message.setFrom(new InternetAddress(myAccountEmail));
         	message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
         	message.setSubject(title);
-        	message.setText(description);
+        	message.setText(description, "UTF-8", "html");
         	
         	Transport.send(message);
         	
