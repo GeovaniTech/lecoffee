@@ -2,7 +2,7 @@ package utils;
 
 import java.io.Serializable;
 
-public class AbstractFilterBean extends LeCoffeeSession implements Serializable, Message {
+public class AbstractFilterBean extends LeCoffeeSession implements Serializable {
 	private static final long serialVersionUID = 8971275979039568812L;
 	
 	private boolean toggleFilter = false;

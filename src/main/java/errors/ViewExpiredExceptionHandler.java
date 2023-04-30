@@ -7,15 +7,11 @@ import javax.faces.context.ExceptionHandlerWrapper;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
-
 import java.util.Iterator;
 import java.util.Map;
-
 import javax.faces.FacesException;
-
-import utils.Message;
  
-public class ViewExpiredExceptionHandler extends ExceptionHandlerWrapper implements Message {
+public class ViewExpiredExceptionHandler extends ExceptionHandlerWrapper {
 
     private ExceptionHandler wrapped;
     

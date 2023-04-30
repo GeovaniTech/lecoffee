@@ -3,7 +3,7 @@ package utils;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public class AbstractManter extends LeCoffeeSession implements Message {
+public class AbstractManter extends LeCoffeeSession  {
 	@PersistenceContext(unitName = "lecoffee")
 	public EntityManager em;
 	

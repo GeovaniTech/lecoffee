@@ -3,6 +3,7 @@ package keep.client;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,7 @@ import to.TOClient;
 import utils.AbstractManter;
 import utils.EmailUtil;
 import utils.Encryption;
-import utils.JwtTokenUtil;
+import utils.MessageUtil;
 import utils.RedirectUrl;
 
 @Stateless
@@ -23,7 +24,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	@Override
 	public boolean save(String email, String password, String repetedPasswrod) {		
 		if(verifyClient(email)) {
-			msg.emailJaExistente();
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("existing_email"), null, FacesMessage.SEVERITY_ERROR);
 			return false;
 		}
 		
@@ -88,7 +89,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		StringBuilder sql = new StringBuilder();
 		
 		if(!EmailUtil.validateEmail(email)) {
-			msg.emailInvalido();
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_email"), null, FacesMessage.SEVERITY_ERROR);
 			return false;
 		}
 		
@@ -132,7 +133,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			msg.informacoesInvalidas();
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_information"), null, FacesMessage.SEVERITY_ERROR);
 		}
 		
 		return false;

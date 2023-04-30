@@ -6,9 +6,11 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.faces.application.FacesMessage;
 
 import model.Product;
 import utils.AbstractManter;
+import utils.MessageUtil;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -24,7 +26,7 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 			em.persist(product);
 			em.getTransaction().commit();
 		} else {
-			msg.informacoesInvalidas();
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_information"), null, FacesMessage.SEVERITY_ERROR);
 		}
 	}
 

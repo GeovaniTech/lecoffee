@@ -1,6 +1,7 @@
 package managedBean;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 
 import io.jsonwebtoken.JwtException;
@@ -8,6 +9,7 @@ import keep.client.KeepClientSBean;
 import utils.AbstractBean;
 import utils.EmailUtil;
 import utils.JwtTokenUtil;
+import utils.MessageUtil;
 
 @Named("MBRegister")
 @SessionScoped
@@ -26,22 +28,19 @@ public class MBRegister extends AbstractBean {
 	
 	public boolean fazerValidacoes() {
 		if(!EmailUtil.validateEmail(email)) {
-			msg.emailInvalido();
-			return false;
-		}
-		
-		if(!EmailUtil.validateEmail(email)) {
-			msg.emailInvalido();
+			
+			System.out.println(MessageUtil.getMessageFromProperties("invalid_email"));
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_email"), null, FacesMessage.SEVERITY_ERROR);
 			return false;
 		}
 		
 		if(!senha.equals(confirmaSenha)) {
-			msg.senhasNaoSaoIguais();
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("password_are_not_the_same"), null, FacesMessage.SEVERITY_WARN);
 			return false;
 		}
 		
 		if(sbean.verifyClient(email)) {
-			msg.emailJaExistente();
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("existing_email"), null, FacesMessage.SEVERITY_ERROR);
 			return false;
 		}
 		
