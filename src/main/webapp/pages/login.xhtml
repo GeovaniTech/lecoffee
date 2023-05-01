@@ -51,22 +51,11 @@
 				<f:viewParam name="registerFinished" value="#{MBLogin.registerFinished}"></f:viewParam>
 			</f:metadata>
 
-				<p:remoteCommand 
-					autoRun="true"
-					action="#{MBLogin.sendRegisterFinishedMessage()}"
-					update="formLogin:messages" />
-			
-			<h:form>
-
-					
-				<p:remoteCommand 
-					autoRun="false"
-					name="updateConfigs"
-					action="#{MBAppConfigs.updateConfigs()}"/>				
-			</h:form>
-			
+			<p:remoteCommand 
+				autoRun="true"
+				action="#{MBLogin.sendRegisterFinishedMessage()}"
+				update="formLogin:messages" />
 		
-			
 			<div class="container">
 				<div class="logo horizontal-center">
 					<h1><span>Le</span>Coffee</h1>
@@ -104,8 +93,7 @@
 				           	action="#{MBLogin.logar()}"
 				           	update="messages"
 				           	styleClass="buttonClass"
-				           	style="margin-bottom: 15px;"
-				           	oncomplete="updateConfigs();" />
+				           	style="margin-bottom: 15px;" />
 					</h:form>						
 					
 					<a href="/lecoffee/register">#{label.register}</a>
