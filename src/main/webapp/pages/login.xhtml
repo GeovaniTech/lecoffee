@@ -25,20 +25,11 @@
 		<h:outputStylesheet library="css" name="/patterns/alignments.css" />
 		<h:outputStylesheet library="css" name="/patterns/components-primefaces.css" />
 		<h:outputStylesheet library="css" name="/login/access.css" />
-		
-		<c:choose>
-			<c:when test="#{MBAppConfigs.appConfigs.darkMode eq 'true'}">
-				<h:outputStylesheet library="css" name="/colors/dark-mode/colors.css" />
-			</c:when>
-			
-			<c:otherwise>
-				<h:outputStylesheet library="css" name="/colors/light-mode/colors.css" />
-			</c:otherwise>
-		</c:choose>	
+		<h:outputStylesheet library="css" name="#{MBAppConfigs.appConfigs.darkMode ? '/colors/dark-mode/colors.css' : '/colors/light-mode/colors.css'}" />	
 	</h:head>
 	
-	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
-		<h:body>	
+	<h:body>	
+		<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
 			<p:ajaxStatus>
 				<f:facet name="start">
 					<div class="ajax-loading" />
@@ -51,10 +42,12 @@
 				<f:viewParam name="registerFinished" value="#{MBLogin.registerFinished}"></f:viewParam>
 			</f:metadata>
 
-			<p:remoteCommand 
-				autoRun="true"
-				action="#{MBLogin.sendRegisterFinishedMessage()}"
-				update="formLogin:messages" />
+			<h:form>
+				<p:remoteCommand 
+					autoRun="true"
+					action="#{MBLogin.sendRegisterFinishedMessage()}"
+					update="formLogin:messages" />
+			</h:form>
 		
 			<div class="container">
 				<div class="logo horizontal-center">
@@ -104,7 +97,7 @@
 		            <a href="#"><i class="fi fi-brands-instagram"></i></a>
 		            <a href="#"><i class="fi fi-brands-facebook"></i></a>
 		        </div>
-			</div>    	
-		</h:body>
-	</f:view>
+			</div>   
+		</f:view>	
+	</h:body>
 </html>
