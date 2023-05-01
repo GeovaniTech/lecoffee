@@ -43,8 +43,10 @@ public class MBTab_products extends AbstractFilterBean {
 		sBean = new KeepProductSBean();
 		products = new ArrayList<Product>();
 		categoriesFilter = new ArrayList<Category>();
-		sBeanCategory = new KeepCategorySBean();
+		this.setsBeanCategory(new KeepCategorySBean());
+		
 		list();
+		initFilters();
 	}
 	
 	public void initFilters() {

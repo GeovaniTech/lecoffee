@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+
+	<h:body>
+		<p:dialog
+			id="dialog-filters-products"
+			widgetVar="dialog-filters-products"
+			header="#{label.filters}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			modal="true">
+			
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh; width: 100%;">
+				
+				<h:form>
+					<components:inputFilter 
+						label="#{label.name}"
+						toInputFilter="#{MBTab_products.productFilter.name}" />
+					
+					<components:numberRange 
+						label="#{label.price}"
+						toInputNumberFilter="#{MBTab_products.productFilter.price}" />
+					
+					<h:panelGrid columns="1">
+						<p>#{label.category}</p>
+						<p:selectOneMenu>
+							<f:selectItems 
+								var="category"
+								value="#{MBTab_products.categoriesFilter}"
+								itemLabel="#{category.name}"
+								itemValue="#{category}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</h:form>
+			</p:scrollPanel>
+		</p:dialog>
+	</h:body>
+
+</html>

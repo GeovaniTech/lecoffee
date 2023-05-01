@@ -49,6 +49,11 @@
 					oncomplete="remoteUpdate()"
 					icon="pi pi-eye"
 					styleClass="optionsButtonStyle" />
+				
+				<p:commandButton 
+					icon="pi pi-filter"
+					styleClass="optionsButtonStyle"
+					onclick="PF('dialog-filters-products').show()" />
 			</h:form>
 		</div>
 		
@@ -413,5 +418,7 @@
 				</h:form>
 			</p:scrollPanel>		
 		</p:dialog>
+		
+		<ui:include src="dialog_filters.xhtml" />
 	</h:body>
 </html>
