@@ -26,8 +26,8 @@
 		<h:outputStylesheet library="css" name="#{MBAppConfigs.appConfigs.darkMode ? '/colors/dark-mode/colors.css' : '/colors/light-mode/colors.css'}" />	
 	</h:head>
 	
-	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
-		<h:body id="body">
+	<h:body id="body">
+		<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
 			<p:growl id="growl" showDetail="true" />
 			
 			<div id="menu">
@@ -49,6 +49,6 @@
 
 				</ui:insert>
 			</div>
-		</h:body>
-	</f:view>
+		</f:view>
+	</h:body>
 </html>
