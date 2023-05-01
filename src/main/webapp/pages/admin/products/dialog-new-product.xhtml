@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+
+	<h:body>
+		<p:dialog
+			id="dialog-new-product"
+			header="#{label.products}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			modal="true"
+			widgetVar="dialog-new-product">
+			
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh; width: 100%;">
+				
+				<h:form 
+					class="vertical-left general-dialog-forms">
+					
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
+		
+					<h:outputLabel value="#{label.name}" class="label" for="name" />
+					<p:inputText 
+						id="name"
+						value="#{MBTab_products.product.name}"
+						required="true"
+						requiredMessage="#{label.name_required}"
+						placeholder="#{label.insert_the} #{label.name}" />
+
+					<h:outputLabel value="#{label.price}" class="label" for="price" />
+					<p:inputText
+						id="price"
+						value="#{MBTab_products.product.price}"
+						required="true"
+						requiredMessage="#{label.price_required}"
+						placeholder="#{label.insert_the} #{label.price}" />
+					
+					<h:outputLabel value="#{label.description}" class="label" for="description" />
+					<p:inputTextarea 
+						id="description"
+						value="#{MBTab_products.product.description}"
+						required="true"
+						requiredMessage="#{label.description_required}"
+						placeholder="#{label.insert_the} #{label.description}"/>
+					
+					<div class="horizontal-top-left">
+						<div class="vertical-left">
+							<h:outputLabel value="#{label.category}" class="label" for="category" />
+							<p:selectOneMenu 
+								value="#{MBTab_products.product.category.id}"
+								style="width: 200px; margin-right: 30px;">
+								<f:selectItems 
+									var="category"
+									value="#{MBTab_products.categoriesFilter}"
+									itemLabel="#{category.name}"
+									itemValue="#{category.id}" />
+							</p:selectOneMenu>
+						</div>
+						<div class="vertical-left">
+							<h:outputText value="#{label.status}" class="label" for="status" />
+							<p:toggleSwitch 
+								id="status"
+								value="#{MBTab_products.status}"
+								style="width: 47px !important;"/>
+						</div>
+					</div>
+					
+					<h:outputLabel value="#{label.upload_files}" class="label" />
+					<p:fileUpload
+						multiple="true"
+						mode="advanced" 
+						showButtons="false"
+						label="#{label.search}" 
+						cancelLabel="#{label.cancel}"
+						uploadLabel="#{label.upload_files}"
+						update="growl"
+						listener="#{MBTab_products.addImage}" 
+						process="@this"
+					 />
+					
+					<p:commandButton 
+						value="#{label.finish_registration}"
+						process="@form"
+						action="#{MBTab_products.save()}"
+						update=" messages, @form"
+						oncomplete="remoteUpdate()" />
+				</h:form>
+			</p:scrollPanel>
+		</p:dialog>	
+	</h:body>
+</html>
