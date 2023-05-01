@@ -24,16 +24,7 @@
 		<h:outputStylesheet library="css" name="/patterns/alignments.css" />
 		<h:outputStylesheet library="css" name="/patterns/components-primefaces.css" />
 		<h:outputStylesheet library="css" name="/client/layout/body.css" />
-		
-		<c:choose>
-			<c:when test="#{MBAppConfigs.appConfigs.darkMode eq 'true'}">
-				<h:outputStylesheet library="css" name="/colors/dark-mode/colors.css" />
-			</c:when>
-			
-			<c:otherwise>
-				<h:outputStylesheet library="css" name="/colors/light-mode/colors.css" />
-			</c:otherwise>
-		</c:choose>		
+		<h:outputStylesheet library="css" name="#{MBAppConfigs.appConfigs.darkMode ? '/colors/dark-mode/colors.css' : '/colors/light-mode/colors.css'}" />	
 	</h:head>
 	
 	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	

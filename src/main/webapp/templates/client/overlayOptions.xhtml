@@ -20,15 +20,20 @@
 				<div class="select-language align-options">
 					<h:form>
 						<h5>#{label.language}</h5>
-						<p:selectOneMenu value="#{MBAppConfigs.appConfigs.language}"
+						<p:selectOneMenu 
+							value="#{MBAppConfigs.appConfigs.language}"
 							style="width: 200px;">
 	
-							<f:selectItems var="language" value="#{MBAppConfigs.localeList}"
+							<f:selectItems 
+								var="language" 
+								value="#{MBAppConfigs.localeList}"
 								itemLabel="#{language.language eq 'pt' ? label.portuguese : label.english}"
 								itemValue="#{language.language}" />
-	
-							<p:ajax render="all" listener="#{MBAppConfigs.refreshPage()}"
-								oncomplete="updateConfigs()" />
+							
+								<p:ajax 
+									render="all" 
+									listener="#{MBAppConfigs.refreshPage()}"
+									oncomplete="updateConfigs()" />
 						</p:selectOneMenu>
 					</h:form>
 				</div>
@@ -36,11 +41,15 @@
 				<div class="select-theme align-options">
 					<h:form>
 						<h5>#{label.dark_mode}</h5>
-						<p:toggleSwitch value="#{MBAppConfigs.appConfigs.darkMode}"
-							valueChangeListener="#{MBAppConfigs.setNewPreferences()}"
-							onIcon="pi pi-sun" offIcon="pi pi-moon" styleClass="dark-mode">
+						<p:toggleSwitch 
+							value="#{MBAppConfigs.appConfigs.darkMode}"
+							onIcon="pi pi-sun" 
+							offIcon="pi pi-moon" 
+							styleClass="dark-mode">
 	
-							<p:ajax event="change" process="@form"
+							<p:ajax 
+								event="change" 
+								process="@form"
 								oncomplete="updateConfigs()" />
 						</p:toggleSwitch>
 					</h:form>

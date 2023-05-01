@@ -12,7 +12,6 @@ import keep.client.KeepClientSBean;
 import to.TOClient;
 import utils.AbstractBean;
 import utils.Cookies;
-import utils.EmailUtil;
 import utils.Encryption;
 import utils.MessageUtil;
 import utils.RedirectUrl;
@@ -28,28 +27,37 @@ public class MBLogin extends AbstractBean {
 	private String registerFinished;
 	
 	public MBLogin() {		
-		sBean = new KeepClientSBean();
+		this.setsBean(new KeepClientSBean());
 		redirectUserFromCookie();
 	}
 
 	public void logar() {
-		sBean.logar(email, password);
+		this.getsBean().logar(this.getEmail(), this.getPassword());
 	}
 	
 	public void redirectUserFromCookie() {
-		String user = Cookies.getUserCookie();
+		String userEmail = Cookies.getUserCookie();
 		
-		if(user != null && !user.equals("")) {
-			TOClient toClient = sBean.findByEmail(Encryption.decryptNormalText(user));
-			
-			getSession().setAttribute("client", toClient);
-			
-			if(toClient.getNivel().equals("admin")) {
-				RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
-			} else {
+		if(userEmail != null && !userEmail.equals("")) {
+			try {
+				getSession().setAttribute("client", this.getsBean().findByEmail(Encryption.decryptNormalText(userEmail)));
+			} catch (Exception e) {
+				// User not found
+				removeUserFromCookie();
+				
 				RedirectUrl.redirecionarPara("/lecoffee/home");
 			}
 		}
+	}
+	
+	public void removeUserFromCookie() {
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		
+		Cookie userSession = new Cookie("userSession", null);
+		userSession.setMaxAge(1);
+		userSession.setPath("/");
+		
+		response.addCookie(userSession);
 	}
 	
 	public void createCookiePreferences() {
@@ -76,6 +84,7 @@ public class MBLogin extends AbstractBean {
 		}
 	}
 	
+	//Getters and Setters
 	public String getEmail() {
 		return email;
 	}

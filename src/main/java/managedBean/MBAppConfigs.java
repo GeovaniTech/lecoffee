@@ -36,70 +36,69 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	private KeepAppConfigs appConfigsSBean;
 	
 	public MBAppConfigs() {
+		//Attributes
 		this.setAppConfigs(new AppConfigs());
-		
 		this.setLocaleList(new ArrayList<Locale>());
-		this.setClientSBean(new KeepClientSBean());
-		this.setAppConfigsSBean(new KeepAppConfigs());
-		
 		this.getLocaleList().add(new Locale("pt"));
 		this.getLocaleList().add(new Locale("en"));
 		
-		updateConfigs();
-		redirectUserFromCookie();
+		//SBeans
+		this.setClientSBean(new KeepClientSBean());
+		this.setAppConfigsSBean(new KeepAppConfigs());
+		
+		//Initial Configurations
+		this.getAppConfigs().setLanguage(Locale.getDefault().getLanguage());
+		this.getAppConfigs().setDarkMode(false);
+		
+		//Getting User preferences
+		this.updateConfigs();
+		
+		//Redirecting if user is logged
+		this.redirectUserFromCookie();
 	}
 
  	public void updateConfigs() {
-		try {
-			TOClient client = getClient();
-			
-			if(client != null) {
-				this.getAppConfigs().setDarkMode(client.getPreferences().isDarkMode());
-				this.getAppConfigs().setLanguage(client.getPreferences().getLanguage());
-			} else {
-				if(Cookies.getLanguageCookie() != null) {
-					this.getAppConfigs().setLanguage(Cookies.getLanguageCookie());
-				} else {
-					this.getAppConfigs().setLanguage(Locale.getDefault().getLanguage());
-				}
-				
-				this.getAppConfigs().setDarkMode(Cookies.getDarkModeCookie());
-			}
-		} catch (Exception e) {
-			if(Cookies.getLanguageCookie() != null) {
-				this.getAppConfigs().setLanguage(Cookies.getLanguageCookie());
-			} else {
-				this.getAppConfigs().setLanguage(Locale.getDefault().getLanguage());
-			}
-			
-			this.getAppConfigs().setDarkMode(Cookies.getDarkModeCookie());
-		}
+ 		if(!this.getConfigsFromUser()) {
+ 			this.getConfigsFromCookies();
+ 		}
 	}
-	
-	public void logout() {
-		createCookiePreferences();
-		
-		Cookie userSession = new Cookie("userSession", null);
-		userSession.setMaxAge(60*60*24*30);
-		userSession.setPath("/");
-		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		
-		response.addCookie(userSession);
-		
-		finishSession();
-		
-		RedirectUrl.redirecionarPara("/lecoffee/login");
-	}
+ 	
+ 	public boolean getConfigsFromUser() {
+ 		TOClient client = getClient();
+ 		
+ 		if(client != null && client.getPreferences() != null) {
+ 			this.setAppConfigs(client.getPreferences());
+ 		
+ 			return true;
+ 		}
+ 		return false;
+ 	}
+ 	
+ 	public boolean getConfigsFromCookies() {
+ 		this.getAppConfigs().setDarkMode(Cookies.getDarkModeCookie());
+ 		
+ 		if(Cookies.getLanguageCookie() != null) {
+ 			this.getAppConfigs().setLanguage(Cookies.getLanguageCookie());
+ 			
+ 			return true;
+ 		}
+ 		return false;
+ 	}
 	
 	public void redirectUserFromCookie() {
-		String user = Cookies.getUserCookie();
+		String userEmail = Cookies.getUserCookie();
 		
-		if(user != null && !user.isEmpty()) {
-			TOClient toClient = this.getClientSBean().findByEmail(Encryption.decryptNormalText(user));
+		if(userEmail != null && !userEmail.equals("")) {
+			try {
+				getSession().setAttribute("client", this.getClientSBean().findByEmail(Encryption.decryptNormalText(userEmail)));
+			} catch (Exception e) {
+				// User not found
+				removeUserFromCookie();
+				
+				RedirectUrl.redirecionarPara("/lecoffee/home");
+			}
 			
-			getSession().setAttribute("client", toClient);
-			
-			if(toClient.getNivel().equals("admin")) {
+			if(this.getClientLogged().getNivel().equals("admin")) {
 				RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
 			} else {
 				RedirectUrl.redirecionarPara("/lecoffee/home");
@@ -108,22 +107,53 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	}
 	
 	public void setNewPreferences() {
-		TOClient client = getClient();
-		
-		if(client != null) {
-			if(client.getPreferences() == null) {
-				this.getAppConfigsSBean().save(this.getAppConfigs());
-			} else {
-				this.getAppConfigs().setId(client.getPreferences().getId());
+		if(this.getClientLogged() != null) {
+			if(this.getClientLogged().getPreferences() != null) {
+				this.getAppConfigs().setId(this.getClientLogged().getPreferences().getId());
 				this.getAppConfigsSBean().change(this.getAppConfigs());
+			} else {
+				
+				this.getAppConfigsSBean().save(this.getAppConfigs());
+				this.getClientLogged().setPreferences(this.getAppConfigs());
 			}
 			
-			client.setPreferences(this.getAppConfigs());
-			
-			this.getClientSBean().change(client);
+			this.getClientSBean().change(this.getClientLogged());
 		}
 		
 		createCookiePreferences();
+	}
+	
+	public void createCookiePreferences() {
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+	
+		Cookie darkMode = new Cookie("darkMode", "" + this.getAppConfigs().isDarkMode());
+		darkMode.setMaxAge(Integer.MAX_VALUE);
+		darkMode.setPath("/");
+		
+		Cookie language = new Cookie("language", this.getAppConfigs().getLanguage());
+		language.setMaxAge(Integer.MAX_VALUE);
+		language.setPath("/");
+		
+		response.addCookie(darkMode);
+		response.addCookie(language);
+	}
+	
+	public void logout() {
+		removeUserFromCookie();
+		
+		finishSession();
+		
+		RedirectUrl.redirecionarPara("/lecoffee/login");
+	}
+	
+	public void removeUserFromCookie() {
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		
+		Cookie userSession = new Cookie("userSession", null);
+		userSession.setMaxAge(1);
+		userSession.setPath("/");
+		
+		response.addCookie(userSession);
 	}
 
 	public String getBrazilianCurrency(Double value) {
@@ -142,25 +172,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
 	}
-	
-	public void createCookiePreferences() {
-		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		TOClient client = getClient();
 		
-		if(client != null && client.getPreferences() != null) {
-			Cookie darkMode = new Cookie("darkMode", "" + client.getPreferences().isDarkMode());
-			darkMode.setMaxAge(Integer.MAX_VALUE);
-			darkMode.setPath("/");
-			
-			Cookie language = new Cookie("language", "" + client.getPreferences().getLanguage());
-			language.setMaxAge(Integer.MAX_VALUE);
-			language.setPath("/");
-			
-			response.addCookie(darkMode);
-			response.addCookie(language);
-		}
-	}
-	
 	public boolean isUserLogged() {
 		try {
 			TOClient client = getClient();
