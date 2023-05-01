@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+
+	<h:body>
+		<p:dialog
+			id="dialog-new-category"
+			widgetVar="dialog-new-category"
+			header="#{label.categories}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			modal="true"
+			width="720px">
+			
+			<h:form>
+				<div class="vertical-left container-categories">
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
+		        		
+					<h:outputLabel value="#{label.name}" class="label" for="name" />
+					
+					<p:inputText 
+						id="name"
+						value="#{MBTab_category.category.name}"
+						required="true"
+						requiredMessage="#{label.name_required}"
+						placeholder="#{label.insert_the} #{label.name}" />
+						
+					<p:commandButton 
+						value="#{label.finish_registration}"
+						process="@form"
+						action="#{MBTab_category.save()}"
+						oncomplete="updateTableCategories();"
+						update="messages, @form" />
+				</div>
+			</h:form>
+		</p:dialog>	
+	</h:body>
+</html>

@@ -22,6 +22,11 @@
 			name="clearObjectCategory"
 			action="#{MBTab_category.setNewCategory()}"
 			update="dialog-new-category" />
+
+		<p:remoteCommand 
+			name="openDialogEditCategory"
+			update="dialog-change-category"
+			oncomplete="PF('editCategory').show()" />
 				
 		<div class="top-buttons">				
 			<h:form class="form-top-buttons">
@@ -32,123 +37,7 @@
 					 styleClass="optionsButtonStyle" />
 			</h:form>
 		</div>
-			
-		<p:dialog
-			id="dialog-new-category"
-			widgetVar="dialog-new-category"
-			header="#{label.categories}"
-			dynamic="true"
-			resizable="false"
-			draggable="false"
-			position="center"
-			modal="true"
-			width="720px">
-			
-			<h:form>
-				<div class="vertical-left container-categories">
-					<p:messages 
-						id="messages" 
-						showDetail="false"
-						showIcon="false"
-		        		autoUpdate="true"  />
-		        		
-					<h:outputLabel value="#{label.name}" class="label" for="name" />
-					
-					<p:inputText 
-						id="name"
-						value="#{MBTab_category.category.name}"
-						required="true"
-						requiredMessage="#{label.name_required}"
-						placeholder="#{label.insert_the} #{label.name}" />
-						
-					<p:commandButton 
-						value="#{label.finish_registration}"
-						process="@form"
-						action="#{MBTab_category.save()}"
-						oncomplete="updateTableCategories();"
-						update="messages, @form" />
-				</div>
-			</h:form>
-		</p:dialog>
-		
-		<p:dialog
-			id="dialog-change-category"
-			widgetVar="editCategory"
-			header="#{label.categories}"
-			dynamic="true"
-			resizable="false"
-			draggable="false"
-			position="center"
-			modal="true"
-			width="720px">
-		
-			<h:form>
-				<div class="vertical-left container-categories">
-					<p:messages 
-						id="messages" 
-						showDetail="false"
-						showIcon="false"
-		        		autoUpdate="true"  />
-		        		
-					<h:outputLabel value="#{label.name}" class="label" for="name" />
-					
-					<p:inputText 
-						id="name"
-						value="#{MBTab_category.category.name}"
-						required="true"
-						requiredMessage="#{label.name_required}"
-						placeholder="#{label.insert_the} #{label.name}" />
-						
-					<p:toolbar>
-						<f:facet name="left">
-							<p:commandButton 
-								value="#{label.change}"
-								icon="pi pi-pencil"
-								process="@form"
-								action="#{MBTab_category.change()}"
-								oncomplete="updateTableCategories();"
-								update=" messages"
-								styleClass="mg-r-5" />
-						
-							<p:commandButton 
-								rendered="#{MBTab_category.category.status eq 'active' ? true : false}"
-								value="#{label.disable}"
-								icon="pi pi-stop"
-								process="@form"
-								action="#{MBTab_category.disable()}"
-								oncomplete="updateTableCategories();"
-								update=" messages"
-								styleClass="disableStyle mg-r-5" />
-								
-							<p:commandButton 
-								rendered="#{MBTab_category.category.status eq 'active' ? false : true}"
-								value="#{label.actived}"
-								icon="pi pi-history"
-								process="@form"
-								action="#{MBTab_category.active()}"
-								oncomplete="updateTableCategories();"
-								update="messages"
-								styleClass="disableStyle mg-r-5" />
-							
-							<p:commandButton 
-								value="#{label.remove}"
-								icon="pi pi-trash"
-								process="@form"
-								action="#{MBTab_category.remove()}"
-								oncomplete="updateTableCategories(); PF('editCategory').hide(); "
-								update=" messages"
-								styleClass="deleteStyle" />
-						</f:facet>
-					</p:toolbar>
-				</div>
-			</h:form>
-		</p:dialog>
-		
-		<p:remoteCommand 
-			name="openDialogEditCategory"
-			update="dialog-change-category"
-			oncomplete="PF('editCategory').show()" />
-		
+				
 		<h:form
 			id="tableCategories"
 			style="margin-top: 10px;">
@@ -230,5 +119,8 @@
 				</p:column>
 			</p:dataTable>
 		</h:form>
+		
+		<ui:include src="dialog-new-category.xhtml" />
+		<ui:include src="dialog-change-category.xhtml" />
 	</h:body>
 </html>

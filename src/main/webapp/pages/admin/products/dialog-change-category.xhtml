@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+
+	<h:body>
+		<p:dialog
+			id="dialog-change-category"
+			widgetVar="editCategory"
+			header="#{label.categories}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			modal="true"
+			width="720px">
+		
+			<h:form>
+				<div class="vertical-left container-categories">
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
+		        		
+					<h:outputLabel value="#{label.name}" class="label" for="name" />
+					
+					<p:inputText 
+						id="name"
+						value="#{MBTab_category.category.name}"
+						required="true"
+						requiredMessage="#{label.name_required}"
+						placeholder="#{label.insert_the} #{label.name}" />
+						
+					<p:toolbar>
+						<f:facet name="left">
+							<p:commandButton 
+								value="#{label.change}"
+								icon="pi pi-pencil"
+								process="@form"
+								action="#{MBTab_category.change()}"
+								oncomplete="updateTableCategories();"
+								update=" messages"
+								styleClass="mg-r-5" />
+						
+							<p:commandButton 
+								rendered="#{MBTab_category.category.status eq 'active' ? true : false}"
+								value="#{label.disable}"
+								icon="pi pi-stop"
+								process="@form"
+								action="#{MBTab_category.disable()}"
+								oncomplete="updateTableCategories();"
+								update=" messages"
+								styleClass="disableStyle mg-r-5" />
+								
+							<p:commandButton 
+								rendered="#{MBTab_category.category.status eq 'active' ? false : true}"
+								value="#{label.actived}"
+								icon="pi pi-history"
+								process="@form"
+								action="#{MBTab_category.active()}"
+								oncomplete="updateTableCategories();"
+								update="messages"
+								styleClass="disableStyle mg-r-5" />
+							
+							<p:commandButton 
+								value="#{label.remove}"
+								icon="pi pi-trash"
+								process="@form"
+								action="#{MBTab_category.remove()}"
+								oncomplete="updateTableCategories(); PF('editCategory').hide(); "
+								update=" messages"
+								styleClass="deleteStyle" />
+						</f:facet>
+					</p:toolbar>
+				</div>
+			</h:form>
+		</p:dialog>	
+	</h:body>
+</html>
