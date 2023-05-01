@@ -1,12 +1,13 @@
 @charset "UTF-8";
 
-h1 {
+h1 a {
     font-family: 'Grape Nuts', cursive;
     font-size: 50px;
     color: var(--text-mouse);
+    text-decoration: none;
 }
 
-h1 span {
+h1 a span {
     color: var(--green);
     font-family: 'Grape Nuts', cursive;
 }
