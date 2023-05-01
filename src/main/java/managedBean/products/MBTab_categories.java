@@ -61,7 +61,6 @@ public class MBTab_categories extends AbstractBean {
 		list();
 	}
 	
-	
 	public void list() {
 		this.setCategories(sbean.list());
 	}
@@ -81,19 +80,15 @@ public class MBTab_categories extends AbstractBean {
 	public boolean isOnFilter() {
 		return onFilter;
 	}
-
 	public void setOnFilter(boolean onFilter) {
 		this.onFilter = onFilter;
 	}
-
 	public List<Category> getCategories() {
 		return categories;
 	}
-
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
-
 	public KeepCategorySBean getSbean() {
 		return sbean;
 	}

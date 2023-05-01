@@ -65,8 +65,8 @@
 						value="#{label.finish_registration}"
 						process="@form"
 						action="#{MBTab_category.save()}"
-						oncomplete="updateTableCategories(); clearObjectCategory();"
-						update=" messages" />
+						oncomplete="updateTableCategories();"
+						update="messages, @form" />
 				</div>
 			</h:form>
 		</p:dialog>
