@@ -1,22 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
-	lang="pt-BR"
+	lang="#{MBAppConfigs.appConfigs.language}"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:components="http://java.sun.com/jsf/composite/components"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	
-	<ui:composition template="/templates/admin/layout.xhtml">
-		<ui:define name="name_page">
-			<h:outputText value="#{label.page_not_found}" />
-		</ui:define>
+	<h:head>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LeCoffee</title>
 		
-		<ui:define name="body">
+		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<link rel="shortcut icon" href="/lecoffee/resources/images/logo.ico" type="image/x-icon" />
+		
+		<h:outputStylesheet library="css" name="/patterns/others.css" />
+		<h:outputStylesheet library="css" name="/patterns/texts.css" />
+		<h:outputStylesheet library="css" name="/patterns/alignments.css" />
+		<h:outputStylesheet library="css" name="/patterns/components-primefaces.css" />
+		<h:outputStylesheet library="css" name="/page_not_found/page_not_found.css" />
+		
+		<c:choose>
+			<c:when test="#{MBAppConfigs.appConfigs.darkMode eq 'true'}">
+				<h:outputStylesheet library="css" name="/colors/dark-mode/colors.css" />
+			</c:when>
 			
-		</ui:define>
-	</ui:composition>
+			<c:otherwise>
+				<h:outputStylesheet library="css" name="/colors/light-mode/colors.css" />
+			</c:otherwise>
+		</c:choose>		
+	</h:head>
+	
+	<f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">	
+		<h:body>
+			<div class="container">
+				<div class="logo">
+					<h1><a href="/lecoffee/home"><span>Le</span>Coffee</a></h1>
+				</div>
+				<p>#{label.page_not_found} :(</p>
+				
+				<a href="/lecoffee/home" class="go_home google-icons">
+					<span class="material-symbols-outlined">
+						arrow_back
+					</span>
+					#{label.go_home} 
+				</a>
+			</div>
+		</h:body>
+	</f:view>
 </html>

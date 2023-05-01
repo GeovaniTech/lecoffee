@@ -1,0 +1,43 @@
+body, .container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 95vw;
+	height: 70vh;
+}
+
+h1 a{
+	font-size: 100px;
+	margin-bottom: 20px;
+}
+
+p {
+	font-size: 35px;
+	margin: 20px;
+	text-align: center;
+}
+
+.go_home {
+	width: 90%;
+	padding: 10px;
+	padding-left: 12px;
+	color: var(--text);
+	text-decoration: none;
+	transition: 0.4s;
+	font-size: 18px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	margin: 5px;	
+	background-color: var(--background-general) !important;
+	max-width: 400px;
+	text-align: center;
+}
+
+.go_home:hover {
+	color: var(--text-mouse);
+	background-color: var(--background-general-mouse) !important;
+}
