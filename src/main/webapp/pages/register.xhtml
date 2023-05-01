@@ -41,12 +41,6 @@
 			<f:metadata>
 				<f:viewParam name="token" value="#{MBRegister.token}" />
 			</f:metadata>
-			
-			<h:form>
-				<p:remoteCommand 
-					autoRun="true"
-					action="#{MBRegister.cadastrar()}"/>
-			</h:form>
 		
 			<p:ajaxStatus>
 				<f:facet name="start">
@@ -56,6 +50,13 @@
 				<f:facet name="complete" />
 			</p:ajaxStatus>
 			
+			<h:form>			
+				<p:remoteCommand 
+					autoRun="true"
+					action="#{MBRegister.cadastrar()}"
+					update=":formRegister"/>
+			</h:form>
+			
 			<div class="container">
 				<div class="logo">
 					<h1><span>Le</span>Coffee</h1>
@@ -64,12 +65,12 @@
 				<div class="center">
 					<h2>#{label.welcome}</h2>
 					
-					<h:form class="form">
-			        	<p:messages 
+					<h:form id="formRegister" class="form">
+		        		<p:messages 
 			        		id="messages" 
 			        		autoUpdate="true" 
 			        		style="width: 100%;"
- 					        showIcon="false"
+					        showIcon="false"
 			        		showDetail="false"  />
 			
 		                <h:inputText 

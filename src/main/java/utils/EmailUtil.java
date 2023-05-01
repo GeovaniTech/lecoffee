@@ -4,6 +4,7 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.faces.application.FacesMessage;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -21,7 +22,7 @@ public class EmailUtil {
         return matcher.matches();
     }
     
-    public static void sendMail(String to, String title, String description) {
+    public static void sendMail(String to, String title, String description, String success_message) {
     	try {
         	Properties properties = new Properties();
         	
@@ -30,8 +31,8 @@ public class EmailUtil {
         	properties.put("mail.smtp.host", "smtp.gmail.com");
         	properties.put("mail.smtp.port", "587");
         	
-        	String myAccountEmail = "geovanidebastiani32@gmail.com";
-        	String password = "njnkmbdaclnfxfos";
+        	String myAccountEmail = "devpreetestes@gmail.com";
+        	String password = "qnfjuvzebecatziy";
         	
         	Session session = Session.getInstance(properties, new Authenticator() {
         		@Override
@@ -48,8 +49,10 @@ public class EmailUtil {
         	
         	Transport.send(message);
         	
+        	MessageUtil.sendMessage(success_message, null, FacesMessage.SEVERITY_INFO);
+        	
 		} catch (Exception e) {
-			e.printStackTrace();
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("mail_server_error"), null, FacesMessage.SEVERITY_ERROR);
 			System.out.println(" ################# ERRO NO ENVIO DE EMAILS #################");
 		}
     }

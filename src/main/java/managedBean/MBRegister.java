@@ -4,6 +4,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+
 import io.jsonwebtoken.JwtException;
 import keep.client.KeepClientSBean;
 import utils.AbstractBean;
@@ -66,9 +68,7 @@ public class MBRegister extends AbstractBean {
 		description.append("Atenciosamente, <br>");
 		description.append("A equipe LeCoffee <br>");
 		
-		EmailUtil.sendMail(email, title, description.toString());	
-		
-		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("confirmation_email_sent"), null, FacesMessage.SEVERITY_INFO);
+		EmailUtil.sendMail(email, title, description.toString(), MessageUtil.getMessageFromProperties("confirmation_email_sent"));	
 	}
 	
 	public void cadastrar() {
@@ -82,9 +82,10 @@ public class MBRegister extends AbstractBean {
 			}
 			
 			reset();
-		} catch (JwtException e) {
-			e.printStackTrace();
-			System.out.println(" ################### TOKE EXPIRADO ###################");
+		} catch (Exception e) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("expired_validation_link"), null, FacesMessage.SEVERITY_ERROR);
+			
+			System.out.println(" ################### TOKEN EXPIRADO ###################");
 		}
 	}
 	
