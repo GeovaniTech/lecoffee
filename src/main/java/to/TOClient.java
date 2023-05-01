@@ -1,5 +1,7 @@
 package to;
 
+import java.util.List;
+
 import model.AppConfigs;
 import model.Cart;
 
@@ -9,7 +11,8 @@ public class TOClient {
 	private String email;
 	private String nivel;
 	private AppConfigs preferences;
-	private Cart cart;
+	private List<Cart> carts;
+	private boolean completedRegistration;
 	
 	public int getId() {
 		return id;
@@ -35,17 +38,23 @@ public class TOClient {
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
 	}
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
 	public AppConfigs getPreferences() {
 		return preferences;
 	}
 	public void setPreferences(AppConfigs preferences) {
 		this.preferences = preferences;
+	}
+	public List<Cart> getCarts() {
+		return carts;
+	}
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+	public boolean isCompletedRegistration() {
+		return completedRegistration;
+	}
+	public void setCompletedRegistration(boolean completedRegistration) {
+		this.completedRegistration = completedRegistration;
 	}
 }
 

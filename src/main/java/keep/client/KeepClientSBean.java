@@ -50,7 +50,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		sql.append(" UPDATE ").append(Client.class.getName()).append(" C ");
 		sql.append(" SET C.nome = :nome, ");
 		sql.append(" C.email = :email, ");
-		sql.append(" C.cart = :cart, ");
+		sql.append(" C.carts = :carts, ");
 		sql.append(" C.preferences = :preferences ");
 		sql.append(" WHERE C.id = :id_client");
 		
@@ -58,7 +58,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		em.createQuery(sql.toString())
 			.setParameter("nome", client.getNome())
 			.setParameter("email", client.getEmail())
-			.setParameter("cart", client.getCart())
+			.setParameter("carts", client.getCarts())
 			.setParameter("preferences", client.getPreferences())
 			.setParameter("id_client", client.getId())
 			.executeUpdate();
@@ -107,7 +107,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				TOClient toClient = new TOClient();
 				
 				toClient.setEmail(client.getEmail());
-				toClient.setCart(client.getCart());
+				toClient.setCarts(client.getCarts());
 				toClient.setPreferences(client.getPreferences());
 				toClient.setNome(client.getNome());
 				toClient.setNivel(client.getNivel());
@@ -163,7 +163,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			TOClient toClient = new TOClient();
 			
 			toClient.setEmail(client.getEmail());
-			toClient.setCart(client.getCart());
+			toClient.setCarts(client.getCarts());
 			toClient.setPreferences(client.getPreferences());
 			toClient.setNome(client.getNome());
 			toClient.setNivel(client.getNivel());

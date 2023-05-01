@@ -36,14 +36,14 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	private KeepAppConfigs appConfigsSBean;
 	
 	public MBAppConfigs() {
-		this.appConfigs = new AppConfigs();
+		this.setAppConfigs(new AppConfigs());
 		
-		this.localeList = new ArrayList<Locale>();
-		this.clientSBean = new KeepClientSBean();
-		this.appConfigsSBean = new KeepAppConfigs();
+		this.setLocaleList(new ArrayList<Locale>());
+		this.setClientSBean(new KeepClientSBean());
+		this.setAppConfigsSBean(new KeepAppConfigs());
 		
-		localeList.add(new Locale("pt"));
-		localeList.add(new Locale("en"));
+		this.getLocaleList().add(new Locale("pt"));
+		this.getLocaleList().add(new Locale("en"));
 		
 		updateConfigs();
 		redirectUserFromCookie();
@@ -54,25 +54,25 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 			TOClient client = getClient();
 			
 			if(client != null) {
-				appConfigs.setDarkMode(client.getPreferences().isDarkMode());
-				appConfigs.setLanguage(client.getPreferences().getLanguage());
+				this.getAppConfigs().setDarkMode(client.getPreferences().isDarkMode());
+				this.getAppConfigs().setLanguage(client.getPreferences().getLanguage());
 			} else {
 				if(Cookies.getLanguageCookie() != null) {
-					appConfigs.setLanguage(Cookies.getLanguageCookie());
+					this.getAppConfigs().setLanguage(Cookies.getLanguageCookie());
 				} else {
-					appConfigs.setLanguage(Locale.getDefault().getLanguage());
+					this.getAppConfigs().setLanguage(Locale.getDefault().getLanguage());
 				}
 				
-				appConfigs.setDarkMode(Cookies.getDarkModeCookie());
+				this.getAppConfigs().setDarkMode(Cookies.getDarkModeCookie());
 			}
 		} catch (Exception e) {
 			if(Cookies.getLanguageCookie() != null) {
-				appConfigs.setLanguage(Cookies.getLanguageCookie());
+				this.getAppConfigs().setLanguage(Cookies.getLanguageCookie());
 			} else {
-				appConfigs.setLanguage(Locale.getDefault().getLanguage());
+				this.getAppConfigs().setLanguage(Locale.getDefault().getLanguage());
 			}
 			
-			appConfigs.setDarkMode(Cookies.getDarkModeCookie());
+			this.getAppConfigs().setDarkMode(Cookies.getDarkModeCookie());
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		String user = Cookies.getUserCookie();
 		
 		if(user != null && !user.isEmpty()) {
-			TOClient toClient = clientSBean.findByEmail(Encryption.decryptNormalText(user));
+			TOClient toClient = this.getClientSBean().findByEmail(Encryption.decryptNormalText(user));
 			
 			getSession().setAttribute("client", toClient);
 			
@@ -112,15 +112,15 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		
 		if(client != null) {
 			if(client.getPreferences() == null) {
-				appConfigsSBean.save(appConfigs);
+				this.getAppConfigsSBean().save(this.getAppConfigs());
 			} else {
-				appConfigs.setId(client.getPreferences().getId());
-				appConfigsSBean.change(appConfigs);
+				this.getAppConfigs().setId(client.getPreferences().getId());
+				this.getAppConfigsSBean().change(this.getAppConfigs());
 			}
 			
-			client.setPreferences(appConfigs);
+			client.setPreferences(this.getAppConfigs());
 			
-			clientSBean.change(client);
+			this.getClientSBean().change(client);
 		}
 		
 		createCookiePreferences();

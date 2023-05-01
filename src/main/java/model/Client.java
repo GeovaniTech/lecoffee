@@ -20,11 +20,15 @@ public class Client {
 	private String nivel;
 	private boolean completedRegistration;
 	
+	public Client() {
+		this.setCompletedRegistration(false);
+	}
+	
 	@OneToOne
 	private AppConfigs preferences;
 	
 	@OneToMany
-	private List<Cart> cart;
+	private List<Cart> carts;
 	
 	public int getId() {
 		return id;
@@ -68,10 +72,10 @@ public class Client {
 	public void setCompletedRegistration(boolean completedRegistration) {
 		this.completedRegistration = completedRegistration;
 	}
-	public List<Cart> getCart() {
-		return cart;
+	public List<Cart> getCarts() {
+		return carts;
 	}
-	public void setCart(List<Cart> cart) {
-		this.cart = cart;
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 }
