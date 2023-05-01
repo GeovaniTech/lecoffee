@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import model.AppConfigs;
 import model.Client;
 import to.TOClient;
 import utils.AbstractManter;
@@ -50,8 +49,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		sql.append(" UPDATE ").append(Client.class.getName()).append(" C ");
 		sql.append(" SET C.nome = :nome, ");
 		sql.append(" C.email = :email, ");
-		sql.append(" C.carts = :carts, ");
-		sql.append(" C.preferences = :preferences ");
+		sql.append(" C.carts = :carts ");
 		sql.append(" WHERE C.id = :id_client");
 		
 		em.getTransaction().begin();
@@ -59,7 +57,6 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			.setParameter("nome", client.getNome())
 			.setParameter("email", client.getEmail())
 			.setParameter("carts", client.getCarts())
-			.setParameter("preferences", client.getPreferences())
 			.setParameter("id_client", client.getId())
 			.executeUpdate();
 		em.getTransaction().commit();
@@ -108,7 +105,6 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				
 				toClient.setEmail(client.getEmail());
 				toClient.setCarts(client.getCarts());
-				toClient.setPreferences(client.getPreferences());
 				toClient.setNome(client.getNome());
 				toClient.setNivel(client.getNivel());
 				toClient.setId(client.getId());
@@ -137,16 +133,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		
 		return false;
 	}
-
-	@Override
-	public void saveNewPreferences(AppConfigs preferences) {
-		TOClient client = getClient();
-		client.setPreferences(preferences);
-		
-		change(client);
-		
-	}
-
+	
 	@Override
 	public TOClient findByEmail(String email) {
 		StringBuilder sql = new StringBuilder();
@@ -163,7 +150,6 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			
 			toClient.setEmail(client.getEmail());
 			toClient.setCarts(client.getCarts());
-			toClient.setPreferences(client.getPreferences());
 			toClient.setNome(client.getNome());
 			toClient.setNivel(client.getNivel());
 			toClient.setId(client.getId());

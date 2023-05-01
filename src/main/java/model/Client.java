@@ -24,9 +24,6 @@ public class Client {
 		this.setCompletedRegistration(false);
 	}
 	
-	@OneToOne
-	private AppConfigs preferences;
-	
 	@OneToMany
 	private List<Cart> carts;
 	
@@ -59,12 +56,6 @@ public class Client {
 	}
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
-	}
-	public AppConfigs getPreferences() {
-		return preferences;
-	}
-	public void setPreferences(AppConfigs preferences) {
-		this.preferences = preferences;
 	}
 	public boolean isCompletedRegistration() {
 		return completedRegistration;

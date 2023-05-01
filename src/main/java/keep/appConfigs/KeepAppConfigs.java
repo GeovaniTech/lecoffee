@@ -25,4 +25,16 @@ public class KeepAppConfigs extends AbstractManter implements IKeepAppConfigs, I
 		em.getTransaction().commit();
 	}
 
+	@Override
+	public AppConfigs findByClientId(int id) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" SELECT A FROM ").append(AppConfigs.class.getName()).append(" A ");
+		sql.append(" WHERE A.client_id = :client_id");
+		
+		
+		return (AppConfigs) em.createQuery(sql.toString())
+				.setParameter("client_id", id)
+				.getSingleResult();
+	}
 }

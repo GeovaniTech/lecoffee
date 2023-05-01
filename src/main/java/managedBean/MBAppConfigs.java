@@ -51,28 +51,11 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		this.getAppConfigs().setDarkMode(false);
 		
 		//Getting User preferences
-		this.updateConfigs();
+		this.getConfigsFromCookies();
 		
 		//Redirecting if user is logged
 		this.redirectUserFromCookie();
 	}
-
- 	public void updateConfigs() {
- 		if(!this.getConfigsFromUser()) {
- 			this.getConfigsFromCookies();
- 		}
-	}
- 	
- 	public boolean getConfigsFromUser() {
- 		TOClient client = getClient();
- 		
- 		if(client != null && client.getPreferences() != null) {
- 			this.setAppConfigs(client.getPreferences());
- 		
- 			return true;
- 		}
- 		return false;
- 	}
  	
  	public boolean getConfigsFromCookies() {
  		this.getAppConfigs().setDarkMode(Cookies.getDarkModeCookie());
@@ -104,23 +87,6 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 				RedirectUrl.redirecionarPara("/lecoffee/home");
 			}
 		}
-	}
-	
-	public void setNewPreferences() {
-		if(this.getClientLogged() != null) {
-			if(this.getClientLogged().getPreferences() != null) {
-				this.getAppConfigs().setId(this.getClientLogged().getPreferences().getId());
-				this.getAppConfigsSBean().change(this.getAppConfigs());
-			} else {
-				
-				this.getAppConfigsSBean().save(this.getAppConfigs());
-				this.getClientLogged().setPreferences(this.getAppConfigs());
-			}
-			
-			this.getClientSBean().change(this.getClientLogged());
-		}
-		
-		createCookiePreferences();
 	}
 	
 	public void createCookiePreferences() {

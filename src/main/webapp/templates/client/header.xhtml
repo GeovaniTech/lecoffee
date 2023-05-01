@@ -9,10 +9,7 @@
 	
 	<h:body>
 		<h:outputStylesheet library="css" name="/client/layout/header.css" />
-		
-		<p:remoteCommand 
-			name="openDialogOptions"
-			oncomplete="PF('dialog-options').show()" />
+		<h:outputStylesheet library="css" name="/configs/configs.css" />
 		
 		<div class="desktop-menu horizontal-evenly">
 			<h1><a href="/lecoffee/home"><span>Le</span>Coffee</a></h1>
@@ -62,6 +59,5 @@
 		
 		<ui:include src="/templates/client/overlayOptions.xhtml" />
 		<ui:include src="/templates/client/overlayMyAccount.xhtml" />
-		<ui:include src="/pages/client/dialog_options.xhtml" />
 	</h:body>
 </html>

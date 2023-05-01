@@ -1,8 +1,6 @@
 package to;
 
 import java.util.List;
-
-import model.AppConfigs;
 import model.Cart;
 
 public class TOClient {
@@ -10,10 +8,10 @@ public class TOClient {
 	private String nome;
 	private String email;
 	private String nivel;
-	private AppConfigs preferences;
 	private List<Cart> carts;
 	private boolean completedRegistration;
 	
+	//Getters and Setters
 	public int getId() {
 		return id;
 	}
@@ -37,12 +35,6 @@ public class TOClient {
 	}
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
-	}
-	public AppConfigs getPreferences() {
-		return preferences;
-	}
-	public void setPreferences(AppConfigs preferences) {
-		this.preferences = preferences;
 	}
 	public List<Cart> getCarts() {
 		return carts;

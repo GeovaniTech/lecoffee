@@ -60,24 +60,6 @@ public class MBLogin extends AbstractBean {
 		response.addCookie(userSession);
 	}
 	
-	public void createCookiePreferences() {
-		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		TOClient client = getClient();
-		
-		if(client != null) {
-			Cookie darkMode = new Cookie("darkMode", "" + client.getPreferences().isDarkMode());
-			darkMode.setMaxAge(Integer.MAX_VALUE);
-			darkMode.setPath("/");
-			
-			Cookie language = new Cookie("language", "" + client.getPreferences().getLanguage());
-			language.setMaxAge(Integer.MAX_VALUE);
-			language.setPath("/");
-			
-			response.addCookie(darkMode);
-			response.addCookie(language);
-		}
-	}
-	
 	public void sendRegisterFinishedMessage() {
 		if(this.getRegisterFinished() != null && this.getRegisterFinished().equals("finished")) {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("registration_completed_successfully"), null, FacesMessage.SEVERITY_INFO);

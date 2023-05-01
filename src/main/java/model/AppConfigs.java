@@ -11,9 +11,11 @@ public class AppConfigs {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	private int id;
+	private int client_id;
 	private String language;
 	private boolean darkMode;
-	
+
+	//Getters and Setters
 	public int getId() {
 		return id;
 	}
@@ -31,5 +33,11 @@ public class AppConfigs {
 	}
 	public void setDarkMode(boolean darkMode) {
 		this.darkMode = darkMode;
+	}
+	public int getClient_id() {
+		return client_id;
+	}
+	public void setClient_id(int client_id) {
+		this.client_id = client_id;
 	}
 }
