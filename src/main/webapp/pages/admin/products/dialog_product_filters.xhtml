@@ -37,14 +37,32 @@
 					<h:panelGrid columns="1">
 						<p>#{label.category}</p>
 						<p:selectOneMenu 
+							value="#{MBTab_products.productFilter.category_id}"
 							style="width: 200px;">
+							
 							<f:selectItems 
 								var="category"
 								value="#{MBTab_products.categoriesFilter}"
 								itemLabel="#{category.name}"
-								itemValue="#{category}" />
+								itemValue="#{category.id}" />
 						</p:selectOneMenu>
 					</h:panelGrid>
+					
+					<components:dateRange 
+						label="#{creation_date}"
+						toInputDateFilter="#{MBTab_products.productFilter.dateCreation}"/>
+						
+					<p:toolbar>
+						<f:facet name="left">
+							<p:commandButton 
+								value="#{label.filter}"
+								action="#{MBTab_products.filterProducts()}" />
+							
+							<p:commandButton 
+								value="#{label.filter}"
+								action="#{MBTab_products.cleanFilters}" />
+						</f:facet>
+					</p:toolbar>
 				</h:form>
 			</p:scrollPanel>
 		</p:dialog>

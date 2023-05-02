@@ -91,6 +91,14 @@ public class MBTab_products extends AbstractFilterBean {
 		this.tableView = !this.tableView;
 	}
 	
+	public void filterProducts() {
+		
+	}
+	
+	public void cleanFilters() {
+		
+	}
+	
 	public void addImage(FileUploadEvent event) throws IOException {
 		File file = FileUtil.convertPrimefacesFile(event.getFile());
 		

@@ -2,8 +2,6 @@ package to;
 
 import java.io.Serializable;
 
-import model.Category;
-
 public class TOProductFilter implements Serializable {
 	private static final long serialVersionUID = 1004274014603699692L;
 	
@@ -12,12 +10,8 @@ public class TOProductFilter implements Serializable {
 	private TOInputNumberFilter price;
 	private TOInputNumberFilter rating;
 	private TODateRangeFilter dateCreation;
-	private Category category;
-	
-	public TOProductFilter() {
-		this.setCategory(new Category());
-	}
-	
+	private int category_id;
+
 	//Getters and Setters
 	public TOInputFilter getName() {
 		return name;
@@ -50,20 +44,20 @@ public class TOProductFilter implements Serializable {
 	public void setDateCreation(TODateRangeFilter dateCreation) {
 		this.dateCreation = dateCreation;
 	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
+	
 	public TOInputNumberFilter getRating() {
 		return rating;
 	}
 
 	public void setRating(TOInputNumberFilter rating) {
 		this.rating = rating;
+	}
+
+	public int getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
 	}
 }

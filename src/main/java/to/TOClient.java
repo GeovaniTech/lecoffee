@@ -1,9 +1,12 @@
 package to;
 
+import java.io.Serializable;
 import java.util.List;
 import model.Cart;
 
-public class TOClient {
+public class TOClient implements Serializable {
+	private static final long serialVersionUID = 7799424873449345678L;
+	
 	private int id;
 	private String nome;
 	private String email;
