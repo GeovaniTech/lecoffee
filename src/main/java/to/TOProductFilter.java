@@ -10,7 +10,7 @@ public class TOProductFilter implements Serializable {
 	private TOInputNumberFilter price;
 	private TOInputNumberFilter rating;
 	private TODateRangeFilter dateCreation;
-	private int category_id;
+	private TOInputFilter category_id;
 
 	//Getters and Setters
 	public TOInputFilter getName() {
@@ -53,11 +53,11 @@ public class TOProductFilter implements Serializable {
 		this.rating = rating;
 	}
 
-	public int getCategory_id() {
+	public TOInputFilter getCategory_id() {
 		return category_id;
 	}
 
-	public void setCategory_id(int category_id) {
+	public void setCategory_id(TOInputFilter category_id) {
 		this.category_id = category_id;
 	}
 }

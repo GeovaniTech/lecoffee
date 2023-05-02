@@ -33,20 +33,10 @@
 					<components:numberRange 
 						label="#{label.price}"
 						toInputNumberFilter="#{MBTab_products.productFilter.price}" />
-					
-					<h:panelGrid columns="1">
-						<p>#{label.category}</p>
-						<p:selectOneMenu 
-							value="#{MBTab_products.productFilter.category_id}"
-							style="width: 200px;">
-							
-							<f:selectItems 
-								var="category"
-								value="#{MBTab_products.categoriesFilter}"
-								itemLabel="#{category.name}"
-								itemValue="#{category.id}" />
-						</p:selectOneMenu>
-					</h:panelGrid>
+				
+					<components:inputFilter 
+						label="#{label.category}"
+						toInputFilter="#{MBTab_products.productFilter.category_id}"/>
 					
 					<components:dateRange 
 						label="#{creation_date}"
@@ -56,10 +46,11 @@
 						<f:facet name="left">
 							<p:commandButton 
 								value="#{label.filter}"
-								action="#{MBTab_products.filterProducts()}" />
+								action="#{MBTab_products.filterProducts()}"
+								styleClass="mg-r-5" />
 							
 							<p:commandButton 
-								value="#{label.filter}"
+								value="#{label.clear_filters}"
 								action="#{MBTab_products.cleanFilters}" />
 						</f:facet>
 					</p:toolbar>
