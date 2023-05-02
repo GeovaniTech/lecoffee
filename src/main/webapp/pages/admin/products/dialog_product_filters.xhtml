@@ -25,7 +25,7 @@
 				mode="native" 
 				style="max-height: 80vh; width: 100%;">
 				
-				<h:form>
+				<h:form class="vertical-left general-dialog-forms">
 					<components:inputFilter 
 						label="#{label.name}"
 						toInputFilter="#{MBTab_products.productFilter.name}" />
@@ -39,7 +39,7 @@
 						toInputFilter="#{MBTab_products.productFilter.category_id}"/>
 					
 					<components:dateRange 
-						label="#{creation_date}"
+						label="#{label.creation_date}"
 						toInputDateFilter="#{MBTab_products.productFilter.dateCreation}"/>
 						
 					<p:toolbar>
@@ -47,11 +47,13 @@
 							<p:commandButton 
 								value="#{label.filter}"
 								action="#{MBTab_products.filterProducts()}"
-								styleClass="mg-r-5" />
+								styleClass="mg-r-5"
+								icon="pi pi-filter" />
 							
 							<p:commandButton 
 								value="#{label.clear_filters}"
-								action="#{MBTab_products.cleanFilters}" />
+								action="#{MBTab_products.cleanFilters}" 
+								icon="pi pi-filter-slash"/>
 						</f:facet>
 					</p:toolbar>
 				</h:form>

@@ -92,11 +92,11 @@ public class MBTab_products extends AbstractFilterBean {
 	}
 	
 	public void filterProducts() {
-		
+		this.getsBean().filterProducts(this.getProductFilter());
 	}
 	
 	public void cleanFilters() {
-		
+		this.list();
 	}
 	
 	public void addImage(FileUploadEvent event) throws IOException {

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import model.Product;
+import to.TOProductFilter;
 
 @Local
 public interface IKeepProductSBean  {
@@ -13,4 +14,5 @@ public interface IKeepProductSBean  {
 	public void disable(Product product);
 	public Product findById(int id);
 	public List<Product> list();
+	public List<Product> filterProducts(TOProductFilter filter);
 }

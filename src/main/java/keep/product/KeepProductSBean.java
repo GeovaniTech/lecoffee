@@ -9,6 +9,7 @@ import javax.ejb.TransactionManagementType;
 import javax.faces.application.FacesMessage;
 
 import model.Product;
+import to.TOProductFilter;
 import utils.AbstractManter;
 import utils.MessageUtil;
 
@@ -59,5 +60,19 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 		sql.append(" ORDER BY P.status ASC ");
 		return em.createQuery(sql.toString(), Product.class)
 				.getResultList();
+	}
+
+	@Override
+	public List<Product> filterProducts(TOProductFilter filter) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" SELECT P FROM ").append(Product.class.getName()).append(" P ");
+		sql.append(" WHERE 1 = 1 ");
+
+		if(filter.getName() != null && !filter.getName().getValue().equals("")) {
+			
+		}
+		
+		return null;
 	}
 }
