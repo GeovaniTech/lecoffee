@@ -37,12 +37,13 @@ public class MBTab_products extends AbstractFilterBean {
 	private boolean tableView;
 	
 	public MBTab_products() {
-		this.status = true;
+		this.setStatus(true);
 		this.setToggleFilter(false);
 		this.setNewProduct();
-		sBean = new KeepProductSBean();
-		products = new ArrayList<Product>();
-		categoriesFilter = new ArrayList<Category>();
+		
+		this.setsBean(new KeepProductSBean()); 
+		this.setProducts(new ArrayList<Product>());
+		this.setCategoriesFilter(new ArrayList<Category>());
 		this.setsBeanCategory(new KeepCategorySBean());
 		
 		list();
@@ -55,7 +56,7 @@ public class MBTab_products extends AbstractFilterBean {
 	
 	public void save() {
 		this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
-		sBean.save(this.getProduct());
+		this.getsBean().save(this.getProduct());
 		
 		this.setNewProduct();
 		
@@ -64,7 +65,7 @@ public class MBTab_products extends AbstractFilterBean {
 
 	public void change() {
 		this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
-		sBean.change(this.getProduct());
+		this.getsBean().change(this.getProduct());
 		
 		this.setNewProduct();
 		
@@ -78,17 +79,17 @@ public class MBTab_products extends AbstractFilterBean {
 	}
 	
 	public void disable(Product product) {
-		sBean.disable(product);
+		this.getsBean().disable(product);
 		
 		list();
 	}
 	
 	public void list() {
-		this.setProducts(sBean.list());
+		this.setProducts(this.getsBean().list());
 	}
 	
 	public void changeTableView() {
-		this.tableView = !this.tableView;
+		this.setTableView(!this.isTableView());
 	}
 	
 	public void filterProducts() {
@@ -109,6 +110,7 @@ public class MBTab_products extends AbstractFilterBean {
 		this.setProduct(new Product());
 	}
 	
+	//Getters and Setters
 	public Product getProduct() {
 		return product;
 	}
