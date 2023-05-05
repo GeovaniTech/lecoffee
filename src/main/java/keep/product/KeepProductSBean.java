@@ -86,6 +86,10 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 		if(filter.getRating().getFrom() != null || filter.getRating().getTo() != null) {
 			sql.append(SimpleWhere.queryFilterNumberRange("P.rating", filter.getRating()));
 		}
+		
+		if(filter.getDateCreation().getFrom() != null || filter.getDateCreation().getTo() != null) {
+			sql.append(SimpleWhere.queryFilterDateRange("P.creationDate", filter.getDateCreation()));
+		}
 		 
 		return null;
 	}
