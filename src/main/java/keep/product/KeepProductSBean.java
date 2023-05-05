@@ -12,6 +12,8 @@ import model.Product;
 import to.TOProductFilter;
 import utils.AbstractManter;
 import utils.MessageUtil;
+import utils.SimpleWhere;
+import utils.StringUtil;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -69,8 +71,12 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 		sql.append(" SELECT P FROM ").append(Product.class.getName()).append(" P ");
 		sql.append(" WHERE 1 = 1 ");
 
-		if(filter.getName() != null && !filter.getName().getValue().equals("")) {
-			
+		if(StringUtil.isNotNull(filter.getName().getValue())) {
+			sql.append(SimpleWhere.queryFilter("P.name", filter.getName()));
+		}
+		
+		if(StringUtil.isNotNull(filter.getDescription().getValue())) {
+			sql.append(SimpleWhere.queryFilter("P.description", filter.getDescription()));
 		}
 		
 		return null;
