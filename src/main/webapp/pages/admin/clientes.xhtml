@@ -19,6 +19,13 @@
 			<ui:define name="body">
 				<h:outputStylesheet library="css" name="/customers/customers.css" />
 				
+				<h:form>
+					<p:remoteCommand 
+						name="updateTableClient"
+						update=":formTableClient"/>
+				</h:form>
+				
+				
 				<h:form id="formTableClient">
 					<p:dataTable
 						widgetVar="tableCustomers"
@@ -27,57 +34,241 @@
 						selectionMode="single"
 						selection="#{MBClient.client}"
 						rowKey="#{client.id}"
-						scrollable="true">
+						scrollable="true"
+						styleClass="#{MBClient.toggleFilter == false ? 'hide-filters' : ''}">
 						
-						<p:column headerText="#{label.name}">
+						<p:column styleClass="toggleFilter">
+							<f:facet name="header">
+								<p:commandLink
+									action="#{MBClient.changeToggleFilter()}"
+									oncomplete="updateTableClient();">
+									
+									<i class="pi pi-filter"></i>
+								</p:commandLink>
+							</f:facet>
+						</p:column>
+						
+						<p:column 
+							headerText="#{label.name}"
+							filterBy="#{client.nome}">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableCustomers').filter()" />
+								</p:inputText>
+							</f:facet>
 							<h:outputText value="#{client.nome == null ? label.not_registered : client.nome}" />
 						</p:column>
 						
-						<p:column headerText="#{label.email}">
+						<p:column 
+							headerText="#{label.email}"
+							filterBy="#{client.email}">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableCustomers').filter()" />
+								</p:inputText>
+							</f:facet>
+							
 							<h:outputText value="#{client.email}" />
 						</p:column>
 						
-						<p:column headerText="#{label.total_orders}">
+						<p:column 
+							headerText="#{label.total_orders}"
+							filterBy="#{client.totalOrders}">
+							
+							<f:facet name="filter">
+								<p:inputNumber>
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableCustomers').filter()" />
+								</p:inputNumber>
+							</f:facet>
 							<h:outputText value="#{client.totalOrders}" />
 						</p:column>
 						
-						<p:column headerText="#{label.completed_registration}">
+						<p:column 
+							headerText="#{label.completed_registration}"
+							filterBy="#{client.completedRegistration}">
+							
+							<f:facet name="filter">
+								<p:selectOneMenu>
+									<f:selectItem 
+										itemLabel="#{label.all}"
+										itemValue="#{null}" />
+							
+									<f:selectItem 
+										itemLabel="#{label.finished}"
+										itemValue="#{true}" />
+										
+									<f:selectItem 
+										itemLabel="#{label.not_finished}"
+										itemValue="#{false}" />		
+									
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableCustomers').filter()" />
+								</p:selectOneMenu>
+							</f:facet>
 							<h:outputText value="#{client.completedRegistration == true ? label.finished :  label.not_finished}" />
 						</p:column>
 						
-						<p:column headerText="#{label.blocked}">
+						<p:column 
+							headerText="#{label.blocked}"
+							filterBy="#{client.blocked}">
+							
+							<f:facet name="filter">
+								<p:selectOneMenu>
+									<f:selectItem 
+										itemLabel="#{label.all}"
+										itemValue="#{null}" />
+							
+									<f:selectItem 
+										itemLabel="#{label.yes}"
+										itemValue="#{true}" />
+										
+									<f:selectItem 
+										itemLabel="#{label.no}"
+										itemValue="#{false}" />		
+									
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableCustomers').filter()" />
+								</p:selectOneMenu>
+							</f:facet>
 							<h:outputText value="#{client.blocked == true ? label.yes : label.no}" />
 						</p:column>
 						
-						<p:column headerText="#{label.cep}">
-							<h:outputText value="#{client.cep}" />
+						<p:column 
+							headerText="#{label.cep}"
+							filterBy="#{client.cep}">
+							
+							<f:facet name="filter">
+								<p:inputNumber>
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableProducts').filter()" />
+								</p:inputNumber>
+							</f:facet>
+							<h:outputText value="#{client.cep == null ? label.not_registered : client.cep}" />
 						</p:column>
 						
-						<p:column headerText="#{label.street}">
-							<h:outputText value="#{client.street}" />
+						<p:column 
+							headerText="#{label.street}"
+							filterBy="#{client.street}">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableProducts').filter()" />
+								</p:inputText>
+							</f:facet>
+							<h:outputText value="#{client.street == null ? label.not_registered : client.street}" />
 						</p:column>
 					
-						<p:column headerText="#{label.complement}">
-							<h:outputText value="#{client.complement}" />
+						<p:column 
+							headerText="#{label.complement}"
+							filterBy="#{client.complement}">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableProducts').filter()" />
+								</p:inputText>
+							</f:facet>
+							<h:outputText value="#{client.complement == null ? label.not_registered : client.complement}" />
 						</p:column>
 						
-						<p:column headerText="#{label.house_number}">
-							<h:outputText value="#{client.house_number}" />
+						<p:column 
+							headerText="#{label.house_number}"
+							filterBy="#{client.house_number}">
+							
+							<f:facet name="filter">
+								<p:inputNumber>
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableProducts').filter()" />
+								</p:inputNumber>
+							</f:facet>
+							<h:outputText value="#{client.house_number == null ? label.not_registered : client.house_number}" />
 						</p:column>
 						
-						<p:column headerText="#{label.last_login}">
+						<p:column 
+							headerText="#{label.last_login}"
+							filterBy="#{client.lastLogin}">
+							
+							<f:facet name="filter">
+								<p:datePicker pattern="dd/MM/yyyy">
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableCustomers').filter()" />
+									
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableCustomers').filter()" />									
+								</p:datePicker>
+							</f:facet>
+							
 							<h:outputText value="#{client.lastLogin.time}">
-								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 							</h:outputText>
 						</p:column>
 						
-						<p:column headerText="#{label.last_changes}">
-							<h:outputText value="#{client.accountChangeDate}" />
+						<p:column 
+							headerText="#{label.last_changes}"
+							filterBy="#{client.accountChangeDate}">
+							
+							<f:facet name="filter">
+								<p:datePicker pattern="dd/MM/yyyy HH:mm">
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableCustomers').filter()" />
+									
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableCustomers').filter()" />									
+								</p:datePicker>
+							</f:facet>
+							
+							<h:outputText value="#{client.accountChangeDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+							</h:outputText>
 						</p:column>
 						
-						<p:column headerText="#{label.registration_date}">
-							<h:outputText value="#{client.accountCreationDate.time}">
-								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						<p:column 
+							headerText="#{label.registration_date}"
+							filterBy="#{client.accountCreationDate}">
+							
+							<f:facet name="filter">
+								<p:datePicker pattern="dd/MM/yyyy">
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableCustomers').filter()" />
+									
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableCustomers').filter()" />									
+								</p:datePicker>
+							</f:facet>
+							
+							<h:outputText value="#{client.accountCreationDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 							</h:outputText>
 						</p:column>
 					</p:dataTable>

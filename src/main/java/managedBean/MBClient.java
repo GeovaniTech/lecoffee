@@ -10,10 +10,11 @@ import javax.inject.Named;
 import keep.client.KeepClientSBean;
 import to.TOClient;
 import utils.AbstractBean;
+import utils.AbstractFilterBean;
 
 @Named("MBClient")
 @ViewScoped
-public class MBClient extends AbstractBean implements Serializable {
+public class MBClient extends AbstractFilterBean implements Serializable {
 	private static final long serialVersionUID = 5677286107782030604L;
 	
 	private List<TOClient> customers;
