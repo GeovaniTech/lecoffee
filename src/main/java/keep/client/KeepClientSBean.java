@@ -1,6 +1,7 @@
 package keep.client;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -35,6 +36,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		client.setEmail(email);
 		client.setSenha(Encryption.encryptTextSHA(password));
 		client.setNivel("client");
+		client.setAccountCreationDate(new Date());
 		
 		em.getTransaction().begin();
 		em.persist(client);
@@ -47,21 +49,32 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	
 	@Override
 	public void change(TOClient client) {
-		StringBuilder sql = new StringBuilder();
+		Client model = em.find(Client.class, client.getId());
 		
-		sql.append(" UPDATE ").append(Client.class.getName()).append(" C ");
-		sql.append(" SET C.nome = :nome, ");
-		sql.append(" C.email = :email, ");
-		sql.append(" C.carts = :carts ");
-		sql.append(" WHERE C.id = :id_client");
+		model.setId(client.getId());
+		model.setAccountChangeDate(new Date());
+		model.setAccountCreationDate(client.getAccountCreationDate());
+		model.setBlocked(client.isBlocked());
+		model.setCep(client.getCep());
+		model.setComplement(client.getComplement());
+		model.setCompletedRegistration(client.isCompletedRegistration());
+		//model.setEmail(client.getEmail());
+		model.setHouse_number(client.getHouse_number());
+		model.setLastLogin(client.getLastLogin());
+		model.setNivel(client.getNivel());
+		model.setNome(client.getNome());
+		model.setStreet(client.getStreet());
+		model.setTotalOrders(client.getTotalOrders());
+		model.setCarts(client.getCarts());
 		
 		em.getTransaction().begin();
-		em.createQuery(sql.toString())
-			.setParameter("nome", client.getNome())
-			.setParameter("email", client.getEmail())
-			.setParameter("carts", client.getCarts())
-			.setParameter("id_client", client.getId())
-			.executeUpdate();
+		em.merge(model);
+		em.getTransaction().commit();
+	}
+	
+	public void change(Client client) {
+		em.getTransaction().begin();
+		em.merge(client);
 		em.getTransaction().commit();
 	}
 
@@ -106,11 +119,24 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			if(client != null) {
 				TOClient toClient = new TOClient();
 				
+				toClient.setId(client.getId());
+				toClient.setAccountChangeDate(client.getAccountChangeDate());
+				toClient.setAccountCreationDate(client.getAccountCreationDate());
+				toClient.setBlocked(client.isBlocked());
+				toClient.setCep(client.getCep());
+				toClient.setComplement(client.getComplement());
+				toClient.setCompletedRegistration(client.isCompletedRegistration());
 				toClient.setEmail(client.getEmail());
-				toClient.setCarts(client.getCarts());
+				toClient.setHouse_number(client.getHouse_number());
+				toClient.setLastLogin(client.getLastLogin());
+				toClient.setNivel(client.getNivel());
 				toClient.setNome(client.getNome());
 				toClient.setNivel(client.getNivel());
-				toClient.setId(client.getId());
+				toClient.setTotalOrders(client.getTotalOrders());
+				toClient.setCarts(client.getCarts());
+				
+				client.setLastLogin(new Date());
+				change(client);
 				
 				getSession().setAttribute("client", toClient);
 				Cookie userCookie = new Cookie("userSession", Encryption.encryptNormalText(client.getEmail()));
@@ -151,11 +177,21 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		if(client != null) {
 			TOClient toClient = new TOClient();
 			
+			toClient.setId(client.getId());
+			toClient.setAccountChangeDate(client.getAccountChangeDate());
+			toClient.setAccountCreationDate(client.getAccountCreationDate());
+			toClient.setBlocked(client.isBlocked());
+			toClient.setCep(client.getCep());
+			toClient.setComplement(client.getComplement());
+			toClient.setCompletedRegistration(client.isCompletedRegistration());
 			toClient.setEmail(client.getEmail());
-			toClient.setCarts(client.getCarts());
+			toClient.setHouse_number(client.getHouse_number());
+			toClient.setLastLogin(client.getLastLogin());
+			toClient.setNivel(client.getNivel());
 			toClient.setNome(client.getNome());
 			toClient.setNivel(client.getNivel());
-			toClient.setId(client.getId());
+			toClient.setTotalOrders(client.getTotalOrders());
+			toClient.setCarts(client.getCarts());
 			
 			return toClient;
 		}

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Client {
@@ -19,16 +19,25 @@ public class Client {
 	private String senha;
 	private String nivel;
 	private Integer totalOrders;
+	private Date lastLogin;
+	private Date accountCreationDate;
+	private Date accountChangeDate;
+	private boolean blocked;
 	private boolean completedRegistration;
-	
-	public Client() {
-		this.setCompletedRegistration(false);
-		this.setTotalOrders(0);
-	}
+	private Integer cep;
+	private String street;
+	private String complement;
+	private Integer house_number;
 	
 	@OneToMany
 	private List<Cart> carts;
 	
+	public Client() {
+		this.setCompletedRegistration(false);
+		this.setBlocked(false);
+		this.setTotalOrders(0);
+	}
+		
 	public int getId() {
 		return id;
 	}
@@ -76,5 +85,53 @@ public class Client {
 	}
 	public void setTotalOrders(Integer totalOrders) {
 		this.totalOrders = totalOrders;
+	}
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+	public Date getAccountCreationDate() {
+		return accountCreationDate;
+	}
+	public void setAccountCreationDate(Date accountCreationDate) {
+		this.accountCreationDate = accountCreationDate;
+	}
+	public Date getAccountChangeDate() {
+		return accountChangeDate;
+	}
+	public void setAccountChangeDate(Date accountChangeDate) {
+		this.accountChangeDate = accountChangeDate;
+	}
+	public boolean isBlocked() {
+		return blocked;
+	}
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
+	}
+	public Integer getCep() {
+		return cep;
+	}
+	public void setCep(Integer cep) {
+		this.cep = cep;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getComplement() {
+		return complement;
+	}
+	public void setComplement(String complement) {
+		this.complement = complement;
+	}
+	public Integer getHouse_number() {
+		return house_number;
+	}
+	public void setHouse_number(Integer house_number) {
+		this.house_number = house_number;
 	}
 }

@@ -1,6 +1,7 @@
 package to;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import model.Cart;
 
@@ -12,7 +13,15 @@ public class TOClient implements Serializable {
 	private String email;
 	private String nivel;
 	private Integer totalOrders;
+	private Date lastLogin;
+	private Date accountCreationDate;
+	private Date accountChangeDate;
+	private Integer cep;
+	private String street;
+	private String complement;
+	private Integer house_number;
 	private List<Cart> carts;
+	private boolean blocked;
 	private boolean completedRegistration;
 	
 	//Getters and Setters
@@ -57,6 +66,54 @@ public class TOClient implements Serializable {
 	}
 	public void setTotalOrders(Integer totalOrders) {
 		this.totalOrders = totalOrders;
+	}
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+	public Date getAccountCreationDate() {
+		return accountCreationDate;
+	}
+	public void setAccountCreationDate(Date accountCreationDate) {
+		this.accountCreationDate = accountCreationDate;
+	}
+	public Date getAccountChangeDate() {
+		return accountChangeDate;
+	}
+	public void setAccountChangeDate(Date accountChangeDate) {
+		this.accountChangeDate = accountChangeDate;
+	}
+	public Integer getCep() {
+		return cep;
+	}
+	public void setCep(Integer cep) {
+		this.cep = cep;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getComplement() {
+		return complement;
+	}
+	public void setComplement(String complement) {
+		this.complement = complement;
+	}
+	public Integer getHouse_number() {
+		return house_number;
+	}
+	public void setHouse_number(Integer house_number) {
+		this.house_number = house_number;
+	}
+	public boolean isBlocked() {
+		return blocked;
+	}
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
 	}
 }
 

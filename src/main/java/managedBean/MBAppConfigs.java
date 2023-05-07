@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -73,7 +74,11 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		
 		if(userEmail != null && !userEmail.equals("")) {
 			try {
-				getSession().setAttribute("client", this.getClientSBean().findByEmail(Encryption.decryptNormalText(userEmail)));
+				TOClient client =  this.getClientSBean().findByEmail(Encryption.decryptNormalText(userEmail));
+				getSession().setAttribute("client", client);
+				
+				client.setLastLogin(new Date());
+				this.getClientSBean().change(client);
 			} catch (Exception e) {
 				// User not found
 				removeUserFromCookie();
