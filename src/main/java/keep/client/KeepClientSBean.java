@@ -213,17 +213,25 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		List<TOClient> clients = new ArrayList<TOClient>();
 		
 		for(Client client : results) {
-			TOClient to = new TOClient();
+			TOClient toClient = new TOClient();
 			
-			to.setId(client.getId());
-			to.setNome(client.getNome());
-			to.setEmail(client.getEmail());
-			to.setCompletedRegistration(client.isCompletedRegistration());
-			to.setCarts(client.getCarts());
-			to.setNivel(client.getNivel());
-			to.setTotalOrders(client.getTotalOrders());
+			toClient.setId(client.getId());
+			toClient.setAccountChangeDate(client.getAccountChangeDate());
+			toClient.setAccountCreationDate(client.getAccountCreationDate());
+			toClient.setBlocked(client.isBlocked());
+			toClient.setCep(client.getCep());
+			toClient.setComplement(client.getComplement());
+			toClient.setCompletedRegistration(client.isCompletedRegistration());
+			toClient.setEmail(client.getEmail());
+			toClient.setHouse_number(client.getHouse_number());
+			toClient.setLastLogin(client.getLastLogin());
+			toClient.setNivel(client.getNivel());
+			toClient.setNome(client.getNome());
+			toClient.setNivel(client.getNivel());
+			toClient.setTotalOrders(client.getTotalOrders());
+			toClient.setCarts(client.getCarts());
 			
-			clients.add(to);
+			clients.add(toClient);
 		}
 		
 		return clients;

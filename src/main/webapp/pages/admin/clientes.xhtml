@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
+<html 
 	lang="#{MBAppConfigs.appConfigs.language}"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:components="http://java.sun.com/jsf/composite/components"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<h:body>
 		<ui:composition template="/templates/admin/layout.xhtml">
@@ -43,6 +43,42 @@
 						
 						<p:column headerText="#{label.completed_registration}">
 							<h:outputText value="#{client.completedRegistration == true ? label.finished :  label.not_finished}" />
+						</p:column>
+						
+						<p:column headerText="#{label.blocked}">
+							<h:outputText value="#{client.blocked == true ? label.yes : label.no}" />
+						</p:column>
+						
+						<p:column headerText="#{label.cep}">
+							<h:outputText value="#{client.cep}" />
+						</p:column>
+						
+						<p:column headerText="#{label.street}">
+							<h:outputText value="#{client.street}" />
+						</p:column>
+					
+						<p:column headerText="#{label.complement}">
+							<h:outputText value="#{client.complement}" />
+						</p:column>
+						
+						<p:column headerText="#{label.house_number}">
+							<h:outputText value="#{client.house_number}" />
+						</p:column>
+						
+						<p:column headerText="#{label.last_login}">
+							<h:outputText value="#{client.lastLogin.time}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+							</h:outputText>
+						</p:column>
+						
+						<p:column headerText="#{label.last_changes}">
+							<h:outputText value="#{client.accountChangeDate}" />
+						</p:column>
+						
+						<p:column headerText="#{label.registration_date}">
+							<h:outputText value="#{client.accountCreationDate.time}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+							</h:outputText>
 						</p:column>
 					</p:dataTable>
 				</h:form>
