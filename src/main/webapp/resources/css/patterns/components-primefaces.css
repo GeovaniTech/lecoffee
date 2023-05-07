@@ -218,7 +218,6 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 /* #################### DATATABLE #################### */
 
 .ui-datatable {
-	width: 100% !important;
 	overflow-x: auto !important;
 }
 
@@ -226,6 +225,11 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	background-color: var(--background-general) !important;
 	color: var(--text-mouse) !important;	
 	border: 0px !important;
+	width: 275px;
+}
+
+.ui-datatable tbody td {
+	width: 275px;
 }
 
 .ui-datatable tr.ui-state-highlight {
