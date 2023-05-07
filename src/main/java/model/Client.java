@@ -18,10 +18,12 @@ public class Client {
 	private String email;
 	private String senha;
 	private String nivel;
+	private Integer totalOrders;
 	private boolean completedRegistration;
 	
 	public Client() {
 		this.setCompletedRegistration(false);
+		this.setTotalOrders(0);
 	}
 	
 	@OneToMany
@@ -68,5 +70,11 @@ public class Client {
 	}
 	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
+	}
+	public Integer getTotalOrders() {
+		return totalOrders;
+	}
+	public void setTotalOrders(Integer totalOrders) {
+		this.totalOrders = totalOrders;
 	}
 }

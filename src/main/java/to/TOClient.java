@@ -11,6 +11,7 @@ public class TOClient implements Serializable {
 	private String nome;
 	private String email;
 	private String nivel;
+	private Integer totalOrders;
 	private List<Cart> carts;
 	private boolean completedRegistration;
 	
@@ -50,6 +51,12 @@ public class TOClient implements Serializable {
 	}
 	public void setCompletedRegistration(boolean completedRegistration) {
 		this.completedRegistration = completedRegistration;
+	}
+	public Integer getTotalOrders() {
+		return totalOrders;
+	}
+	public void setTotalOrders(Integer totalOrders) {
+		this.totalOrders = totalOrders;
 	}
 }
 

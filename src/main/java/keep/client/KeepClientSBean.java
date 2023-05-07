@@ -1,5 +1,8 @@
 package keep.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -157,5 +160,36 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			return toClient;
 		}
 		return null;
+	}
+
+	@Override
+	public List<TOClient> list() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("SELECT C FROM ").append(Client.class.getName()).append(" C ");
+		
+		List<Client> results = em.createQuery(sql.toString(), Client.class).getResultList();
+		
+		return convertModelToTransferObject(results);
+	}
+	
+	public List<TOClient> convertModelToTransferObject(List<Client> results) {
+		List<TOClient> clients = new ArrayList<TOClient>();
+		
+		for(Client client : results) {
+			TOClient to = new TOClient();
+			
+			to.setId(client.getId());
+			to.setNome(client.getNome());
+			to.setEmail(client.getEmail());
+			to.setCompletedRegistration(client.isCompletedRegistration());
+			to.setCarts(client.getCarts());
+			to.setNivel(client.getNivel());
+			to.setTotalOrders(client.getTotalOrders());
+			
+			clients.add(to);
+		}
+		
+		return clients;
 	}
 }

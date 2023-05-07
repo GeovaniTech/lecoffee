@@ -17,16 +17,35 @@
 			</ui:define>
 			
 			<ui:define name="body">
-				<style>
-					#menu-clientes {
-						background-color: var(--background-general-mouse);
-						color: var(--text-mouse);
-					}
-					
-					#menu-clientes > * {
-						color: var(--text-mose);
-					}
-				</style>
+				<h:outputStylesheet library="css" name="/customers/customers.css" />
+				
+				<h:form id="formTableClient">
+					<p:dataTable
+						widgetVar="tableCustomers"
+						var="client"
+						value="#{MBClient.customers}"
+						selectionMode="single"
+						selection="#{MBClient.client}"
+						rowKey="#{client.id}"
+						scrollable="true">
+						
+						<p:column headerText="#{label.name}">
+							<h:outputText value="#{client.nome == null ? label.not_registered : client.nome}" />
+						</p:column>
+						
+						<p:column headerText="#{label.email}">
+							<h:outputText value="#{client.email}" />
+						</p:column>
+						
+						<p:column headerText="#{label.total_orders}">
+							<h:outputText value="#{client.totalOrders}" />
+						</p:column>
+						
+						<p:column headerText="#{label.completed_registration}">
+							<h:outputText value="#{client.completedRegistration == true ? label.finished :  label.not_finished}" />
+						</p:column>
+					</p:dataTable>
+				</h:form>
 			</ui:define>
 		</ui:composition>
 	</h:body>

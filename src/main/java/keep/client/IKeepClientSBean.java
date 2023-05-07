@@ -1,5 +1,7 @@
 package keep.client;
 
+import java.util.List;
+
 import javax.ejb.Local;
 import to.TOClient;
 
@@ -10,4 +12,5 @@ public interface IKeepClientSBean {
 	public boolean verifyClient(String email);
 	public boolean logar(String email, String password);
 	public TOClient findByEmail(String email);
+	public List<TOClient> list();
 }
