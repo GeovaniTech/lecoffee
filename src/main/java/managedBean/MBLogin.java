@@ -11,7 +11,9 @@ import keep.client.KeepClientSBean;
 
 import utils.AbstractBean;
 import utils.Cookies;
+import utils.EmailUtil;
 import utils.Encryption;
+import utils.JwtTokenUtil;
 import utils.MessageUtil;
 import utils.RedirectUrl;
 
@@ -63,6 +65,28 @@ public class MBLogin extends AbstractBean {
 		if(this.getRegisterFinished() != null && this.getRegisterFinished().equals("finished")) {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("registration_completed_successfully"), null, FacesMessage.SEVERITY_INFO);
 		}
+	}
+	
+	public void setNewPasswordValidations() {
+		if(!EmailUtil.validateEmail(this.getEmail())) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_email"), null, FacesMessage.SEVERITY_WARN);
+			return;
+		}
+		
+		if(!this.getsBean().verifyClient(this.getEmail())) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("user_not_found"), null, FacesMessage.SEVERITY_ERROR);
+			return;
+		}
+		
+		this.setNewPassword();
+	}
+	
+	public void setNewPassword() {
+		
+	}
+	
+	public String createTokenNewPassword() {
+		return JwtTokenUtil.generateEmailToken(this.getEmail());
 	}
 	
 	//Getters and Setters

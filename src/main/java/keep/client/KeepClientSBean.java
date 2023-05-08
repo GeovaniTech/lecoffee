@@ -236,4 +236,18 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		
 		return clients;
 	}
+
+	@Override
+	public void setNewPassword(String email) {
+		if(!EmailUtil.validateEmail(email)) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_email"), null, FacesMessage.SEVERITY_WARN);
+			return;
+		}
+		
+		if(!verifyClient(email)) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("user_not_found"), null, FacesMessage.SEVERITY_ERROR);
+			return;
+		}
+ 		
+	}
 }
