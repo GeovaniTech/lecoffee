@@ -131,21 +131,6 @@ form > .field, button {
 	color: var(--green) !important;
 }
 
-button {
-    background-color: var(--green);
-    border: none;
-    color: white;
-    padding: 15px 52px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 35px;
-    font-family: 'Poppins', sans-serif;
-    transition: 0.4s;
-    cursor: pointer;
-}
-
 .buttonClass {
     background-color: var(--green) !important;
     border: none !important;

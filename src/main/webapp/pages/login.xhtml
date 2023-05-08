@@ -89,7 +89,15 @@
 				           	style="margin-bottom: 15px;" />
 					</h:form>						
 					
-					<a href="/lecoffee/register">#{label.register}</a>
+					<div class="horizontal-between">
+						<p:commandLink 
+							value="#{label.register}"
+							action="#{MBAppConfigs.redirectTo('/lecoffee/register')}"/>
+					
+						<p:commandLink 
+							value="#{label.forgot_password}"
+							onclick="PF('dialog-forgot-password').show();" />
+					</div>
 				</div>
 							
 		        <div class="atendimento">
@@ -98,6 +106,37 @@
 		            <a href="#"><i class="fi fi-brands-facebook"></i></a>
 		        </div>
 			</div>   
+			
+	        <p:dialog
+	        	header="#{label.password}"
+	        	widgetVar="dialog-forgot-password"
+     			dynamic="true"
+				resizable="false"
+				draggable="false"
+				position="center"
+				modal="true"
+				width="400px">
+	        	
+	        	<h:form class="general-dialog-forms">
+			        <p:messages 
+		        		id="messagesForgotPassword" 
+		        		autoUpdate="true" 
+		        		style="width: 100%;"
+		        		showIcon="false"
+		        		showDetail="false" />
+	        		
+	        		<p>#{label.message_send_email_to_set_new_password}</p>
+	        		
+	        		<p:inputText 
+	        			placeholder="#{label.email}"
+	        			required="true"
+	        			requiredMessage="#{label.email_required}" />
+	        		
+	        		<p:commandButton 
+	        			 value="#{label.send_email}"
+	        			 update="@form"/>
+	        	</h:form>
+	        </p:dialog>
 		</f:view>	
 	</h:body>
 </html>

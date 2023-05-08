@@ -157,6 +157,16 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		
 		return false;
 	}
+	
+	public void redirectTo(String url) {
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+
+		try {
+			ec.redirect(url);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// Getters and Setters
 	public List<Locale> getLocaleList() {
