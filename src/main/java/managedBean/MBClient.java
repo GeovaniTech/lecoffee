@@ -9,7 +9,6 @@ import javax.inject.Named;
 
 import keep.client.KeepClientSBean;
 import to.TOClient;
-import utils.AbstractBean;
 import utils.AbstractFilterBean;
 
 @Named("MBClient")

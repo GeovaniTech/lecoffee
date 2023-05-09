@@ -4,8 +4,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import com.ocpsoft.pretty.faces.config.rewrite.Redirect;
-
 import keep.client.KeepClientSBean;
 import utils.AbstractBean;
 import utils.JwtTokenUtil;
