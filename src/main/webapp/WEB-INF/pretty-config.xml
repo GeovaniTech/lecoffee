@@ -12,6 +12,16 @@
 		<view-id value="/pages/login.xhtml?registerFinished=#{registerFinished}" />
 	</url-mapping>
 	
+	<url-mapping id="newPassword">
+		<pattern value="/newpassword" />
+		<view-id value="/pages/newPassword.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="newPasswordParam">
+		<pattern value="/newpassword/#{token}" />
+		<view-id value="/pages/newPassword.xhtml?token=#{token}" />
+	</url-mapping>
+	
 	<url-mapping id="register">
 		<pattern value="/register" />
 		<view-id value="/pages/register.xhtml" />

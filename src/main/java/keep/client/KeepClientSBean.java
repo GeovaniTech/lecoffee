@@ -73,6 +73,8 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	}
 	
 	public void change(Client client) {
+		client.setAccountChangeDate(new Date());
+		
 		em.getTransaction().begin();
 		em.merge(client);
 		em.getTransaction().commit();
@@ -238,16 +240,13 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	}
 
 	@Override
-	public void setNewPassword(String email) {
-		if(!EmailUtil.validateEmail(email)) {
-			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_email"), null, FacesMessage.SEVERITY_WARN);
-			return;
-		}
+	public void setNewPassword(String email, String password) {
+		TOClient toClient = findByEmail(email);
 		
-		if(!verifyClient(email)) {
-			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("user_not_found"), null, FacesMessage.SEVERITY_ERROR);
-			return;
-		}
- 		
+		Client client = em.find(Client.class, toClient.getId());
+		
+		client.setSenha(Encryption.encryptTextSHA(password));
+		
+		change(client);
 	}
 }
