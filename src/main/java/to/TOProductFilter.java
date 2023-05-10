@@ -12,6 +12,15 @@ public class TOProductFilter implements Serializable {
 	private TODateRangeFilter dateCreation;
 	private TOInputFilter category_id;
 
+	public TOProductFilter() {
+		this.setName(new TOInputFilter());
+		this.setDescription(new TOInputFilter());
+		this.setPrice(new TOInputNumberFilter());
+		this.setRating(new TOInputNumberFilter());
+		this.setDateCreation(new TODateRangeFilter());
+		this.setCategory_id(new TOInputFilter());
+	}
+	
 	//Getters and Setters
 	public TOInputFilter getName() {
 		return name;

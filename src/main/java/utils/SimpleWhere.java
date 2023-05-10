@@ -31,11 +31,11 @@ public class SimpleWhere {
 		StringBuilder sql = new StringBuilder();
 		
 		if(filter.getFrom() != null) {
-			sql.append(" AND " + field + " >= " + filter.getFrom());
+			sql.append(" AND " + field + " >= '" + filter.getFrom() + "'");
 		} 
 		
 		if (filter.getTo() != null){
-			sql.append(" AND " + field + " <= " + filter.getTo());
+			sql.append(" AND " + field + " <= '" + filter.getTo() + "'");
 		}
 		
 		return sql.toString();

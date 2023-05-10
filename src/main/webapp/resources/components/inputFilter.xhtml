@@ -9,12 +9,12 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<composite:interface>
-		<composite:attribute name="toInputFilter" />
+		<composite:attribute name="toInputFilter" type="to.TOInputFilter" />
 		<composite:attribute name="label" />
 	</composite:interface>
 	
 	<composite:implementation>
-		<p>#{cc.attrs.label}</p>
+		<p style="margin-top: 15px;">#{cc.attrs.label}</p>
 		<div class="horizontal-top-left">
 			<p:selectOneMenu 
 				value="#{cc.attrs.toInputFilter.type}"
@@ -22,16 +22,16 @@
 				
 				<f:selectItem 
 					itemLabel="#{label.contains}"
-					itemValue="#{label.contains}" />
+					itemValue="contains" />
 					
 				<f:selectItem 
 					itemLabel="#{label.does_not_contain}"
-					itemValue="#{label.does_not_contain}" />
+					itemValue="does not contain" />
 			</p:selectOneMenu>
 			
 			<p:inputText 
 				value="#{cc.attrs.toInputFilter.value}"
-				style="width: 200px;" />
+				style="width: 222px;" />
 		</div>
 	</composite:implementation>	
 </html>

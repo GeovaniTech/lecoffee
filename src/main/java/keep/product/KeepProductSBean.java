@@ -91,6 +91,7 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 			sql.append(SimpleWhere.queryFilterDateRange("P.creationDate", filter.getDateCreation()));
 		}
 		 
-		return null;
+		return em.createQuery(sql.toString(), Product.class)
+					.getResultList();
 	}
 }

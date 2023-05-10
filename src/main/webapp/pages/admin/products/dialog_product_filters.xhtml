@@ -19,41 +19,51 @@
 			resizable="false"
 			draggable="false"
 			position="center"
-			modal="true">
+			modal="true"
+			style="width: 1000px !important;">
 			
 			<p:scrollPanel
 				mode="native" 
 				style="max-height: 80vh; width: 100%;">
 				
 				<h:form class="vertical-left general-dialog-forms">
-					<components:inputFilter 
-						label="#{label.name}"
-						toInputFilter="#{MBTab_products.productFilter.name}" />
-					
-					<components:numberRange 
-						label="#{label.price}"
-						toInputNumberFilter="#{MBTab_products.productFilter.price}" />
-				
-					<components:inputFilter 
-						label="#{label.category}"
-						toInputFilter="#{MBTab_products.productFilter.category_id}"/>
-					
-					<components:dateRange 
-						label="#{label.creation_date}"
-						toInputDateFilter="#{MBTab_products.productFilter.dateCreation}"/>
+					<div class="horizontal-left">
+						<div class="mg-r-10">
+							<components:inputFilter 
+								label="#{label.name}"
+								toInputFilter="#{MBTab_products.productFilter.name}" />
 						
+							<components:inputFilter 
+								label="#{label.category}"
+								toInputFilter="#{MBTab_products.productFilter.category_id}"/>
+						</div>
+						
+						<div>
+							<components:numberRange 
+								label="#{label.price}"
+								toInputNumberFilter="#{MBTab_products.productFilter.price}" />
+	
+							<components:dateRange 
+								label="#{label.creation_date}"
+								toInputDateFilter="#{MBTab_products.productFilter.dateCreation}"/>
+						</div>
+					</div>
+			
 					<p:toolbar>
 						<f:facet name="left">
 							<p:commandButton 
 								value="#{label.filter}"
 								action="#{MBTab_products.filterProducts()}"
 								styleClass="mg-r-5"
-								icon="pi pi-filter" />
+								icon="pi pi-filter"
+								oncomplete="remoteUpdate();" />
 							
 							<p:commandButton 
 								value="#{label.clear_filters}"
 								action="#{MBTab_products.cleanFilters}" 
-								icon="pi pi-filter-slash"/>
+								icon="pi pi-filter-slash"
+								update="@form"
+								oncomplete="remoteUpdate();"/>
 						</f:facet>
 					</p:toolbar>
 				</h:form>

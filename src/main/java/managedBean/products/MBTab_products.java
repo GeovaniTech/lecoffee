@@ -44,6 +44,7 @@ public class MBTab_products extends AbstractFilterBean {
 		this.setProducts(new ArrayList<Product>());
 		this.setCategoriesFilter(new ArrayList<Category>());
 		this.setsBeanCategory(new KeepCategorySBean());
+		this.setProductFilter(new TOProductFilter());
 		
 		list();
 		initFilters();
@@ -92,7 +93,7 @@ public class MBTab_products extends AbstractFilterBean {
 	}
 	
 	public void filterProducts() {
-		this.getsBean().filterProducts(this.getProductFilter());
+		this.setProducts(this.getsBean().filterProducts(this.getProductFilter()));
 	}
 	
 	public void cleanFilters() {
@@ -113,67 +114,51 @@ public class MBTab_products extends AbstractFilterBean {
 	public Product getProduct() {
 		return product;
 	}
-
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
 	public KeepProductSBean getsBean() {
 		return sBean;
 	}
-
 	public void setsBean(KeepProductSBean sBean) {
 		this.sBean = sBean;
 	}
-
 	public List<Product> getProducts() {
 		return products;
 	}
-
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-
 	public boolean isStatus() {
 		return status;
 	}
-
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 	public TOProductFilter getProductFilter() {
 		return productFilter;
 	}
-
 	public void setProductFilter(TOProductFilter productFilter) {
 		this.productFilter = productFilter;
 	}
-
 	public boolean isTableView() {
 		return tableView;
 	}
-
 	public void setTableView(boolean tableView) {
 		this.tableView = tableView;
 	}
-
 	public List<Category> getCategoriesFilter() {
 		return categoriesFilter;
 	}
-
 	public void setCategoriesFilter(List<Category> categoriesFilter) {
 		this.categoriesFilter = categoriesFilter;
 	}
-
 	public KeepCategorySBean getsBeanCategory() {
 		return sBeanCategory;
 	}
-
 	public void setsBeanCategory(KeepCategorySBean sBeanCategory) {
 		this.sBeanCategory = sBeanCategory;
 	}	

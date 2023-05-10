@@ -22,7 +22,8 @@ public class Product {
 	private Date creationDate;
 	
 	public Product() {
-		this.category = new Category();
+		this.setCategory(new Category());
+		this.setCreationDate(new Date());
 	}
 
 	@OneToOne
