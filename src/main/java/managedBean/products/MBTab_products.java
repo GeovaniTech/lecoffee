@@ -97,6 +97,7 @@ public class MBTab_products extends AbstractFilterBean {
 	}
 	
 	public void cleanFilters() {
+		this.setProductFilter(new TOProductFilter());
 		this.list();
 	}
 	
