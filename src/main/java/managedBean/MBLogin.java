@@ -15,7 +15,6 @@ import utils.Encryption;
 import utils.JwtTokenUtil;
 import utils.MessageUtil;
 import utils.RedirectUrl;
-import utils.StringUtil;
 
 @Named("MBLogin")
 @ViewScoped
@@ -24,10 +23,8 @@ public class MBLogin extends AbstractBean {
 	
 	private String email;
 	private String password;
-	private String repeatPassword;
 	private KeepClientSBean sBean;
 	private String registerFinished;
-	private String tokenNewPassword;
 	
 	public MBLogin() {		
 		this.setsBean(new KeepClientSBean());
@@ -106,24 +103,6 @@ public class MBLogin extends AbstractBean {
 		EmailUtil.sendMail(this.getEmail(), title, description.toString(), MessageUtil.getMessageFromProperties("email_new_password"));
 	}
 	
-	public void setNewPassword() {
-		String emailFromToken = JwtTokenUtil.getEmailFromToken(this.getTokenNewPassword());
-		
-		if(!StringUtil.isNotNull(emailFromToken)) {
-			// Message
-		}
-		
-		if(!this.getPassword().equals(this.getRepeatPassword())) {
-			// Message
-		}
-		
-		this.getsBean().setNewPassword(emailFromToken, this.getPassword());
-	}
-	
-	public String createTokenNewPassword() {
-		return JwtTokenUtil.generateEmailToken(this.getEmail());
-	}
-	
 	//Getters and Setters
 	public String getEmail() {
 		return email;
@@ -155,21 +134,5 @@ public class MBLogin extends AbstractBean {
 
 	public void setRegisterFinished(String registerFinished) {
 		this.registerFinished = registerFinished;
-	}
-
-	public String getRepeatPassword() {
-		return repeatPassword;
-	}
-
-	public void setRepeatPassword(String repeatPassword) {
-		this.repeatPassword = repeatPassword;
-	}
-
-	public String getTokenNewPassword() {
-		return tokenNewPassword;
-	}
-
-	public void setTokenNewPassword(String tokenNewPassword) {
-		this.tokenNewPassword = tokenNewPassword;
 	}
 }

@@ -13,7 +13,6 @@ import to.TOProductFilter;
 import utils.AbstractManter;
 import utils.MessageUtil;
 import utils.SimpleWhere;
-import utils.StringUtil;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
