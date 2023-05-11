@@ -98,10 +98,21 @@ public class MBTab_products extends AbstractFilterBean {
 		}
 	}
 	
+	public void active() {
+		this.getProduct().setStatus("active");
+		change();
+	}	
+	
 	public void openChangeDialog(Product product) {
 		this.setProduct(product);
 		
 		PrimeFaces.current().executeScript("PF('dialog-change-product').show()");
+	}
+	
+	public void disable() {
+		this.getsBean().disable(this.getProduct());
+		
+		list();
 	}
 	
 	public void disable(Product product) {
@@ -109,6 +120,11 @@ public class MBTab_products extends AbstractFilterBean {
 		
 		list();
 	}
+	
+	public void removeProduct() {
+		this.getsBean().remove(this.getProduct());
+		list();
+	}	
 	
 	public void list() {
 		this.setProducts(this.getsBean().list());

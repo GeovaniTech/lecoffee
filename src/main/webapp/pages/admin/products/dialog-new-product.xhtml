@@ -19,7 +19,7 @@
 			draggable="false"
 			position="center"
 			modal="true"
-			width="630px"
+			width="600px"
 			widgetVar="dialog-new-product">
 			
 			<p:scrollPanel
@@ -35,35 +35,31 @@
 						showIcon="false"
 		        		autoUpdate="true"  />
 		
-					<h:outputLabel value="#{label.name}" class="label" for="name" />
-					<p:inputText 
-						id="name"
-						value="#{MBTab_products.product.name}"
-						required="true"
-						requiredMessage="#{label.name_required}"
-						placeholder="#{label.insert_the} #{label.name}" />
-
-					<h:outputLabel value="#{label.price}" class="label" for="price" />
-					<p:inputNumber
-						id="price"
-						value="#{MBTab_products.product.price}"
-						required="true"
-						requiredMessage="#{label.price_required}"
-						placeholder="#{label.insert_the} #{label.price}"
-						decimalSeparator="," 
-						thousandSeparator="." 
-						pattern="#.##0,00">
-					</p:inputNumber>
-					
-					<h:outputLabel value="#{label.description}" class="label" for="description" />
-					<p:inputTextarea 
-						id="description"
-						value="#{MBTab_products.product.description}"
-						required="true"
-						requiredMessage="#{label.description_required}"
-						placeholder="#{label.insert_the} #{label.description}"/>
-					
-					<div class="horizontal-top-left">
+					<div class="horizontal-left">
+						<div class="vertical-left mg-r-10">
+							<h:outputLabel value="#{label.name}" class="label" for="name" />
+							<p:inputText 
+								id="name"
+								value="#{MBTab_products.product.name}"
+								required="true"
+								requiredMessage="#{label.name_required}"
+								placeholder="#{label.insert_the} #{label.name}" />
+						</div>
+	
+						<div class="vertical-left mg-r-10">
+							<h:outputLabel value="#{label.price}" class="label" for="price" />
+							<p:inputNumber
+								id="price"
+								value="#{MBTab_products.product.price}"
+								required="true"
+								requiredMessage="#{label.price_required}"
+								placeholder="#{label.insert_the} #{label.price}"
+								decimalSeparator="," 
+								thousandSeparator="." 
+								pattern="#.##0,00">
+							</p:inputNumber>
+						</div>
+						
 						<div class="vertical-left">
 							<h:outputLabel value="#{label.category}" class="label" for="category" />
 							<p:selectOneMenu 
@@ -77,14 +73,15 @@
 									itemValue="#{category.id}" />
 							</p:selectOneMenu>
 						</div>
-						<div class="vertical-left">
-							<h:outputText value="#{label.status}" class="label" for="status" />
-							<p:toggleSwitch 
-								id="status"
-								value="#{MBTab_products.status}"
-								style="width: 47px !important;"/>
-						</div>
 					</div>
+					
+					<h:outputLabel value="#{label.description}" class="label" for="description" />
+					<p:inputTextarea 
+						id="description"
+						value="#{MBTab_products.product.description}"
+						required="true"
+						requiredMessage="#{label.description_required}"
+						placeholder="#{label.insert_the} #{label.description}"/>
 					
 					<h:outputLabel value="#{label.upload_files}" class="label" />
 					<p:fileUpload
@@ -101,12 +98,17 @@
 						requiredMessage="#{label.select_image_required}"
 					 />
 					
-					<p:commandButton 
-						value="#{label.finish_registration}"
-						process="@form"
-						action="#{MBTab_products.save()}"
-						update=" messages, @form"
-						oncomplete="remoteUpdate()" />
+					<p:toolbar>
+						<f:facet name="left">
+							<p:commandButton 
+								icon="pi pi-save"
+								value="#{label.finish_registration}"
+								process="@form"
+								action="#{MBTab_products.save()}"
+								update=" messages, @form"
+								oncomplete="remoteUpdate()" />
+						</f:facet>
+					</p:toolbar>
 				</h:form>
 			</p:scrollPanel>
 		</p:dialog>	

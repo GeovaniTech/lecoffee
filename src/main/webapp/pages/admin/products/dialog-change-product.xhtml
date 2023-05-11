@@ -11,6 +11,12 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<h:body>
+		<style>
+			span > .ui-inputfield {
+				width: 100%;
+			}
+		</style>
+		
 		<p:dialog
 			id="dialog-change-product"
 			header="#{label.products}"
@@ -19,7 +25,7 @@
 			draggable="false"
 			position="center"
 			modal="true"
-			width="630px"
+			width="600px"
 			widgetVar="dialog-change-product">
 			
 			<p:scrollPanel
@@ -35,36 +41,37 @@
 						showIcon="false"
 		        		autoUpdate="true"  />
 		
-					<h:outputLabel value="#{label.name}" class="label" for="name" />
-					<p:inputText 
-						id="name"
-						value="#{MBTab_products.product.name}"
-						required="true"
-						requiredMessage="#{label.name_required}"
-						placeholder="#{label.insert_the} #{label.name}" />
-
-					<h:outputLabel value="#{label.price}" class="label" for="price" />
-					<p:inputText
-						id="price"
-						value="#{MBTab_products.product.price}"
-						required="true"
-						requiredMessage="#{label.price_required}"
-						placeholder="#{label.insert_the} #{label.price}" />
-					
-					<h:outputLabel value="#{label.description}" class="label" for="description" />
-					<p:inputTextarea 
-						id="description"
-						value="#{MBTab_products.product.description}"
-						required="true"
-						requiredMessage="#{label.description_required}"
-						placeholder="#{label.insert_the} #{label.description}"/>
-					
-					<div class="horizontal-top-left">
+					<div class="horizontal-left">
+						<div class="vertical-left mg-r-10">
+							<h:outputLabel value="#{label.name}" class="label" for="name" />
+							<p:inputText 
+								id="name"
+								value="#{MBTab_products.product.name}"
+								required="true"
+								requiredMessage="#{label.name_required}"
+								placeholder="#{label.insert_the} #{label.name}" />
+						</div>
+	
+						<div class="vertical-left mg-r-10">
+							<h:outputLabel value="#{label.price}" class="label" for="price" />
+							<p:inputNumber
+								id="price"
+								value="#{MBTab_products.product.price}"
+								required="true"
+								requiredMessage="#{label.price_required}"
+								placeholder="#{label.insert_the} #{label.price}"
+								decimalSeparator="," 
+								thousandSeparator="." 
+								pattern="#.##0,00"
+								style="width: 100% !important;" />
+						</div>
+						
 						<div class="vertical-left">
 							<h:outputLabel value="#{label.category}" class="label" for="category" />
 							<p:selectOneMenu 
 								value="#{MBTab_products.categoryId}"
-								style="width: 200px; margin-right: 30px;">
+								style="width: 200px;"
+								styleClass="mg-r-10">
 								
 								<f:selectItems 
 									var="category"
@@ -73,14 +80,15 @@
 									itemValue="#{category.id}" />
 							</p:selectOneMenu>
 						</div>
-						<div class="vertical-left">
-							<h:outputText value="#{label.status}" class="label" for="status" />
-							<p:toggleSwitch 
-								id="status"
-								value="#{MBTab_products.status}"
-								style="width: 47px !important;"/>
-						</div>
 					</div>
+					
+					<h:outputLabel value="#{label.description}" class="label" for="description" />
+					<p:inputTextarea 
+						id="description"
+						value="#{MBTab_products.product.description}"
+						required="true"
+						requiredMessage="#{label.description_required}"
+						placeholder="#{label.insert_the} #{label.description}"/>
 					
 					<h:outputLabel value="#{label.upload_files}" class="label" />
 					<p:fileUpload
@@ -94,12 +102,41 @@
 						listener="#{MBTab_products.addImage}" 
 						process="@this" />
 					
-					<p:commandButton 
-						value="#{label.change}"
-						process="@form"
-						action="#{MBTab_products.change()}"
-						update=" messages"
-						oncomplete="remoteUpdate()" />
+					<p:toolbar>
+						<f:facet name="left">
+							<p:commandButton 
+								icon="pi pi-save"
+								value="#{label.change}"
+								process="@form"
+								action="#{MBTab_products.change()}"
+								update=" messages"
+								oncomplete="remoteUpdate()"
+								styleClass="mg-r-5" />
+								
+							<p:commandButton 
+								icon="pi pi-stop"
+								value="#{label.disable}"
+								action="#{MBTab_products.disable()}"
+								styleClass="disableStyle mg-r-5"
+								oncomplete="remoteUpdate()"
+								rendered="#{MBTab_products.product.status eq 'active' ? true : false}" />
+								
+							<p:commandButton 
+								icon="pi pi-history"
+								value="#{label.active}"
+								action="#{MBTab_products.active()}"
+								styleClass="disableStyle mg-r-5"
+								oncomplete="remoteUpdate()"
+								rendered="#{MBTab_products.product.status eq 'active' ? false : true}" />
+							
+							<p:commandButton 
+								icon="pi pi-trash"
+								value="#{label.remove}"
+								action="#{MBTab_products.removeProduct()}"
+								styleClass="deleteStyle"
+								oncomplete="remoteUpdate()" />
+						</f:facet>
+					</p:toolbar>
 				</h:form>
 			</p:scrollPanel>		
 		</p:dialog>	
