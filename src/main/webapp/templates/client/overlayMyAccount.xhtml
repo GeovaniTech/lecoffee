@@ -14,8 +14,11 @@
 			<p:commandButton 
 				value="#{label.logout}"
 				action="#{MBAppConfigs.logout()}" />
-				
-			<a href="/lecoffee/admin/pedidos" style="display: #{MBAppConfigs.clientLogged.nivel eq 'admin' ? 'flex' : 'none'}">Admin</a>
+			
+			<p:commandLink 
+				value="Admin"
+				action="#{MBAppConfigs.redirectTo('/lecoffee/admin/pedidos')}"
+				rendered="#{MBAppConfigs.clientLogged.nivel eq 'admin' ? true : false}" />
 		</p:overlayPanel>
 	</h:body>
 </html>

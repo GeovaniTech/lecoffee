@@ -55,13 +55,19 @@ public class MBTab_products extends AbstractFilterBean {
 	
 	public void initFilters() {
 		this.setCategoriesFilter(this.getsBeanCategory().listActives());
+		
+		if(this.getProduct().getCategory()!= null) {
+			this.setCategoryId(this.getProduct().getCategory().getId());
+		}
 	}
 	
 	public void save() {
 		this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
+		this.getProduct().setCategory(this.getsBeanCategory().findById(this.getCategoryId()));
 		this.getsBean().save(this.getProduct());
 		
 		this.setNewProduct();
+		this.setCategoryId(null);
 		
 		list();
 	}
