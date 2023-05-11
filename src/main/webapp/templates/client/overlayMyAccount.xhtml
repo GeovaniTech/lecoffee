@@ -5,20 +5,44 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+                                                      xmlns:f="http://java.sun.com/jsf/core">
 	
-	<h:body>
-		<p:overlayPanel for="my_account">
-			<p>#{MBAppConfigs.clientLogged.email}</p>
+	<ui:composition>
+		<style>
+		
+		</style>
+		
+		<p:overlayPanel 
+			id="overlayMyAccount"
+			for="my_account">
 			
-			<p:commandButton 
-				value="#{label.logout}"
-				action="#{MBAppConfigs.logout()}" />
+			<div class="horizontal-left mg-b-10">
+				<div class="vertical-left mg-r-10">
+					<p:avatar label="#{MBAppConfigs.clientLogged.email.toUpperCase().substring(0, 1)}" size="large" style="background-color:#9c27b0; color:#fff" />
+				</div>
+				
+				<div class="vertical-left">
+					<strong><h:outputLabel value="#{label.user}" for="email" /></strong>
+					<p id="email">#{MBAppConfigs.clientLogged.email}</p>
+				</div>
+			</div>
 			
-			<p:commandLink 
-				value="Admin"
-				action="#{MBAppConfigs.redirectTo('/lecoffee/admin/pedidos')}"
-				rendered="#{MBAppConfigs.clientLogged.nivel eq 'admin' ? true : false}" />
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton 
+						icon="pi pi-sign-out"
+						value="#{label.logout}"
+						action="#{MBAppConfigs.logout()}"
+						styleClass="mg-r-5" />
+			
+					<p:commandButton
+						icon="pi pi-lock" 
+						value="Admin"
+						action="#{MBAppConfigs.redirectTo('/lecoffee/admin/pedidos')}"
+						rendered="#{MBAppConfigs.clientLogged.nivel eq 'admin' ? true :  false}" />
+				</f:facet>
+			</p:toolbar>
 		</p:overlayPanel>
-	</h:body>
+	</ui:composition>
 </html>
