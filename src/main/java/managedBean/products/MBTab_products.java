@@ -32,6 +32,9 @@ public class MBTab_products extends AbstractFilterBean {
 	
 	private List<Category> categoriesFilter;
 	private KeepCategorySBean sBeanCategory;
+	
+	// Used when the user change product's category
+	private Integer categoryId;
 		
 	private boolean tableView;
 	
@@ -65,6 +68,13 @@ public class MBTab_products extends AbstractFilterBean {
 
 	public void change() {
 		this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
+		
+		if(this.getCategoryId() != null) {
+			Category category = this.getsBeanCategory().findById(this.getCategoryId());
+			
+			this.getProduct().setCategory(category);
+		}
+		
 		this.getsBean().change(this.getProduct());
 		
 		this.setNewProduct();
@@ -162,5 +172,11 @@ public class MBTab_products extends AbstractFilterBean {
 	}
 	public void setsBeanCategory(KeepCategorySBean sBeanCategory) {
 		this.sBeanCategory = sBeanCategory;
+	}
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}	
 }
