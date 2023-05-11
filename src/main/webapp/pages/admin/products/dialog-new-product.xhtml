@@ -19,6 +19,7 @@
 			draggable="false"
 			position="center"
 			modal="true"
+			width="630px"
 			widgetVar="dialog-new-product">
 			
 			<p:scrollPanel
@@ -92,6 +93,8 @@
 						update="growl"
 						listener="#{MBTab_products.addImage}" 
 						process="@this"
+						required="true"
+						requiredMessage="#{label.select_image_required}"
 					 />
 					
 					<p:commandButton 

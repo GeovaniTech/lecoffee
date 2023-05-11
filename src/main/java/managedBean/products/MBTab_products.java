@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -18,6 +19,7 @@ import model.Product;
 import to.TOProductFilter;
 import utils.AbstractFilterBean;
 import utils.FileUtil;
+import utils.MessageUtil;
 
 @Named("MBTab_products")
 @ViewScoped
@@ -62,30 +64,38 @@ public class MBTab_products extends AbstractFilterBean {
 	}
 	
 	public void save() {
-		this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
-		this.getProduct().setCategory(this.getsBeanCategory().findById(this.getCategoryId()));
-		this.getsBean().save(this.getProduct());
-		
-		this.setNewProduct();
-		this.setCategoryId(null);
-		
-		list();
+		if(this.getProduct().getImageBytes() != null) {
+			this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
+			this.getProduct().setCategory(this.getsBeanCategory().findById(this.getCategoryId()));
+			this.getsBean().save(this.getProduct());
+			
+			this.setNewProduct();
+			this.setCategoryId(null);
+			
+			list();			
+		} else {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("select_image_required"), null, FacesMessage.SEVERITY_WARN);
+		}
 	}
 
 	public void change() {
-		this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
-		
-		if(this.getCategoryId() != null) {
-			Category category = this.getsBeanCategory().findById(this.getCategoryId());
+		if(this.getProduct().getImageBytes() != null) {
+			this.getProduct().setStatus(this.isStatus() ? "active" : "disable");
 			
-			this.getProduct().setCategory(category);
+			if(this.getCategoryId() != null) {
+				Category category = this.getsBeanCategory().findById(this.getCategoryId());
+				
+				this.getProduct().setCategory(category);
+			}
+			
+			this.getsBean().change(this.getProduct());
+			
+			this.setNewProduct();
+			
+			list();			
+		} else {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("select_image_required"), null, FacesMessage.SEVERITY_WARN);
 		}
-		
-		this.getsBean().change(this.getProduct());
-		
-		this.setNewProduct();
-		
-		list();
 	}
 	
 	public void openChangeDialog(Product product) {
