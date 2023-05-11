@@ -73,8 +73,6 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	}
 	
 	public void change(Client client) {
-		client.setAccountChangeDate(new Date());
-		
 		em.getTransaction().begin();
 		em.merge(client);
 		em.getTransaction().commit();
