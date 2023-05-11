@@ -8,9 +8,9 @@ public class SimpleWhere {
 	public static String queryFilter(String field, TOInputFilter filter) {
 		if(StringUtil.isNotNull(filter.getValue())) {
 			if(filter.getType().equals("contains")) {
-				return " AND " + field + " LIKE '%" + filter.getValue() + "%'";
+				return " AND LOWER(" + field + ") LIKE '%" + filter.getValue().toLowerCase() + "%'";
 			} else {
-				return " AND " + field + " NOT LIKE '%" + filter.getValue() + "%'";
+				return " AND LOWER(" + field + ") NOT LIKE '%" + filter.getValue().toLowerCase() + "%'";
 			}
 		} else {
 			return "";
