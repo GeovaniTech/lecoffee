@@ -44,12 +44,16 @@
 						placeholder="#{label.insert_the} #{label.name}" />
 
 					<h:outputLabel value="#{label.price}" class="label" for="price" />
-					<p:inputText
+					<p:inputNumber
 						id="price"
 						value="#{MBTab_products.product.price}"
 						required="true"
 						requiredMessage="#{label.price_required}"
-						placeholder="#{label.insert_the} #{label.price}" />
+						placeholder="#{label.insert_the} #{label.price}"
+						decimalSeparator="," 
+						thousandSeparator="." 
+						pattern="#.##0,00">
+					</p:inputNumber>
 					
 					<h:outputLabel value="#{label.description}" class="label" for="description" />
 					<p:inputTextarea 
