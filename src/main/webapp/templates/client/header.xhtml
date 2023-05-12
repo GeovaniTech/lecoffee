@@ -11,53 +11,89 @@
 		<h:outputStylesheet library="css" name="/client/layout/header.css" />
 		<h:outputStylesheet library="css" name="/configs/configs.css" />
 		
-		<div class="desktop-menu horizontal-evenly">
-			<h1><a href="/lecoffee/home"><span>Le</span>Coffee</a></h1>
-			
-			<div class="horizontal-evenly">
-				<a>#{label.coffee}</a>
-				<a>#{label.tea}</a>
-				<a>#{label.cookies}</a>
-				<a>#{label.cakes}</a>
-				<a>#{label.snacks}</a>
+		<div class="top-header-mobile">
+			<div class="btn-menu" onclick="openMenu();">
+				<span class="material-symbols-outlined">
+					menu
+				</span>
 			</div>
 			
-			<div class="horizontal-center">
-				<a class="system-links" href="#">
-					<span class="material-symbols-outlined google-icons">
-						shopping_basket
-					</span>
-				</a>
-				
-				<a class="system-links" href="/lecoffee/login" style="display: #{MBAppConfigs.userLogged == true ? 'none' : ''}">
-					<span class="material-symbols-outlined google-icons">
-						account_circle
-					</span>
-				</a>
-				
-				<p:commandLink
-					id="my_account"
-					style="text-decoration: none; display: #{MBAppConfigs.userLogged == false ? 'none' : ''}"
-					styleClass="system-links">
-					
-					<span class="material-symbols-outlined google-icons">
-						account_circle
-					</span>
-			 	</p:commandLink>
-			 	
-			 	<p:commandLink
-			 		id="options"
-			 		style="text-decoration: none;"
-			 		styleClass="system-links">
-					
-					<span class="material-symbols-outlined google-icons">
-						settings
-					</span>
-			 	</p:commandLink>
+			<div class="logo">
+				<h1><a href="/lecoffee/home"><span>Le</span>Coffee</a></h1>
+			</div>
+			
+			<div class="btn-menu">
+				<span class="material-symbols-outlined">
+					shopping_basket
+				</span>			
 			</div>
 		</div>
 		
-		<ui:include src="/templates/client/overlayOptions.xhtml" />
-		<ui:include src="/templates/client/overlayMyAccount.xhtml" />
+		<div class="header" id="header">			
+			<div class="menu" id="menu">
+				<a href="/lecoffee/admin/pedidos" id="menu-pedidos">
+					<span class="material-symbols-outlined google-icons">
+						bakery_dining
+					</span>
+					#{label.orders}
+				</a>
+				
+				<a href="/lecoffee/admin/produtos" id="menu-produtos">
+					<span class="material-symbols-outlined google-icons">
+						shopping_cart
+					</span>
+					#{label.products}
+				</a>
+				
+				<a href="/lecoffee/admin/ganhos" id="menu-ganhos">
+					<span class="material-symbols-outlined google-icons">
+						currency_bitcoin
+					</span>
+					#{label.earnings}
+				</a>
+				
+				<a href="/lecoffee/admin/avaliacoes" id="menu-avaliacoes">
+					<span class="material-symbols-outlined google-icons">
+						star
+					</span>
+					#{label.assessments}
+				</a>
+				
+				<a href="/lecoffee/admin/clientes" id="menu-clientes">
+					<span class="material-symbols-outlined google-icons">
+						group
+					</span>
+					#{label.customers}
+				</a>
+				
+				<a href="/lecoffee/admin/chats" id="menu-chats">
+					<span class="material-symbols-outlined google-icons">
+						forum
+					</span>
+					#{label.chats}
+				</a>
+
+				<a href="/lecoffee/home" target="_blank">
+					<span class="material-symbols-outlined google-icons">
+						web
+					</span>
+					#{label.landing_page}
+				</a>
+
+				<a href="#" onclick="btnLogout();" type="button">
+					<span class="material-symbols-outlined google-icons">
+						logout
+					</span>
+					#{label.logout}
+				</a>
+				
+				<p:remoteCommand 
+					id="btnLogout"
+					name="btnLogout"
+					action="#{MBAppConfigs.logout()}"/>
+			</div>
+		</div>
+		
+		<script src="/lecoffee/resources/js/menu.js" />	
 	</h:body>
 </html>
