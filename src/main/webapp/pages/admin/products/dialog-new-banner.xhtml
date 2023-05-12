@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+
+	<ui:composition>
+		<p:dialog
+			id="dialog-new-banner"
+			widgetVar="dialog-new-banner"
+			header="Banners"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			modal="true"
+			width="600px">
+			
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh; width: 100%;">
+				
+				<h:form class="general-dialog-form">
+					<div class="vertical-left mg-b-10">
+						<h:outputLabel value="#{label.name}" for="nameBanner" />
+						<p:inputText
+							id="nameBanner"
+							placeholder="#{label.name}" />
+					</div>
+
+					<h:outputLabel value="#{label.upload_files}" class="label" />
+					<p:fileUpload
+						multiple="true"
+						mode="advanced" 
+						showButtons="false"
+						label="#{label.search}" 
+						cancelLabel="#{label.cancel}"
+						uploadLabel="#{label.upload_files}"
+						update="growl"
+						listener="#{MBTab_products.addImage}" 
+						process="@this"
+						required="true"
+						requiredMessage="#{label.select_image_required}"
+					 />
+				</h:form>
+			</p:scrollPanel>
+		
+		</p:dialog>
+	</ui:composition>	
+</html>
