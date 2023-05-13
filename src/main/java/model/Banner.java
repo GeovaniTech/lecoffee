@@ -12,6 +12,7 @@ public class Banner {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	private String status;
 	
 	@Lob
 	private byte[] bytes;
@@ -39,5 +40,13 @@ public class Banner {
 
 	public void setBytes(byte[] bytes) {
 		this.bytes = bytes;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

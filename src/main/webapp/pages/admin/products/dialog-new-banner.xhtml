@@ -27,11 +27,20 @@
 				style="max-height: 80vh; width: 100%;">
 				
 				<h:form class="general-dialog-form">
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
+					
 					<div class="vertical-left mg-b-10">
 						<h:outputLabel value="#{label.name}" for="nameBanner" />
 						<p:inputText
 							id="nameBanner"
-							placeholder="#{label.name}" />
+							value="#{MBBanners.banner.name}"
+							placeholder="#{label.name}"
+							required="true"
+							requiredMessage="#{label.name_required}" />
 					</div>
 
 					<h:outputLabel value="#{label.upload_files}" class="label" />
@@ -43,11 +52,23 @@
 						cancelLabel="#{label.cancel}"
 						uploadLabel="#{label.upload_files}"
 						update="growl"
-						listener="#{MBTab_products.addImage}" 
+						listener="#{MBBanners.addImage}" 
 						process="@this"
 						required="true"
 						requiredMessage="#{label.select_image_required}"
 					 />
+					
+					<p:toolbar>
+						<f:facet name="left">							 
+							 <p:commandButton 
+							 	icon="pi pi-save"
+							 	value="#{label.save}"
+							 	action="#{MBBanners.save()}"
+							 	process="@form"
+							 	update="messages"
+							 	 />
+						</f:facet>
+					</p:toolbar>
 				</h:form>
 			</p:scrollPanel>
 		
