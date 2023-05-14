@@ -77,8 +77,7 @@ public class MBBanners extends AbstractBean {
 	
 	public void onReorderList() {
 		int id = 1;
-		
-		
+
 		for(TOBanner banner : this.getBanners()) {
 			Banner model = this.getBannerSBean().findById(banner.getId());
 			
@@ -87,8 +86,6 @@ public class MBBanners extends AbstractBean {
 			
 			id++;
 		}
-		
-		list();
 	}
 	
 	//Getters and Setters
