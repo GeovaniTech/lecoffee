@@ -12,6 +12,7 @@ import org.primefaces.event.FileUploadEvent;
 import keep.banner.keepBannerSBean;
 import model.Banner;
 import model.File;
+import to.TOBanner;
 import utils.AbstractBean;
 import utils.FileUtil;
 import utils.MessageUtil;
@@ -23,7 +24,7 @@ public class MBBanners extends AbstractBean {
 	
 	private Banner banner;
 	private keepBannerSBean bannerSBean;
-	private List<Banner> banners;
+	private List<TOBanner> banners;
 	
 	public MBBanners() {
 		this.setBanner(new Banner());
@@ -74,6 +75,22 @@ public class MBBanners extends AbstractBean {
 		this.getBanner().setBytes(file.getBytes());
 	}
 	
+	public void onReorderList() {
+		int id = 1;
+		
+		
+		for(TOBanner banner : this.getBanners()) {
+			Banner model = this.getBannerSBean().findById(banner.getId());
+			
+			model.setPriority(id);
+			this.getBannerSBean().save(model);
+			
+			id++;
+		}
+		
+		list();
+	}
+	
 	//Getters and Setters
 	public Banner getBanner() {
 		return banner;
@@ -91,11 +108,11 @@ public class MBBanners extends AbstractBean {
 		this.bannerSBean = bannerSBean;
 	}
 
-	public List<Banner> getBanners() {
+	public List<TOBanner> getBanners() {
 		return banners;
 	}
 
-	public void setBanners(List<Banner> banners) {
+	public void setBanners(List<TOBanner> banners) {
 		this.banners = banners;
 	}
 }

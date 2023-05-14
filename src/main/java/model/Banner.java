@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,12 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 
 @Entity
-public class Banner {
+public class Banner implements Serializable {
+	private static final long serialVersionUID = 7617424868592682566L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String status;
+	private Integer priority;
+	
+	public Banner() {
+		this.setPriority(0);
+	}
 	
 	@Lob
 	private byte[] bytes;
@@ -48,5 +57,13 @@ public class Banner {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Integer getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
 }

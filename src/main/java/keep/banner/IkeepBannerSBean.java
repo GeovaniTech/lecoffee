@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import model.Banner;
+import to.TOBanner;
 
 @Local
 public interface IkeepBannerSBean {
@@ -16,5 +17,5 @@ public interface IkeepBannerSBean {
 	
 	public Banner findById(int id);
 	
-	public List<Banner> list();
+	public List<TOBanner> list();
 }

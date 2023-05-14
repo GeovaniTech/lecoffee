@@ -11,6 +11,10 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<ui:composition>
+		<p:remoteCommand 
+			name="updateContainer"
+			update="container-banner"/>
+		
 		<div class="top-buttons">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
@@ -19,6 +23,25 @@
 					styleClass="optionsButtonStyle" />
 			</h:form>
 		</div>
+		
+		<h:form id="container-banner">
+			<p:orderList  
+				var="banner"
+				value="#{MBBanners.banners}"  
+				itemLabel="#{banner.name}" 
+				itemValue="#{banner}"
+				converter="simpleEntityConverter">
+				
+				<f:facet name="caption">Ordem de Exibição</f:facet>
+				
+				<p:ajax 
+					event="reorder" 
+					process="@form"
+					listener="#{MBBanners.onReorderList}" 
+					oncomplete="upadateContainer();" />
+					
+			</p:orderList>
+		</h:form>	
 		
 		<ui:include src="dialog-new-banner.xhtml" />
 	</ui:composition>
