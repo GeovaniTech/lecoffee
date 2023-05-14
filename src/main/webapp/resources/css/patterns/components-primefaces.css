@@ -265,3 +265,19 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	background-color: var(--background-general-mouse) !important;
 	border-color: var(--background-general-mouse) !important;
 }
+
+/* #################### ORDERLIST #################### */
+.ui-orderlist, .ui-orderlist-caption {
+	color: var(--text-mouse) !important;
+	background-color: var(--background-general) !important;
+	border-color: var(--background-general) !important;
+}
+
+.ui-orderlist-list {
+	background-color: var(--second-color-widget) !important;
+	border-color: var(--second-color-widget) !important;
+}
+
+.ui-orderlist-item:hover {
+	background-color: var(--green) !important;
+}

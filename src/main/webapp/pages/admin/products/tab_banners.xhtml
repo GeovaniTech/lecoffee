@@ -11,11 +11,16 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<ui:composition>
+		<style>
+			.ui-orderlist-list {
+				height: 92.5% !important;
+			} 
+		</style>
 		<p:remoteCommand 
 			name="updateContainer"
 			update="container-banner"/>
 		
-		<div class="top-buttons">
+		<div class="top-buttons mg-b-10">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
 					oncomplete="PF('dialog-new-banner').show()"
@@ -28,11 +33,22 @@
 			<p:orderList  
 				var="banner"
 				value="#{MBBanners.banners}"  
-				itemLabel="#{banner.name}" 
 				itemValue="#{banner}"
-				converter="simpleEntityConverter">
+				converter="simpleEntityConverter"
+				responsive="true"
+				controlsLocation="none">
 				
 				<f:facet name="caption">Ordem de Exibição</f:facet>
+
+	            <p:column style="width: 230px; height: 200px;">
+	               	<h:graphicImage 
+	               		value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(banner.bytes)}"
+	               		style="width: 200px; height: 200px;" />
+	            </p:column>
+	            
+	            <p:column headerText="Banner #{label.name}">
+	            	<h:outputText value="#{banner.name}" style="color: var(--text-mouse);" />
+	            </p:column>
 				
 				<p:ajax 
 					event="reorder" 
