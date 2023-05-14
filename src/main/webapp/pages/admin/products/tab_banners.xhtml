@@ -12,13 +12,22 @@
 	
 	<ui:composition>
 		<style>
-			.ui-orderlist-list {
-				height: 92.5% !important;
+			.ui-orderlist-list, .ui-orderlist {
+				height: 90% !important;
 			} 
+			
+			.item-disabled .ui-orderlist-item {
+				opacity: 0.33 !important;
+			}
 		</style>
+		
 		<p:remoteCommand 
 			name="updateContainer"
 			update="container-banner"/>
+			
+		<p:remoteCommand 
+			name="updateDialogChangeBanner"
+			update="formDialogChangeBanner"/>
 		
 		<div class="top-buttons mg-b-10">
 			<h:form class="form-top-buttons">
@@ -40,10 +49,10 @@
 				
 				<f:facet name="caption">Ordem de Exibição</f:facet>
 
-	            <p:column style="width: 230px; height: 200px;">
+	            <p:column style="width: 110px; height: 70px;" styleClass="#{banner.status eq 'disabled' ? item-disabled : ''}">
 	               	<h:graphicImage 
 	               		value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(banner.bytes)}"
-	               		style="width: 200px; height: 200px;" />
+	               		style="width: 80px; height: 70px;" />
 	            </p:column>
 	            
 	            <p:column headerText="Banner #{label.name}">
@@ -54,10 +63,15 @@
 					event="reorder" 
 					listener="#{MBBanners.onReorderList}" 
 					oncomplete="updateContainer();" />
-					
+				
+				 <p:ajax 
+				 	event="select" 
+				 	listener="#{MBBanners.onSelect}"
+				 	oncomplete="updateDialogChangeBanner();" />
 			</p:orderList>
 		</h:form>	
 		
 		<ui:include src="dialog-new-banner.xhtml" />
+		<ui:include src="dialog-change-banner.xhtml" />
 	</ui:composition>
 </html>

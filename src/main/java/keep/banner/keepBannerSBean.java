@@ -17,6 +17,8 @@ public class keepBannerSBean extends AbstractManter implements IkeepBannerSBean,
 
 	@Override
 	public void save(Banner banner) {
+		banner.setStatus("active");
+		
 		em.getTransaction().begin();
 		em.persist(banner);
 		em.getTransaction().commit();

@@ -7,7 +7,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
 
 import keep.banner.keepBannerSBean;
 import model.Banner;
@@ -33,6 +35,12 @@ public class MBBanners extends AbstractBean {
 		list();
 	}
 	
+	 public void onSelect(SelectEvent<TOBanner> event) {
+		 this.setBanner(this.getBannerSBean().findById(event.getObject().getId()));
+		 
+		 PrimeFaces.current().executeScript("PF('dialog-change-banner').show();");
+	 }
+	
 	public void save() {
 		if(this.getBanner().getBytes() != null) {
 			this.getBannerSBean().save(this.getBanner());
@@ -52,9 +60,16 @@ public class MBBanners extends AbstractBean {
 		}
 	}
 	
+	public void active() {
+		this.getBanner().setStatus("active");
+		this.change();
+		
+		list();
+	}
+	
 	public void disable() {
 		this.getBanner().setStatus("disabled");
-		this.getBannerSBean().change(this.getBanner());
+		this.change();
 		
 		list();
 	}
