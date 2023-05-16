@@ -49,7 +49,7 @@
 
 	<url-mapping id="adminClientes">
 		<pattern value="/admin/clientes" />
-		<view-id value="/pages/admin/clientes.xhtml"/>
+		<view-id value="/pages/admin/clients/clientes.xhtml"/>
 	</url-mapping>	
 
 	<url-mapping id="adminChats">

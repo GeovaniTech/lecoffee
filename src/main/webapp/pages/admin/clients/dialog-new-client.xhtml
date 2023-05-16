@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<ui:composition>
+		<p:dialog
+			id="dialog-new-client"
+			widgetVar="dialog-new-client"
+			header="#{label.customers}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			modal="true"
+			width="720px">
+		
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh; width: 100%;">
+				
+				<h:form class="vertical-left general-dialog-forms">
+					<div class="horizontal-left mg-b-10">
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.name}" for="name" />
+							<p:inputText 
+								id="name"
+								value="#{MBClient.client.nome}"
+								placeholder="#{label.name}" />
+						</div>
+						
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.email}" for="email" />
+							<p:inputText 
+								id="email"
+								value="#{MBClient.client.email}"
+								placeholder="#{label.email}" />
+						</div>
+						
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.level}" for="level" />
+							<p:selectOneMenu 
+								id="level"
+								value="#{MBClient.client.nivel}"
+								style="width: 200px;">
+								
+								<f:selectItem 
+									itemLabel="#{label.client}"
+									itemValue="client" />
+
+								<f:selectItem 
+									itemLabel="Admin"
+									itemValue="admin" />							
+							</p:selectOneMenu>
+						</div>
+					</div>
+				
+					<div class="horizontal-left">
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.phone_number}" for="phone_number"/>
+							<p:inputMask 
+								id="phone_number"
+								value="#{MBClient.client.phone_number}"
+								placeholder="#{label.phone_number}"
+								mask="(99) 9 9999-9999" />
+						</div>
+						
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.cep}" for="cep"/>
+							<div class="horizontal-left">
+								<p:inputMask 
+									id="cep"
+									value="#{MBClient.client.cep}"
+									placeholder="#{label.cep}"
+									mask="99999-999" />
+									
+								<p:commandButton 
+									icon="pi pi-search" />
+							</div>
+						</div>
+						
+						<div class="vertical-left">
+							<p:outputLabel value="#{label.street}" for="street" />
+							<p:inputText 
+								id="street"
+								value="#{MBClient.client.street}" 
+								placeholder="#{label.street}" />
+						</div>
+					</div>
+					
+					<div class="horizontal-left">
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.complement_word}" for="complement" />
+							<p:inputText 
+								id="complement"
+								value="#{MBClient.client.complement}"
+								placeholder="#{label.complement}" />
+						</div>
+						
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.house_number}" for="house_number" />
+							<p:inputNumber
+								id="house_number" 
+								value="#{MBClient.client.house_number}"
+								placeholder="#{label.house_number}" />
+						</div>
+						
+						<div class="horizontal-center-left mg-t-25">
+							<p:selectBooleanCheckbox 
+								id="blocked"
+								value="#{MBClient.client.blocked}"
+								styleClass="mg-r-10" />
+								
+							<p:outputLabel value="#{label.blocked}" for="blocked"/>
+						</div>
+					</div>
+					
+					<p:toolbar>
+						<f:facet name="left">
+							<p:commandButton
+								value="#{label.save}" 
+								icon="pi pi-save" />
+						</f:facet>
+					</p:toolbar>
+				</h:form>
+			</p:scrollPanel>
+		</p:dialog>
+	</ui:composition>
+</html>

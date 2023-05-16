@@ -25,6 +25,14 @@
 						update=":formTableClient"/>
 				</h:form>
 				
+				<div class="top-buttons mg-b-10">
+					<h:form class="form-top-buttons">
+						<p:commandButton 
+							oncomplete="PF('dialog-new-client').show()"
+							icon="pi pi-plus" 
+							styleClass="optionsButtonStyle" />
+					</h:form>
+				</div>
 				
 				<h:form id="formTableClient">
 					<p:dataTable
@@ -273,6 +281,8 @@
 						</p:column>
 					</p:dataTable>
 				</h:form>
+			
+				<ui:include src="dialog-new-client.xhtml" />
 			</ui:define>
 		</ui:composition>
 	</h:body>

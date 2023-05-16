@@ -28,6 +28,7 @@ public class Client {
 	private String street;
 	private String complement;
 	private Integer house_number;
+	private Long phone_number;
 	
 	@OneToMany
 	private List<Cart> carts;
@@ -133,5 +134,11 @@ public class Client {
 	}
 	public void setHouse_number(Integer house_number) {
 		this.house_number = house_number;
+	}
+	public Long getPhone_number() {
+		return phone_number;
+	}
+	public void setPhone_number(Long phone_number) {
+		this.phone_number = phone_number;
 	}
 }

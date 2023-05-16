@@ -23,6 +23,7 @@ public class TOClient implements Serializable {
 	private List<Cart> carts;
 	private boolean blocked;
 	private boolean completedRegistration;
+	private Long phone_number;
 	
 	//Getters and Setters
 	public int getId() {
@@ -114,6 +115,12 @@ public class TOClient implements Serializable {
 	}
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
+	}
+	public Long getPhone_number() {
+		return phone_number;
+	}
+	public void setPhone_number(Long phone_number) {
+		this.phone_number = phone_number;
 	}
 }
 

@@ -48,6 +48,31 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	}
 	
 	@Override
+	public void save(TOClient client) {
+		Client model = new Client();
+		
+		model.setId(client.getId());
+		model.setAccountChangeDate(new Date());
+		model.setAccountCreationDate(client.getAccountCreationDate());
+		model.setBlocked(client.isBlocked());
+		model.setCep(client.getCep());
+		model.setComplement(client.getComplement());
+		model.setCompletedRegistration(client.isCompletedRegistration());
+		model.setEmail(client.getEmail());
+		model.setHouse_number(client.getHouse_number());
+		model.setLastLogin(client.getLastLogin());
+		model.setNivel(client.getNivel());
+		model.setNome(client.getNome());
+		model.setStreet(client.getStreet());
+		model.setTotalOrders(client.getTotalOrders());
+		model.setCarts(client.getCarts());
+		
+		em.getTransaction().begin();
+		em.persist(model);
+		em.getTransaction().commit();
+	}
+	
+	@Override
 	public void change(TOClient client) {
 		Client model = em.find(Client.class, client.getId());
 		

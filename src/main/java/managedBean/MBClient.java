@@ -23,6 +23,7 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 	public MBClient() {
 		this.setCustomers(new ArrayList<TOClient>());
 		this.setsBean(new KeepClientSBean());
+		
 		updateList();
 	}
 	
@@ -30,27 +31,32 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 		this.setCustomers(this.getsBean().list());
 	}
 	
+	public void save() {
+		this.getsBean().save(this.getClient());
+		
+		sendEmailCreatePassword(this.getClient().getEmail());
+	}
+	
+	public void sendEmailCreatePassword(String email) {
+		
+	}
+	
 	//Getters and Setters
 	public List<TOClient> getCustomers() {
 		return customers;
 	}
-
 	public void setCustomers(List<TOClient> customers) {
 		this.customers = customers;
 	}
-
 	public KeepClientSBean getsBean() {
 		return sBean;
 	}
-
 	public void setsBean(KeepClientSBean sBean) {
 		this.sBean = sBean;
 	}
-
 	public TOClient getClient() {
 		return client;
 	}
-
 	public void setClient(TOClient client) {
 		this.client = client;
 	}
