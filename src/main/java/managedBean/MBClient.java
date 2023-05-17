@@ -44,8 +44,7 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 		sendEmailCreatePassword(this.getClient().getEmail());
 	}
 	
-	public void setarCepInfos() {
-		System.out.println("TESTE");
+	public void getCEPInformations() {
 		
 		if(this.getClient().getCep() != null && !this.getClient().getCep().toString().equals("")) {
 			JSONObject informations = CepUtil.getCEPInformations(this.getClient().getCep().toString());
@@ -57,9 +56,6 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 			
 			this.getClient().setNeighborhood(informations.getString("bairro"));
 			this.getClient().setStreet(informations.getString("logradouro"));
-			
-			System.out.println("BAIRRO: " + informations.getString("bairro"));
-			System.out.println("RUA: " + informations.getString("logradouro"));
 		}
 	}
 	

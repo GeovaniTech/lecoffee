@@ -32,7 +32,7 @@ public class EmailUtil {
         	properties.put("mail.smtp.port", "587");
         	
         	String myAccountEmail = "devpreetestes@gmail.com";
-        	String password = "qnfjuvzebecatziy";
+        	String password = "dirjdcospowfrcfa";
         	
         	Session session = Session.getInstance(properties, new Authenticator() {
         		@Override
@@ -52,6 +52,7 @@ public class EmailUtil {
         	MessageUtil.sendMessage(success_message, null, FacesMessage.SEVERITY_INFO);
         	
 		} catch (Exception e) {
+			e.printStackTrace();
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("mail_server_error"), null, FacesMessage.SEVERITY_ERROR);
 			System.out.println(" ################# ERRO NO ENVIO DE EMAILS #################");
 		}

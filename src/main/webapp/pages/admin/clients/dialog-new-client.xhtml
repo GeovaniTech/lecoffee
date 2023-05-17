@@ -29,11 +29,18 @@
 				<h:form 
 					id="formNewClient"
 					class="vertical-left general-dialog-forms">
+					
 					<p:remoteCommand 
 						name="getCepInformations"
 						process="@form"
-						action="#{MBClient.setarCepInfos()}"
+						action="#{MBClient.getCEPInformations()}"
 						update="@form" />
+						
+					<p:messages 
+						id="messages" 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
 				
 					<div class="horizontal-left mg-b-10">
 						<div class="vertical-left mg-r-10">
