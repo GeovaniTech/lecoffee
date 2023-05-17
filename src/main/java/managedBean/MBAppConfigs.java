@@ -16,7 +16,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import keep.appConfigs.KeepAppConfigs;
 import keep.client.KeepClientSBean;
 import model.AppConfigs;
 import to.TOClient;
@@ -34,7 +33,6 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 	private AppConfigs appConfigs;
 	private List<Locale> localeList;
 	private KeepClientSBean clientSBean;
-	private KeepAppConfigs appConfigsSBean;
 	
 	public MBAppConfigs() {
 		//Attributes
@@ -45,7 +43,6 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		
 		//SBeans
 		this.setClientSBean(new KeepClientSBean());
-		this.setAppConfigsSBean(new KeepAppConfigs());
 		
 		//Initial Configurations
 		this.getAppConfigs().setLanguage(Locale.getDefault().getLanguage());
@@ -191,14 +188,6 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 
 	public void setClientSBean(KeepClientSBean clientSBean) {
 		this.clientSBean = clientSBean;
-	}
-
-	public KeepAppConfigs getAppConfigsSBean() {
-		return appConfigsSBean;
-	}
-
-	public void setAppConfigsSBean(KeepAppConfigs appConfigsSBean) {
-		this.appConfigsSBean = appConfigsSBean;
 	}
 
 	public TOClient getClientLogged() {
