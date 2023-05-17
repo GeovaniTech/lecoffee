@@ -276,8 +276,10 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 .ui-orderlist-list {
 	background-color: var(--second-color-widget) !important;
 	border-color: var(--second-color-widget) !important;
+	color: var(--text-mouse) !important;
 }
 
 .ui-orderlist-item:hover, .ui-state-highlight {
 	background-color: var(--green) !important;
+	color: var(--text-mouse) !important;
 }
