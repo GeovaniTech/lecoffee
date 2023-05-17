@@ -20,7 +20,7 @@
 			draggable="false"
 			position="center"
 			modal="true"
-			width="720px">
+			width="680px">
 		
 			<p:scrollPanel
 				mode="native" 
@@ -79,7 +79,7 @@
 				
 					<div class="horizontal-left">
 						<div class="vertical-left mg-r-10">
-							<p:outputLabel value="#{label.phone_number}" for="phone_number"/>
+							<p:outputLabel value="#{label.phone_number}" for="phone_number" />
 							<p:inputMask 
 								id="phone_number"
 								value="#{MBClient.client.phone_number}"
@@ -88,18 +88,21 @@
 						</div>
 						
 						<div class="vertical-left mg-r-10">
-							<p:outputLabel value="#{label.cep}" for="cep"/>
+							<p:outputLabel value="#{label.cep}" for="cep" />
 							<div class="horizontal-left">
 								
 								<p:inputMask 
 									id="cep"
 									value="#{MBClient.client.cep}"
 									placeholder="#{label.cep}"
-									mask="99999-999" />
+									mask="99999-999"
+									style="width: 150px;"
+									styleClass="mg-r-5" />
 								
 								<p:commandButton 
 									icon="pi pi-search"
-									oncomplete="getCepInformations();"/>
+									oncomplete="getCepInformations();"
+									style="height: 39px; width: 42px;"/>
 							</div>
 						</div>
 						
