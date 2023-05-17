@@ -16,7 +16,7 @@ public class TOClient implements Serializable {
 	private Date lastLogin;
 	private Date accountCreationDate;
 	private Date accountChangeDate;
-	private Integer cep;
+	private String cep;
 	private String street;
 	private String complement;
 	private Integer house_number;
@@ -24,6 +24,7 @@ public class TOClient implements Serializable {
 	private boolean blocked;
 	private boolean completedRegistration;
 	private Long phone_number;
+	private String neighborhood;
 	
 	//Getters and Setters
 	public int getId() {
@@ -86,12 +87,6 @@ public class TOClient implements Serializable {
 	public void setAccountChangeDate(Date accountChangeDate) {
 		this.accountChangeDate = accountChangeDate;
 	}
-	public Integer getCep() {
-		return cep;
-	}
-	public void setCep(Integer cep) {
-		this.cep = cep;
-	}
 	public String getStreet() {
 		return street;
 	}
@@ -121,6 +116,18 @@ public class TOClient implements Serializable {
 	}
 	public void setPhone_number(Long phone_number) {
 		this.phone_number = phone_number;
+	}
+	public String getNeighborhood() {
+		return neighborhood;
+	}
+	public void setNeighborhood(String neighborhood) {
+		this.neighborhood = neighborhood;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 }
 

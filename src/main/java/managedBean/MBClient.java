@@ -4,12 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+
+import org.json.JSONObject;
 
 import keep.client.KeepClientSBean;
 import to.TOClient;
 import utils.AbstractFilterBean;
+import utils.CepUtil;
+import utils.MessageUtil;
+import utils.StringUtil;
 
 @Named("MBClient")
 @ViewScoped
@@ -21,6 +27,7 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 	private TOClient client;
 	
 	public MBClient() {
+		this.setClient(new TOClient());
 		this.setCustomers(new ArrayList<TOClient>());
 		this.setsBean(new KeepClientSBean());
 		
@@ -35,6 +42,25 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 		this.getsBean().save(this.getClient());
 		
 		sendEmailCreatePassword(this.getClient().getEmail());
+	}
+	
+	public void setarCepInfos() {
+		System.out.println("TESTE");
+		
+		if(this.getClient().getCep() != null && !this.getClient().getCep().toString().equals("")) {
+			JSONObject informations = CepUtil.getCEPInformations(this.getClient().getCep().toString());
+			
+			if(!informations.getString("localidade").equals("Blumenau")) {
+				MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("cep_from_other_city"), null, FacesMessage.SEVERITY_ERROR);
+				return;
+			}
+			
+			this.getClient().setNeighborhood(informations.getString("bairro"));
+			this.getClient().setStreet(informations.getString("logradouro"));
+			
+			System.out.println("BAIRRO: " + informations.getString("bairro"));
+			System.out.println("RUA: " + informations.getString("logradouro"));
+		}
 	}
 	
 	public void sendEmailCreatePassword(String email) {

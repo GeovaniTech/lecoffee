@@ -24,11 +24,12 @@ public class Client {
 	private Date accountChangeDate;
 	private boolean blocked;
 	private boolean completedRegistration;
-	private Integer cep;
+	private String cep;
 	private String street;
 	private String complement;
 	private Integer house_number;
 	private Long phone_number;
+	private String neighborhood;
 	
 	@OneToMany
 	private List<Cart> carts;
@@ -111,12 +112,6 @@ public class Client {
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
 	}
-	public Integer getCep() {
-		return cep;
-	}
-	public void setCep(Integer cep) {
-		this.cep = cep;
-	}
 	public String getStreet() {
 		return street;
 	}
@@ -140,5 +135,17 @@ public class Client {
 	}
 	public void setPhone_number(Long phone_number) {
 		this.phone_number = phone_number;
+	}
+	public String getNeighborhood() {
+		return neighborhood;
+	}
+	public void setNeighborhood(String neighborhood) {
+		this.neighborhood = neighborhood;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 }
