@@ -23,7 +23,7 @@ public class TOClient implements Serializable {
 	private List<Cart> carts;
 	private boolean blocked;
 	private boolean completedRegistration;
-	private Long phone_number;
+	private String phone_number;
 	private String neighborhood;
 	
 	//Getters and Setters
@@ -111,12 +111,6 @@ public class TOClient implements Serializable {
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
 	}
-	public Long getPhone_number() {
-		return phone_number;
-	}
-	public void setPhone_number(Long phone_number) {
-		this.phone_number = phone_number;
-	}
 	public String getNeighborhood() {
 		return neighborhood;
 	}
@@ -128,6 +122,12 @@ public class TOClient implements Serializable {
 	}
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+	public String getPhone_number() {
+		return phone_number;
+	}
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 }
 
