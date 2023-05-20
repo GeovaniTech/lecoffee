@@ -76,16 +76,16 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 				
 				client.setLastLogin(new Date());
 				this.getClientSBean().change(client);
+			
+				if(this.getClientLogged().getNivel().equals("admin")) {
+					RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
+				} else {
+					RedirectUrl.redirecionarPara("/lecoffee/home");
+				}
 			} catch (Exception e) {
 				// User not found
 				removeUserFromCookie();
 				
-				RedirectUrl.redirecionarPara("/lecoffee/home");
-			}
-			
-			if(this.getClientLogged().getNivel().equals("admin")) {
-				RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
-			} else {
 				RedirectUrl.redirecionarPara("/lecoffee/home");
 			}
 		}
