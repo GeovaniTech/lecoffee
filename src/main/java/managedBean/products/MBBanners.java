@@ -15,24 +15,27 @@ import keep.banner.keepBannerSBean;
 import model.Banner;
 import model.File;
 import to.TOBanner;
-import utils.AbstractBean;
+import utils.AbstractFilterBean;
 import utils.FileUtil;
 import utils.MessageUtil;
 
 @Named("MBBanners")
 @ViewScoped
-public class MBBanners extends AbstractBean {
+public class MBBanners extends AbstractFilterBean {
 	private static final long serialVersionUID = -3844521267018502665L;
 	
 	private Banner banner;
 	private keepBannerSBean bannerSBean;
 	private List<TOBanner> banners;
+	private List<TOBanner> activedBanners;
+	private boolean tableView;
 	
 	public MBBanners() {
 		this.setBanner(new Banner());
 		this.setBannerSBean(new keepBannerSBean());
 		
 		list();
+		listActived();
 	}
 	
 	 public void onSelect(SelectEvent<TOBanner> event) {
@@ -47,6 +50,7 @@ public class MBBanners extends AbstractBean {
 			this.setBanner(new Banner());
 			
 			list();
+			listActived();
 		} else {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("select_image_required"), null, FacesMessage.SEVERITY_ERROR);
 		}
@@ -57,6 +61,7 @@ public class MBBanners extends AbstractBean {
 			this.getBannerSBean().change(this.getBanner());
 		
 			list();
+			listActived();
 		}
 	}
 	
@@ -65,6 +70,7 @@ public class MBBanners extends AbstractBean {
 		this.change();
 		
 		list();
+		listActived();
 	}
 	
 	public void disable() {
@@ -72,16 +78,22 @@ public class MBBanners extends AbstractBean {
 		this.change();
 		
 		list();
+		listActived();
 	}
 	
 	public void remove() {
 		this.getBannerSBean().remove(this.getBanner());
 	
 		list();
+		listActived();
 	}
 	
 	public void list() {
 		this.setBanners(this.getBannerSBean().list());
+	}
+	
+	public void listActived() {
+		this.setActivedBanners(this.getBannerSBean().listActivedBanners());
 	}
 	
 	public void addImage(FileUploadEvent event) throws IOException {
@@ -93,7 +105,7 @@ public class MBBanners extends AbstractBean {
 	public void onReorderList() {
 		int id = 1;
 
-		for(TOBanner banner : this.getBanners()) {
+		for(TOBanner banner : this.getActivedBanners()) {
 			Banner model = this.getBannerSBean().findById(banner.getId());
 			
 			model.setPriority(id);
@@ -101,6 +113,10 @@ public class MBBanners extends AbstractBean {
 			
 			id++;
 		}
+	}
+	
+	public void changeTableView() {
+		this.setTableView(!this.isTableView());
 	}
 	
 	//Getters and Setters
@@ -126,5 +142,21 @@ public class MBBanners extends AbstractBean {
 
 	public void setBanners(List<TOBanner> banners) {
 		this.banners = banners;
+	}
+
+	public boolean isTableView() {
+		return tableView;
+	}
+
+	public void setTableView(boolean tableView) {
+		this.tableView = tableView;
+	}
+
+	public List<TOBanner> getActivedBanners() {
+		return activedBanners;
+	}
+
+	public void setActivedBanners(List<TOBanner> activedBanners) {
+		this.activedBanners = activedBanners;
 	}
 }

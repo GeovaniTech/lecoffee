@@ -35,14 +35,24 @@
 						showIcon="false"
 		        		autoUpdate="true"  />
 					
-					<div class="vertical-left mg-b-10">
-						<h:outputLabel value="#{label.name}" for="nameBanner" />
-						<p:inputText
-							id="nameBanner"
-							value="#{MBBanners.banner.name}"
-							placeholder="#{label.name}"
-							required="true"
-							requiredMessage="#{label.name_required}" />
+					<div class="horizontal-left">
+						<div class="vertical-left mg-b-10 mg-r-40">
+							<h:outputLabel value="#{label.name}" for="nameBanner" />
+							<p:inputText
+								id="nameBanner"
+								value="#{MBBanners.banner.name}"
+								placeholder="#{label.name}"
+								required="true"
+								requiredMessage="#{label.name_required}" />
+						</div>
+						
+						<div class="vertical-left">
+							<h:outputLabel value="#{label.current}" for="imageBanner" />
+							<h:graphicImage 
+								id="imageBanner"
+								style="width: 200px; height: 100px; border-radius: 10px;"
+								value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(MBBanners.banner.bytes)}" />
+						</div>
 					</div>
 
 					<h:outputLabel value="#{label.upload_files}" class="label" />

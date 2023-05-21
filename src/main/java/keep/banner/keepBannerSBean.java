@@ -73,5 +73,31 @@ public class keepBannerSBean extends AbstractManter implements IkeepBannerSBean,
 		return toBanners;
 	}
 
-
+	@Override
+	public List<TOBanner> listActivedBanners() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" SELECT B FROM ");
+		sql.append(Banner.class.getName()).append(" B ");
+		sql.append(" WHERE B.status = 'active' ");
+		sql.append(" ORDER BY B.priority ASC ");
+		
+		List<Banner> banners = em.createQuery(sql.toString(), Banner.class)
+				.getResultList();
+		
+		List<TOBanner> toBanners = new ArrayList<TOBanner>();
+		
+		for(Banner banner: banners) {
+			TOBanner to = new TOBanner();
+			to.setId(banner.getId());
+			to.setName(banner.getName());
+			to.setPriority(banner.getPriority());
+			to.setStatus(banner.getStatus());
+			to.setBytes(banner.getBytes()); 
+			
+			toBanners.add(to);
+		}
+		
+		return toBanners;
+	}
 }

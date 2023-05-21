@@ -29,46 +29,133 @@
 			name="updateDialogChangeBanner"
 			update="formDialogChangeBanner"/>
 		
+		<p:remoteCommand 
+			name="openDialogChangeBanner"
+			update="dialog-change-banner"
+			oncomplete="PF('dialog-change-banner').show()"/>
+		
 		<div class="top-buttons mg-b-10">
 			<h:form class="form-top-buttons">
 				<p:commandButton 
 					oncomplete="PF('dialog-new-banner').show()"
 					icon="pi pi-plus" 
 					styleClass="optionsButtonStyle" />
+				
+				<p:commandButton 
+					action="#{MBBanners.changeTableView()}"
+					oncomplete="updateContainer();"
+					icon="pi pi-eye"
+					styleClass="optionsButtonStyle" />
 			</h:form>
 		</div>
 		
 		<h:form id="container-banner">
-			<p:orderList  
-				var="banner"
-				value="#{MBBanners.banners}"  
-				itemValue="#{banner}"
-				converter="simpleEntityConverter"
-				responsive="true"
-				controlsLocation="none">
+			<h:panelGroup rendered="#{MBBanners.tableView == true ? true : false}">
+				<p:dataTable
+					widgetVar="tableBanners"
+					var="banner"
+					value="#{MBBanners.banners}"
+					selectionMode="single"
+					rowKey="#{banner.id}"
+					scrollable="true"
+					styleClass="#{MBBanners.toggleFilter == false ? 'hide-filters' : ''}">
 				
-				<f:facet name="caption">Ordem de Exibição</f:facet>
-
-	            <p:column style="width: 110px; height: 70px;" styleClass="#{banner.status eq 'disabled' ? item-disabled : ''}">
-	               	<h:graphicImage 
-	               		value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(banner.bytes)}"
-	               		style="width: 80px; height: 70px;" />
-	            </p:column>
-	            
-	            <p:column headerText="Banner #{label.name}">
-	            	<h:outputText value="#{banner.name}" style="color: var(--text-mouse);" />
-	            </p:column>
-				
-				<p:ajax 
-					event="reorder" 
-					listener="#{MBBanners.onReorderList}" 
-					oncomplete="updateContainer();" />
-				
-				 <p:ajax 
-				 	event="select" 
-				 	listener="#{MBBanners.onSelect}"
-				 	oncomplete="updateDialogChangeBanner();" />
-			</p:orderList>
+					<p:ajax 
+					 	event="rowSelect" 
+					 	listener="#{MBBanners.onSelect}"
+					 	oncomplete="updateDialogChangeBanner();" />
+					
+					<p:column styleClass="toggleFilter">
+						<f:facet name="header">
+							<p:commandLink
+								action="#{MBBanners.changeToggleFilter()}"
+								oncomplete="updateContainer();">
+								
+								<i class="pi pi-filter"></i>
+							</p:commandLink>
+						</f:facet>
+					</p:column>
+					
+					<p:column 
+						headerText="#{label.name}"
+						filterBy="#{banner.name}">
+						
+						<f:facet name="filter">
+							<p:inputText>
+								<p:ajax 
+									event="keyup" 
+									delay="500"
+									oncomplete="PF('tableProducts').filter()" />
+							</p:inputText>
+						</f:facet>
+						
+						<h:outputText value="#{banner.name}" />
+					</p:column>
+					
+					<p:column 
+						headerText="#{label.status}"
+						filterBy="#{banner.status}">
+						
+						<f:facet name="filter">
+							<p:selectOneMenu
+								style="width: 200px;">
+								
+								<f:selectItem
+									itemLabel="#{label.none}"
+									itemValue="" />
+								
+								<f:selectItem
+									itemLabel="#{label.active}"
+									itemValue="active" />
+								
+								<f:selectItem 
+									itemLabel="#{label.disabled}"
+									itemValue="disabled"/>
+								
+								<p:ajax 
+									event="valueChange" 
+									oncomplete="PF('tableBanners').filter()" />
+							</p:selectOneMenu>
+						</f:facet>
+						
+						<h:outputText value="#{banner.status eq 'active' ? label.active : label.disabled}" />
+					</p:column>
+				</p:dataTable>
+			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{MBBanners.tableView == true ? false : true}">
+				<p:orderList  
+					var="banner"
+					value="#{MBBanners.activedBanners}"  
+					itemValue="#{banner}"
+					converter="simpleEntityConverter"
+					responsive="true"
+					controlsLocation="none">
+					
+					<f:facet name="caption">Ordem de Exibição</f:facet>
+	
+		            <p:column 
+		            	styleClass="#{banner.status eq 'disabled' ? 'item-disabled' : ''}"
+		            	style="width: 110px; height: 70px;">
+		               	
+		               	<h:graphicImage 
+		               		value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(banner.bytes)}"
+		               		style="width: 80px; height: 70px;" />
+		            </p:column>
+		            
+		            <p:column 
+		            	styleClass="#{banner.status eq 'disabled' ? 'item-disabled' : ''}"
+						headerText="Banner #{label.name}">
+		            	
+		            	<h:outputText value="#{banner.name}" style="color: var(--text-mouse);" />
+		            </p:column>
+					
+					<p:ajax 
+						event="reorder" 
+						listener="#{MBBanners.onReorderList}" 
+						oncomplete="updateContainer();" />
+				</p:orderList>
+			</h:panelGroup>
 		</h:form>	
 		
 		<ui:include src="dialog-new-banner.xhtml" />

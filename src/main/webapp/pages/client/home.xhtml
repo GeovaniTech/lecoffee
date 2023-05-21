@@ -15,7 +15,7 @@
 		
 		<div class="carousel" style="margin-top: 70px;">
 			<div id="container-banners">
-				<ui:repeat var="banner" value="#{MBBanners.banners}">
+				<ui:repeat var="banner" value="#{MBBanners.activedBanners}">
 					<h:graphicImage 
 						styleClass="carousel-item"
 						value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(banner.bytes)}"

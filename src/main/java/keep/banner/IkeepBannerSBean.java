@@ -18,4 +18,6 @@ public interface IkeepBannerSBean {
 	public Banner findById(int id);
 	
 	public List<TOBanner> list();
+	
+	public List<TOBanner> listActivedBanners();
 }
