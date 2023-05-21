@@ -1,10 +1,62 @@
 @charset "UTF-8";
 
+.footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: black;
+    overflow: hidden;
+}
+
+.footer h2 {
+    margin-bottom: 12px;
+    font-size: 25px;
+   	color: white !important;
+}
+
+.footer p {
+	color: white !important;
+}
+
+.footer a  {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.907);
+    transition: 0.3s;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.footer i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer a:hover {
+    color: rgb(255, 255, 255) ;
+}
+
+.footer a i {
+    font-size: 20px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.footer > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    margin: 10px;
+}
 
 .whatsapp > * {
 	font-size: 80px !important; 
 	height: 80px !important;
-	position: fixed; 
+	 
 	bottom: 30px; 
 	right: 30px;
 	
@@ -14,6 +66,7 @@
 
 	text-decoration: none;
 	color: #25D366 !important;
+	position: fixed;
 }
 
 @media (max-width: 650px) {
