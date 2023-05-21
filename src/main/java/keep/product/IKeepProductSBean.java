@@ -16,4 +16,5 @@ public interface IKeepProductSBean  {
 	public Product findById(int id);
 	public List<Product> list();
 	public List<Product> filterProducts(TOProductFilter filter);
+	public List<Product> getProductsByCategoryId(int id);
 }

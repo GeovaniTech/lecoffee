@@ -1,0 +1,27 @@
+.title-category {
+	margin-top: 15px;
+	margin-left: 15px;
+	margin-bottom: 5px;
+}
+
+.tab_category {
+	margin: 10px;	
+}
+.icons {
+	font-size: 40px !important;
+	color: var(--green) !important;
+}
+
+.container-products {
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	align-items: center;
+}
+
+@media (max-width: 650px) {
+	.container-products {
+		flex-direction: column;
+	}
+}
+

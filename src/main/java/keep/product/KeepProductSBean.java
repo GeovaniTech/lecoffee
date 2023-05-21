@@ -87,4 +87,18 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 		em.remove(em.contains(product) ? product : em.merge(product));	
 		em.getTransaction().commit();
 	}
+
+	@Override
+	public List<Product> getProductsByCategoryId(int id) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" SELECT P FROM ");
+		sql.append(Product.class.getName()).append(" P ");
+		sql.append(" WHERE P.status = 'active' ");
+		sql.append(" AND P.category.id = :id ");
+		
+		return em.createQuery(sql.toString(), Product.class)
+				.setParameter("id", id)
+				.getResultList();
+	}
 }

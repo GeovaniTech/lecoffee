@@ -65,3 +65,78 @@
 .infos > * {
     margin-bottom: 10px;
 }
+
+.desktop-hidden {
+	display: none;
+}
+
+@media (max-width: 650px) {
+	 .desktop-hidden {
+	 	display: flex;
+	 }
+	 
+	.mobile-hidden {
+		display: none !important;
+	}
+	
+	.card {
+		width: 100vw;
+		margin: 0px;
+		border-top: 1px solid rgb(210, 208, 208);
+		border-radius: 0px;
+		padding: 10px;
+		padding-bottom: 0px;
+		background-color: var(--background-body);
+		
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		box-shadow: none;
+		font-size: 16px;
+	}
+	
+	.infos {
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+	
+	.infos p:nth-child(1) {
+		font-size: 20px;
+	}
+	
+	.infos p:nth-child(2) {
+		font-size: 18px !important;
+	}
+	
+	.infos > * {
+		margin-bottom: 5px !important;
+	}
+	
+	.card img {
+		width: 70px;
+		height: 70px;
+		margin-right: 20px;
+	}
+	
+	.buttons {
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+	
+	.buttons > * {
+	    margin-left: 25px;
+	}
+	
+	.buttons span {
+	    color: var(--green);
+	    font-size: 25px;
+	}
+	
+	.minus  {
+		margin-left: 0px;
+	}
+}

@@ -30,16 +30,43 @@
             <h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
             
             <div class="infos">
-                <p>#{cc.attrs.name}</p>
-                <div class="divider"></div>
+                <p><strong>#{cc.attrs.name}</strong></p>
+                <div class="divider mobile-hidden"></div>
+               	
+               	<p:commandLink 
+               		value="#{label.see_description}"/>
+                
                 <p>#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}</p>
-                <p:rating value="#{cc.attrs.rating}" disabled="true" />
+                <p:rating value="#{cc.attrs.rating}" disabled="true" styleClass="mobile-hidden" />
             </div>
             
 			<div class="options">
+				<div class="vertical-center">
+					<div class="buttons desktop-hidden vertical-center">
+	                    <div class="minus">
+	                        <span class="material-symbols-outlined">
+	                            remove
+	                        </span>
+	                    </div>
+	
+	                    <div class="count">
+	                        <p>0</p>
+	                    </div>
+	
+	                    <div class="more">
+	                        <span class="material-symbols-outlined">
+	                            add
+	                        </span>
+	                    </div>
+	                </div>
+	                
+	                <p:rating value="#{cc.attrs.rating}" disabled="true" styleClass="desktop-hidden" />
+				</div>
+			
             	<p:commandButton 
             		value="#{label.buy}"
             		style="width: 100%" 
+            		styleClass="mobile-hidden"
             		rendered="#{cc.attrs.optionsRendered == false ? true : false}" />
             		
  				<p:commandButton

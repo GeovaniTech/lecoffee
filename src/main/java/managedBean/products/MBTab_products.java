@@ -55,6 +55,10 @@ public class MBTab_products extends AbstractFilterBean {
 		initFilters();
 	}
 	
+	public List<Product> getProductsByCategoryId(int id) {
+		return this.getsBean().getProductsByCategoryId(id);
+	}
+	
 	public void initFilters() {
 		this.setCategoriesFilter(this.getsBeanCategory().listActives());
 		
