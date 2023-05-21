@@ -1,1 +1,17 @@
 @charset "UTF-8";
+
+
+.whatsapp > * {
+	font-size: 80px !important; 
+	height: 80px !important;
+	position: fixed; 
+	bottom: 30px; 
+	right: 30px;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	text-decoration: none;
+	color: #25D366 !important;
+}
