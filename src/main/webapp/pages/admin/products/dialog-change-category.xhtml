@@ -20,7 +20,7 @@
 			draggable="false"
 			position="center"
 			modal="true"
-			width="720px">
+			width="400px">
 		
 			<h:form>
 				<div class="vertical-left container-categories">
@@ -29,16 +29,29 @@
 						showDetail="false"
 						showIcon="false"
 		        		autoUpdate="true"  />
+		        	
+		        	<div class="horizontal-left">
+		        		<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.name}" for="name" />
+							<p:inputText 
+								id="name"
+								value="#{MBTab_category.category.name}"
+								required="true"
+								requiredMessage="#{label.name_required}"
+								placeholder="#{label.insert_the} #{label.name}" />		        		
+		        		</div>
 		        		
-					<h:outputLabel value="#{label.name}" class="label" for="name" />
-					
-					<p:inputText 
-						id="name"
-						value="#{MBTab_category.category.name}"
-						required="true"
-						requiredMessage="#{label.name_required}"
-						placeholder="#{label.insert_the} #{label.name}" />
-						
+						<div class="vertical-left">
+							<p:outputLabel value="#{label.icon}" for="icon" />
+							<p:inputText 
+								id="icon"
+								value="#{MBTab_category.category.icon}"
+								required="true"
+								requiredMessage="#{label.icon_required}"
+								placeholder="#{label.insert_the} #{label.icon}" />						
+						</div>		        		
+		        	</div>
+	
 					<p:toolbar>
 						<f:facet name="left">
 							<p:commandButton 

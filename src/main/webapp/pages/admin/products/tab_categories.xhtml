@@ -117,6 +117,28 @@
 				
 					<h:outputLabel value="#{category.status eq 'active' ? label.active : label.disabled}" />
 				</p:column>
+				
+				<p:column 
+					headerText="#{label.icon}" 
+					filterBy="#{category.icon}">
+					
+					<f:facet name="filter">
+						<p:inputText>
+							<p:ajax 
+								event="keyup" 
+								delay="500"
+								oncomplete="PF('tableCategory').filter()" />
+						</p:inputText>
+					</f:facet>
+					
+					<h:panelGroup styleClass="horizontal-left">
+						<span class="material-symbols-outlined google-icons">
+							#{category.icon}
+						</span>
+						
+						<h:outputLabel value="#{category.icon}" />
+					</h:panelGroup>
+				</p:column>
 			</p:dataTable>
 		</h:form>
 		
