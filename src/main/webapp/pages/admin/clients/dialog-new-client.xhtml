@@ -33,9 +33,9 @@
 					<p:remoteCommand 
 						name="getCepInformations"
 						partialSubmit="true"
-						process="cep"
+						process="@form"
 						action="#{MBClient.getCEPInformations()}"
-						update="street, neighborhood" />
+						update="@form" />
 						
 					<p:messages 
 						id="messages" 
