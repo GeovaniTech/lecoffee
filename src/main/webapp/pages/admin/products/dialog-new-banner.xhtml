@@ -33,27 +33,38 @@
 						showIcon="false"
 		        		autoUpdate="true"  />
 					
-					<div class="vertical-left mg-b-10">
-						<h:outputLabel value="#{label.name}" for="nameBanner" />
-						<p:inputText
-							id="nameBanner"
-							value="#{MBBanners.banner.name}"
-							placeholder="#{label.name}"
-							required="true"
-							requiredMessage="#{label.name_required}" />
+					<div class="horizontal-left">
+						<div class="vertical-left mg-b-10 mg-r-40">
+							<h:outputLabel value="#{label.name}" for="nameBanner" />
+							<p:inputText
+								id="nameBanner"
+								value="#{MBBanners.banner.name}"
+								placeholder="#{label.name}"
+								required="true"
+								requiredMessage="#{label.name_required}" />
+						</div>
+						
+						<h:panelGroup rendered="#{MBBanners.banner.bytes == null ? false :  true}" styleClass="vertical-left">
+							<h:outputLabel value="#{label.current}" for="imageBanner" />
+							<h:graphicImage 
+								id="imageBanner"
+								style="width: 200px; height: 100px; border-radius: 10px;"
+								value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(MBBanners.banner.bytes)}" />
+						</h:panelGroup>
 					</div>
 
-					<h:outputLabel value="#{label.upload_files}" class="label" />
+					<p:outputLabel value="#{label.upload_files}" for="fileUpload" />
 					<p:fileUpload
+						id="fileUpload"
 						multiple="true"
 						mode="advanced" 
 						showButtons="false"
 						label="#{label.search}" 
 						cancelLabel="#{label.cancel}"
 						uploadLabel="#{label.upload_files}"
-						update="growl"
+						update="@form"
 						listener="#{MBBanners.addImage}" 
-						process="@this"
+						process="@form"
 						required="true"
 						requiredMessage="#{label.select_image_required}"
 					 />
