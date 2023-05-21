@@ -9,11 +9,21 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
-	<h:body>
+	<ui:composition>     	
 		<h:outputStylesheet library="css" name="/client/landing-page/home.css" />
+		<h:outputStylesheet library="css" name="/others/carousel.css" />
 		
-		<div class="conteiner-welcome">
-		
+		<div class="carousel" style="margin-top: 70px;">
+			<div id="container-banners">
+				<ui:repeat var="banner" value="#{MBBanners.banners}">
+					<h:graphicImage 
+						styleClass="carousel-item"
+						value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(banner.bytes)}"
+						 />
+				</ui:repeat>
+			</div>
 		</div>
-	</h:body>
+		
+		<script src="/lecoffee/resources/js/carousel.js" />
+	</ui:composition>
 </html>

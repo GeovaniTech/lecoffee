@@ -1,0 +1,19 @@
+.carousel {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  max-height: 700px;
+  object-fit: fill;
+}
+
+#container-banners {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0);
+  max-height: 700px;
+}
+
+.carousel-item {
+  object-fit: fill;
+  width: 100%;
+}
