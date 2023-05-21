@@ -4,6 +4,10 @@ h1, h1 a, h1 span {
 	font-size: 50px !important; 
 }
 
+#menu-mobile {
+	display: none;
+}
+
 .top-header-mobile {
 	display: flex;
 	flex-direction: row;
@@ -99,4 +103,14 @@ h1, h1 a, h1 span {
 
 .google-icons:hover {
 	color: var(--text-mouse);
+}
+
+@media (max-width: 600px) {
+	#menu-desktop {
+		display: none;
+	}
+	
+	#menu-mobile {
+		display: flex;
+	}
 }
