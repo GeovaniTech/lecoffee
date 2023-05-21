@@ -12,7 +12,38 @@
 		<h:outputStylesheet library="css" name="/configs/configs.css" />
 		
 		<div id="menu-desktop" class="top-header-mobile">
-		
+			<div class="horizontal-left">				
+				<div class="logo">
+					<h1><a href="/lecoffee/home"><span>Le</span>Coffee</a></h1>
+				</div>
+			</div>
+			
+			<div class="horizontal-center menu-desktop-links">
+				<a>#{label.coffee}</a>
+				<a>#{label.tea}</a>
+				<a>#{label.cookies}</a>
+				<a>#{label.cakes}</a>
+				
+				<div class="horizontal-center menu-desktop-icons">
+					<a href="/lecoffee/admin/produtos">
+						<span class="material-symbols-outlined google-icons">
+							account_circle
+						</span>
+					</a>
+					
+					<a href="/lecoffee/admin/produtos" >
+						<span class="material-symbols-outlined google-icons">
+							shopping_cart
+						</span>
+					</a>
+					
+					<a href="/lecoffee/admin/produtos">
+						<span class="material-symbols-outlined google-icons">
+							settings
+						</span>
+					</a>
+				</div>
+			</div>
 		</div>
 		
 		<div id="menu-mobile" class="top-header-mobile">
@@ -33,58 +64,23 @@
 			</div>
 		</div>
 		
-		<div class="header" id="header">			
+		<div class="header" id="header" style="left: -300px; width: 0px;">			
 			<div class="menu" id="menu">
-				<a href="/lecoffee/admin/pedidos" id="menu-pedidos">
-					<span class="material-symbols-outlined google-icons">
-						bakery_dining
-					</span>
-					#{label.orders}
-				</a>
-				
-				<a href="/lecoffee/admin/produtos" id="menu-produtos">
-					<span class="material-symbols-outlined google-icons">
-						shopping_cart
-					</span>
-					#{label.products}
-				</a>
-				
-				<a href="/lecoffee/admin/ganhos" id="menu-ganhos">
-					<span class="material-symbols-outlined google-icons">
-						currency_bitcoin
-					</span>
-					#{label.earnings}
-				</a>
-				
-				<a href="/lecoffee/admin/avaliacoes" id="menu-avaliacoes">
-					<span class="material-symbols-outlined google-icons">
-						star
-					</span>
-					#{label.assessments}
-				</a>
-				
-				<a href="/lecoffee/admin/clientes" id="menu-clientes">
-					<span class="material-symbols-outlined google-icons">
-						group
-					</span>
-					#{label.customers}
-				</a>
-				
-				<a href="/lecoffee/admin/chats" id="menu-chats">
-					<span class="material-symbols-outlined google-icons">
-						forum
-					</span>
-					#{label.chats}
-				</a>
-
-				<a href="/lecoffee/home" target="_blank">
-					<span class="material-symbols-outlined google-icons">
-						web
-					</span>
-					#{label.landing_page}
-				</a>
-
 				<a href="#" onclick="btnLogout();" type="button">
+					<span class="material-symbols-outlined google-icons">
+						coffee
+					</span>
+					#{label.coffee}
+				</a>
+				
+				<a href="#" onclick="btnLogout();" type="button">
+					<span class="material-symbols-outlined google-icons">
+						coffee
+					</span>
+					#{label.coffee}
+				</a>
+				
+				<a href="#" onclick="btnLogout();" type="button" style="display: #{MBAppConfigs.userLogged == true ? flex : none}">
 					<span class="material-symbols-outlined google-icons">
 						logout
 					</span>
