@@ -10,13 +10,27 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
-	<h:body>
+	<ui:composition>
+		<style>
+			.ui-orderlist-list, .ui-orderlist {
+				height: 90vw !important;
+			} 
+			
+			.item-disabled .ui-orderlist-item {
+				opacity: 0.33 !important;
+			}		
+		</style>
+		
 		<h:outputStylesheet library="css" name="/products/tab_categories.css" />
 		
 		<p:remoteCommand 
 			name="updateTableCategories" 
 			update="tableCategories"
 			oncomplete="updateProducts(); remoteUpdate(); initFilters();" />
+		
+		<p:remoteCommand 
+			name="updateContainer"
+			update="tableCategories"/>
 		
 		<p:remoteCommand 
 			name="clearObjectCategory"
@@ -35,6 +49,12 @@
 					 oncomplete="PF('dialog-new-category').show();"
 					 icon="pi pi-plus"
 					 styleClass="optionsButtonStyle" />
+				
+				<p:commandButton 
+					icon="pi pi-eye"
+					action="#{MBTab_category.changeTableView()}"
+					oncomplete="updateTableCategories();"
+			 		styleClass="optionsButtonStyle" />
 			</h:form>
 		</div>
 				
@@ -46,103 +66,126 @@
 				name="updateTableCategory"
 				process="@form"
 				update="tableCategory" />
-			
-			<p:dataTable
-				id="tableCategory"
-				widgetVar="tableCategory"
-				var="category"
-				value="#{MBTab_category.categories}"
-				selectionMode="single"
-				selection="#{MBTab_category.category}"
-				rowKey="#{category.id}"
-				scrollable="true"
-				styleClass="#{MBTab_category.onFilter == false ? 'hide-filters' : ''}">
-
-				<p:ajax 
-				 	event="rowSelect" 
-				 	oncomplete="openDialogEditCategory();" />		
-
-				<p:column styleClass="toggleFilter">
-					<f:facet name="header">
-						<p:commandLink
-							action="#{MBTab_category.toggleFilter()}"
-							oncomplete="updateTableCategory();">
-							
-							<i class="pi pi-filter"></i>
-						</p:commandLink>
-					</f:facet>
-				</p:column>
-				
-				<p:column 
-					headerText="#{label.name}" 
-					filterBy="#{category.name}">
-					
-					<f:facet name="filter">
-						<p:inputText>
-							<p:ajax 
-								event="keyup" 
-								delay="500"
-								oncomplete="PF('tableCategory').filter()" />
-						</p:inputText>
-					</f:facet>
-					
-					<h:outputLabel value="#{category.name}" />
-				</p:column>
-				
-				<p:column 
-					filterBy="#{category.status}"
-					headerText="#{label.status}">
-					
-					<f:facet name="filter">
-						<p:selectOneMenu
-							style="width: 200px;">
-							
-							<f:selectItem
-								itemLabel="#{label.none}"
-								itemValue="" />
-							
-								<f:selectItem
-									itemLabel="#{label.active}"
-									itemValue="active" />
+		
+			<h:panelGroup rendered="#{MBTab_category.tableView == true ? false : true}">
+				<p:dataTable
+					id="tableCategory"
+					widgetVar="tableCategory"
+					var="category"
+					value="#{MBTab_category.categories}"
+					selectionMode="single"
+					selection="#{MBTab_category.category}"
+					rowKey="#{category.id}"
+					scrollable="true"
+					styleClass="#{MBTab_category.onFilter == false ? 'hide-filters' : ''}">
+	
+					<p:ajax 
+					 	event="rowSelect" 
+					 	oncomplete="openDialogEditCategory();" />		
+	
+					<p:column styleClass="toggleFilter">
+						<f:facet name="header">
+							<p:commandLink
+								action="#{MBTab_category.toggleFilter()}"
+								oncomplete="updateTableCategory();">
 								
-								<f:selectItem 
-									itemLabel="#{label.disabled}"
-									itemValue="disabled"/>
-							
-							<p:ajax 
-								event="valueChange" 
-								oncomplete="PF('tableCategory').filter()" />
-						</p:selectOneMenu>
-					</f:facet>
-				
-					<h:outputLabel value="#{category.status eq 'active' ? label.active : label.disabled}" />
-				</p:column>
-				
-				<p:column 
-					headerText="#{label.icon}" 
-					filterBy="#{category.icon}">
+								<i class="pi pi-filter"></i>
+							</p:commandLink>
+						</f:facet>
+					</p:column>
 					
-					<f:facet name="filter">
-						<p:inputText>
-							<p:ajax 
-								event="keyup" 
-								delay="500"
-								oncomplete="PF('tableCategory').filter()" />
-						</p:inputText>
-					</f:facet>
-					
-					<h:panelGroup styleClass="horizontal-left">
-						<span class="material-symbols-outlined google-icons">
-							#{category.icon}
-						</span>
+					<p:column 
+						headerText="#{label.name}" 
+						filterBy="#{category.name}">
 						
-						<h:outputLabel value="#{category.icon}" />
-					</h:panelGroup>
-				</p:column>
-			</p:dataTable>
+						<f:facet name="filter">
+							<p:inputText>
+								<p:ajax 
+									event="keyup" 
+									delay="500"
+									oncomplete="PF('tableCategory').filter()" />
+							</p:inputText>
+						</f:facet>
+						
+						<h:outputLabel value="#{category.name}" />
+					</p:column>
+					
+					<p:column 
+						filterBy="#{category.status}"
+						headerText="#{label.status}">
+						
+						<f:facet name="filter">
+							<p:selectOneMenu
+								style="width: 200px;">
+								
+								<f:selectItem
+									itemLabel="#{label.none}"
+									itemValue="" />
+								
+									<f:selectItem
+										itemLabel="#{label.active}"
+										itemValue="active" />
+									
+									<f:selectItem 
+										itemLabel="#{label.disabled}"
+										itemValue="disabled"/>
+								
+								<p:ajax 
+									event="valueChange" 
+									oncomplete="PF('tableCategory').filter()" />
+							</p:selectOneMenu>
+						</f:facet>
+					
+						<h:outputLabel value="#{category.status eq 'active' ? label.active : label.disabled}" />
+					</p:column>
+					
+					<p:column 
+						headerText="#{label.icon}" 
+						filterBy="#{category.icon}">
+						
+						<f:facet name="filter">
+							<p:inputText>
+								<p:ajax 
+									event="keyup" 
+									delay="500"
+									oncomplete="PF('tableCategory').filter()" />
+							</p:inputText>
+						</f:facet>
+						
+						<h:panelGroup styleClass="horizontal-left">
+							<span class="material-symbols-outlined google-icons">
+								#{category.icon}
+							</span>
+							
+							<h:outputLabel value="#{category.icon}" />
+						</h:panelGroup>
+					</p:column>
+				</p:dataTable>			
+			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{MBTab_category.tableView == true ? true : false}">
+				<p:orderList 
+					var="category"
+					value="#{MBTab_category.activedCategories}"  
+					itemValue="#{category}"
+					converter="simpleEntityConverter"
+					responsive="true"
+					controlsLocation="none">
+				
+					<f:facet name="caption">#{label.display_order}</f:facet>
+					
+					<p:column>
+						<h:outputText value="#{category.name}" style="color: var(--text-mouse);" />
+					</p:column>
+					
+					<p:ajax 
+						event="reorder" 
+						listener="#{MBTab_category.onReorderList()}" />
+				</p:orderList>
+			</h:panelGroup>
 		</h:form>
 		
 		<ui:include src="dialog-new-category.xhtml" />
 		<ui:include src="dialog-change-category.xhtml" />
-	</h:body>
+	</ui:composition>
 </html>

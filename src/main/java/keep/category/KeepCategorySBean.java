@@ -116,6 +116,7 @@ public class KeepCategorySBean extends AbstractManter implements IkeepCategorySB
 		sql.append(" SELECT C FROM ");
 		sql.append(Category.class.getName()).append(" C ");
 		sql.append(" WHERE C.status = 'active' ");
+		sql.append(" ORDER BY C.priority ASC ");
 		
 		return em.createQuery(sql.toString(), Category.class)
 				.getResultList();
