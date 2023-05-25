@@ -58,6 +58,8 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 		
 		this.getClient().setChangePassword(true);
 		this.getsBean().save(this.getClient());
+		
+		this.updateList();
 	}
 	
 	public void change() {
@@ -94,8 +96,9 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 	
 	public void remove() {
 		this.getsBean().remove(this.getClient());
+		this.setClient(new TOClient());
 		
-		this.getsBean().list();
+		this.updateList();
 	}
 	
 	public void getCEPInformations() {
