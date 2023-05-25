@@ -309,8 +309,10 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 
 	@Override
 	public void remove(TOClient client) {
+		Client model = em.find(Client.class, client.getId());
+		
 		em.getTransaction().begin();
-		em.remove(em.contains(client) ? client : em.merge(client));
+		em.remove(em.contains(model) ? model : em.merge(model));
 		em.getTransaction().commit();
 	}
 }

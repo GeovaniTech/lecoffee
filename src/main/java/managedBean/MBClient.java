@@ -73,6 +73,7 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 			}		
 		}
 				
+		this.getClient().setAccountChangeDate(new Date());
 		this.getClient().setEmail(this.getEmail());
 		this.getsBean().change(this.getClient());
 	}
@@ -93,6 +94,8 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 	
 	public void remove() {
 		this.getsBean().remove(this.getClient());
+		
+		this.getsBean().list();
 	}
 	
 	public void getCEPInformations() {
