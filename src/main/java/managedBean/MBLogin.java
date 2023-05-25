@@ -49,7 +49,7 @@ public class MBLogin extends AbstractBean {
 				
 				if(client.isBlocked()) {
 					MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("user_blocked"), null, FacesMessage.SEVERITY_ERROR);
-					PrimeFaces.current().ajax().update("formLogin");
+					PrimeFaces.current().ajax().update(":formLogin");
 					
 					return;
 				}

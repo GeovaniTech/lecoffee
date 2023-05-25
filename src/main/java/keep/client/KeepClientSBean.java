@@ -209,7 +209,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			}
 			
 		} catch (Exception e) {
-			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_information"), null, FacesMessage.SEVERITY_ERROR);
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("user_or_password_incorrect"), null, FacesMessage.SEVERITY_ERROR);
 		}
 		
 		return false;
