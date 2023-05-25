@@ -57,7 +57,7 @@ public class MBRegister extends AbstractBean {
 		description.append("Estamos felizes em tê-lo(a) como nosso(a) cliente.</p>");
 		description.append("Para finalizar o seu cadastro, por favor, confirme a sua conta clicando no link abaixo:</p>");
 		description.append("<p><a href=http://localhost:8081/lecoffee/pages/register.xhtml?token=");
-		description.append(JwtTokenUtil.generateEmailToken(email) + ">");
+		description.append(JwtTokenUtil.generateEmailToken(email, null) + ">");
 		description.append("Finalizar Cadastro</a></p>");
 		description.append("<p>Caso você não tenha criado uma conta na LeCoffee ");
 		description.append("ou acredite que este email tenha sido enviado por engano, por favor, desconsidere esta mensagem.</p>");

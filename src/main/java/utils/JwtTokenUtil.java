@@ -9,9 +9,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JwtTokenUtil {
 	private static final String SECRET_KEY = "4JbyOe3Sl2N6GzHIBxjK6S05U6g/VWc8w1kmHvrRbxA=";
-	private static final Number EXPIRATION_TIME = 300000;
+	private static Number EXPIRATION_TIME = 300000;
 	
-	public static String generateEmailToken(String email) {
+	public static String generateEmailToken(String email, Number expirationTime) {
+		if(expirationTime != null) {
+			EXPIRATION_TIME = expirationTime;
+		}
+		
 		Date now = new Date();
 		
 		Date expirationDate = new Date(now.getTime() + EXPIRATION_TIME.longValue());
