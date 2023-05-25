@@ -19,12 +19,15 @@
 			<ui:define name="body">
 				<h:outputStylesheet library="css" name="/customers/customers.css" />
 				
-				<h:form>
-					<p:remoteCommand 
-						name="updateTableClient"
-						update=":formTableClient"/>
-				</h:form>
+				<p:remoteCommand 
+					name="updateTableClient"
+					update=":formTableClient"/>
 				
+				<p:remoteCommand 
+					name="openDialogChange"
+					update="dialog-change-client"
+					oncomplete="PF('dialog-change-client').show()" />
+		
 				<div class="top-buttons mg-b-10">
 					<h:form class="form-top-buttons">
 						<p:commandButton 
@@ -44,6 +47,11 @@
 						rowKey="#{client.id}"
 						scrollable="true"
 						styleClass="#{MBClient.toggleFilter == false ? 'hide-filters' : ''}">
+						
+						<p:ajax 		
+					 		event="rowSelect" 
+					 		listener="#{MBClient.updateEmail()}"
+					 		oncomplete="openDialogChange()" />
 						
 						<p:column styleClass="toggleFilter">
 							<f:facet name="header">
@@ -294,10 +302,33 @@
 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 							</h:outputText>
 						</p:column>
+
+						<p:column 
+							headerText="#{label.inactivation_date}"
+							filterBy="#{client.inactivationDate}">
+							
+							<f:facet name="filter">
+								<p:datePicker pattern="dd/MM/yyyy">
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableCustomers').filter()" />
+									
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableCustomers').filter()" />									
+								</p:datePicker>
+							</f:facet>
+							
+							<h:outputText value="#{client.inactivationDate == null ? label.not_registered : client.inactivationDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+							</h:outputText>
+						</p:column>						
 					</p:dataTable>
 				</h:form>
 			
 				<ui:include src="dialog-new-client.xhtml" />
+				<ui:include src="dialog-change-client.xhtml" />
 			</ui:define>
 		</ui:composition>
 	</h:body>

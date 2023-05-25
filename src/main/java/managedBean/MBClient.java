@@ -2,6 +2,7 @@ package managedBean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -16,6 +17,7 @@ import utils.AbstractFilterBean;
 import utils.CepUtil;
 import utils.EmailUtil;
 import utils.MessageUtil;
+import utils.StringUtil;
 
 @Named("MBClient")
 @ViewScoped
@@ -25,6 +27,7 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 	private List<TOClient> customers;
 	private KeepClientSBean sBean;
 	private TOClient client;
+	private String email;
 	
 	public MBClient() {
 		this.setClient(new TOClient());
@@ -36,6 +39,10 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 	
 	public void updateList() {
 		this.setCustomers(this.getsBean().list());
+	}
+	
+	public void updateEmail() {
+		this.setEmail(this.getClient().getEmail());
 	}
 	
 	public void save() {
@@ -51,7 +58,41 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 		
 		this.getClient().setChangePassword(true);
 		this.getsBean().save(this.getClient());
+	}
+	
+	public void change() {
+		if(StringUtil.isNotNull(this.getEmail()) && !this.getEmail().equals(this.getClient().getEmail())) {
+			if(!EmailUtil.validateEmail(this.getEmail())) {
+				MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_email"), null, FacesMessage.SEVERITY_ERROR);
+				return;
+			}
+			
+			if(this.getsBean().verifyClient(this.getEmail()) ) {
+				MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("existing_email"), null, FacesMessage.SEVERITY_ERROR);
+				return;
+			}		
+		}
+				
+		this.getClient().setEmail(this.getEmail());
+		this.getsBean().change(this.getClient());
+	}
+	
+	public void active() {
+		this.getClient().setInactivationDate(null);
+		this.getClient().setBlocked(false);
 		
+		change();
+	}
+	
+	public void disable() {
+		this.getClient().setInactivationDate(new Date());
+		this.getClient().setBlocked(true);
+		
+		change();
+	}
+	
+	public void remove() {
+		this.getsBean().remove(this.getClient());
 	}
 	
 	public void getCEPInformations() {
@@ -86,5 +127,11 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 	}
 	public void setClient(TOClient client) {
 		this.client = client;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

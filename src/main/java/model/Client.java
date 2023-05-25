@@ -22,6 +22,7 @@ public class Client {
 	private Date lastLogin;
 	private Date accountCreationDate;
 	private Date accountChangeDate;
+	private Date inactivationDate;
 	private boolean blocked;
 	private boolean completedRegistration;
 	private String cep;
@@ -154,5 +155,11 @@ public class Client {
 	}
 	public void setChangePassword(boolean changePassword) {
 		this.changePassword = changePassword;
+	}
+	public Date getInactivationDate() {
+		return inactivationDate;
+	}
+	public void setInactivationDate(Date inactivationDate) {
+		this.inactivationDate = inactivationDate;
 	}
 }

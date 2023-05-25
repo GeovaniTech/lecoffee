@@ -20,6 +20,7 @@ import utils.Encryption;
 import utils.JwtTokenUtil;
 import utils.MessageUtil;
 import utils.RedirectUrl;
+import utils.StringUtil;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -86,15 +87,21 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		model.setCep(client.getCep());
 		model.setComplement(client.getComplement());
 		model.setCompletedRegistration(client.isCompletedRegistration());
-		//model.setEmail(client.getEmail());
+		
+		if(StringUtil.isNotNull(client.getEmail())) {
+			model.setEmail(client.getEmail());
+		}
+		
 		model.setHouse_number(client.getHouse_number());
 		model.setLastLogin(client.getLastLogin());
 		model.setNivel(client.getNivel());
 		model.setNome(client.getNome());
 		model.setStreet(client.getStreet());
+		model.setNeighborhood(client.getNeighborhood());
 		model.setTotalOrders(client.getTotalOrders());
 		model.setCarts(client.getCarts());
 		model.setChangePassword(client.isChangePassword());
+		model.setInactivationDate(client.getInactivationDate());
 		
 		em.getTransaction().begin();
 		em.merge(model);
@@ -147,6 +154,12 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 					.getSingleResult();
 			
 			if(client != null) {
+				if(client.isBlocked()) {
+					MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("user_blocked"), null, FacesMessage.SEVERITY_ERROR);
+					
+					return false;
+				}
+				
 				if(client.isChangePassword()) {
 					String token = JwtTokenUtil.generateEmailToken(client.getEmail(), null);
 					
@@ -292,5 +305,12 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		client.setChangePassword(false);
 		
 		change(client);
+	}
+
+	@Override
+	public void remove(TOClient client) {
+		em.getTransaction().begin();
+		em.remove(em.contains(client) ? client : em.merge(client));
+		em.getTransaction().commit();
 	}
 }

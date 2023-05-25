@@ -1,5 +1,7 @@
 package managedBean;
 
+import java.util.Date;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -7,7 +9,10 @@ import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.primefaces.PrimeFaces;
+
 import keep.client.KeepClientSBean;
+import to.TOClient;
 import utils.AbstractBean;
 import utils.Cookies;
 import utils.EmailUtil;
@@ -40,7 +45,25 @@ public class MBLogin extends AbstractBean {
 		
 		if(userEmail != null && !userEmail.equals("")) {
 			try {
+				TOClient client = this.getsBean().findByEmail(Encryption.decryptNormalText(userEmail));
+				
+				if(client.isBlocked()) {
+					MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("user_blocked"), null, FacesMessage.SEVERITY_ERROR);
+					PrimeFaces.current().ajax().update("formLogin");
+					
+					return;
+				}
+				
+				client.setLastLogin(new Date());
+				this.getsBean().change(client);
+				
 				getSession().setAttribute("client", this.getsBean().findByEmail(Encryption.decryptNormalText(userEmail)));
+				
+				if(client.getNivel().equals("admin")) {
+					RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");
+				} else {
+					RedirectUrl.redirecionarPara("/lecoffee/home");
+				}
 			} catch (Exception e) {
 				// User not found
 				removeUserFromCookie();

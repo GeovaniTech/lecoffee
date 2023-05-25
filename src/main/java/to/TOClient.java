@@ -16,6 +16,7 @@ public class TOClient implements Serializable {
 	private Date lastLogin;
 	private Date accountCreationDate;
 	private Date accountChangeDate;
+	private Date inactivationDate;
 	private String cep;
 	private String street;
 	private String complement;
@@ -135,6 +136,12 @@ public class TOClient implements Serializable {
 	}
 	public void setChangePassword(boolean changePassword) {
 		this.changePassword = changePassword;
+	}
+	public Date getInactivationDate() {
+		return inactivationDate;
+	}
+	public void setInactivationDate(Date inactivationDate) {
+		this.inactivationDate = inactivationDate;
 	}
 }
 

@@ -72,6 +72,13 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		if(userEmail != null && !userEmail.equals("")) {
 			try {
 				TOClient client =  this.getClientSBean().findByEmail(Encryption.decryptNormalText(userEmail));
+				
+				if(client.isBlocked()) {
+					RedirectUrl.redirecionarPara("/lecoffee/login");
+					
+					return;
+				}
+				
 				getSession().setAttribute("client", client);
 				
 				client.setLastLogin(new Date());
