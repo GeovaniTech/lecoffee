@@ -183,6 +183,21 @@
 							</f:facet>
 							<h:outputText value="#{client.street == null ? label.not_registered : client.street}" />
 						</p:column>
+
+						<p:column 
+							headerText="#{label.neighborhood}"
+							filterBy="#{client.neighborhood}">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										delay="500"
+										event="keyup" 
+										oncomplete="PF('tableProducts').filter()" />
+								</p:inputText>
+							</f:facet>
+							<h:outputText value="#{client.neighborhood == null ? label.not_registered : client.neighborhood}" />
+						</p:column>
 					
 						<p:column 
 							headerText="#{label.complement}"

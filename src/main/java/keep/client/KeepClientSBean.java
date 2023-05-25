@@ -17,6 +17,7 @@ import to.TOClient;
 import utils.AbstractManter;
 import utils.EmailUtil;
 import utils.Encryption;
+import utils.JwtTokenUtil;
 import utils.MessageUtil;
 import utils.RedirectUrl;
 
@@ -52,8 +53,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		Client model = new Client();
 		
 		model.setId(client.getId());
-		model.setAccountChangeDate(new Date());
-		model.setAccountCreationDate(client.getAccountCreationDate());
+		model.setAccountCreationDate(new Date());
 		model.setBlocked(client.isBlocked());
 		model.setCep(client.getCep());
 		model.setComplement(client.getComplement());
@@ -64,8 +64,11 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		model.setNivel(client.getNivel());
 		model.setNome(client.getNome());
 		model.setStreet(client.getStreet());
+		model.setNeighborhood(client.getNeighborhood());
+		model.setPhone_number(client.getPhone_number());
 		model.setTotalOrders(client.getTotalOrders());
 		model.setCarts(client.getCarts());
+		model.setChangePassword(client.isChangePassword());
 		
 		em.getTransaction().begin();
 		em.persist(model);
@@ -91,6 +94,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		model.setStreet(client.getStreet());
 		model.setTotalOrders(client.getTotalOrders());
 		model.setCarts(client.getCarts());
+		model.setChangePassword(client.isChangePassword());
 		
 		em.getTransaction().begin();
 		em.merge(model);
@@ -133,7 +137,8 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		
 		sql.append(" SELECT C ");
 		sql.append(" FROM ").append(Client.class.getName()).append(" C ");
-		sql.append(" WHERE C.email = :email AND C.senha = :password");
+		sql.append(" WHERE C.email = :email AND C.senha = :password ");
+		sql.append(" OR C.email = :email AND C.changePassword = true ");
 		
 		try {
 			Client client = em.createQuery(sql.toString(), Client.class)
@@ -142,6 +147,14 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 					.getSingleResult();
 			
 			if(client != null) {
+				if(client.isChangePassword()) {
+					String token = JwtTokenUtil.generateEmailToken(client.getEmail(), null);
+					
+					RedirectUrl.redirecionarPara("/lecoffee/newpassword/" + token);
+					
+					return false;
+				}
+				
 				TOClient toClient = new TOClient();
 				
 				toClient.setId(client.getId());
@@ -159,6 +172,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				toClient.setNivel(client.getNivel());
 				toClient.setTotalOrders(client.getTotalOrders());
 				toClient.setCarts(client.getCarts());
+				toClient.setChangePassword(client.isChangePassword());
 				
 				client.setLastLogin(new Date());
 				change(client);
@@ -217,6 +231,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			toClient.setNivel(client.getNivel());
 			toClient.setTotalOrders(client.getTotalOrders());
 			toClient.setCarts(client.getCarts());
+			toClient.setChangePassword(client.isChangePassword());
 			
 			return toClient;
 		}
@@ -246,6 +261,9 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			toClient.setBlocked(client.isBlocked());
 			toClient.setCep(client.getCep());
 			toClient.setComplement(client.getComplement());
+			toClient.setStreet(client.getStreet());
+			toClient.setNeighborhood(client.getNeighborhood());
+			toClient.setPhone_number(client.getPhone_number());
 			toClient.setCompletedRegistration(client.isCompletedRegistration());
 			toClient.setEmail(client.getEmail());
 			toClient.setHouse_number(client.getHouse_number());
@@ -255,6 +273,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 			toClient.setNivel(client.getNivel());
 			toClient.setTotalOrders(client.getTotalOrders());
 			toClient.setCarts(client.getCarts());
+			toClient.setChangePassword(client.isChangePassword());
 			
 			clients.add(toClient);
 		}
@@ -269,6 +288,8 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		Client client = em.find(Client.class, toClient.getId());
 		
 		client.setSenha(Encryption.encryptTextSHA(password));
+		client.setAccountChangeDate(new Date());
+		client.setChangePassword(false);
 		
 		change(client);
 	}

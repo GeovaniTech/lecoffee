@@ -26,8 +26,6 @@ public class MBRegister extends AbstractBean {
 	
 	public boolean fazerValidacoes() {
 		if(!EmailUtil.validateEmail(email)) {
-			
-			System.out.println(MessageUtil.getMessageFromProperties("invalid_email"));
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_email"), null, FacesMessage.SEVERITY_ERROR);
 			return false;
 		}

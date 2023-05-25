@@ -25,6 +25,7 @@ public class TOClient implements Serializable {
 	private boolean completedRegistration;
 	private String phone_number;
 	private String neighborhood;
+	private boolean changePassword;
 	
 	//Getters and Setters
 	public int getId() {
@@ -128,6 +129,12 @@ public class TOClient implements Serializable {
 	}
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
+	}
+	public boolean isChangePassword() {
+		return changePassword;
+	}
+	public void setChangePassword(boolean changePassword) {
+		this.changePassword = changePassword;
 	}
 }
 

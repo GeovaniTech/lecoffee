@@ -30,6 +30,7 @@ public class Client {
 	private Integer house_number;
 	private String phone_number;
 	private String neighborhood;
+	private boolean changePassword;
 	
 	@OneToMany
 	private List<Cart> carts;
@@ -147,5 +148,11 @@ public class Client {
 	}
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
+	}
+	public boolean isChangePassword() {
+		return changePassword;
+	}
+	public void setChangePassword(boolean changePassword) {
+		this.changePassword = changePassword;
 	}
 }

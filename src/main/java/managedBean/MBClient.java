@@ -14,6 +14,7 @@ import keep.client.KeepClientSBean;
 import to.TOClient;
 import utils.AbstractFilterBean;
 import utils.CepUtil;
+import utils.EmailUtil;
 import utils.MessageUtil;
 
 @Named("MBClient")
@@ -38,13 +39,22 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 	}
 	
 	public void save() {
+		if(!EmailUtil.validateEmail(this.getClient().getEmail())) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_email"), null, FacesMessage.SEVERITY_ERROR);
+			return;
+		}
+		
+		if(this.getsBean().verifyClient(this.getClient().getEmail()) ) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("existing_email"), null, FacesMessage.SEVERITY_ERROR);
+			return;
+		}
+		
+		this.getClient().setChangePassword(true);
 		this.getsBean().save(this.getClient());
 		
-		sendEmailCreatePassword(this.getClient().getEmail());
 	}
 	
 	public void getCEPInformations() {
-		
 		if(this.getClient().getCep() != null && !this.getClient().getCep().toString().equals("")) {
 			JSONObject informations = CepUtil.getCEPInformations(this.getClient().getCep().toString());
 			
@@ -56,10 +66,6 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 			this.getClient().setNeighborhood(informations.getString("bairro"));
 			this.getClient().setStreet(informations.getString("logradouro"));
 		}
-	}
-	
-	public void sendEmailCreatePassword(String email) {
-		
 	}
 	
 	//Getters and Setters
