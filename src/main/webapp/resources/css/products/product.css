@@ -96,6 +96,10 @@
 		font-size: 16px;
 	}
 	
+	.card:hover {
+		transform: scale(1);
+	}
+	
 	.infos {
 		display: flex;
 		justify-content: flex-start;

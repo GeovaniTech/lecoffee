@@ -47,6 +47,8 @@ public class MBNewPassword extends AbstractBean {
 	public void changePassword() {
 		if(!this.getPassword().equals(this.getRepeatPassword())) {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("password_are_not_the_same"), null, FacesMessage.SEVERITY_WARN);
+			
+			return;
 		}
 		
 		if(verifyToken()) {
