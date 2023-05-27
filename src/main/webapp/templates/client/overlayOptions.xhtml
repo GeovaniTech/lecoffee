@@ -56,5 +56,52 @@
 				</div>
 			</div>
 		</p:overlayPanel>	
+	
+		<p:overlayPanel for="optionsDesktop">
+			<p:remoteCommand 
+				autoRun="false" 
+				name="updateConfigs"
+				action="#{MBAppConfigs.createCookiePreferences()}" />
+	
+			<div class="horizontal-left" style="flex-wrap: nowrap;">
+				<div class="select-language align-options">
+					<h:form>
+						<h5>#{label.language}</h5>
+						<p:selectOneMenu 
+							value="#{MBAppConfigs.appConfigs.language}"
+							style="width: 200px;">
+	
+							<f:selectItems 
+								var="language" 
+								value="#{MBAppConfigs.localeList}"
+								itemLabel="#{language.language eq 'pt' ? label.portuguese : label.english}"
+								itemValue="#{language.language}" />
+							
+								<p:ajax 
+									render="all" 
+									listener="#{MBAppConfigs.refreshPage()}"
+									oncomplete="updateConfigs()" />
+						</p:selectOneMenu>
+					</h:form>
+				</div>
+	
+				<div class="select-theme align-options">
+					<h:form>
+						<h5>#{label.dark_mode}</h5>
+						<p:toggleSwitch 
+							value="#{MBAppConfigs.appConfigs.darkMode}"
+							onIcon="pi pi-sun" 
+							offIcon="pi pi-moon" 
+							styleClass="dark-mode">
+	
+							<p:ajax 
+								event="change" 
+								process="@form"
+								oncomplete="updateConfigs()" />
+						</p:toggleSwitch>
+					</h:form>
+				</div>
+			</div>
+		</p:overlayPanel>	
 	</ui:composition>
 </html>
