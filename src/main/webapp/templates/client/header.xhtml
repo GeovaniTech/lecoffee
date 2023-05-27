@@ -18,18 +18,18 @@
 				</div>
 			</div>
 			
-			<div class="horizontal-center menu-desktop-links">
+			<h:panelGroup class="horizontal-center menu-desktop-links">
 				<a>#{label.coffee}</a>
 				<a>#{label.tea}</a>
 				<a>#{label.cookies}</a>
 				<a>#{label.cakes}</a>
 				
 				<div class="horizontal-center menu-desktop-icons">
-					<a href="/lecoffee/admin/produtos">
+					<p:commandLink id="my_account_desktop">
 						<span class="material-symbols-outlined google-icons">
 							account_circle
-						</span>
-					</a>
+						</span>					
+					</p:commandLink>
 					
 					<a href="/lecoffee/admin/produtos" >
 						<span class="material-symbols-outlined google-icons">
@@ -46,9 +46,8 @@
 						</span>
 					</p:commandLink>
 				</div>
-			</div>
+			</h:panelGroup>
 		</div>
-		
 		<div id="menu-mobile" class="top-header-mobile">
 			<div class="btn-menu" onclick="openMenu();">
 				<span class="material-symbols-outlined">
@@ -67,14 +66,17 @@
 			</div>
 		</div>
 		
-		<div class="header" id="header" style="left: -300px; width: 0px;">			
+		<h:panelGroup class="header" id="header" style="left: -300px; width: 0px;">			
 			<div class="menu" id="menu">				
-				<a href="/lecoffee/admin/produtos">
+				<p:commandLink 
+					id="my_account" style="text-decoration: none;">
+
 					<span class="material-symbols-outlined google-icons">
 						account_circle
 					</span>
-					#{label.account}
-				</a>
+					
+					#{label.account}				
+				</p:commandLink>				
 				
 				<a href="/lecoffee/admin/produtos" >
 					<span class="material-symbols-outlined google-icons">
@@ -108,8 +110,9 @@
 					
 				<ui:include src="overlayOptions.xhtml" />
 			</div>
-		</div>
+		</h:panelGroup>
 		
 		<script src="/lecoffee/resources/js/menuClient.js" />	
+		<ui:include src="overlayMyAccount.xhtml" />
 	</h:body>
 </html>

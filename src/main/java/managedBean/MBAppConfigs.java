@@ -1,5 +1,6 @@
 package managedBean;
 
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.NumberFormat;
@@ -170,6 +171,14 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean isMobileScreen() {
+		System.setProperty("java.awt.headless", "false");
+		
+		System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+		
+		return Toolkit.getDefaultToolkit().getScreenSize().getWidth() < 900;
 	}
 
 	// Getters and Setters

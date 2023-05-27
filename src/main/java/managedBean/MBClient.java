@@ -60,6 +60,8 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 		this.getsBean().save(this.getClient());
 		
 		this.updateList();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("record_successfully_saved"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void change() {
@@ -78,6 +80,8 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 		this.getClient().setAccountChangeDate(new Date());
 		this.getClient().setEmail(this.getEmail());
 		this.getsBean().change(this.getClient());
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("record_changed_successfully"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void active() {
@@ -99,6 +103,8 @@ public class MBClient extends AbstractFilterBean implements Serializable {
 		this.setClient(new TOClient());
 		
 		this.updateList();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("successfully_deleted_record"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void getCEPInformations() {
