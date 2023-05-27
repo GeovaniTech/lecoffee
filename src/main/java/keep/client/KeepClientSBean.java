@@ -12,6 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.modelmapper.ModelMapper;
+
 import model.Client;
 import to.TOClient;
 import utils.AbstractManter;
@@ -25,6 +27,11 @@ import utils.StringUtil;
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class KeepClientSBean extends AbstractManter implements IKeepClientSBean, IKeepClientSBeanRemote {
+	private ModelMapper converter;
+	
+	public KeepClientSBean() {
+		this.setConverter(new ModelMapper());
+	}
 	
 	@Override
 	public boolean save(String email, String password, String repetedPasswrod) {		
@@ -51,25 +58,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	
 	@Override
 	public void save(TOClient client) {
-		Client model = new Client();
-		
-		model.setId(client.getId());
-		model.setAccountCreationDate(new Date());
-		model.setBlocked(client.isBlocked());
-		model.setCep(client.getCep());
-		model.setComplement(client.getComplement());
-		model.setCompletedRegistration(client.isCompletedRegistration());
-		model.setEmail(client.getEmail());
-		model.setHouse_number(client.getHouse_number());
-		model.setLastLogin(client.getLastLogin());
-		model.setNivel(client.getNivel());
-		model.setNome(client.getNome());
-		model.setStreet(client.getStreet());
-		model.setNeighborhood(client.getNeighborhood());
-		model.setPhone_number(client.getPhone_number());
-		model.setTotalOrders(client.getTotalOrders());
-		model.setCarts(client.getCarts());
-		model.setChangePassword(client.isChangePassword());
+		Client model = this.getConverter().map(client, Client.class);
 		
 		em.getTransaction().begin();
 		em.persist(model);
@@ -78,30 +67,17 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	
 	@Override
 	public void change(TOClient client) {
-		Client model = em.find(Client.class, client.getId());
+		Client model = this.getConverter().map(client, Client.class);
 		
-		model.setId(client.getId());
-		model.setAccountChangeDate(new Date());
-		model.setAccountCreationDate(client.getAccountCreationDate());
-		model.setBlocked(client.isBlocked());
-		model.setCep(client.getCep());
-		model.setComplement(client.getComplement());
-		model.setCompletedRegistration(client.isCompletedRegistration());
+		Client pattern = em.find(Client.class, model.getId());
 		
-		if(StringUtil.isNotNull(client.getEmail())) {
-			model.setEmail(client.getEmail());
+		if(!StringUtil.isNotNull(model.getEmail())) {
+			model.setEmail(pattern.getEmail());
 		}
 		
-		model.setHouse_number(client.getHouse_number());
-		model.setLastLogin(client.getLastLogin());
-		model.setNivel(client.getNivel());
-		model.setNome(client.getNome());
-		model.setStreet(client.getStreet());
-		model.setNeighborhood(client.getNeighborhood());
-		model.setTotalOrders(client.getTotalOrders());
-		model.setCarts(client.getCarts());
-		model.setChangePassword(client.isChangePassword());
-		model.setInactivationDate(client.getInactivationDate());
+		if(!StringUtil.isNotNull(model.getSenha())) {
+			model.setSenha(pattern.getSenha());
+		}
 		
 		em.getTransaction().begin();
 		em.merge(model);
@@ -168,24 +144,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 					return false;
 				}
 				
-				TOClient toClient = new TOClient();
-				
-				toClient.setId(client.getId());
-				toClient.setAccountChangeDate(client.getAccountChangeDate());
-				toClient.setAccountCreationDate(client.getAccountCreationDate());
-				toClient.setBlocked(client.isBlocked());
-				toClient.setCep(client.getCep());
-				toClient.setComplement(client.getComplement());
-				toClient.setCompletedRegistration(client.isCompletedRegistration());
-				toClient.setEmail(client.getEmail());
-				toClient.setHouse_number(client.getHouse_number());
-				toClient.setLastLogin(client.getLastLogin());
-				toClient.setNivel(client.getNivel());
-				toClient.setNome(client.getNome());
-				toClient.setNivel(client.getNivel());
-				toClient.setTotalOrders(client.getTotalOrders());
-				toClient.setCarts(client.getCarts());
-				toClient.setChangePassword(client.isChangePassword());
+				TOClient toClient = this.getConverter().map(client, TOClient.class);
 				
 				client.setLastLogin(new Date());
 				change(client);
@@ -227,24 +186,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				.getSingleResult();
 		
 		if(client != null) {
-			TOClient toClient = new TOClient();
-			
-			toClient.setId(client.getId());
-			toClient.setAccountChangeDate(client.getAccountChangeDate());
-			toClient.setAccountCreationDate(client.getAccountCreationDate());
-			toClient.setBlocked(client.isBlocked());
-			toClient.setCep(client.getCep());
-			toClient.setComplement(client.getComplement());
-			toClient.setCompletedRegistration(client.isCompletedRegistration());
-			toClient.setEmail(client.getEmail());
-			toClient.setHouse_number(client.getHouse_number());
-			toClient.setLastLogin(client.getLastLogin());
-			toClient.setNivel(client.getNivel());
-			toClient.setNome(client.getNome());
-			toClient.setNivel(client.getNivel());
-			toClient.setTotalOrders(client.getTotalOrders());
-			toClient.setCarts(client.getCarts());
-			toClient.setChangePassword(client.isChangePassword());
+			TOClient toClient = this.getConverter().map(client, TOClient.class);
 			
 			return toClient;
 		}
@@ -266,32 +208,16 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		List<TOClient> clients = new ArrayList<TOClient>();
 		
 		for(Client client : results) {
-			TOClient toClient = new TOClient();
-			
-			toClient.setId(client.getId());
-			toClient.setAccountChangeDate(client.getAccountChangeDate());
-			toClient.setAccountCreationDate(client.getAccountCreationDate());
-			toClient.setBlocked(client.isBlocked());
-			toClient.setCep(client.getCep());
-			toClient.setComplement(client.getComplement());
-			toClient.setStreet(client.getStreet());
-			toClient.setNeighborhood(client.getNeighborhood());
-			toClient.setPhone_number(client.getPhone_number());
-			toClient.setCompletedRegistration(client.isCompletedRegistration());
-			toClient.setEmail(client.getEmail());
-			toClient.setHouse_number(client.getHouse_number());
-			toClient.setLastLogin(client.getLastLogin());
-			toClient.setNivel(client.getNivel());
-			toClient.setNome(client.getNome());
-			toClient.setNivel(client.getNivel());
-			toClient.setTotalOrders(client.getTotalOrders());
-			toClient.setCarts(client.getCarts());
-			toClient.setChangePassword(client.isChangePassword());
+			TOClient toClient = this.getConverter().map(client, TOClient.class);
 			
 			clients.add(toClient);
 		}
 		
 		return clients;
+	}
+	
+	public TOClient convertModelToDTO(Client client) {
+		return null;
 	}
 
 	@Override
@@ -314,5 +240,13 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		em.getTransaction().begin();
 		em.remove(em.contains(model) ? model : em.merge(model));
 		em.getTransaction().commit();
+	}
+
+	//Getters and Setters
+	public ModelMapper getConverter() {
+		return converter;
+	}
+	public void setConverter(ModelMapper converter) {
+		this.converter = converter;
 	}
 }

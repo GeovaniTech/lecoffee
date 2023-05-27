@@ -25,12 +25,14 @@
 			</div>
 			
 			<div class="right-items horizontal-center">
-				<div class="horizontal-center">
-					<span class="material-symbols-outlined google-icons">
-						account_circle
-					</span>
-				</div>
-				
+				<p:commandLink id="my_account" style="text-decoration: none;">
+					<div class="horizontal-center">
+						<span class="material-symbols-outlined google-icons">
+							account_circle
+						</span>
+					</div>			
+				</p:commandLink>
+			
 				<div class="horizontal-center">
 					<span class="material-symbols-outlined google-icons">
 						notifications
@@ -105,22 +107,11 @@
 					</span>
 					#{label.landing_page}
 				</a>
-
-				<a href="#" onclick="btnLogout();" type="button">
-					<span class="material-symbols-outlined google-icons">
-						logout
-					</span>
-					#{label.logout}
-				</a>
-				
-				<p:remoteCommand 
-					id="btnLogout"
-					name="btnLogout"
-					action="#{MBAppConfigs.logout()}"/>
 			</div>
 		</div>
 		
-		<ui:include src="/templates/admin/overlayOptions.xhtml" />
+		<ui:include src="overlayOptions.xhtml" />
+		<ui:include src="overlayMyAccount.xhtml" />
 		<script src="/lecoffee/resources/js/menu.js"/>	
 	</h:body>
 </html>
