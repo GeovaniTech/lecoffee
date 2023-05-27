@@ -3,12 +3,14 @@ package managedBean.products;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import keep.category.KeepCategorySBean;
 import model.Category;
 import utils.AbstractBean;
+import utils.MessageUtil;
 
 @Named("MBTab_category")
 @ViewScoped
@@ -65,6 +67,8 @@ public class MBTab_categories extends AbstractBean {
 		this.setCategory(new Category());
 		list();
 		listActives();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("record_successfully_saved"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void change() {
@@ -73,6 +77,8 @@ public class MBTab_categories extends AbstractBean {
 		this.setCategory(new Category());
 		list();
 		listActives();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("record_changed_successfully"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void active() {
@@ -81,6 +87,8 @@ public class MBTab_categories extends AbstractBean {
 		
 		list();
 		listActives();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("registration_activated_successfully"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void disable() {
@@ -89,6 +97,8 @@ public class MBTab_categories extends AbstractBean {
 		this.setCategory(new Category());
 		list();
 		listActives();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("successfully_deactivated_registration"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void list() {
@@ -101,6 +111,8 @@ public class MBTab_categories extends AbstractBean {
 		this.setNewCategory();
 		list();
 		listActives();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("successfully_deleted_record"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void setNewCategory() {

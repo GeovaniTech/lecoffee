@@ -51,6 +51,8 @@ public class MBBanners extends AbstractFilterBean {
 			
 			list();
 			listActived();
+			
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("record_successfully_saved"), null, FacesMessage.SEVERITY_INFO);
 		} else {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("select_image_required"), null, FacesMessage.SEVERITY_ERROR);
 		}
@@ -62,6 +64,8 @@ public class MBBanners extends AbstractFilterBean {
 		
 			list();
 			listActived();
+			
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("record_changed_successfully"), null, FacesMessage.SEVERITY_INFO);
 		}
 	}
 	
@@ -71,6 +75,8 @@ public class MBBanners extends AbstractFilterBean {
 		
 		list();
 		listActived();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("registration_activated_successfully"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void disable() {
@@ -79,6 +85,8 @@ public class MBBanners extends AbstractFilterBean {
 		
 		list();
 		listActived();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("successfully_deactivated_registration"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void remove() {
@@ -86,6 +94,8 @@ public class MBBanners extends AbstractFilterBean {
 	
 		list();
 		listActived();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("successfully_deleted_record"), null, FacesMessage.SEVERITY_INFO);
 	}
 	
 	public void list() {

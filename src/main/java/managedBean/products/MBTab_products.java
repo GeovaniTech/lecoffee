@@ -77,6 +77,8 @@ public class MBTab_products extends AbstractFilterBean {
 			this.setCategoryId(null);
 			
 			list();			
+			
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("record_successfully_saved"), null, FacesMessage.SEVERITY_INFO);
 		} else {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("select_image_required"), null, FacesMessage.SEVERITY_WARN);
 		}
@@ -96,7 +98,8 @@ public class MBTab_products extends AbstractFilterBean {
 			
 			this.setNewProduct();
 			
-			list();			
+			list();		
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("record_changed_successfully"), null, FacesMessage.SEVERITY_INFO);
 		} else {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("select_image_required"), null, FacesMessage.SEVERITY_WARN);
 		}
@@ -128,6 +131,8 @@ public class MBTab_products extends AbstractFilterBean {
 	public void removeProduct() {
 		this.getsBean().remove(this.getProduct());
 		list();
+		
+		MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("successfully_deleted_record"), null, FacesMessage.SEVERITY_INFO);
 	}	
 	
 	public void list() {
