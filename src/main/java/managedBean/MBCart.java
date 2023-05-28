@@ -69,7 +69,7 @@ public class MBCart extends AbstractBean {
 				this.getCart().getItems().set(i, item);
 				this.change();
 				
-				PrimeFaces.current().executeScript("counterTotalProducts();");
+				PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart();");
 				
 				return;
 			}
@@ -82,7 +82,7 @@ public class MBCart extends AbstractBean {
 		this.getCart().getItems().add(item);
 		this.change();
 		
-		PrimeFaces.current().executeScript("counterTotalProducts();");
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart();");
 	}
 	
 	public void removeProduct(int id) {
@@ -94,15 +94,17 @@ public class MBCart extends AbstractBean {
 				
 				if(item.getAmount() > 0) {
 					item.setAmount(item.getAmount() - 1);
-				} else {
-					this.getCart().getItems().remove(i);
-				}
+					
+					if(item.getAmount() == 0) {
+						this.getCart().getItems().remove(i);
+					}
+				} 
 				
 				this.change();
 			}
 		}
 		
-		PrimeFaces.current().executeScript("counterTotalProducts();");
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart();");
 	}
 	
 	public void change() {

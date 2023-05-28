@@ -20,3 +20,7 @@
 .close-cart span {
 	font-size: 40px !important;
 }
+
+.no-scroll {
+	overflow: hidden;
+}

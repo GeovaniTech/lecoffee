@@ -11,7 +11,7 @@
 	
 	<ui:composition>
 		<h:outputStylesheet library="css" name="/client/cart/cart.css"/>
-		<h:form id="cart" style="right: -100vw; width: 0px;">
+		<div id="cart" style="right: -100vw; width: 0px;">
 			<div class="top-cart horizontal-between">
 				<div class="close-cart" onclick="openCart();">
 					<span class="material-symbols-outlined google-icons">
@@ -28,8 +28,13 @@
 			
 			<p:scrollPanel
 				mode="native" 
-				style="max-height: calc(100vh - 70px); width: 100%;">		
-				<div class="cart-products">
+				style="max-height: 100%; width: 100%;">		
+				
+				<h:form id="formProductsCart" class="cart-products">
+					<p:remoteCommand 
+						name="updateProductsCart"
+						update="@form" />
+					
 					<ui:repeat var="item" value="#{MBCart.cart.items}">
 						<components:product 
 							name="#{item.product.name}"
@@ -41,8 +46,8 @@
 							status="#{item.product.status}"
 							optionsRendered="false" />
 					</ui:repeat>
-				</div>
+				</h:form>
 			</p:scrollPanel>
-		</h:form>
+		</div>
 	</ui:composition>
 </html>
