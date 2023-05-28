@@ -1,7 +1,10 @@
 package managedBean;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.primefaces.PrimeFaces;
 
@@ -113,8 +116,14 @@ public class MBCart extends AbstractBean {
 			this.setCart(this.getCartSBean().findById(id));
 		} else {
 			this.getCartSBean().save(this.getCart());
+
+			Cookie cookie = new Cookie("cart", this.getCart().getId() + "");
+			cookie.setPath("/lecoffee");
+			cookie.setMaxAge(Integer.MAX_VALUE);
 			
-			System.out.println(this.getCart().getId());
+			HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+			
+			response.addCookie(cookie);
 		}
 	}
 
