@@ -59,11 +59,23 @@
 				<h1><a href="/lecoffee/home"><span>Le</span>Coffee</a></h1>
 			</div>
 			
-			<div class="btn-menu">
-				<span class="material-symbols-outlined">
-					shopping_basket
-				</span>			
-			</div>
+			<h:form>
+				<p:remoteCommand 
+					name="counterTotalProducts"
+					update="counterTotalProducts" />
+				
+				<p:badge 
+					id="counterTotalProducts"
+					value="#{MBCart.totalQuantityOfProdctsFromCart}" 
+					style="margin-top: 27px; margin-right: 20px;">	
+					
+					<div class="btn-menu">
+						<span class="material-symbols-outlined">
+							shopping_basket
+						</span>			
+					</div>			
+				</p:badge>
+			</h:form>
 		</div>
 		
 		<h:panelGroup class="header" id="header" style="left: -300px; width: 0px;">			

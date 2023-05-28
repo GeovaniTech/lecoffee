@@ -3,6 +3,8 @@ package managedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+
 import keep.cart.KeepCartSBean;
 import keep.cart.item.KeepItemSBean;
 import keep.product.KeepProductSBean;
@@ -64,6 +66,8 @@ public class MBCart extends AbstractBean {
 				this.getCart().getItems().set(i, item);
 				this.change();
 				
+				PrimeFaces.current().executeScript("counterTotalProducts();");
+				
 				return;
 			}
 		}
@@ -74,6 +78,8 @@ public class MBCart extends AbstractBean {
 		
 		this.getCart().getItems().add(item);
 		this.change();
+		
+		PrimeFaces.current().executeScript("counterTotalProducts();");
 	}
 	
 	public void removeProduct(int id) {
@@ -92,6 +98,8 @@ public class MBCart extends AbstractBean {
 				this.change();
 			}
 		}
+		
+		PrimeFaces.current().executeScript("counterTotalProducts();");
 	}
 	
 	public void change() {
