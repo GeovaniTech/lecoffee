@@ -26,7 +26,7 @@
 			</ui:repeat>
 		</div> 
 		
-		<div class="productsByCategory vertical-left">
+		<h:form class="productsByCategory vertical-left">
 			<ui:repeat var="category" value="#{MBTab_category.categories}">
 				<h2 class="title-category" style="margin-bottom: 15px; margin-top: 0px;">#{category.name}</h2>
 				
@@ -44,6 +44,6 @@
 					</ui:repeat>
 				</div>
 			</ui:repeat>
-		</div>
+		</h:form>
 	</ui:composition>
 </html>

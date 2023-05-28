@@ -10,16 +10,21 @@ import javax.persistence.OneToOne;
 public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@OneToOne
 	private Product product;
 	private int amount;
 	
-	public int getId() {
+	public Item() {
+		this.setAmount(0);
+	}
+	
+	// Getters and Setters
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Product getProduct() {

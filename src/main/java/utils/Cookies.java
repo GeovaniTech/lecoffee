@@ -50,4 +50,19 @@ public class Cookies {
 
 		return false;
 	}
+	
+	public static Integer getCartIdFromCookie() {
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("cart")) {
+					return Integer.parseInt(cookie.getValue());
+				}
+			}
+		}
+		
+		return null;
+	}
 }

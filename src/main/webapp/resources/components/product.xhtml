@@ -25,7 +25,7 @@
 		<composite:attribute name="onclickButtonEdit" />
 	</composite:interface>
 	
-	<composite:implementation>
+	<composite:implementation>		
 		<div class="card" style="#{cc.attrs.status eq 'disabled' ? 'opacity: 0.33;' : ''}">
             <h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
             
@@ -43,21 +43,25 @@
 			<div class="options">
 				<div class="vertical-center">
 					<div class="buttons desktop-hidden vertical-center">
-	                    <div class="minus">
+						<p:commandLink class="minus">
 	                        <span class="material-symbols-outlined">
 	                            remove
-	                        </span>
+	                        </span>						
+						</p:commandLink>
+						
+	                    <div id="counter_#{cc.attrs.productId}" class="count">
+	                        <h:outputText value="#{MBCart.getQuantityOfProduct(cc.attrs.productId)}" />
 	                    </div>
-	
-	                    <div class="count">
-	                        <p>0</p>
-	                    </div>
-	
-	                    <div class="more">
+						
+						<p:commandLink 
+							action="#{MBCart.addProduct(cc.attrs.productId)}"
+							update="@form"
+							class="more">
+	                        
 	                        <span class="material-symbols-outlined">
 	                            add
-	                        </span>
-	                    </div>
+	                        </span>						
+						</p:commandLink>
 	                </div>
 	                
 	                <p:rating value="#{cc.attrs.rating}" disabled="true" styleClass="desktop-hidden" />
