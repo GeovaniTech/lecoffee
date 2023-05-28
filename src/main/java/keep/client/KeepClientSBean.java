@@ -153,7 +153,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				Cookie userCookie = new Cookie("userSession", Encryption.encryptNormalText(client.getEmail()));
 				
 				userCookie.setMaxAge(60*60*24*30);
-				userCookie.setPath("/");
+				userCookie.setPath("/lecoffee");
 				HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 				
 				response.addCookie(userCookie);

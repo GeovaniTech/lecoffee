@@ -16,32 +16,34 @@
 		
 		<div class="categories horizontal-center">
 			<ui:repeat var="category" value="#{MBTab_category.categories}">
-				<div class="tab_category vertical-center">
+				<a href="#category_#{category.id}" class="tab_category vertical-center" style="text-decoration: none;">
 					<span class="material-symbols-outlined icons">
 						#{category.icon}
 					</span>
 					
-					<p>#{category.name}</p>
-				</div>
+					#{category.name}
+				</a>
 			</ui:repeat>
 		</div> 
 		
 		<h:form class="productsByCategory vertical-left">
 			<ui:repeat var="category" value="#{MBTab_category.categories}">
-				<h2 class="title-category" style="margin-bottom: 15px; margin-top: 0px;">#{category.name}</h2>
+				<div id="category_#{category.id}">
+					<h2 class="title-category" style="margin-bottom: 15px; margin-top: 0px;">#{category.name}</h2>
 				
-				<div class="container-products">
-					<ui:repeat var="product" value="#{MBTab_products.getProductsByCategoryId(category.id)}">
-						<components:product 
-							name="#{product.name}"
-							productId="#{product.id}"
-							description="#{product.description}"
-							price="#{product.price}"
-							imageBytes="#{product.imageBytes}"
-							rating="#{product.rating}"
-							status="#{product.status}"
-							optionsRendered="false" />
-					</ui:repeat>
+					<div class="container-products">
+						<ui:repeat var="product" value="#{MBTab_products.getProductsByCategoryId(category.id)}">
+							<components:product 
+								name="#{product.name}"
+								productId="#{product.id}"
+								description="#{product.description}"
+								price="#{product.price}"
+								imageBytes="#{product.imageBytes}"
+								rating="#{product.rating}"
+								status="#{product.status}"
+								optionsRendered="false" />
+						</ui:repeat>
+					</div>
 				</div>
 			</ui:repeat>
 		</h:form>

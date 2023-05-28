@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<ui:composition>
+		<h:outputStylesheet library="css" name="/client/cart/cart.css"/>
+		<h:form id="cart" style="right: -100vw; width: 0px;">
+			<div class="top-cart horizontal-between">
+				<div class="close-cart" onclick="openCart();">
+					<span class="material-symbols-outlined google-icons">
+						close
+					</span>					
+				</div>
+				
+				<div>
+					<h3>#{label.cart}</h3>
+				</div>
+				
+				<div style="width: 40px;"></div>
+			</div>
+			
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: calc(100vh - 70px); width: 100%;">		
+				<div class="cart-products">
+					<ui:repeat var="item" value="#{MBCart.cart.items}">
+						<components:product 
+							name="#{item.product.name}"
+							productId="#{item.product.id}"
+							description="#{item.product.description}"
+							price="#{item.product.price}"
+							imageBytes="#{item.product.imageBytes}"
+							rating="#{item.product.rating}"
+							status="#{item.product.status}"
+							optionsRendered="false" />
+					</ui:repeat>
+				</div>
+			</p:scrollPanel>
+		</h:form>
+	</ui:composition>
+</html>

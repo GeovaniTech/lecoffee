@@ -69,11 +69,11 @@
 					value="#{MBCart.totalQuantityOfProdctsFromCart}" 
 					style="margin-top: 27px; margin-right: 20px;">	
 					
-					<div class="btn-menu">
+					<p:commandLink class="btn-menu" style="text-decoration: none;" onclick="openCart();">
 						<span class="material-symbols-outlined">
 							shopping_basket
 						</span>			
-					</div>			
+					</p:commandLink>			
 				</p:badge>
 			</h:form>
 		</div>
@@ -125,6 +125,8 @@
 		</h:panelGroup>
 		
 		<script src="/lecoffee/resources/js/menuClient.js" />	
+		<script src="/lecoffee/resources/js/cart.js" />	
 		<ui:include src="overlayMyAccount.xhtml" />
+		<ui:include src="cart.xhtml" />
 	</h:body>
 </html>

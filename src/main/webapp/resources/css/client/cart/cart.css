@@ -1,0 +1,22 @@
+#cart {
+	position: fixed;
+	width: 100vw;
+	top: 70px;
+	height: calc(100vh - 70px);
+	background-color: var(--background-body);
+	overflow: hidden;
+	z-index: 1;
+	transition: 0.4s;
+}
+
+#cart h3 {
+	font-size: 23px;
+}
+
+.top-cart {
+	margin-top: 10px;
+}
+
+.close-cart span {
+	font-size: 40px !important;
+}
