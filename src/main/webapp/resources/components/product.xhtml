@@ -43,7 +43,10 @@
 			<div class="options">
 				<div class="vertical-center">
 					<div class="buttons desktop-hidden vertical-center">
-						<p:commandLink class="minus">
+						<p:commandLink 
+							action="#{MBCart.removeProduct(cc.attrs.productId)}"
+							update="@form"
+							class="minus">
 	                        <span class="material-symbols-outlined">
 	                            remove
 	                        </span>						

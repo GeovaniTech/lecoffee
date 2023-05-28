@@ -81,7 +81,13 @@ public class MBCart extends AbstractBean {
 		
 		for(int i = 0; i < this.getCart().getItems().size(); i++) {
 			if(this.getCart().getItems().get(i).getProduct().getId() == product.getId()) {
-				this.getCart().getItems().remove(i);
+				Item item = this.getCart().getItems().get(i);
+				
+				if(item.getAmount() > 0) {
+					item.setAmount(item.getAmount() - 1);
+				} else {
+					this.getCart().getItems().remove(i);
+				}
 				
 				this.change();
 			}
