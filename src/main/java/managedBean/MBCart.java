@@ -14,8 +14,10 @@ import keep.product.KeepProductSBean;
 import model.Cart;
 import model.Item;
 import model.Product;
+import to.TOClient;
 import utils.AbstractBean;
 import utils.Cookies;
+import utils.RedirectUrl;
 
 @Named("MBCart")
 @SessionScoped
@@ -69,7 +71,7 @@ public class MBCart extends AbstractBean {
 				this.getCart().getItems().set(i, item);
 				this.change();
 				
-				PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart();");
+				PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart(); updateProductsCategories();");
 				
 				return;
 			}
@@ -82,7 +84,7 @@ public class MBCart extends AbstractBean {
 		this.getCart().getItems().add(item);
 		this.change();
 		
-		PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart();");
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart(); updateProductsCategories();");
 	}
 	
 	public void removeProduct(int id) {
@@ -104,7 +106,7 @@ public class MBCart extends AbstractBean {
 			}
 		}
 		
-		PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart();");
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateProductsCart(); updateProductsCategories();");
 	}
 	
 	public void change() {
@@ -126,6 +128,14 @@ public class MBCart extends AbstractBean {
 			HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 			
 			response.addCookie(cookie);
+		}
+	}
+	
+	public void continueToAddress() {
+		TOClient client = getClient();
+		
+		if(client == null) {
+			RedirectUrl.redirecionarPara("/lecoffee/login");
 		}
 	}
 

@@ -10,7 +10,6 @@
     xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<ui:composition>
-		<h:outputStylesheet library="css" name="/client/cart/cart.css"/>
 		<div id="cart" style="right: -100vw; width: 0px;">
 			<div class="top-cart horizontal-between">
 				<div class="close-cart" onclick="openCart();">
@@ -28,12 +27,25 @@
 			
 			<p:scrollPanel
 				mode="native" 
-				style="max-height: 100%; width: 100%;">		
+				style="height: 94%; width: 100%;">		
 				
 				<h:form id="formProductsCart" class="cart-products">
 					<p:remoteCommand 
 						name="updateProductsCart"
-						update="@form" />
+						update="@form, :btnCheckout" />
+						
+					<h:panelGroup 
+						id="emptyCart"
+						class="vertical-center" 
+						rendered="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}">
+						
+						<h:graphicImage 
+							name="empty_cart.svg"
+							library="images" 
+							style="width: 95.8vw; height: 30vh; margin-top: 15px;" />
+						
+						<p class="text_empty_cart">#{label.empty_cart} :(</p>
+					</h:panelGroup>
 					
 					<ui:repeat var="item" value="#{MBCart.cart.items}">
 						<components:product 
@@ -46,8 +58,17 @@
 							status="#{item.product.status}"
 							optionsRendered="false" />
 					</ui:repeat>
+					
+					<div style="height: 113px;">
+					
+					</div>
 				</h:form>
 			</p:scrollPanel>
+			
+			<p:commandButton 
+				id="btnCheckout"
+				disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
+				value="#{label.continue}" />
 		</div>
 	</ui:composition>
 </html>

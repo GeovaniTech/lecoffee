@@ -9,8 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import utils.AbstractObject;
+
 @Entity
-public class Client {
+public class Client extends AbstractObject {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -18,28 +20,19 @@ public class Client {
 	private String email;
 	private String senha;
 	private String nivel;
-	private Integer totalOrders;
 	private Date lastLogin;
-	private Date accountCreationDate;
-	private Date accountChangeDate;
-	private Date inactivationDate;
 	private boolean blocked;
-	private boolean completedRegistration;
-	private String cep;
-	private String street;
-	private String complement;
-	private Integer house_number;
 	private String phone_number;
-	private String neighborhood;
 	private boolean changePassword;
 	
 	@OneToMany
 	private List<Cart> carts;
 	
+	@OneToMany
+	private List<Address> addresses;
+	
 	public Client() {
-		this.setCompletedRegistration(false);
 		this.setBlocked(false);
-		this.setTotalOrders(0);
 	}
 		
 	public int getId() {
@@ -72,23 +65,11 @@ public class Client {
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
 	}
-	public boolean isCompletedRegistration() {
-		return completedRegistration;
-	}
-	public void setCompletedRegistration(boolean completedRegistration) {
-		this.completedRegistration = completedRegistration;
-	}
 	public List<Cart> getCarts() {
 		return carts;
 	}
 	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
-	}
-	public Integer getTotalOrders() {
-		return totalOrders;
-	}
-	public void setTotalOrders(Integer totalOrders) {
-		this.totalOrders = totalOrders;
 	}
 	public Date getLastLogin() {
 		return lastLogin;
@@ -96,53 +77,11 @@ public class Client {
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
-	public Date getAccountCreationDate() {
-		return accountCreationDate;
-	}
-	public void setAccountCreationDate(Date accountCreationDate) {
-		this.accountCreationDate = accountCreationDate;
-	}
-	public Date getAccountChangeDate() {
-		return accountChangeDate;
-	}
-	public void setAccountChangeDate(Date accountChangeDate) {
-		this.accountChangeDate = accountChangeDate;
-	}
 	public boolean isBlocked() {
 		return blocked;
 	}
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
-	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
-	}
-	public String getComplement() {
-		return complement;
-	}
-	public void setComplement(String complement) {
-		this.complement = complement;
-	}
-	public Integer getHouse_number() {
-		return house_number;
-	}
-	public void setHouse_number(Integer house_number) {
-		this.house_number = house_number;
-	}
-	public String getNeighborhood() {
-		return neighborhood;
-	}
-	public void setNeighborhood(String neighborhood) {
-		this.neighborhood = neighborhood;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
 	}
 	public String getPhone_number() {
 		return phone_number;
@@ -156,10 +95,10 @@ public class Client {
 	public void setChangePassword(boolean changePassword) {
 		this.changePassword = changePassword;
 	}
-	public Date getInactivationDate() {
-		return inactivationDate;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
-	public void setInactivationDate(Date inactivationDate) {
-		this.inactivationDate = inactivationDate;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 }

@@ -116,7 +116,7 @@ public class MBLogin extends AbstractBean {
 		description.append("<h2>Troca de Senha de acesso a LeCoffee<h2/>");
 		description.append("<p>Olá,</p>");
 		description.append("<p>Para trocar sua senha de acesso, entre no link abaixo e insira sua nova senha.</p>");
-		description.append("<p><a href=http://localhost:8081/lecoffee/newpassword/");
+		description.append("<p><a href=https://www.devpree.com.br/lecoffee/newpassword/");
 		description.append(JwtTokenUtil.generateEmailToken(this.getEmail(), null)).append(">Troca de Senha</a><p/>");
 		description.append("<p>Caso você não tenha solicitado a troca de senha na LeCoffee ");
 		description.append("ou acredite que este email tenha sido enviado por engano, por favor, desconsidere esta mensagem.</p>");

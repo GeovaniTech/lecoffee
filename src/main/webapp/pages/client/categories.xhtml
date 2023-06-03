@@ -27,6 +27,10 @@
 		</div> 
 		
 		<h:form class="productsByCategory vertical-left">
+			<p:remoteCommand 
+				name="updateProductsCategories"
+				update="@form"/>
+			
 			<ui:repeat var="category" value="#{MBTab_category.categories}">
 				<div id="category_#{category.id}">
 					<h2 class="title-category" style="margin-bottom: 15px; margin-top: 0px;">#{category.name}</h2>

@@ -45,7 +45,11 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		client.setEmail(email);
 		client.setSenha(Encryption.encryptTextSHA(password));
 		client.setNivel("client");
-		client.setAccountCreationDate(new Date());
+		client.setCreationDate(new Date());
+		
+		if(getClient() != null) {
+			client.setCreationUser(getClient().getEmail());
+		}
 		
 		em.getTransaction().begin();
 		em.persist(client);
@@ -227,7 +231,14 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		Client client = em.find(Client.class, toClient.getId());
 		
 		client.setSenha(Encryption.encryptTextSHA(password));
-		client.setAccountChangeDate(new Date());
+		client.setChangeDate(new Date());
+		
+		if(getClient() != null) {
+			client.setChangeUser(getClient().getEmail());
+		} else {
+			client.setChangeUser(getClient().getEmail());
+		}
+		
 		client.setChangePassword(false);
 		
 		change(client);
