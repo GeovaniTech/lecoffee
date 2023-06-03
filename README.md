@@ -6,7 +6,7 @@ System is developing to help an Coffee shop, help to public new products, orders
 
 ## Test Environment
 
-<a href="www.devpree.com.br/lecoffee">Access LeCoffee</a>
+<a href="https://www.devpree.com.br/lecoffee" target="_blank">Access LeCoffee</a>
 
 ## Screens (Probably will change)
 
