@@ -117,18 +117,22 @@ public class MBCart extends AbstractBean {
 		Integer id = Cookies.getCartIdFromCookie();
 		
 		if(id != null) {
-			this.setCart(this.getCartSBean().findById(id));
-		} else {
-			this.getCartSBean().save(this.getCart());
-
-			Cookie cookie = new Cookie("cart", this.getCart().getId() + "");
-			cookie.setPath("/lecoffee");
-			cookie.setMaxAge(Integer.MAX_VALUE);
+			Cart cart = this.getCartSBean().findById(id);
 			
-			HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-			
-			response.addCookie(cookie);
+			if(cart != null) {
+				this.setCart(cart);
+				
+				return;
+			} 
 		}
+		
+		Cookie cookie = new Cookie("cart", this.getCart().getId() + "");
+		cookie.setPath("/lecoffee");
+		cookie.setMaxAge(Integer.MAX_VALUE);
+		
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		
+		response.addCookie(cookie);
 	}
 	
 	public void continueToAddress() {

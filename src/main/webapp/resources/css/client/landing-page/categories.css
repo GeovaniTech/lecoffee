@@ -1,28 +1,121 @@
+.productsByCategory > div {
+	width: 99vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.productsByCategory {
+	display: flex;
+	margin: 0px;
+}
+
 .title-category {
-	margin-top: 15px;
-	margin-left: 15px;
-	margin-bottom: 5px;
+	text-align: center;
+	color: var(--brown);
+	margin: 40px 60px !important;
+	margin-top: 50px !important;
+	font-family: 'Grape Nuts';
+	font-size: 80px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.containter-title-category {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100% !important;
+}
+
+.containter-title-category > div {
+	border: 5px solid #704214;
+	border-radius: 4px;
+	width: 100%;
+	max-width: 300px;
+}
+
+.categories {
+ 	margin-top: 20px;
+ 	flex-wrap: wrap;
 }
 
 .tab_category {
-	margin: 10px;	
+	margin: 30px;	
+	padding: 25px 40px;
+	border: 10px solid var(--brown) !important;
+	border-radius: 100px;
+	transition: 0.4s;
 }
+
+.tab_category a {
+	color: var(--text-mouse) !important;
+}
+
+.tab_category:hover {
+	background-color: var(--brown);
+	color: var(--white) !important;
+}
+
+.tab_category:hover .icons {
+	color: var(--white) !important;
+}
+
 .icons {
-	font-size: 40px !important;
-	color: var(--green) !important;
+	font-size: 100px !important;
+	color: var(--brown) !important;
+	transition: 0.4s;
 }
 
 .container-products {
 	display: flex;
 	flex-direction: row;
-	justify-content: left;
+	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+	width: 100% !important;
 }
 
 @media (max-width: 650px) {
 	.container-products {
 		flex-direction: column;
+	}
+	
+	.title-category {
+		font-size: 50px;
+		margin: 20px 30px !important;
+	}
+	
+	.tab_category {
+		margin: 10px;	
+		padding: 0px;
+		border: 0px !important;
+		border-radius: 0px !important;
+		transition: 0.4s;
+	}
+	
+	.tab_category:hover {
+		background-color: var(--background-body);
+		color: var(--green) !important;
+	}
+	
+	.tab_category:hover .icons {
+		color: var(--green) !important;
+	}
+	
+	.containter-title-category {
+		margin: 0px;
+	}
+	
+	.containter-title-category > div  {
+		max-width: 100px;
+	}
+	
+	.icons {
+		font-size: 40px !important;
+		color: var(--green) !important;
 	}
 }
 

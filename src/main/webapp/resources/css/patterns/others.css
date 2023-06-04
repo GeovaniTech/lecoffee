@@ -13,6 +13,7 @@ html {
 
 body {
     background-color: var(--background-body);
+    overflow-x: hidden;
 }
 
 .ui-toggleswitch .ui-toggleswitch-checked > * {

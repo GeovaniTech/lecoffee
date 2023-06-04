@@ -11,6 +11,12 @@
 		<h:outputStylesheet library="css" name="/client/layout/header.css" />
 		<h:outputStylesheet library="css" name="/configs/configs.css" />
 		
+		<style>
+			.header-top-categories {
+			
+			}
+		</style>
+		
 		<div id="menu-desktop" class="top-header-mobile">
 			<div class="horizontal-left">				
 				<div class="logo">
@@ -19,10 +25,13 @@
 			</div>
 			
 			<h:panelGroup class="horizontal-center menu-desktop-links">
-				<a>#{label.coffee}</a>
-				<a>#{label.tea}</a>
-				<a>#{label.cookies}</a>
-				<a>#{label.cakes}</a>
+				<div class="header-top-categories horizontal-center">
+					<ui:repeat var="category" value="#{MBTab_category.categories}">
+						<a href="#category_#{category.id}" style="text-decoration: none;">							
+							#{category.name}
+						</a>
+					</ui:repeat>
+				</div> 
 				
 				<div class="horizontal-center menu-desktop-icons">
 					<p:commandLink id="my_account_desktop" style="text-decoration: none;">

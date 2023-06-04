@@ -12,8 +12,6 @@
 	<ui:composition>   
 		<h:outputStylesheet library="css" name="/client/landing-page/categories.css" />
 		
-		<h2 class="title-category">#{label.categories}</h2>
-		
 		<div class="categories horizontal-center">
 			<ui:repeat var="category" value="#{MBTab_category.categories}">
 				<a href="#category_#{category.id}" class="tab_category vertical-center" style="text-decoration: none;">
@@ -33,7 +31,11 @@
 			
 			<ui:repeat var="category" value="#{MBTab_category.categories}">
 				<div id="category_#{category.id}">
-					<h2 class="title-category" style="margin-bottom: 15px; margin-top: 0px;">#{category.name}</h2>
+					<div class="containter-title-category" style="margin-bottom: 15px; margin-top: 0px;">
+						<div />
+							<h2 class="title-category" >#{category.name}</h2>
+						<div />
+					</div>
 				
 					<div class="container-products">
 						<ui:repeat var="product" value="#{MBTab_products.getProductsByCategoryId(category.id)}">
