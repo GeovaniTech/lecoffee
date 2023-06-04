@@ -40,11 +40,22 @@
 						</span>					
 					</p:commandLink>
 					
-					<a href="/lecoffee/admin/produtos" >
-						<span class="material-symbols-outlined google-icons">
-							shopping_cart
-						</span>
-					</a>
+					<p:remoteCommand 
+						name="counterTotalProducts"
+						update="counterTotalProducts" />
+					
+					<p:badge 
+						id="counterTotalProducts"
+						value="#{MBCart.totalQuantityOfProdctsFromCart}" 
+						style="margin-top: 5px; margin-right: 10px;"
+						>	
+						
+						<p:commandLink  style="text-decoration: none;" onclick="openCart();">
+							<span class="material-symbols-outlined google-icons">
+								shopping_basket
+							</span>			
+						</p:commandLink>			
+					</p:badge>
 					
 					<p:commandLink 
 						id="optionsDesktop"
@@ -76,7 +87,8 @@
 				<p:badge 
 					id="counterTotalProducts"
 					value="#{MBCart.totalQuantityOfProdctsFromCart}" 
-					style="margin-top: 27px; margin-right: 20px;">	
+					style="margin-top: 27px; margin-right: 20px;"
+					>	
 					
 					<p:commandLink class="btn-menu" style="text-decoration: none;" onclick="openCart();">
 						<span class="material-symbols-outlined">

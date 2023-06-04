@@ -42,7 +42,7 @@
 						<h:graphicImage 
 							name="empty_cart.svg"
 							library="images" 
-							style="width: 95.8vw; height: 30vh; margin-top: 15px;" />
+							style="width: 100%; height: 30vh; margin-top: 15px;" />
 						
 						<p class="text_empty_cart">#{label.empty_cart} :(</p>
 					</h:panelGroup>
@@ -65,10 +65,12 @@
 				</h:form>
 			</p:scrollPanel>
 			
-			<p:commandButton 
-				id="btnCheckout"
-				disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
-				value="#{label.continue}" />
+			<div class="horizontal-center">
+				<p:commandButton 
+					id="btnCheckout"
+					disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
+					value="#{label.continue}" />
+			</div>
 		</div>
 	</ui:composition>
 </html>

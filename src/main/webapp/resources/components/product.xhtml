@@ -31,13 +31,13 @@
             
             <div class="infos">
                 <p><strong>#{cc.attrs.name}</strong></p>
-                <div class="divider mobile-hidden"></div>
+                <div class="divider mobile-hidden onCartHidden"></div>
                	
                	<p:commandLink 
                		value="#{label.see_description}"/>
                 
                 <p>#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}</p>
-                <p:rating value="#{cc.attrs.rating}" disabled="true" styleClass="mobile-hidden" />
+                <p:rating value="#{cc.attrs.rating}" disabled="true" styleClass="mobile-hidden onCartHidden" />
             </div>
             
 			<div class="options">
@@ -70,9 +70,10 @@
 				</div>
 			
             	<p:commandButton 
+            		id="btnBuyDesktop"
             		value="#{label.buy}"
             		style="width: 100%" 
-            		styleClass="mobile-hidden"
+            		styleClass="mobile-hidden onCartHidden"
             		rendered="#{cc.attrs.optionsRendered == false ? true : false}" />
             		
  				<p:commandButton
