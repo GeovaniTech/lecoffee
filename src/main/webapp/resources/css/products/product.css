@@ -36,7 +36,7 @@
 .card .options {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
+	justify-content: flex-end;
 	align-items: center;
 }
 
@@ -69,6 +69,26 @@
 .desktop-hidden {
 	display: none;
 }
+
+	.buttons {
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+	
+	.buttons > * {
+	    margin-left: 25px;
+	}
+	
+	.buttons span {
+	    color: var(--green);
+	    font-size: 25px;
+	}
+	
+	.minus  {
+		margin-left: 0px;
+	}
 
 @media (max-width: 650px) {
 	 .desktop-hidden {

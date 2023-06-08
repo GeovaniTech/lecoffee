@@ -1,3 +1,7 @@
+.ui-scrollpanel {
+	padding: 0px !important; 
+}
+
 #cart {
 	position: fixed;
 	width: 100vw;

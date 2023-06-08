@@ -40,22 +40,24 @@
 						</span>					
 					</p:commandLink>
 					
-					<p:remoteCommand 
-						name="counterTotalProducts"
-						update="counterTotalProducts" />
-					
-					<p:badge 
-						id="counterTotalProducts"
-						value="#{MBCart.totalQuantityOfProdctsFromCart}" 
-						style="margin-top: 5px; margin-right: 10px;"
-						>	
+					<h:form class="horizontal-center">
+						<p:remoteCommand 
+							name="counterTotalProductsDesktop"
+							update="counterTotalProducts" />
 						
-						<p:commandLink  style="text-decoration: none;" onclick="openCart();">
-							<span class="material-symbols-outlined google-icons">
-								shopping_basket
-							</span>			
-						</p:commandLink>			
-					</p:badge>
+						<p:badge 
+							id="counterTotalProducts"
+							value="#{MBCart.totalQuantityOfProdctsFromCart}" 
+							style="margin-top: 5px; margin-right: 10px;"
+							>	
+							
+							<p:commandLink  style="text-decoration: none;" onclick="openCart();">
+								<span class="material-symbols-outlined google-icons">
+									shopping_basket
+								</span>			
+							</p:commandLink>			
+						</p:badge>
+					</h:form>
 					
 					<p:commandLink 
 						id="optionsDesktop"

@@ -68,13 +68,6 @@
 	                
 	                <p:rating value="#{cc.attrs.rating}" disabled="true" styleClass="desktop-hidden" />
 				</div>
-			
-            	<p:commandButton 
-            		id="btnBuyDesktop"
-            		value="#{label.buy}"
-            		style="width: 100%" 
-            		styleClass="mobile-hidden onCartHidden"
-            		rendered="#{cc.attrs.optionsRendered == false ? true : false}" />
             		
  				<p:commandButton
  					action="#{cc.attrs.setProductFunction}"

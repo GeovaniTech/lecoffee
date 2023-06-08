@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class Cart {
 	private Double total; 
 	
 	@OneToMany(cascade = CascadeType.REMOVE)
+	@Column(unique = false)
 	private List<Item> items;
 	
 	public Cart() {
