@@ -79,6 +79,7 @@
 				<div style="width: 100%;">
 					<p:commandButton 
 						id="btnCheckout"
+						action="#{MBCart.continueToAddress()}"
 						disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
 						value="#{label.continue}"
 						style="width: 100% !important;" />

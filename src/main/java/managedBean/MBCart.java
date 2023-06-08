@@ -161,7 +161,9 @@ public class MBCart extends AbstractBean {
 		TOClient client = getClient();
 		
 		if(client == null) {
-			RedirectUrl.redirecionarPara("/lecoffee/login");
+			PrimeFaces.current().executeScript("openCart(); openDoLogin();");
+		} else {
+			PrimeFaces.current().executeScript("openCart(); ");
 		}
 	}
 

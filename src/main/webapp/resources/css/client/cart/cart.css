@@ -12,6 +12,7 @@
 	overflow: hidden;
 	z-index: 1;
 	transition: 0.4s;	
+	box-shadow: -4px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
 #formProductsCart .card {
@@ -93,10 +94,6 @@
 
 .close-cart span {
 	font-size: 40px !important;
-}
-
-.no-scroll {
-	overflow: hidden;
 }
 
 #bottom-cart {

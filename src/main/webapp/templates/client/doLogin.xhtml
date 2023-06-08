@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:components="http://java.sun.com/jsf/composite/components">
+    
+    <ui:composition>
+    	<div id="doLogin" style="right: -100vw; width: 0px;">
+			<div class="top-doLogin horizontal-between">
+				<div class="close-doLogin" onclick="openDoLogin();">
+					<span class="material-symbols-outlined google-icons">
+						close
+					</span>					
+				</div>
+				
+				<div>
+					<h3>#{label.login}</h3>
+				</div>
+				
+				<div style="width: 40px;"></div>
+			</div>
+			
+			<div>
+				<p class="text-do-login">Para continuar faça o login e desfrute de  todos os <span style="color: var(--green);">benefícios</span></p>
+				
+				<div class="conteiner0-img-login">
+					<h:graphicImage 
+						library="images" 
+						name="do_login.svg"
+						style="width: 100%; height: 30vh; margin-top: 15px;" />
+				</div>
+			</div>
+			
+			<div id="container-wave" class="vertical-top-center">
+				<p:commandButton 
+					value="Fazer Login"
+					styleClass="mg-b-10"
+					style="width: 100% !important; background-color: var(--brown) !important;" />
+				
+				<p:commandButton 
+					value="Cadastrar-se"
+					styleClass="mg-b-10"
+					style="width: 100% !important; background-color: var(--brown) !important;" />	
+				
+				<p:commandLink 
+					id="continueWithoutLogin"
+					style="width: 100% !important; color: gray;">
+					
+					<h:outputText value="Continuar sem Cadastro" style="text-align: center;" />
+				</p:commandLink>	
+			</div>
+			
+			<h:graphicImage id="wave" library="images" name="wave.svg" style="position: absolute; bottom: 0px;" />
+    	</div>
+    </ui:composition>
+</html>

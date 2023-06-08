@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.ui-scrollpanel {
+	padding: 0px !important; 
+}
+
+#address {
+	position: fixed;
+	width: 100vw;
+	max-width: 500px;
+	top: 70px;
+	height: calc(100vh - 70px);
+	background-color: var(--background-general);
+	overflow: hidden;
+	z-index: 1;
+	transition: 0.4s;	
+	box-shadow: -4px 0px 6px rgba(0, 0, 0, 0.1);
+}
