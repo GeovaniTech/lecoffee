@@ -61,10 +61,17 @@ public class KeepCartSBean extends AbstractManter implements IkeepCartSBean, IKe
 	}
 	
 	@Override
-	public void getTotalOrder(int cart_id) {
+	public Double getTotalOrder(int cart_id) {
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(" SELECT SUM()");
+		sql.append(" SELECT SUM(item.product.price * item.amount) ");
+		sql.append(" FROM ").append(Cart.class.getName()).append(" C ");
+		sql.append(" JOIN C.items AS item ");
+		sql.append(" WHERE C.id = :cart_id ");
+		
+		return (Double) em.createQuery(sql.toString())
+				.setParameter("cart_id", cart_id)
+				.getSingleResult();
 	}
 	
 	//Getters and Setters 

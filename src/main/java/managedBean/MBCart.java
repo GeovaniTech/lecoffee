@@ -59,8 +59,14 @@ public class MBCart extends AbstractBean {
 		return 0;
 	}
 	
-	public void getTotalOrder() {
+	public Double getTotalOrder() {
+		Double value = this.getCartSBean().getTotalOrder(this.getCart().getId());
 		
+		if(value == null) {
+			value = 0.0;
+		}
+		
+		return value;
 	}
 	
 	public void addProduct(int id) {
@@ -75,7 +81,7 @@ public class MBCart extends AbstractBean {
 				this.getCart().getItems().set(i, item);
 				this.change();
 				
-				PrimeFaces.current().executeScript("counterTotalProducts(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
+				PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
 				
 				return;
 			}
@@ -88,7 +94,7 @@ public class MBCart extends AbstractBean {
 		this.getCart().getItems().add(item);
 		this.change();
 		
-		PrimeFaces.current().executeScript("counterTotalProducts(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
 	}
 	
 	public void removeProduct(int id) {
@@ -110,7 +116,7 @@ public class MBCart extends AbstractBean {
 			}
 		}
 		
-		PrimeFaces.current().executeScript("counterTotalProducts(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
 	}
 	
 	public void change() {

@@ -32,7 +32,7 @@
 				<h:form id="formProductsCart" class="cart-products">
 					<p:remoteCommand 
 						name="updateProductsCart"
-						update="@form, :btnCheckout" />
+						update="@form, formBottom:btnCheckout" />
 						
 					<h:panelGroup 
 						id="emptyCart"
@@ -59,18 +59,34 @@
 							optionsRendered="false" />
 					</ui:repeat>
 					
-					<div style="height: 113px;">
+					<div style="height: 144px;">
 					
 					</div>
 				</h:form>
 			</p:scrollPanel>
 			
-			<div class="horizontal-center">
-				<p:commandButton 
-					id="btnCheckout"
-					disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
-					value="#{label.continue}" />
+			<h:form id="formBottom">
+						<p:remoteCommand 
+				name="updateBottomCard"
+				update="@form" />
+			
+			<div id="bottom-cart" class="vertical-left">
+				<div class="horizontal-between" style="width: 100%; margin-bottom: 15px;">
+					<p id="totalOrder"><strong>#{label.total_order}:</strong></p>
+					<p id="valueTotalOrder"><strong>#{MBAppConfigs.getBrazilianCurrency(MBCart.totalOrder)}</strong></p>
+				</div>
+				
+				<div style="width: 100%;">
+					<p:commandButton 
+						id="btnCheckout"
+						disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
+						value="#{label.continue}"
+						style="width: 100% !important;" />
+						
+					<div style="height: 40px;"></div>
+				</div>
 			</div>
+			</h:form>
 		</div>
 	</ui:composition>
 </html>
