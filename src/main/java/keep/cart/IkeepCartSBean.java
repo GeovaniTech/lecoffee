@@ -10,4 +10,5 @@ public interface IkeepCartSBean {
 	public void change(Cart cart);
 	public void remove(Cart cart);
 	public Cart findById(int id);
+	public void getTotalOrder(int cart_id);
 }

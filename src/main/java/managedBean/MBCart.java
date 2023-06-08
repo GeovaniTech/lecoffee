@@ -59,6 +59,10 @@ public class MBCart extends AbstractBean {
 		return 0;
 	}
 	
+	public void getTotalOrder() {
+		
+	}
+	
 	public void addProduct(int id) {
 		Product product = this.getProductSBean().findById(id);
 		
@@ -115,16 +119,21 @@ public class MBCart extends AbstractBean {
 	
 	public void createCart() {
 		Integer id = Cookies.getCartIdFromCookie();
+
+		Cart newCart = new Cart();
 		
-		if(id != null) {
-			Cart cart = this.getCartSBean().findById(id);
-			
-			if(cart != null) {
-				this.setCart(cart);
-				
-				return;
-			} 
+		if(id == null) {
+			newCart = newCart();
+			id = newCart.getId();
 		}
+		
+		newCart = this.getCartSBean().findById(id);
+		
+		if(newCart == null) {
+			newCart = newCart();
+		}
+		
+		this.setCart(newCart);
 		
 		Cookie cookie = new Cookie("cart", this.getCart().getId() + "");
 		cookie.setPath("/lecoffee");
@@ -133,6 +142,13 @@ public class MBCart extends AbstractBean {
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		
 		response.addCookie(cookie);
+	}
+	
+	public Cart newCart() {
+		Cart cart = new Cart();
+		this.getCartSBean().save(cart);
+		
+		return cart;
 	}
 	
 	public void continueToAddress() {

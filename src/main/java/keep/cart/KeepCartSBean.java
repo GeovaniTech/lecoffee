@@ -60,6 +60,13 @@ public class KeepCartSBean extends AbstractManter implements IkeepCartSBean, IKe
 		return em.find(Cart.class, id);
 	}
 	
+	@Override
+	public void getTotalOrder(int cart_id) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" SELECT SUM()");
+	}
+	
 	//Getters and Setters 
 	public KeepItemSBean getItemSbean() {
 		return itemSbean;
