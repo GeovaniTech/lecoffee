@@ -72,7 +72,7 @@
 								process="@form"
 								action="#{MBTab_category.disable()}"
 								oncomplete="updateTableCategories();"
-								update=" messages"
+								update=" messages, @form"
 								styleClass="disableStyle mg-r-5" />
 								
 							<p:commandButton 
@@ -82,7 +82,7 @@
 								process="@form"
 								action="#{MBTab_category.active()}"
 								oncomplete="updateTableCategories();"
-								update="messages"
+								update="messages, @form"
 								styleClass="disableStyle mg-r-5" />
 							
 							<p:commandButton 

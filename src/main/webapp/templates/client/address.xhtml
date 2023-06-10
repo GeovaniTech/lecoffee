@@ -10,8 +10,160 @@
     xmlns:components="http://java.sun.com/jsf/composite/components">
     
     <ui:composition>
-    	<div id="address">
-		
+    	
+    	<div id="address" style="right: -100vw; width: 0px;">
+			<div class="top-address horizontal-between">
+				<div class="close-address" onclick="openAddress();">
+					<span class="material-symbols-outlined google-icons">
+						close
+					</span>					
+				</div>
+				
+				<div>
+					<h3>#{label.delivery_address}</h3>
+				</div>
+				
+				<div style="width: 40px;"></div>
+			</div>	
+			
+			<h:form>					
+	  			<p:remoteCommand 	
+	    			name="viewFieldsNewAddress"
+	    			action="#{MBAddress.changeNewAddressView()}"
+	    			update="@form" />
+			</h:form>
+			
+			<h:form id="formAddress">		
+				<p:messages 
+					id="messages" 
+					showDetail="false"
+					showIcon="false"
+	        		autoUpdate="true"  />
+	        				
+				<h:panelGroup 
+					id="callNewAddress" 
+					
+					class="container-addresses" 
+					rendered="#{MBAddress.newAddressVisible == true ? false : true}">
+					
+					<div class="card-address" onclick="viewFieldsNewAddress();" style="background-color: var(--brown) !important;">
+						<div class="horizontal-left-center">
+							<div class="horizontal-center">
+								<i class="pi pi-plus" style="margin-right: 5px;"></i>
+								<p style="color: var(--white);">New Address</p>
+							</div>
+						</div>
+					</div>
+					
+					<ui:repeat var="address" value="#{MBAddress.clientAddress}">						
+						<p:commandLink class="card-address horizontal-between">
+							<div class="horizontal-left-center">
+								<div class="icon-map horizontal-center" style="margin-right: 10px;">
+									<i class="pi pi-map-marker" style="font-size: 30px;"></i>
+								</div>
+								
+								<div class="vertical-left">
+									<h:outputText value="#{address.street}, #{address.house_number}" />
+									<h:outputText value="#{address.neighborhood}" style="font-size: 14px;" />
+								</div>
+							</div>
+							
+							<div>
+								<p:commandLink>
+									<i class="pi pi-pencil" style="color: var(--white); font-size: 20px; margin-right: 5px;"></i>
+								</p:commandLink>
+							</div>
+						</p:commandLink>
+					</ui:repeat>
+				</h:panelGroup>	
+				
+				<h:panelGroup 
+					id="fieldsNewAddress" 
+					class="new-address" 
+					rendered="#{MBAddress.newAddressVisible == true ? true : false}">
+					
+					<div class="horizontal-left-center" onclick="viewFieldsNewAddress();" style="margin: 18px 0px; font-size: 20px; cursor: pointer;">
+						<span class="material-symbols-outlined" style="color: var(--green);">
+							arrow_back_ios
+						</span>	
+						
+						#{label.return}
+					</div>		
+					
+					<p:remoteCommand 
+						name="getCepInformations"
+						process="@form"
+						action="#{MBAddress.getCEPInformations()}"
+						update="@form, :formAddress" />			
+					
+					<div class="vertical-left mg-r-10 mg-b-10">
+						<p:outputLabel value="#{label.cep}" for="cep" />
+						<div class="horizontal-left">
+							
+							<p:inputMask 
+								id="cep"
+								value="#{MBAddress.address.cep}"
+								placeholder="#{label.cep}"
+								mask="99999-999"
+								style="width: 150px;"
+								styleClass="mg-r-5"
+								required="true"
+								requiredMessage="#{label.cep_required}" />
+							
+							<p:commandButton 
+								icon="pi pi-search"
+								onclick="getCepInformations();"
+								style="height: 39px; width: 42px;"/>
+						</div>
+					</div>
+	
+					<div class="horizontal-left mg-b-10">
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.street}" for="street" />
+							<p:inputText
+								id="street"
+								value="#{MBAddress.address.street}"
+								style="width: 100%;"
+								disabled="true" />
+						</div>
+						
+						<div class="vertical-left">
+							<p:outputLabel value="#{label.neighborhood}" for="neighborhood" />
+							<p:inputText
+								id="neighborhood"
+								value="#{MBAddress.address.neighborhood}"
+								style="width: 150px;"
+								disabled="true" />
+						</div>
+					</div>
+					
+					<div class="horizontal-left">
+						<div class="vertical-left mg-r-10">
+							<p:outputLabel value="#{label.complement_word}" for="complement" />
+							<p:inputText
+								id="complement"
+								value="#{MBAddress.address.complement}"
+								style="width: 100%;" />
+						</div>
+						
+						<div class="vertical-left">
+							<p:outputLabel value="#{label.house_number}" for="house_number" />
+							<p:inputText
+								id="house_number"
+								value="#{MBAddress.address.house_number}"
+								style="width: 150px;" />
+						</div>
+					</div>
+					
+					<p:commandButton 
+						value="#{label.save} #{label.delivery_address}"
+						action="#{MBAddress.save()}"
+						update="@form"
+						oncomplete="viewFieldsNewAddress();"
+						styleClass="mg-t-10"
+						style="width: 100%;" />
+				</h:panelGroup>	
+			</h:form>
     	</div>
     </ui:composition>
 </html>

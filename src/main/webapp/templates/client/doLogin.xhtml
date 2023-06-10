@@ -39,17 +39,20 @@
 			<div id="container-wave" class="vertical-top-center">
 				<p:commandButton 
 					value="Fazer Login"
+					action="#{MBAppConfigs.redirectTo('/lecoffee/login')}"
 					styleClass="mg-b-10"
 					style="width: 100% !important; background-color: var(--brown) !important;" />
 				
 				<p:commandButton 
 					value="Cadastrar-se"
+					action="#{MBAppConfigs.redirectTo('/lecoffee/register')}"
 					styleClass="mg-b-10"
 					style="width: 100% !important; background-color: var(--brown) !important;" />	
 				
 				<p:commandLink 
 					id="continueWithoutLogin"
-					style="width: 100% !important; color: gray;">
+					style="width: 100% !important; color: gray;"
+					oncomplete="openDoLogin(); openAddress">
 					
 					<h:outputText value="Continuar sem Cadastro" style="text-align: center;" />
 				</p:commandLink>	

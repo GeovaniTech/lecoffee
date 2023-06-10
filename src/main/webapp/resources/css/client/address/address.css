@@ -15,4 +15,50 @@
 	z-index: 1;
 	transition: 0.4s;	
 	box-shadow: -4px 0px 6px rgba(0, 0, 0, 0.1);
+	padding: 0px 15px;
+}
+
+#formAddress > * {
+	transition: 0.4s;
+}
+
+.top-address {
+	margin-top: 10px;
+	background-color: var(--background-general);
+}
+
+.close-address span {
+	font-size: 40px !important;
+}
+
+#address h3 {
+	font-size: 23px;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
+
+/* CARD */
+
+.card-address {
+	margin-top: 10px;
+	cursor: pointer;
+	padding: 10px;
+	background-color: var(--green);
+	color: var(--white);
+	border-radius: 10px;
+	width: 100%;
+}
+
+#selectAddress .ui-radiobutton-label {
+    /* Estilos para os rótulos dos itens */
+    color: #ff0000;
+    font-size: 14px;
+}
+
+#selectAddress .ui-radiobutton .ui-radiobutton-icon {
+    /* Estilos para os próprios itens de rádio */
+    border-color: #ff0000;
+    background-color: #00ff00;
 }

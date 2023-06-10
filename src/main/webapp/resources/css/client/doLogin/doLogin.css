@@ -58,3 +58,7 @@
 .no-scroll {
 	overflow: hidden;
 }
+
+#doLogin h3 {
+	font-size: 23px;
+}

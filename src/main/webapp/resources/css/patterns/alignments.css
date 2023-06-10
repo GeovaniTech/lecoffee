@@ -71,6 +71,14 @@
 	align-items: center;
 }
 
+.horizontal-left-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+
 .vertical-right {
 	display: flex;
 	flex-direction: column;

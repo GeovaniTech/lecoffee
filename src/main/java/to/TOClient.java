@@ -3,6 +3,8 @@ package to;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import model.Address;
 import model.Cart;
 
 public class TOClient implements Serializable {
@@ -22,6 +24,7 @@ public class TOClient implements Serializable {
 	private String complement;
 	private Integer house_number;
 	private List<Cart> carts;
+	private List<Address> addresses;
 	private boolean blocked;
 	private boolean completedRegistration;
 	private String phone_number;
@@ -142,6 +145,12 @@ public class TOClient implements Serializable {
 	}
 	public void setInactivationDate(Date inactivationDate) {
 		this.inactivationDate = inactivationDate;
+	}
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 }
 

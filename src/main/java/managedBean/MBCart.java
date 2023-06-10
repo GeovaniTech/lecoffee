@@ -163,7 +163,7 @@ public class MBCart extends AbstractBean {
 		if(client == null) {
 			PrimeFaces.current().executeScript("openCart(); openDoLogin();");
 		} else {
-			PrimeFaces.current().executeScript("openCart(); ");
+			PrimeFaces.current().executeScript("openCart(); openAddress();");
 		}
 	}
 
