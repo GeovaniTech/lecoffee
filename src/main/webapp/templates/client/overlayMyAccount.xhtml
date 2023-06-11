@@ -15,16 +15,20 @@
 			
 			<div class="horizontal-left mg-b-10">
 				<div class="vertical-left mg-r-10">
-					<p:avatar label="#{MBAppConfigs.clientLogged.email.toUpperCase().substring(0, 1)}" size="large" style="background-color:#9c27b0; color:#fff" />
+					<p:avatar label="#{MBAppConfigs.userLogged ? MBAppConfigs.clientLogged.email.toUpperCase().substring(0, 1) : 'U'}" size="large" style="background-color:#9c27b0; color:#fff" />
 				</div>
 				
 				<div class="vertical-left">
 					<strong style="color: var(--text-mouse);"><h:outputLabel value="#{label.user}" for="email" /></strong>
-					<p id="email">#{MBAppConfigs.clientLogged.email}</p>
+					<p id="email" style="display: #{MBAppConfigs.userLogged ? 'flex' : 'none'}">#{MBAppConfigs.clientLogged.email}</p>
+					<p:commandLink
+						value="#{label.do_login}"
+						action="#{MBAppConfigs.redirectTo('/lecoffee/login')}"
+						rendered="#{MBAppConfigs.userLogged ? false : true}" />
 				</div>
 			</div>
 			
-			<p:toolbar>
+			<p:toolbar rendered="#{MBAppConfigs.userLogged ? true : false}">
 				<f:facet name="left">
 					<p:commandButton 
 						icon="pi pi-sign-out"
@@ -47,16 +51,20 @@
 			
 			<div class="horizontal-left mg-b-10">
 				<div class="vertical-left mg-r-10">
-					<p:avatar label="#{MBAppConfigs.clientLogged.email.toUpperCase().substring(0, 1)}" size="large" style="background-color:#9c27b0; color:#fff" />
+					<p:avatar label="#{MBAppConfigs.userLogged ? MBAppConfigs.clientLogged.email.toUpperCase().substring(0, 1) : 'U'}" size="large" style="background-color:#9c27b0; color:#fff" />
 				</div>
 				
 				<div class="vertical-left">
 					<strong style="color: var(--text-mouse);"><h:outputLabel value="#{label.user}" for="email" /></strong>
-					<p id="email">#{MBAppConfigs.clientLogged.email}</p>
+					<p id="email" style="display: #{MBAppConfigs.userLogged ? 'flex' : 'none'}">#{MBAppConfigs.clientLogged.email}</p>
+					<p:commandLink
+						value="#{label.do_login}"
+						action="#{MBAppConfigs.redirectTo('/lecoffee/login')}"
+						rendered="#{MBAppConfigs.userLogged ? false : true}" />
 				</div>
 			</div>
 			
-			<p:toolbar>
+			<p:toolbar rendered="#{MBAppConfigs.userLogged ? true : false}">
 				<f:facet name="left">
 					<p:commandButton 
 						icon="pi pi-sign-out"

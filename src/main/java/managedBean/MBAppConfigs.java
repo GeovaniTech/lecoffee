@@ -126,8 +126,8 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		
 		Cookie userSession = new Cookie("userSession", null);
-		userSession.setMaxAge(1);
-		userSession.setPath("/");
+		userSession.setMaxAge(60*60*24*30);
+		userSession.setPath("/lecoffee");
 		
 		response.addCookie(userSession);
 	}
