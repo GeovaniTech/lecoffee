@@ -17,7 +17,6 @@ import model.Product;
 import to.TOClient;
 import utils.AbstractBean;
 import utils.Cookies;
-import utils.RedirectUrl;
 
 @Named("MBCart")
 @SessionScoped

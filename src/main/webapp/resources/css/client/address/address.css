@@ -46,19 +46,13 @@
 	cursor: pointer;
 	padding: 10px;
 	background-color: var(--green);
-	color: var(--white);
+	color: var(--white) !important;
 	border-radius: 10px;
 	width: 100%;
+	color: var(--white) !important;
 }
 
-#selectAddress .ui-radiobutton-label {
-    /* Estilos para os rótulos dos itens */
-    color: #ff0000;
-    font-size: 14px;
-}
-
-#selectAddress .ui-radiobutton .ui-radiobutton-icon {
-    /* Estilos para os próprios itens de rádio */
-    border-color: #ff0000;
-    background-color: #00ff00;
+.card-address a {
+	color: white;
+	width: 50px;
 }

@@ -44,6 +44,17 @@ public class KeepAddressSBean extends AbstractManter implements IkeepAddressSBea
 
 	@Override
 	public void remove(Address address, int client_id) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("DELETE FROM client_address WHERE client_id = :client_id AND addresses_id = :address_id");
+		
+		em.getTransaction().begin();
+		em.createNativeQuery(sql.toString())
+			.setParameter("client_id", client_id)
+			.setParameter("address_id", address.getId())
+			.executeUpdate();
+		em.getTransaction().commit();
+		
 		em.getTransaction().begin();
 		em.remove(em.contains(address) ? address : em.merge(address));
 		em.getTransaction().commit();

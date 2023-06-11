@@ -10,7 +10,6 @@
     xmlns:components="http://java.sun.com/jsf/composite/components">
     
     <ui:composition>
-    	
     	<div id="address" style="right: -100vw; width: 0px;">
 			<div class="top-address horizontal-between">
 				<div class="close-address" onclick="openAddress();">
@@ -42,38 +41,53 @@
 	        				
 				<h:panelGroup 
 					id="callNewAddress" 
-					
 					class="container-addresses" 
 					rendered="#{MBAddress.newAddressVisible == true ? false : true}">
 					
 					<div class="card-address" onclick="viewFieldsNewAddress();" style="background-color: var(--brown) !important;">
 						<div class="horizontal-left-center">
 							<div class="horizontal-center">
-								<i class="pi pi-plus" style="margin-right: 5px;"></i>
-								<p style="color: var(--white);">New Address</p>
+								<i class="pi pi-plus" style="margin-right: 5px; color: white !important"></i>
+								<p style="color: white !important;">New Address</p>
 							</div>
 						</div>
 					</div>
 					
+					<div class="horizontal-center" style="display: #{MBAddress.clientAddress.size() > 0 ? 'flex' : 'none'}; margin: 20px 0px;">
+						<p style="font-size: 20px;">#{label.select_an_address}</p>
+					</div>
+					
 					<ui:repeat var="address" value="#{MBAddress.clientAddress}">						
-						<p:commandLink class="card-address horizontal-between">
-							<div class="horizontal-left-center">
-								<div class="icon-map horizontal-center" style="margin-right: 10px;">
-									<i class="pi pi-map-marker" style="font-size: 30px;"></i>
-								</div>
+						<div class="card-address horizontal-between">
+							<p:commandLink 
+								action="#{MBAddress.selectAddress(address.id)}"
+								style="color: white !important; text-decoration: none; width: 100%;">
 								
-								<div class="vertical-left">
-									<h:outputText value="#{address.street}, #{address.house_number}" />
-									<h:outputText value="#{address.neighborhood}" style="font-size: 14px;" />
+								<div class="horizontal-left-center">
+									<div class="icon-map horizontal-center" style="margin-right: 10px;">
+										<i class="pi pi-map-marker" style="font-size: 30px;"></i>
+									</div>
+									
+									<div class="vertical-left">
+										<h:outputText value="#{address.street}, #{address.house_number}" />
+										<h:outputText value="#{address.neighborhood}" style="font-size: 14px;" />
+									</div>
 								</div>
-							</div>
+							</p:commandLink>
 							
-							<div>
-								<p:commandLink>
-									<i class="pi pi-pencil" style="color: var(--white); font-size: 20px; margin-right: 5px;"></i>
-								</p:commandLink>
-							</div>
-						</p:commandLink>
+							<div class="horizontal-right">
+								<p:commandButton value="">
+									<i class="pi pi-pencil" style="font-size: 20px; color: white;" />
+								</p:commandButton>
+								
+								<p:commandButton 
+									value=""
+									action="#{MBAddress.remove(address.id)}"
+									update="@form">
+									<i class="pi pi-trash" style="font-size: 20px; color: white;" />
+								</p:commandButton>
+							</div>					
+						</div>
 					</ui:repeat>
 				</h:panelGroup>	
 				
@@ -87,7 +101,7 @@
 							arrow_back_ios
 						</span>	
 						
-						#{label.return}
+						<p style="color: white !important">#{label.return}</p>
 					</div>		
 					
 					<p:remoteCommand 

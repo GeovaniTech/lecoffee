@@ -1,12 +1,10 @@
 package managedBean;
 
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.json.JSONObject;
@@ -52,14 +50,18 @@ public class MBAddress extends AbstractBean {
 		this.updateClientAddresses();
 	}
 	
-	public void remove() {
-		this.getAddressSBean().remove(this.getAddress(), getClient().getId());
+	public void remove(int addressId) {
+		Address address = this.getAddressSBean().findById(addressId);
+		
+		this.getAddressSBean().remove(address, getClient().getId());
 		
 		this.updateClientAddresses();
 	}
 	
 	public void updateClientAddresses() {
-		this.setClientAddress(this.getAddressSBean().getClientAddresses(getClient().getId()));
+		if(getClient() != null) {
+			this.setClientAddress(this.getAddressSBean().getClientAddresses(getClient().getId()));
+		}		
 	}
 	
 	public void changeNewAddressView() {
@@ -86,10 +88,8 @@ public class MBAddress extends AbstractBean {
 		}
 	}
 	
-	public void selectAddress(ActionEvent event) {
-		String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-		
-		Address address = this.getAddressSBean().findById(Integer.parseInt(id));
+	public void selectAddress(int id) {
+		Address address = this.getAddressSBean().findById(id);
 		
 		System.out.println("TOMA ESSE ADD SEU MERDA: " +  address);
 	}
