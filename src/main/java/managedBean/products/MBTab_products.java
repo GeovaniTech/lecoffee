@@ -16,6 +16,7 @@ import keep.product.KeepProductSBean;
 import model.Category;
 import model.File;
 import model.Product;
+import to.TOCategory;
 import to.TOProductFilter;
 import utils.AbstractFilterBean;
 import utils.FileUtil;
@@ -32,7 +33,7 @@ public class MBTab_products extends AbstractFilterBean {
 	private List<Product> products;
 	private boolean status;
 	
-	private List<Category> categoriesFilter;
+	private List<TOCategory> categoriesFilter;
 	private KeepCategorySBean sBeanCategory;
 	
 	// Used when the user change product's category
@@ -47,7 +48,7 @@ public class MBTab_products extends AbstractFilterBean {
 		
 		this.setsBean(new KeepProductSBean()); 
 		this.setProducts(new ArrayList<Product>());
-		this.setCategoriesFilter(new ArrayList<Category>());
+		this.setCategoriesFilter(new ArrayList<TOCategory>());
 		this.setsBeanCategory(new KeepCategorySBean());
 		this.setProductFilter(new TOProductFilter());
 		
@@ -65,7 +66,7 @@ public class MBTab_products extends AbstractFilterBean {
 		if(this.getProduct().getCategory()!= null) {
 			this.setCategoryId(this.getProduct().getCategory().getId());
 		}
-	}
+	}  
 	
 	public void save() {
 		if(this.getProduct().getImageBytes() != null) {
@@ -202,10 +203,10 @@ public class MBTab_products extends AbstractFilterBean {
 	public void setTableView(boolean tableView) {
 		this.tableView = tableView;
 	}
-	public List<Category> getCategoriesFilter() {
+	public List<TOCategory> getCategoriesFilter() {
 		return categoriesFilter;
 	}
-	public void setCategoriesFilter(List<Category> categoriesFilter) {
+	public void setCategoriesFilter(List<TOCategory> categoriesFilter) {
 		this.categoriesFilter = categoriesFilter;
 	}
 	public KeepCategorySBean getsBeanCategory() {

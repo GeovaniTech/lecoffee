@@ -13,7 +13,7 @@
 		<h:outputStylesheet library="css" name="/client/landing-page/categories.css" />
 		
 		<div class="categories horizontal-center">
-			<ui:repeat var="category" value="#{MBTab_category.categories}">
+			<ui:repeat var="category" value="#{MBTab_category.activedCategories}">
 				<a href="#category_#{category.id}" class="tab_category vertical-center" style="text-decoration: none;">
 					<span class="material-symbols-outlined icons">
 						#{category.icon}
@@ -29,7 +29,7 @@
 				name="updateProductsCategories"
 				update="@form"/>
 			
-			<ui:repeat var="category" value="#{MBTab_category.categories}">
+			<ui:repeat var="category" value="#{MBTab_category.activedCategories}">
 				<div id="category_#{category.id}">
 					<div class="containter-title-category" style="margin-bottom: 15px; margin-top: 0px;">
 						<div />

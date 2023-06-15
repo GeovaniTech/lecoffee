@@ -8,7 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import keep.category.KeepCategorySBean;
-import model.Category;
+import to.TOCategory;
 import utils.AbstractBean;
 import utils.MessageUtil;
 
@@ -17,18 +17,18 @@ import utils.MessageUtil;
 public class MBTab_categories extends AbstractBean {
 	private static final long serialVersionUID = 2137478986375484379L;
 	
-	private List<Category> categories;
-	private List<Category> activedCategories;
+	private List<TOCategory> categories;
+	private List<TOCategory> activedCategories;
 	private KeepCategorySBean sbean;
-	private Category category;	
+	private TOCategory category;	
 	private boolean onFilter;
 	private boolean tableView;
 	
 	public MBTab_categories() {
-		this.setCategories(new ArrayList<Category>());
-		this.setActivedCategories(new ArrayList<Category>());
+		this.setCategories(new ArrayList<TOCategory>());
+		this.setActivedCategories(new ArrayList<TOCategory>());
 		this.setSbean(new KeepCategorySBean());
-		this.setCategory(new Category());
+		this.setCategory(new TOCategory());
 		this.setOnFilter(false);
 		this.setTableView(false);
 		
@@ -39,12 +39,11 @@ public class MBTab_categories extends AbstractBean {
 	public void onReorderList() {
 		int id = 1;
 		
-		for(Category category : this.getActivedCategories()) {
-			Category model = this.getSbean().findById(category.getId());
-			model.setPriority(id);
+		for(TOCategory category : this.getActivedCategories()) {
+			category.setPriority(id);
 			
-			this.getSbean().change(model);
-			
+			this.getSbean().change(category);
+		
 			id++;
 		}
 	}
@@ -64,7 +63,7 @@ public class MBTab_categories extends AbstractBean {
 	public void save() {
 		this.getSbean().save(this.getCategory());
 		
-		this.setCategory(new Category());
+		this.setCategory(new TOCategory());
 		list();
 		listActives();
 		
@@ -74,7 +73,7 @@ public class MBTab_categories extends AbstractBean {
 	public void change() {
 		this.getSbean().change(this.getCategory());
 		
-		this.setCategory(new Category());
+		this.setCategory(new TOCategory());
 		list();
 		listActives();
 		
@@ -94,7 +93,7 @@ public class MBTab_categories extends AbstractBean {
 	public void disable() {
 		this.getSbean().disable(this.getCategory());
 		
-		this.setCategory(new Category());
+		this.setCategory(new TOCategory());
 		list();
 		listActives();
 		
@@ -116,7 +115,7 @@ public class MBTab_categories extends AbstractBean {
 	}
 	
 	public void setNewCategory() {
-		this.setCategory(new Category());
+		this.setCategory(new TOCategory());
 	}
 	
 	//Getters and Setters
@@ -126,22 +125,16 @@ public class MBTab_categories extends AbstractBean {
 	public void setOnFilter(boolean onFilter) {
 		this.onFilter = onFilter;
 	}
-	public List<Category> getCategories() {
-		return categories;
-	}
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
 	public KeepCategorySBean getSbean() {
 		return sbean;
 	}
 	public void setSbean(KeepCategorySBean sbean) {
 		this.sbean = sbean;
 	}
-	public Category getCategory() {
+	public TOCategory getCategory() {
 		return category;
 	}
-	public void setCategory(Category category) {
+	public void setCategory(TOCategory category) {
 		this.category = category;
 	}
 	public boolean isTableView() {
@@ -150,10 +143,16 @@ public class MBTab_categories extends AbstractBean {
 	public void setTableView(boolean tableView) {
 		this.tableView = tableView;
 	}
-	public List<Category> getActivedCategories() {
+	public List<TOCategory> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<TOCategory> categories) {
+		this.categories = categories;
+	}
+	public List<TOCategory> getActivedCategories() {
 		return activedCategories;
 	}
-	public void setActivedCategories(List<Category> activedCategories) {
+	public void setActivedCategories(List<TOCategory> activedCategories) {
 		this.activedCategories = activedCategories;
 	}
 }
