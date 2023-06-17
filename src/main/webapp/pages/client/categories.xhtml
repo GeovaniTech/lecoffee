@@ -33,11 +33,11 @@
 				<div id="category_#{category.id}">
 					<div class="containter-title-category" style="margin-bottom: 15px; margin-top: 0px;">
 						<div />
-							<h2 class="title-category" >#{category.name}</h2>
+							<h2 class="title-category">#{category.name}</h2>
 						<div />
 					</div>
 				
-					<div class="container-products">
+					<div class="container-products" style="max-width: 1200px;">
 						<ui:repeat var="product" value="#{MBTab_products.getProductsByCategoryId(category.id)}">
 							<components:product 
 								name="#{product.name}"

@@ -91,7 +91,7 @@ public class MBAddress extends AbstractBean {
 	public void selectAddress(int id) {
 		Address address = this.getAddressSBean().findById(id);
 		
-		System.out.println("TOMA ESSE ADD SEU MERDA: " +  address);
+		this.setSelectedAddress(address);
 	}
 
 	//Getters and Setters
