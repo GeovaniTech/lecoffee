@@ -4,3 +4,8 @@
 	width: 100vw;
 	height: 100vh
 }
+
+
+body {
+	background-color: var(--landing-page) !important;
+}

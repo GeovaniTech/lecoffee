@@ -106,7 +106,7 @@
 		border-radius: 0px;
 		padding: 10px;
 		padding-bottom: 0px;
-		background-color: var(--background-body);
+		background-color: var(--landing-page);
 		
 		display: flex;
 		flex-direction: row;
