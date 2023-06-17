@@ -10,8 +10,20 @@
     xmlns:components="http://java.sun.com/jsf/composite/components">
     
     <ui:composition>
-    	<h:form id="payment">
-    	
-    	</h:form>
+    	<div id="payment" style="right: -100vw; width: 0px;">
+			<div class="top-payment horizontal-between">
+				<div class="close-payment" onclick="openPayment();">
+					<span class="material-symbols-outlined google-icons">
+						close
+					</span>					
+				</div>
+				
+				<div>
+					<h3>#{label.payment}</h3>
+				</div>
+				
+				<div style="width: 40px;" />
+			</div>	
+    	</div>
     </ui:composition>
 </html>

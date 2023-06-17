@@ -10,3 +10,16 @@
 	transition: 0.4s;	
 	box-shadow: -4px 0px 6px rgba(0, 0, 0, 0.1);
 }
+
+.top-payment {
+	margin-top: 10px;
+	background-color: var(--background-general);
+}
+
+.close-payment span {
+	font-size: 40px !important;
+}
+
+#payment h3 {
+	font-size: 23px;
+}

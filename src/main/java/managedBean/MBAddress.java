@@ -92,6 +92,8 @@ public class MBAddress extends AbstractBean {
 		Address address = this.getAddressSBean().findById(id);
 		
 		this.setSelectedAddress(address);
+		
+		PrimeFaces.current().executeScript("openAddress(); openPayment();");
 	}
 
 	//Getters and Setters

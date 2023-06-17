@@ -20,6 +20,7 @@ import utils.Encryption;
 import utils.JwtTokenUtil;
 import utils.MessageUtil;
 import utils.RedirectUrl;
+import utils.UserContext;
 
 @Named("MBLogin")
 @ViewScoped
@@ -58,6 +59,8 @@ public class MBLogin extends AbstractBean {
 				this.getsBean().change(client);
 				
 				getSession().setAttribute("client", this.getsBean().findByEmail(Encryption.decryptNormalText(userEmail)));
+				
+				UserContext.setCurrentUser(client.getEmail()); 
 				
 				if(client.getNivel().equals("admin")) {
 					RedirectUrl.redirecionarPara("/lecoffee/admin/pedidos");

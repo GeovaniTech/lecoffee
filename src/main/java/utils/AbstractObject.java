@@ -2,15 +2,30 @@ package utils;
 
 import java.util.Date;
 
-public class AbstractObject {
-	private String creationUser;
-	private Date creationDate;
-	private String changeUser;
-	private Date changeDate;
-	private String inactivationUser;
-	private Date inactivationDate;
-	
-	// Getters and Setters
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public class AbstractObject  {	
+    @Column(name = "creation_user")
+    private String creationUser;
+
+    @Column(name = "creation_date")
+    private Date creationDate;
+
+    @Column(name = "change_user")
+    private String changeUser;
+
+    @Column(name = "change_date")
+    private Date changeDate;
+
+    @Column(name = "inactivation_user")
+    private String inactivationUser;
+
+    @Column(name = "inactivation_date")
+    private Date inactivationDate;
+
+    // Getters and Setters
 	public String getCreationUser() {
 		return creationUser;
 	}

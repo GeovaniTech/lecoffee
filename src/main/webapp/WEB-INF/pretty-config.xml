@@ -37,6 +37,11 @@
 		<view-id value="/pages/admin/products/products.xhtml"/>
 	</url-mapping>	
 	
+	<url-mapping id="adminPayments">
+		<pattern value="/admin/payments" />
+		<view-id value="/pages/admin/payments/payments.xhtml"/>
+	</url-mapping>	
+	
 	<url-mapping id="adminGanhos">
 		<pattern value="/admin/ganhos" />
 		<view-id value="/pages/admin/ganhos.xhtml"/>

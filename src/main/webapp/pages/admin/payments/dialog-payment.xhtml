@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	
+	<p:dialog
+		id="dialog-payment"
+		widgetVar="dialog-payment"
+		header="#{label.payment}s"
+		dynamic="true"
+		resizable="false"
+		draggable="false"
+		position="center"
+		modal="true"
+		width="600px">
+		
+		<h:form 
+			id="formDialogPayment"
+			class="general-dialog-form">
+			
+			<p:messages 
+				id="messages" 
+				showDetail="false"
+				showIcon="false"
+	       		autoUpdate="true"  />
+			
+			<div class="horizontal-left mg-b-5">
+				<div class="vertical-left mg-r-10">
+					<p:outputLabel 
+						for="name"
+						value="#{label.name}" />
+						
+					<p:inputText 
+						id="name"
+						value="#{MBPayment.payment.name}"
+						required="true"
+						requiredMessage="#{label.name_required}"
+						placeholder="#{label.name}" />
+				</div>
+				
+				<div class="vertical-left">
+					<p:outputLabel 
+						for="icon"
+						value="#{label.icon}" />
+						
+					<p:inputText 
+						id="icon"
+						value="#{MBPayment.payment.icon}"
+						required="true"
+						requiredMessage="#{label.icon_required}"
+						placeholder="#{label.icon}" />
+				</div>
+			</div>
+			
+			<div class="mg-t-10">
+				<a href="https://fonts.google.com/icons" target="_blank" >#{label.see_icons}</a>
+			</div>
+			
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton
+						icon="pi pi-save"
+						value="#{label.save}"
+						action="#{MBPayment.save()}"
+						oncomplete="updateTable();"
+						update="@form, messages"
+						rendered="#{!MBPayment.editObject}" />
+					
+					<p:commandButton 
+						icon="pi pi-save"
+						value="#{label.change}"
+						action="#{MBPayment.change()}"
+						update="@form, messages"
+						oncomplete="updateTable();"
+						rendered="#{MBPayment.editObject}"
+						styleClass="mg-r-5" />
+						
+					<p:commandButton 
+						value="#{label.remove}"
+						icon="pi pi-trash"
+						process="@form"
+						action="#{MBPayment.remove()}"
+						oncomplete="updateTable(); PF('dialog-payment').hide();"
+						update="@form, messages"
+						styleClass="deleteStyle"
+						rendered="#{MBPayment.editObject}" />
+				</f:facet>
+			</p:toolbar>
+		</h:form>
+	</p:dialog>
+</html>

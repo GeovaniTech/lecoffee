@@ -23,6 +23,7 @@ import utils.JwtTokenUtil;
 import utils.MessageUtil;
 import utils.RedirectUrl;
 import utils.StringUtil;
+import utils.UserContext;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -45,12 +46,7 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		client.setEmail(email);
 		client.setSenha(Encryption.encryptTextSHA(password));
 		client.setNivel("client");
-		client.setCreationDate(new Date());
-		
-		if(getClient() != null) {
-			client.setCreationUser(getClient().getEmail());
-		}
-		
+
 		em.getTransaction().begin();
 		em.persist(client);
 		em.getTransaction().commit();
@@ -154,6 +150,9 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 				change(client);
 				
 				getSession().setAttribute("client", toClient);
+				
+				UserContext.setCurrentUser(toClient.getEmail());
+				
 				Cookie userCookie = new Cookie("userSession", Encryption.encryptNormalText(client.getEmail()));
 				
 				userCookie.setMaxAge(60*60*24*30);
@@ -231,13 +230,6 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 		Client client = em.find(Client.class, toClient.getId());
 		
 		client.setSenha(Encryption.encryptTextSHA(password));
-		client.setChangeDate(new Date());
-		
-		if(getClient() != null) {
-			client.setChangeUser(getClient().getEmail());
-		} else {
-			client.setChangeUser(getClient().getEmail());
-		}
 		
 		client.setChangePassword(false);
 		

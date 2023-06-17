@@ -25,6 +25,7 @@ import utils.Encryption;
 import utils.ImageUtil;
 import utils.LeCoffeeSession;
 import utils.RedirectUrl;
+import utils.UserContext;
 
 @Named("MBAppConfigs")
 @SessionScoped
@@ -81,6 +82,8 @@ public class MBAppConfigs extends LeCoffeeSession implements Serializable {
 				}
 				
 				getSession().setAttribute("client", client);
+				
+				UserContext.setCurrentUser(client.getEmail());
 				
 				client.setLastLogin(new Date());
 				this.getClientSBean().change(client);
