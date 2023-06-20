@@ -21,8 +21,30 @@
 				<div>
 					<h3>#{label.payment}</h3>
 				</div>
-				
+								
 				<div style="width: 40px;" />
+			</div>
+		
+			<div class="horizontal-center" style="display: #{MBAddress.clientAddress.size() > 0 ? 'flex' : 'none'}; margin: 20px 0px;">
+				<p style="font-size: 20px;">#{label.select_a_payment_method}</p>
+			</div>
+			
+			<div class="container-payments">
+				<ui:repeat var="payment" value="#{MBPaymentClientSide.payments}">
+					<div class="buttonPayment">
+						<p:commandLink
+							action="#{MBPaymentClientSide.selectPaymentMethod(payment.id)}" 
+							style="color: var(--text-mouse) !important; text-decoration: none; width: 100%; background-color: var(--background-general-mouse) !important;"
+							styleClass="horizontal-left-center">
+							
+							<span class="material-symbols-outlined icon-payment">
+								#{payment.icon}
+							</span>
+							
+							<h:outputText value="#{payment.name}" />	
+						</p:commandLink>
+					</div>
+				</ui:repeat>
 			</div>	
     	</div>
     </ui:composition>

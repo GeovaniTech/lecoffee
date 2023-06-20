@@ -23,3 +23,18 @@
 #payment h3 {
 	font-size: 23px;
 }
+
+.buttonPayment {
+	background-color: var(--background-general-mouse);
+	border-color: transparent;
+	border-radius: 20px;
+	transition: 0.4s;
+	color: var(--text-mouse);	
+	padding: 10px;
+	margin: 10px;
+}
+
+.icon-payment {
+	margin-right: 5px;
+	font-size: 25px !important;
+}

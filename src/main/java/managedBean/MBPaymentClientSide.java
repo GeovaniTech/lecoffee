@@ -30,6 +30,10 @@ public class MBPaymentClientSide extends AbstractBean {
 	public void list() {
 		this.setPayments(this.getPaymentSBean().getPayments());
 	}
+	
+	public void selectPaymentMethod(int id) {
+		this.setPaymentSelected(this.getPaymentSBean().findById(id));
+	}
 
 	//Getters and Setters
 	public KeepPaymentSBean getPaymentSBean() {

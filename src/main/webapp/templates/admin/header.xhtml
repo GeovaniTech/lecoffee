@@ -61,20 +61,27 @@
 			<p:scrollPanel
 				mode="native" 
 				style="max-height: calc(100vh - 60px); width: 100%;">
+				
 				<div class="menu" id="menu">
-					<a href="/lecoffee/admin/pedidos" id="menu-pedidos">
+					<p:commandLink 
+						id="menu-pedidos"
+						action="#{MBAppConfigs.redirectTo('/lecoffee/admin/pedidos')}">
 						<span class="material-symbols-outlined google-icons">
 							bakery_dining
 						</span>
 						#{label.orders}
-					</a>
+					</p:commandLink>
 					
-					<a href="/lecoffee/admin/produtos" id="menu-produtos">
+					<p:commandLink
+						id="menu-produtos"
+						action="#{MBAppConfigs.redirectTo('/lecoffee/admin/produtos')}">
+						
 						<span class="material-symbols-outlined google-icons">
 							shopping_cart
 						</span>
-						#{label.products}
-					</a>
+						
+						#{label.products}					
+					</p:commandLink>
 			
 					<p:commandLink 
 						id="payments"
