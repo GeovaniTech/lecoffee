@@ -10,9 +10,13 @@
     xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<ui:composition>
-		<div id="cart" style="right: -100vw; width: 0px;">
-			<div class="top-cart horizontal-between">
-				<div class="close-cart" onclick="orderFlow('cart');">
+		<div 
+			id="cart" 
+			class="container-flow"
+			style="right: -100vw; width: 0px;">
+			
+			<div class="top-flow horizontal-between">
+				<div class="close-flow" onclick="orderFlow('cart');">
 					<span class="material-symbols-outlined google-icons">
 						close
 					</span>					
@@ -29,7 +33,7 @@
 				mode="native" 
 				style="height: 94%; width: 100%;">		
 				
-				<h:form id="formProductsCart" class="cart-products">
+				<h:form class="formFlow">
 					<p:remoteCommand 
 						name="updateProductsCart"
 						update="@form, formBottom:btnCheckout" />
@@ -65,28 +69,30 @@
 				</h:form>
 			</p:scrollPanel>
 			
-			<h:form id="formBottom">
-						<p:remoteCommand 
-				name="updateBottomCard"
-				update="@form" />
-			
-			<div id="bottom-cart" class="vertical-left">
-				<div class="horizontal-between" style="width: 100%; margin-bottom: 15px;">
-					<p id="totalOrder"><strong>#{label.total_order}:</strong></p>
-					<p id="valueTotalOrder"><strong>#{MBAppConfigs.getBrazilianCurrency(MBCart.totalOrder)}</strong></p>
-				</div>
+			<h:form 
+				id="formBottom">
 				
-				<div style="width: 100%;">
-					<p:commandButton 
-						id="btnCheckout"
-						action="#{MBCart.continueToAddress()}"
-						disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
-						value="#{label.continue}"
-						style="width: 100% !important;" />
-						
-					<div style="height: 40px;"></div>
+				<p:remoteCommand 
+					name="updateBottomCard"
+					update="@form" />
+			
+				<div class="vertical-left button-bottom" style="bottom: 140px !important;">
+					<div class="horizontal-between" style="width: 100%; margin-bottom: 15px;">
+						<p id="totalOrder"><strong>#{label.total_order}:</strong></p>
+						<p id="valueTotalOrder"><strong>#{MBAppConfigs.getBrazilianCurrency(MBCart.totalOrder)}</strong></p>
+					</div>
+					
+					<div style="width: 100%;">
+						<p:commandButton 
+							id="btnCheckout"
+							action="#{MBCart.continueToAddress()}"
+							disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
+							value="#{label.continue}"
+							style="width: 100% !important;" />
+							
+						<div style="height: 40px;"></div>
+					</div>
 				</div>
-			</div>
 			</h:form>
 		</div>
 	</ui:composition>
