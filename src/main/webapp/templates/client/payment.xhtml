@@ -12,7 +12,7 @@
     <ui:composition>
     	<div id="payment" style="right: -100vw; width: 0px;">
 			<div class="top-payment horizontal-between">
-				<div class="close-payment" onclick="openPayment();">
+				<div class="close-payment" onclick="orderFlow('payment');">
 					<span class="material-symbols-outlined google-icons">
 						close
 					</span>					
@@ -35,7 +35,8 @@
 						<p:commandLink
 							action="#{MBPaymentClientSide.selectPaymentMethod(payment.id)}" 
 							style="color: var(--text-mouse) !important; text-decoration: none; width: 100%; background-color: var(--background-general-mouse) !important;"
-							styleClass="horizontal-left-center">
+							styleClass="horizontal-left-center"
+							oncomplete="openPayment(); openConfirmOrder();">
 							
 							<span class="material-symbols-outlined icon-payment">
 								#{payment.icon}

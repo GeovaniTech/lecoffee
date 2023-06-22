@@ -160,9 +160,9 @@ public class MBCart extends AbstractBean {
 		TOClient client = getClient();
 		
 		if(client == null) {
-			PrimeFaces.current().executeScript("openCart(); openDoLogin();");
+			PrimeFaces.current().executeScript("orderFlow('doLogin');");
 		} else {
-			PrimeFaces.current().executeScript("openCart(); openAddress();");
+			PrimeFaces.current().executeScript("orderFlow('address');");
 		}
 	}
 

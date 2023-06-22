@@ -28,6 +28,8 @@
 		<h:outputStylesheet library="css" name="/client/address/address.css" />
 		<h:outputStylesheet library="css" name="/client/doLogin/doLogin.css" />
 		<h:outputStylesheet library="css" name="/client/payment/payment.css" />
+		<h:outputStylesheet library="css" name="/client/layout/orderFlow.css" />
+		<h:outputStylesheet library="css" name="/client/confirmOrder/confirmOrder.css" />
 		<h:outputStylesheet library="css" name="/patterns/components-primefaces.css" />
 		<h:outputStylesheet library="css" name="#{MBAppConfigs.appConfigs.darkMode ? '/colors/dark-mode/colors.css' : '/colors/light-mode/colors.css'}" />	
 	</h:head>
@@ -61,15 +63,13 @@
 			</div>
 			
 			<script src="/lecoffee/resources/js/menuClient.js" />	
-			<script src="/lecoffee/resources/js/cart.js" />	
-			<script src="/lecoffee/resources/js/address.js" />	
-			<script src="/lecoffee/resources/js/doLogin.js" />	
-			<script src="/lecoffee/resources/js/payment.js" />	
+			<script src="/lecoffee/resources/js/orderFlow.js" />	
 			<ui:include src="overlayMyAccount.xhtml" />
 			<ui:include src="cart.xhtml" />
 			<ui:include src="address.xhtml" />
 			<ui:include src="doLogin.xhtml" />
 			<ui:include src="payment.xhtml" />
+			<ui:include src="confirmOrder.xhtml" />
 		</f:view>
 	</h:body>
 </html>
