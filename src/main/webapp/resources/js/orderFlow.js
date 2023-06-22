@@ -22,7 +22,7 @@ function orderFlow(step) {
 	if (menu.style.width === "0px") {
 	    menu.style.right = "0px";
 	    menu.style.width = "100vw";
-	    menu.classList.add("no-scroll");
+	    body.classList.add("no-scroll");
 	} else {
 	    menu.style.right = "-100vw";
 	    menu.style.width = "0px";

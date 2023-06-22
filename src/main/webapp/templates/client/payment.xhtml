@@ -36,7 +36,7 @@
 							action="#{MBPaymentClientSide.selectPaymentMethod(payment.id)}" 
 							style="color: var(--text-mouse) !important; text-decoration: none; width: 100%; background-color: var(--background-general-mouse) !important;"
 							styleClass="horizontal-left-center"
-							oncomplete="openPayment(); openConfirmOrder();">
+							oncomplete="orderFlow('confirmOrder');">
 							
 							<span class="material-symbols-outlined icon-payment">
 								#{payment.icon}

@@ -10,8 +10,93 @@
     xmlns:components="http://java.sun.com/jsf/composite/components">
     
     <ui:composition>
-    	<div id="confirmOrder container-flow" style="right: -100vw; width: 0px;">
+    	<div id="confirmOrder" 
+    		 class="container-flow" 
+    		 style="right: -100vw; width: 0px;">
     	
+ 			<div class="top-flow horizontal-between">
+				<div class="close-cart" onclick="orderFlow('confirmOrder');">
+					<span class="material-symbols-outlined google-icons">
+						close
+					</span>					
+				</div>
+				
+				<div>
+					<h3>#{label.confirm_order}</h3>
+				</div>
+				
+				<div style="width: 40px;"></div>
+			</div>
+    
+   			<p:scrollPanel
+				mode="native" 
+				style="height: 94%; width: 100%;">		
+				
+				<h:form class="formFlow">
+					<p:remoteCommand 
+						name="updateProductsCart"
+						update="@form, formBottom:btnCheckout" />
+						
+					<h:panelGroup 
+						class="vertical-center" 
+						rendered="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}">
+						
+						<h:graphicImage 
+							name="empty_cart.svg"
+							library="images" 
+							style="width: 100%; height: 30vh; margin-top: 15px;" />
+						
+						<p class="text_empty_cart">#{label.empty_cart} :(</p>
+					</h:panelGroup>
+					
+					<ui:repeat var="item" value="#{MBCart.cart.items}">
+						<components:product 
+							name="#{item.product.name}"
+							productId="#{item.product.id}"
+							description="#{item.product.description}"
+							price="#{item.product.price}"
+							imageBytes="#{item.product.imageBytes}"
+							rating="#{item.product.rating}"
+							status="#{item.product.status}"
+							optionsRendered="false" />
+					</ui:repeat>
+					
+					<div style="height: 190px;">
+					
+					</div>
+				</h:form>
+			</p:scrollPanel>		
+			<h:form class="button-bottom">
+				<p:remoteCommand 
+					name="updateBottomCard"
+					update="@form" />
+				
+				<div class="vertical-left">
+					<div class="horizontal-between" style="width: 100%; margin-bottom: 5px;">
+						<p><strong>#{label.total_order}:</strong></p>
+						<p><strong>#{MBAppConfigs.getBrazilianCurrency(MBCart.totalOrder)}</strong></p>
+					</div>
+					
+					<div class="horizontal-between" style="width: 100%; margin-bottom: 5px;">
+						<p><strong>#{label.delivery_address}:</strong></p>
+						<p><strong>#{MBAddress.selectedAddress.street}, #{MBAddress.selectedAddress.house_number}</strong></p>
+					</div>
+					
+					<div class="horizontal-between" style="width: 100%; margin-bottom: 15px;">
+						<p><strong>#{label.payment_method}</strong></p>
+						<p><strong>#{MBPaymentClientSide.paymentSelected.name}</strong></p>
+					</div>
+					
+					<div style="width: 100%;">
+						<p:commandButton 
+							disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
+							value="#{label.finish_order}"
+							style="width: 100% !important;" />
+							
+						<div style="height: 40px;"></div>
+					</div>
+				</div>
+			</h:form>
     	</div>
     </ui:composition>
 </html>
