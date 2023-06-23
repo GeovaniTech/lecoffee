@@ -1,46 +1,24 @@
-package model;
+package to;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import model.Address;
+import model.Cart;
+import model.Payment;
 
-import utils.AbstractObject;
-
-@Entity
-public class ClientOrder extends AbstractObject {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TOClientOrder implements Serializable {
+	private static final long serialVersionUID = -2652741365794788971L;
+	
 	private int id;
 	private int client_id;
 	private String status;
 	private Date finishedDate;
-	
-	@OneToOne
 	private Cart cart;
-	
-	@OneToOne
 	private Address address;
-	
-	@OneToOne
 	private Payment payment;
 	
-	//Getters and Setters
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+	// Getters and Setters
 	public int getId() {
 		return id;
 	}
@@ -64,6 +42,18 @@ public class ClientOrder extends AbstractObject {
 	}
 	public void setFinishedDate(Date finishedDate) {
 		this.finishedDate = finishedDate;
+	}
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	public Payment getPayment() {
 		return payment;
