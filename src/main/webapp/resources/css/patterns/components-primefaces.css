@@ -147,7 +147,7 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 }
 
 .ui-datepicker-today > a {
-	color: var(--green) !important;
+	color: var(--text) !important;
 }
 
 /* #################### INPUTTEXTAREA #################### */

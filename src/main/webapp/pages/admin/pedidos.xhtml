@@ -53,49 +53,181 @@
 						value="#{MBClientOrder.orders}"
 						rowKey="#{order.id}"
 						scrollable="true"
-						styleClass="#{MBTab_products.toggleFilter == false ? 'hide-filters' : ''}">
-						
-						 <p:ajax 
-						 	event="rowSelect" 
-						 	oncomplete="openDialogChange()" />
+						styleClass="#{MBClientOrder.toggleFilter == false ? 'hide-filters' : ''}">
 						
 			            <p:column style="width:2rem">
-			                <p:rowToggler/>
+			                <p:rowToggler />
 			            </p:column>
 						
 						<p:column styleClass="toggleFilter">
 							<f:facet name="header">
 								<p:commandLink
-									action="#{MBTab_products.changeToggleFilter()}"
-									oncomplete="remoteUpdate();">
+									action="#{MBClientOrder.changeToggleFilter()}"
+									update="@form">
 									
 									<i class="pi pi-filter"></i>
 								</p:commandLink>
 							</f:facet>
 						</p:column>
 						
-						<p:column headerText="#{label.client}">
+						<p:column 
+							headerText="#{label.client}" 
+							filterBy="#{order.client.nome}"
+							filterMatchMode="contains">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										event="keyup" 
+										delay="500"
+										oncomplete="PF('tableOrders').filter()" />
+								</p:inputText>
+							</f:facet>
+							
 							<h:outputText value="#{order.client.nome eq '' or order.client.nome == null ? order.client.email : order.client.nome}" />
 						</p:column>
 						
-						<p:column headerText="#{label.delivery_address}">
+						<p:column 
+							headerText="#{label.email}" 
+							filterBy="#{order.client.email}"
+							filterMatchMode="contains">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										event="keyup" 
+										delay="500"
+										oncomplete="PF('tableOrders').filter()" />
+								</p:inputText>
+							</f:facet>
+							
+							<h:outputText value="#{order.client.email}" />
+						</p:column>
+						
+						<p:column 
+							headerText="#{label.delivery_address}"
+							filterBy="#{order.address.street}"
+							filterMatchMode="contains">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										event="keyup" 
+										delay="500"
+										oncomplete="PF('tableOrders').filter()" />
+								</p:inputText>
+							</f:facet>
+						
 							<h:outputText value="#{order.address.street}, #{order.address.house_number}" />
-							<br />
+						</p:column>
+						
+						<p:column 
+							headerText="#{label.neighborhood}"
+							filterBy="#{order.address.neighborhood}"
+							filterMatchMode="contains">
+							
+							<f:facet name="filter">
+								<p:inputText>
+									<p:ajax 
+										event="keyup" 
+										delay="500"
+										oncomplete="PF('tableOrders').filter()" />
+								</p:inputText>	
+							</f:facet>
+							
 							<h:outputText value="#{order.address.neighborhood}" />
 						</p:column>
 						
-						<p:column headerText="Total">
+						<p:column 
+							headerText="Total">
 							<h:outputText value="#{MBAppConfigs.getBrazilianCurrency(MBClientOrder.getTotalOrder(order.cart.id))}" />
 						</p:column>
 						
-						<p:column headerText="Payment">
-							<h:outputText value="#{order.payment.name}" />
+						<p:column 
+							headerText="#{label.request_date}"
+							filterBy="#{order.creationDate}">
+							
+							<f:facet name="filter">
+								<p:datePicker pattern="dd/MM/yyyy">
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableOrders').filter()" />
+									
+									<p:ajax 
+										event="keyup" 
+										delay="500"
+										oncomplete="PF('tableOrders').filter()" />
+								</p:datePicker>
+							</f:facet>
+							
+							<h:outputText value="#{order.creationDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+							</h:outputText>
 						</p:column>
 						
-						<p:column headerText="Status">
+						<p:column 
+							headerText="Status"
+							filterBy="#{order.status}">
+							
+							<f:facet name="filter">
+								<p:selectOneMenu style="width: 200px;">
+									<f:selectItem 
+										itemLabel="#{label.all}"
+										itemValue="#{null}" />
+									
+									<f:selectItem 
+										itemLabel="A confirmar"
+										itemValue="A confirmar" />
+
+									<f:selectItem 
+										itemLabel="Em preparo"
+										itemValue="Em preparo" />
+
+									<f:selectItem 
+										itemLabel="Enviado"
+										itemValue="Enviado" />
+
+									<f:selectItem 
+										itemLabel="Finalizado"
+										itemValue="Finalizado" />
+
+									<f:selectItem 
+										itemLabel="Cancelado"
+										itemValue="Cancelado" />
+										
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableOrders').filter()" />
+								</p:selectOneMenu>
+							</f:facet>
 							<div class="style vertical-center" style="background-color: #{order.status eq 'A confirmar' ? '#ffcc00' : order.status eq 'Finalizado' ? '#339900' : order.status eq 'Cancelado' ? '#cc3300' : order.status eq 'Em preparo' ? '#00bcd4' : order.status eq 'Enviado' ? '#ed4981;' :''}">
 								<h:outputText value="#{order.status}" />
 							</div>
+						</p:column>
+						
+						<p:column 
+							headerText="#{label.payment}"
+							filterBy="#{order.payment.name}">
+							
+							<f:facet name="filter">
+								<p:selectOneMenu style="width: 200px;">
+									<f:selectItem 
+										itemLabel="#{label.all}"
+										itemValue="#{null}" />
+									
+									<f:selectItems 
+										var="payment"
+										value="#{MBPayment.payments}"
+										itemLabel="#{payment.name}"
+										itemValue="#{payment.name}" />
+										
+									<p:ajax 
+										event="valueChange" 
+										oncomplete="PF('tableOrders').filter()" />
+								</p:selectOneMenu>
+							</f:facet>
+							
+							<h:outputText value="#{order.payment.name}" />
 						</p:column>
 						
 						<p:rowExpansion>
