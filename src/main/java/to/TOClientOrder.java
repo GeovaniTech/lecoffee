@@ -12,6 +12,7 @@ public class TOClientOrder extends AbstractObject implements Serializable {
 	private static final long serialVersionUID = -2652741365794788971L;
 	
 	private int id;
+	private int client_id;
 	private TOClient client;
 	private String status;
 	private Date finishedDate;
@@ -68,5 +69,11 @@ public class TOClientOrder extends AbstractObject implements Serializable {
 	}
 	public void setTimeSent(Date timeSent) {
 		this.timeSent = timeSent;
+	}
+	public int getClient_id() {
+		return client_id;
+	}
+	public void setClient_id(int client_id) {
+		this.client_id = client_id;
 	}
 }

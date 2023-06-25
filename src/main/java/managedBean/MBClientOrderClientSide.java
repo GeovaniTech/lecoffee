@@ -46,6 +46,7 @@ public class MBClientOrderClientSide extends AbstractBean  {
 		this.getClientOrder().setCart(cart);
 		this.getClientOrder().setPayment(this.getPaymentSBean().findModelById(payment.getId()));
 		this.getClientOrder().setClient(this.getClient());
+		this.getClientOrder().setClient_id(this.getClient().getId());
 		this.getClientOrder().setStatus("A confirmar");
 		
 		this.getOrderSBean().save(this.getClientOrder());

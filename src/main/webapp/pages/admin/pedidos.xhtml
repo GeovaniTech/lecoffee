@@ -140,7 +140,7 @@
 										action="#{MBClientOrder.cancelOrder(order.id)}"
 										styleClass="deleteStyle mg-r-5"
 										update="@form"
-										rendered="#{order.status != 'Finalizado' ? true : false}" />
+										rendered="#{order.status != 'Finalizado' and order.status != 'Cancelado' ? true : false}" />
 								</f:facet>
 							</p:toolbar>
 						</p:rowExpansion>

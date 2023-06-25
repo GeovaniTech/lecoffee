@@ -25,11 +25,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 		object.setCreationDate(new Date());
 		object.setCreationUser(this.getClient().getEmail());
 		
-		int id = object.getClient().getId();
-		
 		ClientOrder model = this.getConverter().map(object, ClientOrder.class);
-		
-		model.setClient_id(id);
 		
 		this.getCartSBean().change(object.getCart());
 		
@@ -43,11 +39,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 		object.setChangeDate(new Date());
 		object.setChangeUser(this.getClient().getEmail());
 		
-		int id = object.getClient().getId();
-		
 		ClientOrder model = this.getConverter().map(object, ClientOrder.class);
-		
-		model.setClient_id(id);
 		
 		em.getTransaction().begin();
 		em.merge(model);
@@ -121,6 +113,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 	@Override
 	public TOClientOrder findByIdTO(int id) {
 		TOClientOrder to = this.getConverter().map(this.findById(id), TOClientOrder.class);
+		
 		return to;
 	}
 
