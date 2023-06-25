@@ -6,6 +6,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+
 import keep.payment.KeepPaymentSBean;
 import to.TOPayment;
 import utils.AbstractBean;
@@ -33,6 +35,8 @@ public class MBPaymentClientSide extends AbstractBean {
 	
 	public void selectPaymentMethod(int id) {
 		this.setPaymentSelected(this.getPaymentSBean().findById(id));
+		
+		PrimeFaces.current().ajax().update("updateBottomCardOrder(); ");
 	}
 
 	//Getters and Setters

@@ -50,8 +50,6 @@ public class MBClientOrderClientSide extends AbstractBean  {
 		this.getClientOrder().setStatus("A confirmar");
 		
 		this.getOrderSBean().save(this.getClientOrder());
-		
-		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories(); updateProductsOrder(); updateBottomCardOrder();");
 	}
 	
 	// Getters and Setters

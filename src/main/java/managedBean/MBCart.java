@@ -134,6 +134,9 @@ public class MBCart extends AbstractBean {
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		
 		response.addCookie(cookie);
+		
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories(); updateProductsOrder(); updateBottomCardOrder();");
+		PrimeFaces.current().executeScript("orderFlow('cart'); orderFlow('address'); orderFlow('payment'); orderFlow('confirmOrder');");
 	}
 	
 	public void createCart() {

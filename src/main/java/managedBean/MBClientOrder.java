@@ -34,9 +34,6 @@ public class MBClientOrder extends AbstractFilterBean implements IMainMethodsBea
 	
 	public void acceptOrder(int orderId) {
 		TOClientOrder order = this.getOrderSBean().findByIdTO(orderId);
-		
-		System.out.println("CLIENT ID ON ORDER: " + order.getClient().getId());
-		
 		order.setStatus("Em preparo");
 		
 		this.getOrderSBean().change(order);
