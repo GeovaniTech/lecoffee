@@ -80,7 +80,7 @@ public class MBCart extends AbstractBean {
 				this.getCart().getItems().set(i, item);
 				this.change();
 				
-				PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
+				PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories(); updateProductsOrder(); updateBottomCardOrder();");
 				
 				return;
 			}
@@ -93,7 +93,7 @@ public class MBCart extends AbstractBean {
 		this.getCart().getItems().add(item);
 		this.change();
 		
-		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories(); updateProductsOrder(); updateBottomCardOrder();");
 	}
 	
 	public void removeProduct(int id) {
@@ -115,11 +115,25 @@ public class MBCart extends AbstractBean {
 			}
 		}
 		
-		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories();");
+		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories(); updateProductsOrder(); updateBottomCardOrder();");
 	}
 	
 	public void change() {
 		this.getCartSBean().change(this.getCart());
+	}
+	
+	public void generateNewCart() {
+		Cart newCart = newCart();
+		
+		this.setCart(newCart);
+		
+		Cookie cookie = new Cookie("cart", this.getCart().getId() + "");
+		cookie.setPath("/lecoffee");
+		cookie.setMaxAge(Integer.MAX_VALUE);
+		
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		
+		response.addCookie(cookie);
 	}
 	
 	public void createCart() {

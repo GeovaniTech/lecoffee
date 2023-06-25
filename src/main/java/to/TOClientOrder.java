@@ -6,14 +6,16 @@ import java.util.Date;
 import model.Address;
 import model.Cart;
 import model.Payment;
+import utils.AbstractObject;
 
-public class TOClientOrder implements Serializable {
+public class TOClientOrder extends AbstractObject implements Serializable {
 	private static final long serialVersionUID = -2652741365794788971L;
 	
 	private int id;
-	private int client_id;
+	private TOClient client;
 	private String status;
 	private Date finishedDate;
+	private Date timeSent;
 	private Cart cart;
 	private Address address;
 	private Payment payment;
@@ -25,11 +27,11 @@ public class TOClientOrder implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getClient_id() {
-		return client_id;
+	public TOClient getClient() {
+		return client;
 	}
-	public void setClient_id(int client_id) {
-		this.client_id = client_id;
+	public void setClient(TOClient client) {
+		this.client = client;
 	}
 	public String getStatus() {
 		return status;
@@ -60,5 +62,11 @@ public class TOClientOrder implements Serializable {
 	}
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+	public Date getTimeSent() {
+		return timeSent;
+	}
+	public void setTimeSent(Date timeSent) {
+		this.timeSent = timeSent;
 	}
 }

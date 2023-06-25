@@ -26,10 +26,125 @@
 					#menu-pedidos > * {
 						color: var(--text-mouse);
 					}
+					
+					.style {
+						padding: 5px 10px;
+						border-radius: 30px;
+					  	display: inline-block;
+					 	width: auto;
+					 	font-size: 14px;
+					 	color: black;
+					}
 				</style>
 				
-				<h:form>
+
 				
+				<h:form id="formTableOrders">
+					<p:poll 
+						id="orderPoll"
+						interval="10"
+						listener="#{MBClientOrder.list()}"
+						update="@form" />
+				
+					<p:dataTable
+						id="tableOrders"
+						widgetVar="tableOrders"
+						var="order"
+						value="#{MBClientOrder.orders}"
+						rowKey="#{order.id}"
+						scrollable="true"
+						styleClass="#{MBTab_products.toggleFilter == false ? 'hide-filters' : ''}">
+						
+						 <p:ajax 
+						 	event="rowSelect" 
+						 	oncomplete="openDialogChange()" />
+						
+			            <p:column style="width:2rem">
+			                <p:rowToggler/>
+			            </p:column>
+						
+						<p:column styleClass="toggleFilter">
+							<f:facet name="header">
+								<p:commandLink
+									action="#{MBTab_products.changeToggleFilter()}"
+									oncomplete="remoteUpdate();">
+									
+									<i class="pi pi-filter"></i>
+								</p:commandLink>
+							</f:facet>
+						</p:column>
+						
+						<p:column headerText="#{label.client}">
+							<h:outputText value="#{order.client.nome eq '' or order.client.nome == null ? order.client.email : order.client.nome}" />
+						</p:column>
+						
+						<p:column headerText="#{label.delivery_address}">
+							<h:outputText value="#{order.address.street}, #{order.address.house_number}" />
+							<br />
+							<h:outputText value="#{order.address.neighborhood}" />
+						</p:column>
+						
+						<p:column headerText="Total">
+							<h:outputText value="#{MBAppConfigs.getBrazilianCurrency(MBClientOrder.getTotalOrder(order.cart.id))}" />
+						</p:column>
+						
+						<p:column headerText="Payment">
+							<h:outputText value="#{order.payment.name}" />
+						</p:column>
+						
+						<p:column headerText="Status">
+							<div class="style vertical-center" style="background-color: #{order.status eq 'A confirmar' ? '#ffcc00' : order.status eq 'Finalizado' ? '#339900' : order.status eq 'Cancelado' ? '#cc3300' : order.status eq 'Em preparo' ? '#00bcd4' : order.status eq 'Enviado' ? '#ed4981;' :''}">
+								<h:outputText value="#{order.status}" />
+							</div>
+						</p:column>
+						
+						<p:rowExpansion>
+							<h3 class="mg-b-10">#{label.products}</h3>
+							<ui:repeat var="item" value="#{order.cart.items}">
+								<div class="horizontal-left-center mg-b-10">
+									<h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(item.product.imageBytes)}" class="mg-r-10" style="width: 50px; height: 50px; border-radius: 10px;"/>
+									<h:outputText value="#{item.amount}un" style="margin-right: 10px;" />
+									<h:outputText value="#{item.product.name}" />
+								</div>
+							</ui:repeat>
+							
+							<p:toolbar>
+								<f:facet name="left">
+									<p:commandButton 
+										icon="pi pi-check-circle"
+										value="#{label.accept}"
+										action="#{MBClientOrder.acceptOrder(order.id)}"
+										styleClass="mg-r-5"
+										update="@form"
+										rendered="#{order.status eq 'A confirmar' ? true : false}" />
+
+									<p:commandButton 
+										icon="pi pi-send"
+										value="#{label.send}"
+										action="#{MBClientOrder.sendOrder(order.id)}"
+										update="@form"
+										styleClass="mg-r-5"
+										rendered="#{order.status eq 'Em preparo'}" />
+										
+									<p:commandButton 
+										icon="pi pi-check-square"
+										value="#{label.finish}"
+										action="#{MBClientOrder.finishOrder(order.id)}"
+										update="@form"
+										styleClass="mg-r-5"
+										rendered="#{order.status eq 'Enviado'}" />
+								
+									<p:commandButton 
+										icon="pi pi-trash"
+										value="#{label.cancel}"
+										action="#{MBClientOrder.cancelOrder(order.id)}"
+										styleClass="deleteStyle mg-r-5"
+										update="@form"
+										rendered="#{order.status != 'Finalizado' ? true : false}" />
+								</f:facet>
+							</p:toolbar>
+						</p:rowExpansion>
+					</p:dataTable>
 				</h:form>
 			</ui:define>
 		</ui:composition>

@@ -252,4 +252,17 @@ public class KeepClientSBean extends AbstractManter implements IKeepClientSBean,
 	public void setConverter(ModelMapper converter) {
 		this.converter = converter;
 	}
+
+	@Override
+	public TOClient findById(int id) {
+		Client client = em.find(Client.class, id);
+		
+		TOClient to = null;
+		
+		if(client != null) {
+			to = this.getConverter().map(client, TOClient.class);
+		}
+		
+		return to;
+	}
 }

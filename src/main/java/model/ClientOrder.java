@@ -7,7 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
+import to.TOClient;
 import utils.AbstractObject;
 
 @Entity
@@ -18,6 +20,7 @@ public class ClientOrder extends AbstractObject {
 	private int client_id;
 	private String status;
 	private Date finishedDate;
+	private Date timeSent;
 	
 	@OneToOne
 	private Cart cart;
@@ -70,5 +73,11 @@ public class ClientOrder extends AbstractObject {
 	}
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+	public Date getTimeSent() {
+		return timeSent;
+	}
+	public void setTimeSent(Date timeSent) {
+		this.timeSent = timeSent;
 	}
 }

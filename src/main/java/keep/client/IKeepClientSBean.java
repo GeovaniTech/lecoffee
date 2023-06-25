@@ -14,6 +14,7 @@ public interface IKeepClientSBean {
 	public boolean verifyClient(String email);
 	public boolean logar(String email, String password);
 	public TOClient findByEmail(String email);
+	public TOClient findById(int id);
 	public List<TOClient> list();
 	public void setNewPassword(String email, String password);
 }
