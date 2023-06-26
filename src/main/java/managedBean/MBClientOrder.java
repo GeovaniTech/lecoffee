@@ -70,6 +70,26 @@ public class MBClientOrder extends AbstractFilterBean implements IMainMethodsBea
 		this.list();
 	}
 	
+	public int getTotalAConfirmar() {
+		return this.getOrderSBean().getQuantityAConfirmar().intValue();
+	}
+	
+	public int getTotalEmPreparo() {
+		return this.getOrderSBean().getQuantityEmPreparo().intValue();
+	}
+	
+	public int getTotalEnviado() {
+		return this.getOrderSBean().getQuantityEnviado().intValue();
+	}
+	
+	public int getTotalFinalizado() {
+		return this.getOrderSBean().getQuantityFinalizado().intValue();
+	}
+	
+	public int getTotalCancelado() {
+		return this.getOrderSBean().getQuantityCancelado().intValue();
+	}
+	
 	@Override
 	public void save() {
 		

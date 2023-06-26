@@ -117,6 +117,66 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 		return to;
 	}
 
+	@Override
+	public Number getQuantityAConfirmar() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("SELECT COUNT(O.id) FROM ")
+		   .append(ClientOrder.class.getName()).append(" O ")
+		   .append(" WHERE status = 'A confirmar' ");
+		
+		return em.createQuery(sql.toString(), Number.class)
+				.getSingleResult();
+	}
+
+	@Override
+	public Number getQuantityEmPreparo() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("SELECT COUNT(O.id) FROM ")
+		   .append(ClientOrder.class.getName()).append(" O ")
+		   .append(" WHERE status = 'Em preparo' ");
+		
+		return em.createQuery(sql.toString(), Number.class)
+				.getSingleResult();
+	}
+
+	@Override
+	public Number getQuantityEnviado() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("SELECT COUNT(O.id) FROM ")
+		   .append(ClientOrder.class.getName()).append(" O ")
+		   .append(" WHERE status = 'Enviado' ");
+		
+		return em.createQuery(sql.toString(), Number.class)
+				.getSingleResult();
+	}
+
+	@Override
+	public Number getQuantityFinalizado() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("SELECT COUNT(O.id) FROM ")
+		   .append(ClientOrder.class.getName()).append(" O ")
+		   .append(" WHERE status = 'Finalizado' ");
+		
+		return em.createQuery(sql.toString(), Number.class)
+				.getSingleResult();
+	}
+
+	@Override
+	public Number getQuantityCancelado() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("SELECT COUNT(O.id) FROM ")
+		   .append(ClientOrder.class.getName()).append(" O ")
+		   .append(" WHERE status = 'Cancelado' ");
+		
+		return em.createQuery(sql.toString(), Number.class)
+				.getSingleResult();
+	}
+	
 	// Getters and Setters
 	public KeepClientSBean getClientSBean() {
 		return clientSBean;
