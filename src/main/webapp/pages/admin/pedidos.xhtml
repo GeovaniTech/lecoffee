@@ -35,26 +35,9 @@
 					 	font-size: 14px;
 					 	color: black;
 					}
-					
-					.card-insights-orders {
-						padding: 10px 15px;
-						border-radius: 10px;
-						background-color: var(--background-general);
-						width: 200px;
-						margin: 10px 10px; 
-						margin-bottom: 20px;
-					}
-					
-					.card-insights-orders p {
-						font-size: 25px;
-					}
-					
-					.icon-insights {
-						color: var(--text-mouse);
-						font-size: 25px !important;
-						margin-top: 8px;
-					}
 				</style>
+				
+				<h:outputStylesheet library="css" name="/simpleCard/simpleCard.css" />
 				
 				<h:form id="formCardInsights">
 					<p:remoteCommand 
@@ -62,73 +45,30 @@
 						update="@form"/>
 				
 					<div class="horizontal-evenly">
-						<div class="card-insights-orders horizontal-between">
-							<div class="vertical-left">
-								<h3>A Confimar</h3>
-								<i class="pi pi-clock icon-insights"></i>
-							</div>
-							
-							<p:divider layout="vertical" />
-							
-							<div class="vertical-right">
-								<p>#{MBClientOrder.totalAConfirmar}</p>
-							</div>
-						</div>
+						<components:simpleCard 
+							title="A Confirmar"
+							value="#{MBClientOrder.totalAConfirmar}"
+							primefacesIcon="pi pi-clock" />
+					
+						<components:simpleCard 
+							title="Em Preparo"
+							value="#{MBClientOrder.totalEmPreparo}"
+							primefacesIcon="pi pi-spinner" />
 						
-						<div class="card-insights-orders horizontal-between">
-							<div class="vertical-left">
-								<h3>Em Preparo</h3>
-								
-								<i class="pi pi-spinner icon-insights"></i>
-							</div>
+						<components:simpleCard 
+							title="Enviado"
+							value="#{MBClientOrder.totalEnviado}"
+							primefacesIcon="pi pi-send" />
 							
-							<p:divider layout="vertical" />
-							
-							<div class="vertical-right">
-								<p>#{MBClientOrder.totalEmPreparo}</p>
-							</div>
-						</div>
+						<components:simpleCard 
+							title="Finalizado"
+							value="#{MBClientOrder.totalFinalizado}"
+							primefacesIcon="pi pi-check-circle" />
 						
-						<div class="card-insights-orders horizontal-between">
-							<div class="vertical-left">
-								<h3>Enviado</h3>
-								
-								<i class="pi pi-send icon-insights"></i>
-							</div>
-						
-							<p:divider layout="vertical" />
-							
-							<div class="vertical-right">
-								<p>#{MBClientOrder.totalEnviado}</p>
-							</div>
-						</div>
-						
-						<div class="card-insights-orders horizontal-between">
-							<div class="vertical-left">
-								<h3>Finalizado</h3>
-								
-								<i class="pi pi-check-circle icon-insights"></i>
-							</div>
-							
-							<p:divider layout="vertical" />
-							
-							<div class="vertical-right">
-								<p>#{MBClientOrder.totalFinalizado}</p>
-							</div>
-						</div>
-						
-						<div class="card-insights-orders horizontal-between">
-							<div class="vertical-left">
-								<h3>Cancelado</h3>
-								<i class="pi pi-times-circle icon-insights"></i>
-							</div>
-							
-							<p:divider layout="vertical" />
-							
-							<div class="vertical-right">
-								<p>#{MBClientOrder.totalCancelado}</p>
-							</div>
-						</div>
+						<components:simpleCard 
+							title="Cancelado"
+							value="#{MBClientOrder.totalCancelado}"
+							primefacesIcon="pi pi-times-circle" />
 					</div>
 				</h:form>
 				
