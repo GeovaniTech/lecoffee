@@ -27,6 +27,30 @@
 						color: var(--text-mouse);
 					}
 				</style>
+				
+				<h:outputStylesheet library="css" name="/simpleCard/simpleCard.css" />
+				
+				<div class="horizontal-evenly">
+					<components:simpleCard 
+						title="#{label.in_day}"
+						value="#{MBAppConfigs.getBrazilianCurrency(MBEarnings.totalADay)}"
+						primefacesIcon="pi pi-calendar" />
+						
+					<components:simpleCard 
+						title="#{label.in_the_week}"
+						value="#{MBAppConfigs.getBrazilianCurrency(MBEarnings.totalAWeek)}"
+						primefacesIcon="pi pi-calendar" />
+					
+					<components:simpleCard 
+						title="#{label.in_the_month}"
+						value="#{MBAppConfigs.getBrazilianCurrency(MBEarnings.totalAMonth)}"
+						primefacesIcon="pi pi-calendar" />
+					
+					<components:simpleCard 
+						title="#{label.in_the_year}"
+						value="#{MBAppConfigs.getBrazilianCurrency(MBEarnings.totalAYear)}"
+						primefacesIcon="pi pi-calendar" />
+				</div>
 			</ui:define>
 		</ui:composition>
 	</h:body>
