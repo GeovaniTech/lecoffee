@@ -70,7 +70,7 @@ public class KeepEarningsSBean extends AbstractManter implements IKeepEarningsSB
 		
 		Calendar cal = Calendar.getInstance();
 		
-		cal.add(Calendar.MONTH, -1);
+		cal.add(Calendar.MONTH	, -1);
 		
 		Number result = em.createQuery(sql.toString(), Number.class)
 				.setParameter("beginningWeek", cal.getTime())

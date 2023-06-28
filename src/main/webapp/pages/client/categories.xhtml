@@ -12,7 +12,7 @@
 	<ui:composition>   
 		<h:outputStylesheet library="css" name="/client/landing-page/categories.css" />
 		
-		<div class="categories horizontal-center">
+		<div class="categories horizontal-evenly">
 			<ui:repeat var="category" value="#{MBTab_category.activedCategories}">
 				<a href="#category_#{category.id}" class="tab_category vertical-center" style="text-decoration: none;">
 					<span class="material-symbols-outlined icons">

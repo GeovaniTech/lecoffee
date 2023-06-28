@@ -12,7 +12,7 @@
 
 .title-category {
 	text-align: center;
-	color: var(--brown);
+	color: var(--text-mouse);
 	margin: 40px 60px !important;
 	margin-top: 50px !important;
 	font-family: 'Grape Nuts';
@@ -27,12 +27,14 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	width: 90vw;
 }
 
 .containter-title-category > div {
-	border: 5px solid #704214;
+	border: 5px solid var(--text-mouse);
 	border-radius: 4px;
 	max-width: 300px;
+	width: 300px;
 }
 
 .categories {
@@ -43,9 +45,10 @@
 .tab_category {
 	margin: 30px;	
 	padding: 25px 40px;
-	border: 10px solid var(--brown) !important;
+	border: 10px solid var(--text) !important;
 	border-radius: 100px;
 	transition: 0.4s;
+	background-color: var(--background-general-mouse);
 }
 
 .tab_category a {
@@ -53,17 +56,17 @@
 }
 
 .tab_category:hover {
-	background-color: var(--brown);
-	color: var(--white) !important;
+	border: 10px solid var(--text-mouse) !important;
+	color: var(--text-mouse) !important;
 }
 
 .tab_category:hover .icons {
-	color: var(--white) !important;
+	color: var(--text-mouse) !important;
 }
 
 .icons {
 	font-size: 100px !important;
-	color: var(--brown) !important;
+	color: var(--text) !important;
 	transition: 0.4s;
 }
 
@@ -92,11 +95,14 @@
 		border: 0px !important;
 		border-radius: 0px !important;
 		transition: 0.4s;
+		justify-content: space-evenly !important;
+		background-color: var(--background-general);
 	}
 	
 	.tab_category:hover {
-		background-color: var(--background-body);
+		background-color: var(--background-general);
 		color: var(--green) !important;
+		border: 0px !important;
 	}
 	
 	.tab_category:hover .icons {
@@ -113,7 +119,7 @@
 	
 	.icons {
 		font-size: 40px !important;
-		color: var(--green) !important;
+		color: var(--text) !important;
 	}
 }
 
