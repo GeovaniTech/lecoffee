@@ -95,7 +95,7 @@
 							disabled="#{MBCart.totalQuantityOfProdctsFromCart == 0 ? true : false}"
 							value="#{label.finish_order}"
 							action="#{MBClientOrderClientSide.finishOrder(MBAddress.selectedAddress, MBPaymentClientSide.paymentSelected, MBCart.cart)}"
-							oncomplete="document.getElementById('formConfirmOrder:createCart').click();"
+							oncomplete="document.getElementById('formConfirmOrder:createCart').click(); orderFlow('finishedOrder');"
 							style="width: 100% !important;" />
 						
 						<p:commandButton 

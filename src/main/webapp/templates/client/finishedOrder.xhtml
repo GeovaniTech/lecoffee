@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:components="http://java.sun.com/jsf/composite/components">
+    
+    <ui:composition>
+    	<div 
+    		id="finishedOrder" 
+    		class="container-flow"
+    		style="right: -100vw; width: 0px;">
+			
+			<div class="top-flow horizontal-between">
+				<div class="close-flow" onclick="orderFlow('finishedOrder');">
+					<span class="material-symbols-outlined google-icons">
+						close
+					</span>					
+				</div>
+				
+				<div>
+					<h3>#{label.order_finished}</h3>
+				</div>
+				
+				<div style="width: 40px;"></div>
+			</div>	
+			
+			<h:form id="formFinished">		
+				<p:messages 
+					id="messages" 
+					showDetail="false"
+					showIcon="false"
+	        		autoUpdate="true"  />
+	        				
+				<h:graphicImage 
+					library="images" 
+					name="finished.svg"
+					style="width: 100%; height: 30vh; margin-top: 35px;" />
+					
+				<h2 style="margin-top: 50px; padding: 0px 20px; text-align: center;">#{label.order_finished_success}</h2>
+				
+				<p style="text-align: center; font-size: 19px;">#{label.text_finished_order}</p>
+				
+				<div 
+					class="vertical-center mg-t-20" 
+					style="width: 100%;">
+					
+					<p:commandButton 
+						icon="pi pi-arrow-left"
+						value="#{label.return_to_home}"
+						onclick="orderFlow('finishedOrder');"
+						style="width: 50%"/>
+				</div>
+			</h:form>
+    	</div>
+    </ui:composition>
+</html>

@@ -20,6 +20,9 @@ function orderFlow(step) {
 		case 'productDetails':
 			menu = document.getElementById("productDetails");
 			break;
+		case 'finishedOrder':
+			menu = document.getElementById("finishedOrder");
+			break;
 	}
 	
 	if (menu.style.width === "0px") {
