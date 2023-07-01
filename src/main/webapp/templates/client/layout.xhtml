@@ -25,6 +25,7 @@
 		<h:outputStylesheet library="css" name="/patterns/alignments.css" />
 		<h:outputStylesheet library="css" name="/client/layout/body.css" />
 		<h:outputStylesheet library="css" name="/products/product.css" />
+		<h:outputStylesheet library="css" name="/products/details.css" />
 		<h:outputStylesheet library="css" name="/client/layout/orderFlow.css" />
 		<h:outputStylesheet library="css" name="/client/cart/cart.css" />
 		<h:outputStylesheet library="css" name="/client/address/address.css" />
@@ -73,9 +74,13 @@
 			<ui:include src="payment.xhtml" />
 			<ui:include src="confirmOrder.xhtml" />
 			
-			<h:form id="formProductDetails">
-			
-			</h:form>
+			<components:seeProductDetails 
+				productId="#{MBProduct.product.id}"
+				description="#{MBProduct.product.description}"
+				imageBytes="#{MBProduct.product.imageBytes}"
+				name="#{MBProduct.product.name}"
+				price="#{MBProduct.product.price}"
+				valueRating="#{MBProduct.product.rating}" /> 
 		</f:view>
 	</h:body>
 </html>

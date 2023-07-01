@@ -15,7 +15,6 @@ import keep.category.KeepCategorySBean;
 import keep.product.KeepProductSBean;
 import model.Category;
 import model.File;
-import model.Product;
 import to.TOCategory;
 import to.TOProduct;
 import to.TOProductFilter;

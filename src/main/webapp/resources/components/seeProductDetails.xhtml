@@ -18,6 +18,10 @@
 	</composite:interface>
 	
 	<composite:implementation>
+		<p:remoteCommand 
+			name="updateProductDetails"
+			update="formProductDetails, productName" />
+			
 		<div
 	   		id="productDetails" 
 	   		class="container-flow"
@@ -30,28 +34,45 @@
 					</span>					
 				</div>
 				
-				<div>
-					<h3>#{cc.attrs.product.name}</h3>
-				</div>
+				<h:panelGroup id="productName">
+					<h2>#{cc.attrs.name}</h2>
+				</h:panelGroup>
 				
 				<div style="width: 40px;"></div>
 			</div>	
 			
-			<p:scrollPanel
-				mode="native" 
-				style="max-height: 80vh; width: 100%;">
-				
-				<div class="vertical-left">
-					<h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
+			<h:form id="formProductDetails">
+				<p:scrollPanel
+					mode="native" 
+					style="max-height: 80vh; width: 100%;">
 					
-					<h:outputText value="#{cc.attrs.description}" escape="false" />
-					
-					<h:outputText value="#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}" />
-					
-					<p:rating 
-						value="#{cc.attrs.valueRating}" />
-				</div>
-			</p:scrollPanel>
+					<div class="vertical-center">
+						<h:graphicImage 
+							styleClass="img-details"
+							rendered="#{cc.attrs.name eq '' or cc.attrs.name == null ? false : true}"
+							value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
+						
+						<div class="vertical-left mg-t-10" style="width: 86%; color: var(--text)">						
+							<div class="horizontal-between" style="width: 100%">
+								<h2 class="mg-b-5"><h:outputText 
+									rendered="#{cc.attrs.name eq '' or cc.attrs.name == null ? false : true}" 
+									escape="false"
+									value="#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}" /></h2>
+							
+								<p:rating
+									disabled="true" 
+									value="#{cc.attrs.valueRating}" />
+							</div>
+							
+							<h3>#{label.description}</h3>
+							<h:outputText 
+								value="#{cc.attrs.description}" 
+								escape="false"
+								styleClass="mg-b-10" />
+						</div>
+					</div>
+				</p:scrollPanel>
+			</h:form>
 		</div>
 	</composite:implementation>	
 </html>

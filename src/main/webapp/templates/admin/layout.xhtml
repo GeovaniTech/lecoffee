@@ -7,7 +7,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
 	<h:head>
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,6 +24,8 @@
 		<h:outputStylesheet library="css" name="/patterns/texts.css" />
 		<h:outputStylesheet library="css" name="/patterns/alignments.css" />
 		<h:outputStylesheet library="css" name="/patterns/components-primefaces.css" />
+		<h:outputStylesheet library="css" name="/client/layout/orderFlow.css" />
+		<h:outputStylesheet library="css" name="/products/details.css" />
 		<h:outputStylesheet library="css" name="#{MBAppConfigs.appConfigs.darkMode ? '/colors/dark-mode/colors.css' : '/colors/light-mode/colors.css'}" />	
 	</h:head>
 	
@@ -49,6 +52,16 @@
 
 				</ui:insert>
 			</div>
+			
+			<script src="/lecoffee/resources/js/orderFlow.js" />	
+			
+			<components:seeProductDetails 
+				productId="#{MBProduct.product.id}"
+				description="#{MBProduct.product.description}"
+				imageBytes="#{MBProduct.product.imageBytes}"
+				name="#{MBProduct.product.name}"
+				price="#{MBProduct.product.price}"
+				valueRating="#{MBProduct.product.rating}" /> 
 		</f:view>
 	</h:body>
 </html>

@@ -54,11 +54,11 @@
 }
 
 .whatsapp > * {
-	font-size: 80px !important; 
+	font-size: 74px !important; 
 	height: 80px !important;
 	 
-	bottom: 30px; 
-	right: 30px;
+	bottom: 24px; 
+	right: 19px;
 	
 	display: flex;
 	justify-content: center;
@@ -67,6 +67,14 @@
 	text-decoration: none;
 	color: #25D366 !important;
 	position: fixed;
+}
+
+.whatsapp i {
+	background-color: var(--surface-a) !important;
+	border: 19px solid var(--surface-a) !important;
+	border-top: 55px solid var(--surface-a) !important;
+	border-bottom: 55px solid var(--surface-a) !important;
+	border-radius: 60px;
 }
 
 @media (max-width: 650px) {

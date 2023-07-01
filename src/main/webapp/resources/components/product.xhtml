@@ -34,7 +34,9 @@
                 <div class="divider mobile-hidden onCartHidden"></div>
                	
                	<p:commandLink 
-               		value="#{label.see_description}"/>
+               		value="#{label.see_description}"
+               		action="#{MBProduct.selectProductById(cc.attrs.productId)}"
+               		oncomplete="updateProductDetails(); orderFlow('productDetails');" />
                 
                 <p>#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}</p>
                 <p:rating value="#{cc.attrs.rating}" disabled="true" styleClass="mobile-hidden onCartHidden" />

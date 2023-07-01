@@ -47,13 +47,13 @@
 .formFlow .card {
 	 width: 100% !important;
 	 margin: 0px !important;
-	 border-top: 1px solid rgb(210, 208, 208) !important;
+	 border-top: 1px solid var(--bottom-row-table) !important;
 	 border-radius: 0px !important;
 	 padding: 10px !important;
 	 padding-bottom: 0px !important;
 	 background-color: var(--landing-page) !important;
 	 display: flex !important;
-	 flex-direction: row !important;
+	 flex-direction: row !important; 
 	 justify-content: center !important;
 	 align-items: center !important;
 	 box-shadow: none !important;

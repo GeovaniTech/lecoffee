@@ -102,7 +102,7 @@
 	.card {
 		width: 100vw;
 		margin: 0px;
-		border-top: 1px solid rgb(210, 208, 208);
+		border-top: 1px solid var(--bottom-row-table);
 		border-radius: 0px;
 		padding: 10px;
 		padding-bottom: 0px;
