@@ -9,6 +9,7 @@ import javax.ejb.TransactionManagementType;
 import javax.faces.application.FacesMessage;
 
 import model.Product;
+import to.TOProduct;
 import to.TOProductFilter;
 import utils.AbstractManter;
 import utils.MessageUtil;
@@ -16,16 +17,22 @@ import utils.SimpleWhere;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class KeepProductSBean extends AbstractManter implements IKeepProductSBean, IKeepProductSBeanRemote {
+public class KeepProductSBean extends AbstractManter<Product, TOProduct> implements IKeepProductSBean, IKeepProductSBeanRemote {
 
+	public KeepProductSBean() {
+		this.setClassTypes(Product.class, TOProduct.class);
+	}
+	
 	@Override
-	public void save(Product product) {
+	public void save(TOProduct product) {
 		if(product.getImageBytes() != null) {
 			product.setCreationDate(new Date());
 			product.setRating(0);
 			
+			Product model = this.convertToModel(product);
+			
 			em.getTransaction().begin();
-			em.persist(product);
+			em.persist(model);
 			em.getTransaction().commit();
 		} else {
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("invalid_information"), null, FacesMessage.SEVERITY_ERROR);
@@ -33,16 +40,19 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 	}
 
 	@Override
-	public void change(Product product) {
+	public void change(TOProduct product) {
+		Product model  = this.convertToModel(product);
+		
 		em.getTransaction().begin();
-		em.persist(product);
+		em.merge(model);
 		em.getTransaction().commit();
 	}
 
 	@Override
-	public void disable(Product product) {
+	public void disable(TOProduct product) {
 		product.setStatus("disabled");
-		change(product);
+		
+		this.change(product);
 	}
 
 	@Override
@@ -53,18 +63,21 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 	}
 
 	@Override
-	public List<Product> list() {
+	public List<TOProduct> list() {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" SELECT P FROM ");
 		sql.append(Product.class.getName()).append(" P ");
 		sql.append(" ORDER BY P.status ASC ");
-		return em.createQuery(sql.toString(), Product.class)
+		
+		List<Product> results = em.createQuery(sql.toString(), Product.class)
 				.getResultList();
+		
+		return this.convertModelResults(results);
 	}
 
 	@Override
-	public List<Product> filterProducts(TOProductFilter filter) {
+	public List<TOProduct> filterProducts(TOProductFilter filter) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" SELECT P FROM ").append(Product.class.getName()).append(" P ");
@@ -77,19 +90,23 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 		sql.append(SimpleWhere.queryFilterNumberRange("P.rating", filter.getRating()));
 		sql.append(SimpleWhere.queryFilterDateRange("P.creationDate", filter.getDateCreation()));
 		 
-		return em.createQuery(sql.toString(), Product.class)
-					.getResultList();
+		List<Product> results = em.createQuery(sql.toString(), Product.class)
+				.getResultList();
+		
+		return this.convertModelResults(results);
 	}
 
 	@Override
-	public void remove(Product product) {
+	public void remove(TOProduct product) {
+		Product model = convertToModel(product);
+		
 		em.getTransaction().begin();
-		em.remove(em.contains(product) ? product : em.merge(product));	
+		em.remove(em.contains(model) ? model : em.merge(model));	
 		em.getTransaction().commit();
 	}
 
 	@Override
-	public List<Product> getProductsByCategoryId(int id) {
+	public List<TOProduct> getProductsByCategoryId(int id) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" SELECT P FROM ");
@@ -97,8 +114,17 @@ public class KeepProductSBean extends AbstractManter implements IKeepProductSBea
 		sql.append(" WHERE P.status = 'active' ");
 		sql.append(" AND P.category.id = :id ");
 		
-		return em.createQuery(sql.toString(), Product.class)
+		List<Product> results = em.createQuery(sql.toString(), Product.class)
 				.setParameter("id", id)
 				.getResultList();
+		
+		return this.convertModelResults(results);
+	}
+
+	@Override
+	public TOProduct findByIdTO(int id) {
+		Product model = this.findById(id);
+		
+		return this.convertToDTO(model);
 	}
 }

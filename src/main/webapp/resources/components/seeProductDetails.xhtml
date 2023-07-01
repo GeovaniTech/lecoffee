@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+  	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<composite:interface>
+		<composite:attribute name="productId" />
+		<composite:attribute name="name" />
+		<composite:attribute name="description" />
+		<composite:attribute name="price" />
+		<composite:attribute name="imageBytes" />
+		<composite:attribute name="valueRating" />
+	</composite:interface>
+	
+	<composite:implementation>
+		<div
+	   		id="productDetails" 
+	   		class="container-flow"
+	   		style="right: -100vw; width: 0px;">
+			
+			<div class="top-flow horizontal-between">
+				<div class="close-flow" onclick="orderFlow('productDetails');">
+					<span class="material-symbols-outlined google-icons">
+						close
+					</span>					
+				</div>
+				
+				<div>
+					<h3>#{cc.attrs.product.name}</h3>
+				</div>
+				
+				<div style="width: 40px;"></div>
+			</div>	
+			
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh; width: 100%;">
+				
+				<div class="vertical-left">
+					<h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(cc.attrs.imageBytes)}" />
+					
+					<h:outputText value="#{cc.attrs.description}" escape="false" />
+					
+					<h:outputText value="#{MBAppConfigs.getBrazilianCurrency(cc.attrs.price)}" />
+					
+					<p:rating 
+						value="#{cc.attrs.valueRating}" />
+				</div>
+			</p:scrollPanel>
+		</div>
+	</composite:implementation>	
+</html>

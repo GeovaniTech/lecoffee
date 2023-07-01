@@ -8,5 +8,5 @@ public interface IMainMethodsKeep<object, to> {
 	public void remove(to object);
 	public object findById(int id);
 	public to findByIdTO(int id);
-	public List<to> list();
+	public List<to> list();	
 }

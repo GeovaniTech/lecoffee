@@ -17,6 +17,7 @@ import model.Category;
 import model.File;
 import model.Product;
 import to.TOCategory;
+import to.TOProduct;
 import to.TOProductFilter;
 import utils.AbstractFilterBean;
 import utils.FileUtil;
@@ -27,10 +28,10 @@ import utils.MessageUtil;
 public class MBTab_products extends AbstractFilterBean {
 	private static final long serialVersionUID = 9160760899720982450L;
 	
-	private Product product;
+	private TOProduct product;
 	private TOProductFilter productFilter;
 	private KeepProductSBean sBean;
-	private List<Product> products;
+	private List<TOProduct> products;
 	private boolean status;
 	
 	private List<TOCategory> categoriesFilter;
@@ -47,7 +48,7 @@ public class MBTab_products extends AbstractFilterBean {
 		this.setNewProduct();
 		
 		this.setsBean(new KeepProductSBean()); 
-		this.setProducts(new ArrayList<Product>());
+		this.setProducts(new ArrayList<TOProduct>());
 		this.setCategoriesFilter(new ArrayList<TOCategory>());
 		this.setsBeanCategory(new KeepCategorySBean());
 		this.setProductFilter(new TOProductFilter());
@@ -56,7 +57,7 @@ public class MBTab_products extends AbstractFilterBean {
 		initFilters();
 	}
 	
-	public List<Product> getProductsByCategoryId(int id) {
+	public List<TOProduct> getProductsByCategoryId(int id) {
 		return this.getsBean().getProductsByCategoryId(id);
 	}
 	
@@ -111,7 +112,7 @@ public class MBTab_products extends AbstractFilterBean {
 		change();
 	}	
 	
-	public void openChangeDialog(Product product) {
+	public void openChangeDialog(TOProduct product) {
 		this.setProduct(product);
 		
 		PrimeFaces.current().executeScript("PF('dialog-change-product').show()");
@@ -123,7 +124,7 @@ public class MBTab_products extends AbstractFilterBean {
 		list();
 	}
 	
-	public void disable(Product product) {
+	public void disable(TOProduct product) {
 		this.getsBean().disable(product);
 		
 		list();
@@ -160,14 +161,14 @@ public class MBTab_products extends AbstractFilterBean {
 	}
 	
 	public void setNewProduct() {
-		this.setProduct(new Product());
+		this.setProduct(new TOProduct());
 	}
 	
 	//Getters and Setters
-	public Product getProduct() {
+	public TOProduct getProduct() {
 		return product;
 	}
-	public void setProduct(Product product) {
+	public void setProduct(TOProduct product) {
 		this.product = product;
 	}
 	public KeepProductSBean getsBean() {
@@ -176,10 +177,10 @@ public class MBTab_products extends AbstractFilterBean {
 	public void setsBean(KeepProductSBean sBean) {
 		this.sBean = sBean;
 	}
-	public List<Product> getProducts() {
+	public List<TOProduct> getProducts() {
 		return products;
 	}
-	public void setProducts(List<Product> products) {
+	public void setProducts(List<TOProduct> products) {
 		this.products = products;
 	}
 	public boolean isStatus() {

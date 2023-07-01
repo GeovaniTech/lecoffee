@@ -17,6 +17,9 @@ function orderFlow(step) {
 		case 'doLogin':
 			menu = document.getElementById("doLogin");
 			break;
+		case 'productDetails':
+			menu = document.getElementById("productDetails");
+			break;
 	}
 	
 	if (menu.style.width === "0px") {
