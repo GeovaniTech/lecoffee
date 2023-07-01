@@ -9,8 +9,8 @@
     --second-color-widget: #212429;
     --bottom-row-table: #383b3e;
 	
-	--text: black;
-	--text-mouse: #fffff7;
+	--text: rgb(232, 232, 232);
+	--text-mouse: #ffffff;
 	--background-general: #1A1C1E;
 	--background-general-mouse: #272A30;
 	--background-body: #111315;

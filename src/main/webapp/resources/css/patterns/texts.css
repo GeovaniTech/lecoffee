@@ -13,7 +13,7 @@ h1 a span {
 }
 
 h2, h3, h4, h5, p, h2, .label, label, a {
-	color: var(--text-mouse);
+	color: var(--text);
 }
 
 h5 {
