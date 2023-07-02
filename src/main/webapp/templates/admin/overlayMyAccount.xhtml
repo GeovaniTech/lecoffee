@@ -44,8 +44,10 @@
 			
 			<div class="vertical-center" style="width: 100%;">
 				<p:commandLink 
-					action="#{MBAppConfigs.redirectTo('/lecoffee/meuspedidos')}"
+					action="#{MBClientOrderClientSide.list()}"
+					actionListener="#{MBAppConfigs.redirectTo('/lecoffee/meuspedidos')}"
 					styleClass="buttonMyAccount">
+					
 					#{label.my_orders}
 				</p:commandLink>
 				
@@ -92,8 +94,10 @@
 			
 			<div class="vertical-center" style="width: 100%;">
 				<p:commandLink 
-					action="#{MBAppConfigs.redirectTo('/lecoffee/meuspedidos')}"
+					action="#{MBClientOrderClientSide.list()}"
+					actionListener="#{MBAppConfigs.redirectTo('/lecoffee/meuspedidos')}"
 					styleClass="buttonMyAccount">
+					
 					#{label.my_orders}
 				</p:commandLink>
 				

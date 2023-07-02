@@ -50,6 +50,8 @@ public class MBClientOrderClientSide extends AbstractBean  {
 		this.getClientOrder().setStatus("A confirmar");
 		
 		this.getOrderSBean().save(this.getClientOrder());
+		
+		this.list();
 	}
 	
 	// Getters and Setters

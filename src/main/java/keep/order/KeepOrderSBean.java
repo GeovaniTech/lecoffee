@@ -1,5 +1,6 @@
 package keep.order;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -82,7 +83,17 @@ public class KeepOrderSBean extends AbstractManter<ClientOrder, TOClientOrder> i
 		List<ClientOrder> results = em.createQuery(sql.toString(), ClientOrder.class)
 										.getResultList();
 		
-		return this.convertModelResults(results);
+		List<TOClientOrder> convertedResults = new ArrayList<TOClientOrder>();
+		
+		for(ClientOrder model : results) {
+			TOClientOrder to = this.convertToDTO(model);
+			
+			to.setClient(this.getClientSBean().findById(model.getClient_id()));
+			
+			convertedResults.add(to);
+		}
+		
+		return convertedResults;
 	}
 
 	@Override
