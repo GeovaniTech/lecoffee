@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+	<ui:composition template="/templates/client/layout.xhtml">
+
+		<ui:define name="body">
+			<style>
+				#body {
+					margin-top: 86px;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					width: 100%;
+				}
+				
+				.container-orders {
+					width: 100%;
+					max-width: 800px;
+				}
+				
+				.cardOrder {
+					margin: 10px;
+					padding: 10px;
+					border: 1px solid var(----bottom-row-table);
+					background-color: var(--background-general);
+					border-radius: 5px;
+					color: var(--text);
+				}
+				
+				.style-status {
+					padding: 5px 10px;
+					border-radius: 30px;
+				  	display: inline-block;
+				 	width: auto;
+				 	font-size: 14px;
+				 	color: black;
+				}
+				
+				.general-card {
+					background-color: var(--background-general-mouse);
+					border-color: transparent;
+					border-radius: 20px;
+					transition: 0.4s;
+					color: var(--text-mouse);	
+					padding: 10px;
+					margin-top: 5px;
+				}
+				
+				.general-icon {
+					margin-right: 5px;
+					font-size: 25px !important;
+				}
+			</style>	
+			<h2 style="margin: 15px 10px; text-align: center;">#{label.my_orders}</h2>
+			
+			<div class="container-orders">
+				<ui:repeat var="order" value="#{MBClientOrderClientSide.clientOrders}">
+					<div class="cardOrder">
+						<div class="horizontal-between">
+							<div class="vertical-left">
+								<p>Data do Pedido: </p>
+								<h:outputText value="#{order.creationDate}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+								</h:outputText>
+							</div>
+							
+							<div class="style-status vertical-center" style="background-color: #{order.status eq 'A confirmar' ? '#ffcc00' : order.status eq 'Finalizado' ? '#339900' : order.status eq 'Cancelado' ? '#cc3300' : order.status eq 'Em preparo' ? '#00bcd4' : order.status eq 'Enviado' ? '#ed4981;' :''}">
+								<h:outputText value="#{order.status}" />
+							</div>
+						</div>
+						
+						<div>
+							<h3 class="mg-t-5">#{label.delivery_address}</h3>
+						
+							<div class="general-card">
+								<div class="horizontal-left-center">
+									<span class="material-symbols-outlined icon-payment">
+										location_on
+									</span>
+									
+									<div class="horizontal-left-centers">
+										<h:outputText value="#{order.address.street}, #{order.address.house_number} - " />
+										<h:outputText value="#{order.address.neighborhood}" style="font-size: 14px;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div>
+							<h3 class="mg-t-5">#{label.payment_method}</h3>
+						
+							<div class="general-card horizontal-left-center">
+								<span class="material-symbols-outlined icon-payment">
+									#{order.payment.icon}
+								</span>
+								
+								<h:outputText value="#{order.payment.name}" />						
+							</div>
+						</div>
+						
+						<p:accordionPanel styleClass="mg-t-20" activeIndex="1">
+							<p:tab title="#{label.products}">
+								<ui:repeat var="item" value="#{order.cart.items}">
+									<div class="horizontal-left-center mg-b-10">
+										<h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(item.product.imageBytes)}" class="mg-r-10" style="width: 50px; height: 50px; border-radius: 10px;"/>
+										<h:outputText value="#{item.amount}un" style="margin-right: 10px;" />
+										<h:outputText value="#{item.product.name}" />
+									</div>							
+								</ui:repeat> 
+							</p:tab>
+						</p:accordionPanel>
+					</div>
+				</ui:repeat>
+			</div>		
+		</ui:define>
+	</ui:composition>
+</html>

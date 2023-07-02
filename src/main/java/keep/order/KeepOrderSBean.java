@@ -1,6 +1,5 @@
 package keep.order;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import model.ClientOrder;
 import to.TOClientOrder;
 import utils.AbstractManter;
 
-public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, IKeepOrderSBeanRemote {
+public class KeepOrderSBean extends AbstractManter<ClientOrder, TOClientOrder> implements IKeepOrderSBean, IKeepOrderSBeanRemote {
 	
 	private KeepClientSBean clientSBean;
 	private KeepCartSBean cartSBean;
@@ -18,6 +17,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 	public KeepOrderSBean() {
 		this.setClientSBean(new KeepClientSBean());
 		this.setCartSBean(new KeepCartSBean());
+		this.setClassTypes(ClientOrder.class, TOClientOrder.class);
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 		object.setCreationDate(new Date());
 		object.setCreationUser(this.getClient().getEmail());
 		
-		ClientOrder model = this.getConverter().map(object, ClientOrder.class);
+		ClientOrder model = this.convertToModel(object);
 		
 		this.getCartSBean().change(object.getCart());
 		
@@ -39,7 +39,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 		object.setChangeDate(new Date());
 		object.setChangeUser(this.getClient().getEmail());
 		
-		ClientOrder model = this.getConverter().map(object, ClientOrder.class);
+		ClientOrder model = this.convertToModel(object);
 		
 		em.getTransaction().begin();
 		em.merge(model);
@@ -49,7 +49,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 
 	@Override
 	public void remove(TOClientOrder object) {
-		ClientOrder model = this.getConverter().map(object, ClientOrder.class);
+		ClientOrder model = this.convertToModel(object);
 		
 		em.getTransaction().begin();
 		em.remove(em.contains(model) ? model : em.merge(model));
@@ -68,17 +68,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 										.setParameter("client_id", client_id)	
 										.getResultList();
 		
-		List<TOClientOrder> convertedResults = new ArrayList<TOClientOrder>();
-		
-		for(ClientOrder model : results) {
-			if(model != null) {
-				TOClientOrder to = this.getConverter().map(model, TOClientOrder.class);
-				to.setClient(this.getClientSBean().findById(client_id));
-				convertedResults.add(to);		
-			}
-		}
-		
-		return convertedResults;	
+		return this.convertModelResults(results);	
 	}
 
 	@Override
@@ -92,17 +82,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 		List<ClientOrder> results = em.createQuery(sql.toString(), ClientOrder.class)
 										.getResultList();
 		
-		List<TOClientOrder> convertedResults = new ArrayList<TOClientOrder>();
-		
-		for(ClientOrder model : results) {
-			if(model != null) {
-				TOClientOrder to = this.getConverter().map(model, TOClientOrder.class);
-				to.setClient(this.getClientSBean().findById(model.getClient_id()));
-				convertedResults.add(to);				
-			}
-		}
-		
-		return convertedResults;
+		return this.convertModelResults(results);
 	}
 
 	@Override
@@ -112,7 +92,7 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 
 	@Override
 	public TOClientOrder findByIdTO(int id) {
-		TOClientOrder to = this.getConverter().map(this.findById(id), TOClientOrder.class);
+		TOClientOrder to = this.convertToDTO(this.findById(id));
 		
 		return to;
 	}
@@ -175,6 +155,22 @@ public class KeepOrderSBean extends AbstractManter implements IKeepOrderSBean, I
 		
 		return em.createQuery(sql.toString(), Number.class)
 				.getSingleResult();
+	}
+	
+	@Override
+	public List<TOClientOrder> listFinishedsByClientId(int client_id) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" SELECT O FROM ");
+		sql.append(ClientOrder.class.getName()).append(" O ");
+		sql.append(" WHERE O.status = 'Finalizado' ");
+		sql.append(" AND O.client_id = :client_id ");
+		sql.append(" ORDER BY O.creationDate DESC ");
+		
+		List<ClientOrder> results = em.createQuery(sql.toString(), ClientOrder.class)
+										.setParameter("client_id", client_id)
+										.getResultList();
+		return this.convertModelResults(results);
 	}
 	
 	// Getters and Setters

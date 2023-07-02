@@ -71,4 +71,9 @@
 		<pattern value="/home" />
 		<view-id value="/pages/client/landing-page.xhtml" />
 	</url-mapping>
+	
+	<url-mapping id="myOrders">
+		<pattern value="/meuspedidos" />
+		<view-id value="/pages/client/pedidos.xhtml" />
+	</url-mapping>
 </pretty-config>

@@ -5,9 +5,6 @@ import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
-import org.primefaces.PrimeFaces;
-
 import keep.client.KeepClientSBean;
 import keep.order.KeepOrderSBean;
 import keep.payment.KeepPaymentSBean;
@@ -27,18 +24,21 @@ public class MBClientOrderClientSide extends AbstractBean  {
 	private KeepClientSBean clientSBean;
 	private TOClientOrder clientOrder;
 	private List<TOClientOrder> clientOrders;
+	private List<TOClientOrder> finishedOrders;
 	
 	public MBClientOrderClientSide() {
 		this.setOrderSBean(new KeepOrderSBean());
 		this.setPaymentSBean(new KeepPaymentSBean());
 		this.setClientOrder(new TOClientOrder());
 		this.setClientOrders(new ArrayList<TOClientOrder>());
+		this.setFinishedOrders(new ArrayList<TOClientOrder>());
 		
 		this.list();
 	}
 	
 	public void list() {
 		this.setClientOrders(this.getOrderSBean().listByClientId(this.getClient().getId()));
+		this.setFinishedOrders(this.getOrderSBean().listFinishedsByClientId(this.getClient().getId()));
 	}
 	
 	public void finishOrder(Address address, TOPayment payment, Cart cart) {
@@ -82,5 +82,13 @@ public class MBClientOrderClientSide extends AbstractBean  {
 	}
 	public void setClientSBean(KeepClientSBean clientSBean) {
 		this.clientSBean = clientSBean;
+	}
+
+	public List<TOClientOrder> getFinishedOrders() {
+		return finishedOrders;
+	}
+
+	public void setFinishedOrders(List<TOClientOrder> finishedOrders) {
+		this.finishedOrders = finishedOrders;
 	}
 }

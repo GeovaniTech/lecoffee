@@ -47,7 +47,8 @@
 					<div class="buttons desktop-hidden vertical-center">
 						<p:commandLink 
 							action="#{MBCart.removeProduct(cc.attrs.productId)}"
-							class="minus">
+							class="minus"
+							rendered="#{cc.attrs.optionsRendered == true ? false : true}">
 							
 	                        <span class="material-symbols-outlined">
 	                            remove
@@ -55,12 +56,13 @@
 						</p:commandLink>
 						
 	                    <div id="counter_#{cc.attrs.productId}" class="count">
-	                        <h:outputText value="#{MBCart.getQuantityOfProduct(cc.attrs.productId)}" />
+	                        <h:outputText value="#{MBCart.getQuantityOfProduct(cc.attrs.productId)}" rendered="#{cc.attrs.optionsRendered == true ? false : true}" />
 	                    </div>
 						
 						<p:commandLink 
 							action="#{MBCart.addProduct(cc.attrs.productId)}"
-							class="more">
+							class="more"
+							rendered="#{cc.attrs.optionsRendered == true ? false : true}">
 	                        
 	                        <span class="material-symbols-outlined">
 	                            add

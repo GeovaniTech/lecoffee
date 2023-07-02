@@ -299,3 +299,16 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 	background-color: var(--green) !important;
 	color: var(--white) !important;
 }
+
+/* #################### AccordionPanel #################### */
+.ui-accordion-header {
+	background-color: var(--background-general-mouse) !important;
+	border-color: var(--background-general-mouse) !important;
+	color: var(--text) !important;
+}
+
+.ui-accordion-content {
+	background-color: var( --second-color-widget) !important;
+	border-color: var(--second-color-widget) !important;
+	color: var(--text) !important;
+}
