@@ -35,11 +35,55 @@
 					 	font-size: 14px;
 					 	color: black;
 					}
+					
+					.container-orders {
+						position: fixed;
+						height: 100%;
+						top: 66px;
+						max-width: 400px;
+						overflow-y: auto;
+						padding-bottom: 65px;
+					}
+					
+					.cardOrder {
+						margin-left: 0px;
+					}
 				</style>
 				
 				<h:outputStylesheet library="css" name="/simpleCard/simpleCard.css" />
+				<h:outputStylesheet library="css" name="/cardOrder/cardOrder.css" />
 				
-				<h:form id="formCardInsights">
+				<h:form id="formOrders">
+					<p:poll 
+						interval="10"
+						update="@form"
+						oncomplete="updateCards();"/>
+					
+					<p:remoteCommand 
+						name="updateOrdersAdmin"
+						update="@form" />
+					
+					<div class="container-orders">
+						<ui:repeat var="order" value="#{MBListOrders.allOrdersAdmin}">
+							<components:order 
+								orderId="#{order.id}"
+								clientName="#{order.client.nome}"
+								clientEmail="#{order.client.email}"
+								street="#{order.address.street}"
+								house_number="#{order.address.house_number}"
+								neighborhood="#{order.address.neighborhood}"
+								cartId="#{order.cart.id}"
+								requestDate="#{order.creationDate}"
+								status="#{order.status}"
+								paymentName="#{order.payment.name}"
+								paymentIcon="#{order.payment.icon}"
+								items="#{order.cart.items}"
+								renderAdminOptions="true" />
+						</ui:repeat>
+					</div>
+				</h:form>
+				
+				<h:form id="formCardInsights" style="margin-left: 400px;">
 					<p:remoteCommand 
 						name="updateCards"
 						update="@form"/>
@@ -72,254 +116,21 @@
 					</div>
 				</h:form>
 				
-				<div class="mg-b-10">
-					<h:form>
+				<h:form style="margin-left: 440px;" styleClass="vertical-left">
+					<div class="order-top-buttons">
 						<p:commandButton 
-							icon="pi pi-filter"
-							action="#{MBClientOrder.changeToggleFilter()}"
-							update="formTableOrders:tableOrders"
-							styleClass="optionsButtonStyle mg-r-5" />
-							
+							icon="pi pi-plus"
+							value="#{label.new_order}" 
+							styleClass="mg-r-5" />
+						
 						<p:commandButton 
-							icon="pi pi-filter-slash"
-							update="formTableOrders:tableOrders"
-							styleClass="optionsButtonStyle"
-							oncomplete="PF('tableOrders').clearFilters();" />
-					</h:form>
-				</div>
-				
-				<h:form id="formTableOrders">
-					<p:poll 
-						id="orderPoll"
-						interval="10"
-						listener="#{MBClientOrder.list()}"
-						update="@form"
-						oncomplete="updateCards();" />
-				
-					<p:dataTable
-						id="tableOrders"
-						widgetVar="tableOrders"
-						var="order"
-						value="#{MBClientOrder.orders}"
-						rowKey="#{order.id}"
-						scrollable="true"
-						styleClass="#{MBClientOrder.toggleFilter == false ? 'hide-filters' : ''}">
-						
-			            <p:column style="width:2rem">
-			                <p:rowToggler />
-			            </p:column>
-						
-						<p:column 
-							headerText="#{label.client}" 
-							filterBy="#{order.client.nome}"
-							filterMatchMode="contains">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										event="keyup" 
-										delay="500"
-										oncomplete="PF('tableOrders').filter()" />
-								</p:inputText>
-							</f:facet>
-							
-							<h:outputText value="#{order.client.nome eq '' or order.client.nome == null ? order.client.email : order.client.nome}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.email}" 
-							filterBy="#{order.client.email}"
-							filterMatchMode="contains">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										event="keyup" 
-										delay="500"
-										oncomplete="PF('tableOrders').filter()" />
-								</p:inputText>
-							</f:facet>
-							
-							<h:outputText value="#{order.client.email}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.delivery_address}"
-							filterBy="#{order.address.street}"
-							filterMatchMode="contains">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										event="keyup" 
-										delay="500"
-										oncomplete="PF('tableOrders').filter()" />
-								</p:inputText>
-							</f:facet>
-						
-							<h:outputText value="#{order.address.street}, #{order.address.house_number}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.neighborhood}"
-							filterBy="#{order.address.neighborhood}"
-							filterMatchMode="contains">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										event="keyup" 
-										delay="500"
-										oncomplete="PF('tableOrders').filter()" />
-								</p:inputText>	
-							</f:facet>
-							
-							<h:outputText value="#{order.address.neighborhood}" />
-						</p:column>
-						
-						<p:column 
-							headerText="Total">
-							<h:outputText value="#{MBAppConfigs.getBrazilianCurrency(MBClientOrder.getTotalOrder(order.cart.id))}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.request_date}"
-							filterBy="#{order.creationDate}">
-							
-							<f:facet name="filter">
-								<p:datePicker pattern="dd/MM/yyyy">
-									<p:ajax 
-										event="valueChange" 
-										oncomplete="PF('tableOrders').filter()" />
-									
-									<p:ajax 
-										event="keyup" 
-										delay="500"
-										oncomplete="PF('tableOrders').filter()" />
-								</p:datePicker>
-							</f:facet>
-							
-							<h:outputText value="#{order.creationDate}">
-								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
-							</h:outputText>
-						</p:column>
-						
-						<p:column 
-							headerText="Status"
-							filterBy="#{order.status}">
-							
-							<f:facet name="filter">
-								<p:selectOneMenu style="width: 200px;">
-									<f:selectItem 
-										itemLabel="#{label.all}"
-										itemValue="#{null}" />
-									
-									<f:selectItem 
-										itemLabel="A confirmar"
-										itemValue="A confirmar" />
-
-									<f:selectItem 
-										itemLabel="Em preparo"
-										itemValue="Em preparo" />
-
-									<f:selectItem 
-										itemLabel="Enviado"
-										itemValue="Enviado" />
-
-									<f:selectItem 
-										itemLabel="Finalizado"
-										itemValue="Finalizado" />
-
-									<f:selectItem 
-										itemLabel="Cancelado"
-										itemValue="Cancelado" />
-										
-									<p:ajax 
-										event="valueChange" 
-										oncomplete="PF('tableOrders').filter()" />
-								</p:selectOneMenu>
-							</f:facet>
-							<div class="style vertical-center" style="background-color: #{order.status eq 'A confirmar' ? '#ffcc00' : order.status eq 'Finalizado' ? '#339900' : order.status eq 'Cancelado' ? '#cc3300' : order.status eq 'Em preparo' ? '#00bcd4' : order.status eq 'Enviado' ? '#ed4981;' :''}">
-								<h:outputText value="#{order.status}" />
-							</div>
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.payment}"
-							filterBy="#{order.payment.name}">
-							
-							<f:facet name="filter">
-								<p:selectOneMenu style="width: 200px;">
-									<f:selectItem 
-										itemLabel="#{label.all}"
-										itemValue="#{null}" />
-									
-									<f:selectItems 
-										var="payment"
-										value="#{MBPayment.payments}"
-										itemLabel="#{payment.name}"
-										itemValue="#{payment.name}" />
-										
-									<p:ajax 
-										event="valueChange" 
-										oncomplete="PF('tableOrders').filter()" />
-								</p:selectOneMenu>
-							</f:facet>
-							
-							<h:outputText value="#{order.payment.name}" />
-						</p:column>
-						
-						<p:rowExpansion>
-							<h3 class="mg-b-10">#{label.products}</h3>
-							<ui:repeat var="item" value="#{order.cart.items}">
-								<div class="horizontal-left-center mg-b-10">
-									<h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(item.product.imageBytes)}" class="mg-r-10" style="width: 50px; height: 50px; border-radius: 10px;"/>
-									<h:outputText value="#{item.amount}un" style="margin-right: 10px;" />
-									<h:outputText value="#{item.product.name}" />
-								</div>
-							</ui:repeat>
-							
-							<p:toolbar>
-								<f:facet name="left">
-									<p:commandButton 
-										icon="pi pi-check-circle"
-										value="#{label.accept}"
-										action="#{MBClientOrder.acceptOrder(order.id)}"
-										styleClass="mg-r-5"
-										update="@form"
-										oncomplete="updateCards();"
-										rendered="#{order.status eq 'A confirmar' ? true : false}" />
-
-									<p:commandButton 
-										icon="pi pi-send"
-										value="#{label.send}"
-										action="#{MBClientOrder.sendOrder(order.id)}"
-										update="@form"
-										styleClass="mg-r-5"
-										oncomplete="updateCards();"
-										rendered="#{order.status eq 'Em preparo'}" />
-										
-									<p:commandButton 
-										icon="pi pi-check-square"
-										value="#{label.finish}"
-										action="#{MBClientOrder.finishOrder(order.id)}"
-										update="@form"
-										styleClass="mg-r-5"
-										oncomplete="updateCards();"
-										rendered="#{order.status eq 'Enviado'}" />
-								
-									<p:commandButton 
-										icon="pi pi-trash"
-										value="#{label.cancel}"
-										action="#{MBClientOrder.cancelOrder(order.id)}"
-										styleClass="deleteStyle mg-r-5"
-										update="@form"
-										oncomplete="updateCards();"
-										rendered="#{order.status != 'Finalizado' and order.status != 'Cancelado' ? true : false}" />
-								</f:facet>
-							</p:toolbar>
-						</p:rowExpansion>
-					</p:dataTable>
+							icon="pi pi-times"
+							value="#{label.cancel_changes}" />
+					</div>
+					
+					<div class="horizontal-left">
+					
+					</div>
 				</h:form>
 			</ui:define>
 		</ui:composition>

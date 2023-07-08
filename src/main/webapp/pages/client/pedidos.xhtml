@@ -23,48 +23,38 @@
 					width: 100%;
 				}
 				
-				.container-orders {
-					width: 100%;
-					max-width: 800px;
-				}
-				
-				.cardOrder {
-					margin: 10px;
-					padding: 10px;
-					border: 1px solid var(----bottom-row-table);
-					background-color: var(--background-general);
-					border-radius: 5px;
-					color: var(--text);
-				}
-				
-				.style-status {
-					padding: 5px 10px;
-					border-radius: 30px;
-				  	display: inline-block;
-				 	width: auto;
-				 	font-size: 14px;
-				 	color: black;
-				}
-				
-				.general-card {
-					background-color: var(--background-general-mouse);
-					border-color: transparent;
-					border-radius: 20px;
-					transition: 0.4s;
-					color: var(--text-mouse);	
-					padding: 10px;
-					margin-top: 5px;
-				}
-				
-				.general-icon {
-					margin-right: 5px;
-					font-size: 25px !important;
+				.no-render-categories-bar {
+					display: none !important;
 				}
 			</style>	
+			
+			<h:outputStylesheet library="css" name="/cardOrder/cardOrder.css" />
+			
 			<h2 style="margin: 15px 10px; text-align: center;">#{label.my_orders}</h2>
 			
-			<div class="container-orders">
-				<ui:repeat var="order" value="#{MBClientOrderClientSide.clientOrders}">
+			<div style="display: #{MBListOrders.clientOrders.size() > 0 ? 'none' : 'flex'}">
+				<div class="vertical-center">
+					<h:graphicImage 
+						library="images" 
+						name="no_orders.svg"
+						style="heigh: 50vh; width: 50vw" />
+						
+					<p style="margin: 25px; font-size: 25px; text-align: center;">#{label.any_order_yet}</p>
+					
+					<p:commandButton 
+						icon="pi pi-arrow-left"
+						action="#{MBAppConfigs.redirectTo('/lecoffee/home')}"
+						value="#{label.see_products}"
+						styleClass="mg-b-30" />
+				</div>
+			</div>
+			
+			<h:form class="container-orders">
+				<p:poll 
+					interval="10"
+					update="@form"/>
+			
+				<ui:repeat var="order" value="#{MBListOrders.clientOrders}">
 					<div class="cardOrder">
 						<div class="horizontal-between">
 							<div class="vertical-left">
@@ -108,7 +98,7 @@
 							</div>
 						</div>
 						
-						<p:accordionPanel styleClass="mg-t-20" activeIndex="1">
+						<p:accordionPanel styleClass="mg-t-20" activeIndex="0">
 							<p:tab title="#{label.products}">
 								<ui:repeat var="item" value="#{order.cart.items}">
 									<div class="horizontal-left-center mg-b-10">
@@ -121,7 +111,7 @@
 						</p:accordionPanel>
 					</div>
 				</ui:repeat>
-			</div>		
+			</h:form>		
 		</ui:define>
 	</ui:composition>
 </html>

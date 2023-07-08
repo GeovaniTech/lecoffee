@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+  	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:components="http://java.sun.com/jsf/composite/components"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<composite:interface>
+		<composite:attribute name="orderId" />
+		<composite:attribute name="clientName" />
+		<composite:attribute name="clientEmail" />
+		<composite:attribute name="street" />
+		<composite:attribute name="house_number" />
+		<composite:attribute name="neighborhood" />
+		<composite:attribute name="cartId" />
+		<composite:attribute name="requestDate" />
+		<composite:attribute name="status" />
+		<composite:attribute name="paymentName" />
+		<composite:attribute name="paymentIcon" />
+		<composite:attribute name="items" />
+		<composite:attribute name="renderAdminOptions" />
+	</composite:interface>
+	
+	<composite:implementation>
+		<div class="cardOrder">
+			<div class="horizontal-between">
+				<div class="vertical-left">
+					<p>Data do Pedido: </p>
+					<h:outputText value="#{cc.attrs.requestDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+					</h:outputText>
+				</div>
+				
+				<div class="style-status vertical-center" style="background-color: #{order.status eq 'A confirmar' ? '#ffcc00' : order.status eq 'Finalizado' ? '#339900' : order.status eq 'Cancelado' ? '#cc3300' : order.status eq 'Em preparo' ? '#00bcd4' : order.status eq 'Enviado' ? '#ed4981;' :''}">
+					<h:outputText value="#{cc.attrs.status}" />
+				</div>
+			</div>
+			
+			<div>
+				<h3 class="mg-t-5">#{label.delivery_address}</h3>
+			
+				<div class="general-card">
+					<div class="horizontal-left-center">
+						<span class="material-symbols-outlined icon-payment">
+							location_on
+						</span>
+						
+						<div class="horizontal-left-centers">
+							<h:outputText value="#{cc.attrs.street}, #{cc.attrs.house_number} - " />
+							<h:outputText value="#{cc.attrs.neighborhood}" style="font-size: 14px;" />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<h3 class="mg-t-5">#{label.payment_method}</h3>
+			
+				<div class="general-card horizontal-left-center">
+					<span class="material-symbols-outlined icon-payment">
+						#{cc.attrs.paymentIcon}
+					</span>
+					
+					<h:outputText value="#{cc.attrs.paymentName}" />						
+				</div>
+			</div>
+			
+			<h3 class="mg-t-5">#{label.client}</h3>
+			
+			<div class="general-card horizontal-left-center" 
+				 style="display: #{cc.attrs.renderAdminOptions == true ? 'flex' : 'none'}">
+				<span class="material-symbols-outlined icon-payment">
+					person
+				</span>
+				
+				<h:outputText value="#{cc.attrs.clientName eq '' or cc.attrs.clientName == null ? cc.attrs.clientEmail : cc.attrs.clientName}" />	
+			</div>
+			
+			<p:accordionPanel styleClass="mg-t-20" activeIndex="1">
+				<p:tab title="#{label.products}">
+					<ui:repeat var="item" value="#{cc.attrs.items}">
+						<div class="horizontal-left-center mg-b-10">
+							<h:graphicImage value="data:image/png;base64,#{MBAppConfigs.getRenderedImage(item.product.imageBytes)}" class="mg-r-10" style="width: 50px; height: 50px; border-radius: 10px;"/>
+							<h:outputText value="#{item.amount}un" style="margin-right: 10px;" />
+							<h:outputText value="#{item.product.name}" />
+						</div>							
+					</ui:repeat> 
+				</p:tab>
+			</p:accordionPanel>
+			
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton 
+						icon="pi pi-check-circle"
+						value="#{label.accept}"
+						action="#{MBClientOrder.acceptOrder(cc.attrs.orderId)}"
+						styleClass="mg-r-5"
+						update="@form"
+						oncomplete="updateCards(); updateOrdersAdmin();"
+						rendered="#{cc.attrs.status eq 'A confirmar' ? true : false}" />
+
+					<p:commandButton 
+						icon="pi pi-send"
+						value="#{label.send}"
+						action="#{MBClientOrder.sendOrder(cc.attrs.orderId)}"
+						update="@form"
+						styleClass="mg-r-5"
+						oncomplete="updateCards(); updateOrdersAdmin();"
+						rendered="#{cc.attrs.status eq 'Em preparo'}" />
+						
+					<p:commandButton 
+						icon="pi pi-check-square"
+						value="#{label.finish}"
+						action="#{MBClientOrder.finishOrder(cc.attrs.orderId)}"
+						update="@form"
+						styleClass="mg-r-5"
+						oncomplete="updateCards(); updateOrdersAdmin();"
+						rendered="#{cc.attrs.status eq 'Enviado'}" />
+				
+					<p:commandButton 
+						icon="pi pi-trash"
+						value="#{label.cancel}"
+						action="#{MBClientOrder.cancelOrder(cc.attrs.orderId)}"
+						styleClass="deleteStyle mg-r-5"
+						update="@form"
+						oncomplete="updateCards(); updateOrdersAdmin();"
+						rendered="#{cc.attrs.status != 'Finalizado' and cc.attrs.status != 'Cancelado' ? true : false}" />					
+				</f:facet>
+			</p:toolbar>
+		</div>	
+	</composite:implementation>
+</html>
