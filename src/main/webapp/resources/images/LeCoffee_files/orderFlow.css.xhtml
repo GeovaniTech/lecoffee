@@ -1,0 +1,113 @@
+.ui-scrollpanel {
+	padding: 0px !important; 
+}
+
+.no-scroll {
+	overflow: hidden;
+}
+
+.container-flow {
+	position: fixed;
+	width: 100vw;
+	max-width: 500px;
+	top: 70px;
+	height: calc(100vh - 70px);
+	background-color: var(--background-general);
+	overflow: hidden;
+	z-index: 1;
+	transition: 0.4s;	
+	box-shadow: -4px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container-flow h3 {
+	font-size: 23px;
+}
+
+.top-flow {
+	margin-top: 10px;
+	background-color: var(--background-general);
+}
+
+.close-flow span {
+	font-size: 40px !important;
+}
+
+.button-bottom {
+	position: relative !important;
+	bottom: 140px !important;
+	padding-bottom: 20px;
+	width: 100% !important;
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: var(--background-general);
+	padding-top: 20px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.formFlow .card {
+	 width: 100% !important;
+	 margin: 0px !important;
+	 border-top: 1px solid var(--bottom-row-table) !important;
+	 border-radius: 0px !important;
+	 padding: 10px !important;
+	 padding-bottom: 0px !important;
+	 background-color: var(--landing-page) !important;
+	 display: flex !important;
+	 flex-direction: row !important; 
+	 justify-content: center !important;
+	 align-items: center !important;
+	 box-shadow: none !important;
+	 font-size: 16px !important;
+}
+
+.formFlow .onCartHidden {
+	display: none !important;
+}
+
+.formFlow .card:hover {
+  transform: scale(1);
+}
+
+.formFlow .infos {
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+.formFlow .infos p:nth-child(1) {
+  font-size: 20px;
+}
+
+.formFlow .infos p:nth-child(2) {
+  font-size: 18px !important;
+}
+
+.formFlow .infos > * {
+  margin-bottom: 5px !important;
+}
+
+.formFlow .card img {
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
+}
+
+.formFlow .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formFlow .buttons > * {
+  margin-left: 25px;
+}
+
+.formFlow .buttons span {
+  color: var(--green);
+  font-size: 25px;
+}
+
+.formFlow .minus  {
+  margin-left: 0px;
+}

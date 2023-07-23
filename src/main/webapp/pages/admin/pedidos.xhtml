@@ -10,7 +10,7 @@
 	xmlns:components="http://java.sun.com/jsf/composite/components"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 	
-	<h:body>
+	<h:body>	
 		<ui:composition template="/templates/admin/layout.xhtml">
 			<ui:define name="name_page">
 				<h:outputText value="#{label.orders}" />
@@ -125,11 +125,22 @@
 						
 						<p:commandButton 
 							icon="pi pi-times"
-							value="#{label.cancel_changes}" />
+							value="#{label.cancel_changes}"
+							styleClass="deleteStyle"
+							disabled="true" />
 					</div>
 					
-					<div class="horizontal-left">
-					
+					<div class="horizontal-left mg-t-10">
+						<div class="vertical-left">
+							<components:lov 
+								mBean="#{MBClientOrder}"
+								objectLov="#{MBClientOrder.lovClient}"
+								onRowSelect="#{MBClientOrder.onRowSelect()}"
+								idField="lovClient"
+								valueLabel="#{label.client}"
+								toValue="#{MBClientOrder.lovClient.clientSelected}"
+								valueInput="#{MBClientOrder.lovClient.clientSelected.email}" />
+						</div>
 					</div>
 				</h:form>
 			</ui:define>

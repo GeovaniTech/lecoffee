@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 import to.TOClient;
+import to.TOFilterLovClient;
 
 @Local
 public interface IKeepClientSBean {
@@ -16,5 +17,6 @@ public interface IKeepClientSBean {
 	public TOClient findByEmail(String email);
 	public TOClient findById(int id);
 	public List<TOClient> list();
+	public List<TOClient> listClientsLov(TOFilterLovClient filter);
 	public void setNewPassword(String email, String password);
 }

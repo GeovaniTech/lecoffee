@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+  	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<composite:interface>
+		<composite:attribute name="onRowSelect" method-signature="void onRowSelect()" />
+		<composite:attribute name="idField" />
+		<composite:attribute name="toValue" />
+		<composite:attribute name="objectLov" />
+		<composite:attribute name="valueLabel" />
+		<composite:attribute name="placeholder" />
+		<composite:attribute name="valueInput" />
+		<composite:attribute name="action" />
+		<composite:attribute name="update" />
+		<composite:attribute name="onClick" />
+		<composite:attribute name="onStart" />
+		<composite:attribute name="onComplete" />
+	</composite:interface>
+
+	<composite:implementation>
+		<div class="vertical-left">
+			<p:outputLabel 
+				value="#{cc.attrs.valueLabel}"
+				for="#{cc.attrs.idField}"/>
+			
+			<div class='horizontal-left'>
+				<p:inputText
+					id="#{cc.attrs.idField}"
+					value="#{cc.attrs.valueInput}"
+					readonly="true"
+					placeholder="#{cc.attrs.placeholder}" 
+					styleClass="mg-r-5"
+					disabled="#{cc.attrs.disabled}" />		
+		
+				<p:commandButton 
+					icon="pi pi-search"
+					action="#{cc.attrs.objectLov.openLov()}"
+					onstart="#{cc.attrs.onStart}"
+					onclick="#{cc.attrs.onClick}"
+					oncomplete="#{cc.attrs.onComplete}"
+					update="#{cc.attrs.update}"
+					title="Search"
+					style="height: 39px;">
+					
+					<p:ajax 
+						event="dialogReturn"
+						listener="#{cc.attrs.mBean.onRowSelect}"
+						process="@this"
+						update="@form"/>
+				</p:commandButton>		
+			</div>
+		</div>
+	</composite:implementation>
+</html>

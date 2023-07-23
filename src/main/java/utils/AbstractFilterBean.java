@@ -2,7 +2,9 @@ package utils;
 
 import java.io.Serializable;
 
-public class AbstractFilterBean extends LeCoffeeSession implements Serializable {
+import org.primefaces.event.SelectEvent;
+
+public class AbstractFilterBean<to, object> extends LeCoffeeSession implements Serializable {
 	private static final long serialVersionUID = 8971275979039568812L;
 	
 	private boolean toggleFilter = false;
@@ -15,7 +17,7 @@ public class AbstractFilterBean extends LeCoffeeSession implements Serializable 
 	public void changeEditObject(boolean value) {
 		this.setEditObject(value);
 	}
-	
+
 	//Getters and Setters
 	public boolean isToggleFilter() {
 		return toggleFilter;

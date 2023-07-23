@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:components="http://java.sun.com/jsf/composite/components">
+    
+    <f:view locale="#{MBAppConfigs.appConfigs.language}" id="view-locale">
+	    <h:head>
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<title>#{label.search}</title>
+			
+			<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
+			<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+							
+			<h:outputStylesheet library="css" name="/patterns/others.css" />
+			<h:outputStylesheet library="css" name="/patterns/texts.css" />
+			<h:outputStylesheet library="css" name="/patterns/alignments.css" />
+			<h:outputStylesheet library="css" name="/patterns/components-primefaces.css" />
+			<h:outputStylesheet library="css" name="#{MBAppConfigs.appConfigs.darkMode ? '/colors/dark-mode/colors.css' : '/colors/light-mode/colors.css'}" />    	   
+	    </h:head>
+	    
+		<h:body style="background-color: var(--background-general);">
+			<p:ajaxStatus>
+				<f:facet name="start">
+					<div class="ajax-loading" />
+				</f:facet>
+				
+				<f:facet name="complete" />
+			</p:ajaxStatus>
+			
+			<h:form id="formLov">
+		    	<p:accordionPanel>	
+					<p:tab title="#{label.filter}s">
+			    		<div class="horizontal-evenly">
+							<components:inputFilter 
+								label="#{label.name}"
+								toInputFilter="#{lovClient.filter.name}" />
+				    		
+				    		<components:inputFilter 
+				    			label="#{label.email}"
+				    			toInputFilter="#{lovClient.filter.email}" />
+				    		
+				    		<div class="vertical-left">
+			   					<p:outputLabel 
+			    					value="#{label.phone_number}"
+				    				for="clientPhone" />
+				    				
+				    			<p:inputMask
+				    				id="clientPhone"
+				    				value="#{lovClient.filter.phoneNumber.value}"
+				    				mask="(99) 9 9999-9999"
+				    				placeholder="#{label.phone_number}" />
+				    		</div>
+				    		
+				    		<components:inputFilter 
+				    			label="#{label.street}"
+				    			toInputFilter="#{lovClient.filter.street}" />
+				    			
+			    			<components:inputFilter 
+				    			label="#{label.neighborhood}"
+				    			toInputFilter="#{lovClient.filter.neighborhood}" />
+				    		
+				    		<div class="vertical-left">
+			   					<p:outputLabel 
+			    					value="#{label.house_number}"
+				    				for="clientHouseNumber" />
+				    				
+				    			<p:inputText
+				    				id="clientHouseNumber"
+				    				value="#{lovClient.filter.numberHouse}"
+				    				placeholder="#{label.house_number}" />
+				    		</div>
+			    		</div>
+					</p:tab>
+		    	</p:accordionPanel>
+		    	
+		    	<p:toolbar>
+					<f:facet name="left">
+		    			<p:commandButton 
+		    				icon="pi pi-filter"
+			    			value="#{label.filter}"
+			    			update="formTableLovClient"
+			    			styleClass="mg-r-5" />
+		    		
+				    	<p:commandButton 
+				    		icon="pi pi-plus"
+			    			value="New Research"
+			    			action="#{lovClient.clearFilters()}"
+			    			update="@form, formTableLovClient"
+			    			styleClass="mg-r-5" />
+					</f:facet>
+		    	</p:toolbar>
+			</h:form>
+	    	
+			<h:form id="formTableLovClient" class="mg-t-10">
+		    	<p:dataTable var="client"
+		    				 value="#{lovClient.dataPage}"
+		    				 selection="#{lovClient.clientSelected}"
+		    				 selectionMode="single"
+		    				 rowKey="#{client.id}"
+		    				 scrollable="true">
+				 
+ 					<p:ajax 
+					 	event="rowSelect" 
+					 	listener="#{lovClient.onRowSelect}" />	
+	    				 
+	    			<p:column headerText="#{label.email}" width="auto">
+	    				<h:outputText value="#{client.email}" />
+	    			</p:column>
+	    			
+	    			<p:column headerText="#{label.street}">
+	    				<h:outputText value="#{client.street}, #{client.house_number}" />
+	    			</p:column>
+	    			
+	    			<p:column headerText="#{label.neighborhood}">
+	    				<h:outputText value="#{client.neighborhood}" />
+	    			</p:column>
+	    			
+	    			<p:column headerText="#{label.total_orders}" width="auto">
+	    				<h:outputText value="#{client.totalOrders}" />
+    				</p:column>
+		    	</p:dataTable>
+			</h:form>
+	    </h:body>  
+    </f:view>
+</html>

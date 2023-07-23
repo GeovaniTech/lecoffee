@@ -31,6 +31,10 @@ public class TOClient implements Serializable {
 	private String neighborhood;
 	private boolean changePassword;
 	
+	public TOClient() {
+		this.email = "";
+	}
+	
 	//Getters and Setters
 	public int getId() {
 		return id;

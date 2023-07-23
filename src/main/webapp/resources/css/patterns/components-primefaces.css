@@ -94,6 +94,7 @@
   	left: 50%;
  	transform: translate(-50%, -50%); 
  	min-width: 520px !important;
+ 	max-width: 9999px;
 }
 
 .ui-dialog-titlebar {

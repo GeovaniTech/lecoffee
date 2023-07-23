@@ -27,6 +27,7 @@ public class LeCoffeeSession {
 	
 	protected void finishSession() {
 		getSession().setAttribute("client", null);
+		getSession().invalidate();
 	}
 	
 	//Setters and Getters

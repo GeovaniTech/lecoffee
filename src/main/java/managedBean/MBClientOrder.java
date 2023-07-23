@@ -7,27 +7,34 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.event.SelectEvent;
+
 import keep.cart.KeepCartSBean;
 import keep.order.KeepOrderSBean;
+import lovs.LovClient;
+import model.ClientOrder;
+import to.TOClient;
 import to.TOClientOrder;
 import utils.AbstractFilterBean;
 import utils.IMainMethodsBean;
 
 @Named("MBClientOrder")
 @ViewScoped
-public class MBClientOrder extends AbstractFilterBean implements IMainMethodsBean {
+public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder> implements IMainMethodsBean {
 	private static final long serialVersionUID = -7662896969043865803L;
 
 	private KeepOrderSBean orderSBean;
 	private KeepCartSBean cartSBean;
 	private List<TOClientOrder> orders;
 	private TOClientOrder orderSelected;
-	
+	private LovClient lovClient;
+
 	public MBClientOrder() {
 		this.setOrderSBean(new KeepOrderSBean());
 		this.setCartSBean(new KeepCartSBean());
 		this.setOrders(new ArrayList<TOClientOrder>());
 		this.setOrderSelected(new TOClientOrder());
+		this.setLovClient(new LovClient());
 		
 		this.list();
 	}
@@ -69,6 +76,10 @@ public class MBClientOrder extends AbstractFilterBean implements IMainMethodsBea
 		
 		this.list();
 	}
+	
+    public void onRowSelect(SelectEvent<TOClient> event) {
+    	this.getLovClient().setClientSelected(event.getObject());
+    }
 	
 	public int getTotalAConfirmar() {
 		return this.getOrderSBean().getQuantityAConfirmar().intValue();
@@ -121,8 +132,6 @@ public class MBClientOrder extends AbstractFilterBean implements IMainMethodsBea
 	public void list() {
 		this.setOrders(new ArrayList<>());
 		this.setOrders(this.getOrderSBean().list());
-		
-		System.out.println("Atualizando Pedidos...");
 	}
 
 	// Getters and Setters
@@ -149,5 +158,11 @@ public class MBClientOrder extends AbstractFilterBean implements IMainMethodsBea
 	}
 	public void setCartSBean(KeepCartSBean cartSBean) {
 		this.cartSBean = cartSBean;
+	}
+	public LovClient getLovClient() {
+		return lovClient;
+	}
+	public void setLovClient(LovClient lovClient) {
+		this.lovClient = lovClient;
 	}
 }
