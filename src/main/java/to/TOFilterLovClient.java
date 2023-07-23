@@ -3,7 +3,7 @@ package to;
 public class TOFilterLovClient {
 	private TOInputFilter name;
 	private TOInputFilter email;
-	private TOInputFilter phoneNumber;
+	private String phoneNumber;
 	private TOInputFilter street;
 	private TOInputFilter neighborhood;
 	private TOInputFilter complement;
@@ -13,7 +13,6 @@ public class TOFilterLovClient {
 	public TOFilterLovClient() {
 		this.setName(new TOInputFilter());
 		this.setEmail(new TOInputFilter());
-		this.setPhoneNumber(new TOInputFilter());
 		this.setStreet(new TOInputFilter());
 		this.setNeighborhood(new TOInputFilter());
 		this.setCep(new TOInputFilter());
@@ -33,10 +32,10 @@ public class TOFilterLovClient {
 	public void setEmail(TOInputFilter email) {
 		this.email = email;
 	}
-	public TOInputFilter getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(TOInputFilter phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public TOInputFilter getStreet() {

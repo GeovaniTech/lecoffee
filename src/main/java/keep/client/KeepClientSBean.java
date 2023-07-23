@@ -274,7 +274,6 @@ public class KeepClientSBean extends AbstractManter<Client, TOClient> implements
 		sql.append(" WHERE 1 = 1 ");
 		sql.append(SimpleWhere.queryFilter("C.nome", filter.getName()));
 		sql.append(SimpleWhere.queryFilter("C.email", filter.getEmail()));
-		sql.append(SimpleWhere.queryFilter("C.phone_number", filter.getPhoneNumber()));
 		sql.append(SimpleWhere.queryFilter("A.street", filter.getStreet()));
 		sql.append(SimpleWhere.queryFilter("A.neighborhood", filter.getNeighborhood()));
 		sql.append(SimpleWhere.queryFilter("A.complement", filter.getComplement()));
@@ -283,6 +282,11 @@ public class KeepClientSBean extends AbstractManter<Client, TOClient> implements
 		if(filter.getNumberHouse() != null) {
 			sql.append(" AND A.house_number = :house_number ");
 			parameters.put("house_number", filter.getNumberHouse());
+		}
+		
+		if(filter.getPhoneNumber() != null && filter.getPhoneNumber().length() == 16) {
+			sql.append(" AND C.phone_number = :phone_number ");
+			parameters.put("phone_number", filter.getPhoneNumber());
 		}
 		
 		Query query = em.createQuery(sql.toString(), Client.class);

@@ -54,7 +54,7 @@
 				    				
 				    			<p:inputMask
 				    				id="clientPhone"
-				    				value="#{lovClient.filter.phoneNumber.value}"
+				    				value="#{lovClient.filter.phoneNumber}"
 				    				mask="(99) 9 9999-9999"
 				    				placeholder="#{label.phone_number}" />
 				    		</div>
@@ -111,8 +111,16 @@
 					 	event="rowSelect" 
 					 	listener="#{lovClient.onRowSelect}" />	
 	    				 
+	    			<p:column headerText="#{label.name}" width="auto">
+	    				<h:outputText value="#{client.nome eq '' or client.nome == null ? label.not_registered : client.nome}" />
+	    			</p:column>
+	    			
 	    			<p:column headerText="#{label.email}" width="auto">
 	    				<h:outputText value="#{client.email}" />
+	    			</p:column>
+	    			
+	    			<p:column headerText="#{label.phone_number}" width="auto">
+	    				<h:outputText value="#{client.phone_number == '' or client.phone_number == null ? label.not_registered : client.phone_number}" />
 	    			</p:column>
 	    			
 	    			<p:column headerText="#{label.street}">
