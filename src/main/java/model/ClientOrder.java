@@ -18,6 +18,7 @@ public class ClientOrder extends AbstractObject {
 	private String status;
 	private Date finishedDate;
 	private Date timeSent;
+	private Boolean manualOrder;
 	
 	@OneToOne
 	private Cart cart;
@@ -76,5 +77,11 @@ public class ClientOrder extends AbstractObject {
 	}
 	public void setTimeSent(Date timeSent) {
 		this.timeSent = timeSent;
+	}
+	public Boolean isManualOrder() {
+		return manualOrder;
+	}
+	public void setManualOrder(Boolean manualOrder) {
+		this.manualOrder = manualOrder;
 	}
 }

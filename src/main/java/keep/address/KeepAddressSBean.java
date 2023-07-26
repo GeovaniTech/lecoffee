@@ -9,15 +9,17 @@ import javax.ejb.TransactionManagementType;
 import keep.client.KeepClientSBean;
 import model.Address;
 import model.Client;
+import to.TOAddress;
 import utils.AbstractManter;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class KeepAddressSBean extends AbstractManter implements IkeepAddressSBean, IkeepAddressSBeanRemote {
+public class KeepAddressSBean extends AbstractManter<Address, TOAddress> implements IkeepAddressSBean, IkeepAddressSBeanRemote {
 	private KeepClientSBean clientSBean;
 	
 	public KeepAddressSBean() {
 		this.setClientSBean(new KeepClientSBean());
+		this.setClassTypes(Address.class, TOAddress.class);
 	}
 	
 	@Override

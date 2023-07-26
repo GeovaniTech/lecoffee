@@ -21,6 +21,8 @@
 		<composite:attribute name="onClick" />
 		<composite:attribute name="onStart" />
 		<composite:attribute name="onComplete" />
+		<composite:attribute name="required" />
+		<composite:attribute name="requiredMessage" />
 	</composite:interface>
 
 	<composite:implementation>
@@ -36,7 +38,9 @@
 					readonly="true"
 					placeholder="#{cc.attrs.placeholder}" 
 					styleClass="mg-r-5"
-					disabled="#{cc.attrs.disabled}" />		
+					disabled="#{cc.attrs.disabled}" 
+					required="#{cc.attrs.required}"
+					requiredMessage="#{cc.attrs.requiredMessage}" />		
 		
 				<p:commandButton 
 					icon="pi pi-search"

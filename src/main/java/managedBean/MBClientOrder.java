@@ -12,6 +12,7 @@ import org.primefaces.event.SelectEvent;
 import keep.cart.KeepCartSBean;
 import keep.order.KeepOrderSBean;
 import lovs.LovClient;
+import model.Cart;
 import model.ClientOrder;
 import to.TOClient;
 import to.TOClientOrder;
@@ -28,6 +29,8 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	private List<TOClientOrder> orders;
 	private TOClientOrder orderSelected;
 	private LovClient lovClient;
+	private TOClientOrder manualOrder;
+	private Cart manualCart;
 
 	public MBClientOrder() {
 		this.setOrderSBean(new KeepOrderSBean());
@@ -35,8 +38,14 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 		this.setOrders(new ArrayList<TOClientOrder>());
 		this.setOrderSelected(new TOClientOrder());
 		this.setLovClient(new LovClient());
+		this.setManualOrder(new TOClientOrder());
+		this.setManualCart(new Cart());
 		
 		this.list();
+	}
+	
+	public void sendNewOrder() {
+		this.getManualOrder().setStatus("Em preparo");
 	}
 	
 	public void acceptOrder(int orderId) {
@@ -164,5 +173,17 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	}
 	public void setLovClient(LovClient lovClient) {
 		this.lovClient = lovClient;
+	}
+	public TOClientOrder getManualOrder() {
+		return manualOrder;
+	}
+	public void setManualOrder(TOClientOrder manualOrder) {
+		this.manualOrder = manualOrder;
+	}
+	public Cart getManualCart() {
+		return manualCart;
+	}
+	public void setManualCart(Cart manualCart) {
+		this.manualCart = manualCart;
 	}
 }

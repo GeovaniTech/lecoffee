@@ -7,12 +7,13 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import keep.payment.KeepPaymentSBean;
+import model.Payment;
 import to.TOPayment;
 import utils.AbstractFilterBean;
 
 @Named("MBPayment")
 @ViewScoped
-public class MBPayment extends AbstractFilterBean {
+public class MBPayment extends AbstractFilterBean<TOPayment, Payment> {
 	private static final long serialVersionUID = 1580040667992795847L;
 	
 	private KeepPaymentSBean paymentSBean;
