@@ -124,232 +124,126 @@
 						<p:commandButton 
 							icon="pi pi-plus"
 							value="#{label.new_order}" 
+							action="#{MBClientOrder.initOrder()}"
+							update="@form"
 							styleClass="mg-r-5" />
 						
 						<p:commandButton 
 							icon="pi pi-times"
 							value="#{label.cancel_changes}"
+							action="#{MBClientOrder.disableOrder()}"
+							update="@form"
 							styleClass="deleteStyle"
-							disabled="true" />
+							disabled="#{!MBClientOrder.startNewOrder}" />
 					</div>
 					
-					<h2 class="mg-t-10">#{label.client}</h2>
-					
-					<div class="horizontal-left mg-t-10">
-						<div class="vertical-left mg-r-5">
-							<components:lov 
-								mBean="#{MBClientOrder}"
-								objectLov="#{MBClientOrder.lovClient}"
-								onRowSelect="#{MBClientOrder.onRowSelect()}"
-								idField="lovClient"
-								valueLabel="#{label.client}"
-								toValue="#{MBClientOrder.lovClient.clientSelected}"
-								valueInput="#{MBClientOrder.lovClient.clientSelected.email}" />
-						</div>
-						
-						<div class="vertical-left mg-r-5">
-							<p:outputLabel 
-								value="#{label.delivery_address}" />
+					<div class="horizontal-left mg-t-10" style="#{MBClientOrder.startNewOrder ? 'display: flex' :  'display:  pointer-events: none; opacity: 0.6;'}">	
+						<div class="vertical-left mg-r-10">
+							<h2 class="mg-t-10">#{label.client}</h2>
 							
-							<p:commandButton
-								icon="pi pi-plus"
-								value="#{label.new_address}"
-								style="height: 39px;"
-								rendered="#{MBClientOrder.lovClient.clientSelected.addresses == null or MBClientOrder.lovClient.clientSelected.addresses.size() == 0 ? true : false}" />
-							
-							<p:selectOneMenu
-								converter="simpleEntityConverter"
-								rendered="#{MBClientOrder.lovClient.clientSelected.addresses == null or MBClientOrder.lovClient.clientSelected.addresses.size() == 0 ? false : true}">
-								<f:selectItems 
-									var="address"
-									value="#{MBClientOrder.lovClient.clientSelected.addresses}"
-									itemLabel="#{address.street}, #{address.house_number} - #{address.neighborhood}"
-									itemValue="#{address}" />
-							</p:selectOneMenu>
+							<div class="vertical-left mg-r-5">
+								<components:lov 
+									mBean="#{MBClientOrder}"
+									objectLov="#{MBClientOrder.lovClient}"
+									onRowSelect="#{MBClientOrder.onRowSelect()}"
+									idField="lovClient"
+									valueLabel="#{label.client}"
+									toValue="#{MBClientOrder.lovClient.clientSelected}"
+									valueInput="#{MBClientOrder.lovClient.clientSelected.email}" />
+							</div>
+	
+							<div class="vertical-left">
+								<p:outputLabel 
+									value="#{label.delivery_address}"
+									for="fieldAddress"/>
+								
+								<div class='horizontal-left'>
+									<p:selectOneMenu
+										id="fieldAddress"
+										converter="simpleEntityConverter"
+										style="width: 200px;"
+										styleClass="mg-r-5">
+										
+										<f:selectItem 
+											itemLabel="#{label.none}"
+											itemValue="#{null}" />
+										
+										<f:selectItems 
+											var="address"
+											value="#{MBClientOrder.lovClient.clientSelected.addresses}"
+											itemLabel="#{address.street}, #{address.house_number} - #{address.neighborhood}"
+											itemValue="#{address}" />
+									</p:selectOneMenu>
+									
+									<p:commandButton 
+										icon="pi pi-plus"
+										style="height: 39px;" />
+								</div>
+							</div>
+	
+							<div class="vertical-left">
+								<p:outputLabel 
+									value="#{label.payment_method}" />
+								
+								<p:selectOneMenu 
+									converter="simpleEntityConverter"
+									style="width: 242.7px;">
+									
+									<f:selectItems 
+										var="payment"
+										value="#{MBPayment.payments}"
+										itemLabel="#{payment.name}"
+										itemValue="#{payment}" />
+								</p:selectOneMenu>
+							</div>
 						</div>
 						
 						<div class="vertical-left">
-							<p:outputLabel 
-								value="#{label.payment_method}" />
+							<h2 class="mg-t-10">#{label.cart}</h2>
 							
-							<p:selectOneMenu 
-								converter="simpleEntityConverter"
-								style="width: 200px;">
+							<p:panelGrid columns="2" width="600px">
+								<p>#{label.total_items}</p>
+								<p>#{MBCart.totalQuantityOfProdctsFromCart}</p>
 								
-								<f:selectItems 
-									var="payment"
-									value="#{MBPayment.payments}"
-									itemLabel="#{payment.name}"
-									itemValue="#{payment}" />
-							</p:selectOneMenu>
+								<p>#{label.total_order}</p>
+								<p>#{MBAppConfigs.getBrazilianCurrency(MBCart.totalOrder)}</p>
+							</p:panelGrid>
+							
+							<p:commandButton 
+								id="btnConfirmOrder"
+								value="#{label.confirm_order}"
+								icon="pi pi-check"
+								styleClass="mg-t-10"/>
 						</div>
 					</div>
+					<p:remoteCommand 
+						name="remoteUpdate"
+						update="@form" />
 			
-					<h2 class="mg-t-10">#{label.products}</h2>
+					<div class="horizontal-left mg-t-10 mg-b-10" style="#{MBClientOrder.startNewOrder ? 'display: flex' :  'display:  pointer-events: none; opacity: 0.6;'}">
+						<h2 class="mg-r-10">#{label.products}</h2>
+						<p:commandButton 
+							icon="pi pi-filter"
+							styleClass="optionsButtonStyle"
+							onclick="PF('dialog-filters-products').show();" />
+					</div>
 					
-					<p:dataTable 
-						widgetVar="tableProducts"
-						var="product"
-						value="#{MBTab_products.products}"
-						selectionMode="single"
-						selection="#{MBTab_products.product}"
-						rowKey="#{product.id}"
-						scrollable="true"
-						styleClass="#{MBTab_products.toggleFilter == false ? 'hide-filters' : ''} mg-t-10"
-						style="width: 100%;">
-									
-						<p:column styleClass="toggleFilter">
-							<f:facet name="header">
-								<p:commandLink
-									action="#{MBTab_products.changeToggleFilter()}"
-									oncomplete="remoteUpdate();">
-									
-									<i class="pi pi-filter"></i>
-								</p:commandLink>
-							</f:facet>
-						</p:column>
-	
-						<p:column headerText="#{label.options}">
-							<p:commandButton 
-								icon="pi pi-minus" 
-								styleClass="optionsButtonStyle mg-r-15" />
-								
-							<h:outputText value="0" class="mg-r-15" style="font-size: 23px;"/>		
-						
-							<p:commandButton 
-								icon="pi pi-plus" 
-								styleClass="optionsButtonStyle" />
-					
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.name}"
-							filterBy="#{product.name}">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										event="keyup" 
-										delay="500"
-										oncomplete="PF('tableProducts').filter()" />
-								</p:inputText>
-							</f:facet>
-							
-							<h:outputLabel value="#{product.name}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.price}"
-							filterBy="#{product.price}">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										event="keyup" 
-										delay="500"
-										oncomplete="PF('tableProducts').filter()" />
-								</p:inputText>
-							</f:facet>
-							
-							<h:outputLabel value="#{MBAppConfigs.getBrazilianCurrency(product.price)}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.category}"
-							filterBy="#{product.category.name}">
-							
-							<f:facet name="filter">
-								<p:selectOneMenu
-									style="width: 200px;">
-									
-									<f:selectItem
-										itemLabel="#{label.none}"
-										itemValue="" />
-									
-									<f:selectItems 
-										var="category"
-										value="#{MBTab_category.categories}"
-										itemLabel="#{category.name}"
-										itemValue="#{category.name}" />
-										
-									<p:ajax 
-										event="valueChange" 
-										oncomplete="PF('tableProducts').filter()" />
-								</p:selectOneMenu>
-							</f:facet>
-							
-							<h:outputLabel value="#{product.category.name}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.status}"
-							filterBy="#{product.status}">
-							
-							<f:facet name="filter">
-								<p:selectOneMenu
-									style="width: 200px;">
-									
-									<f:selectItem
-										itemLabel="#{label.none}"
-										itemValue="" />
-									
-									<f:selectItem
-										itemLabel="#{label.active}"
-										itemValue="active" />
-									
-									<f:selectItem 
-										itemLabel="#{label.disabled}"
-										itemValue="disabled"/>
-									
-									<p:ajax 
-										event="valueChange" 
-										oncomplete="PF('tableProducts').filter()" />
-								</p:selectOneMenu>
-							</f:facet>
-							
-							<h:outputLabel value="#{product.status eq 'active' ? label.active : label.disabled}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.rating}"
-							filterBy="#{product.rating}">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										event="keyup" 
-										delay="500"
-										oncomplete="PF('tableProducts').filter()" />
-								</p:inputText>
-							</f:facet>
-							
-							<h:outputLabel value="#{product.rating}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.creation_date}"
-							filterBy="#{product.creationDate}">
-							
-							<f:facet name="filter">
-								<p:datePicker pattern="dd/MM/yyyy">
-									<p:ajax 
-										event="valueChange" 
-										oncomplete="PF('tableProducts').filter()" />
-									
-									<p:ajax 
-										delay="500"
-										event="keyup" 
-										oncomplete="PF('tableProducts').filter()" />
-								</p:datePicker>
-							</f:facet>
-							
-							<h:outputText value="#{product.creationDate.time}">
-								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-							</h:outputText>
-						</p:column>
-					</p:dataTable>
-
+					<div class="horizontal-evenly" style="width: 100%; #{MBClientOrder.startNewOrder ? 'display: flex' :  'display:  pointer-events: none; opacity: 0.6; '} width: 100%;">
+						<ui:repeat var="product" value="#{MBTab_products.products}">
+							<components:product 
+								name="#{product.name}"
+								productId="#{product.id}"
+								description="#{product.description}"
+								price="#{product.price}"
+								imageBytes="#{product.imageBytes}"
+								rating="#{product.rating}"
+								status="#{product.status}"
+								optionsRendered="false" />
+						</ui:repeat>
+					</div>
 				</h:form>
+				
+				<ui:include src="/pages/admin/products/dialog_product_filters.xhtml" />
 			</ui:define>
 		</ui:composition>
 	</h:body>

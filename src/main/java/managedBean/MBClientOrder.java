@@ -31,6 +31,7 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	private LovClient lovClient;
 	private TOClientOrder manualOrder;
 	private Cart manualCart;
+	private Boolean startNewOrder;
 
 	public MBClientOrder() {
 		this.setOrderSBean(new KeepOrderSBean());
@@ -40,8 +41,21 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 		this.setLovClient(new LovClient());
 		this.setManualOrder(new TOClientOrder());
 		this.setManualCart(new Cart());
+		this.setStartNewOrder(false);
 		
 		this.list();
+	}
+	
+	public void initOrder() {
+		this.setStartNewOrder(true);
+		this.setManualCart(new Cart());
+		this.setManualOrder(new TOClientOrder());
+	}
+	
+	public void disableOrder() {
+		this.setManualCart(new Cart());
+		this.setManualOrder(new TOClientOrder());
+		this.setStartNewOrder(false);
 	}
 	
 	public void sendNewOrder() {
@@ -185,5 +199,11 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	}
 	public void setManualCart(Cart manualCart) {
 		this.manualCart = manualCart;
+	}
+	public Boolean getStartNewOrder() {
+		return startNewOrder;
+	}
+	public void setStartNewOrder(Boolean startNewOrder) {
+		this.startNewOrder = startNewOrder;
 	}
 }
