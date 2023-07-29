@@ -23,14 +23,17 @@ public class KeepAddressSBean extends AbstractManter<Address, TOAddress> impleme
 	}
 	
 	@Override
-	public void save(Address address, int client_id) {
+	public void save(TOAddress address, int client_id) {
+		Address model = this.convertToModel(address);
+		
+		
 		em.getTransaction().begin();
-		em.persist(address);
+		em.persist(model);
 		em.getTransaction().commit();
 		
 		Client client = em.find(Client.class, client_id);
 		
-		client.getAddresses().add(address);
+		client.getAddresses().add(model);
 		
 		em.getTransaction().begin();
 		em.merge(client);
@@ -38,9 +41,11 @@ public class KeepAddressSBean extends AbstractManter<Address, TOAddress> impleme
 	}
 
 	@Override
-	public void change(Address address, int client_id) {
+	public void change(TOAddress address, int client_id) {
+		Address model = this.convertToModel(address);
+		
 		em.getTransaction().begin();
-		em.merge(address);
+		em.merge(model);
 		em.getTransaction().commit();
 	}
 
@@ -62,7 +67,7 @@ public class KeepAddressSBean extends AbstractManter<Address, TOAddress> impleme
 	}
 
 	@Override
-	public List<Address> getClientAddresses(int client_id) {
+	public List<TOAddress> getClientAddresses(int client_id) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" SELECT A FROM ");
@@ -70,9 +75,55 @@ public class KeepAddressSBean extends AbstractManter<Address, TOAddress> impleme
 		sql.append(" JOIN C.addresses as A ");
 		sql.append(" WHERE C.id = :client_id");
 		
-		return em.createQuery(sql.toString(), Address.class)
+		List<Address> results = em.createQuery(sql.toString(), Address.class)
 				.setParameter("client_id", client_id)
 				.getResultList();
+		
+		return this.convertModelResults(results);
+	}
+	
+	@Override
+	public void save(TOAddress object) {
+		Address address = this.convertToModel(object);
+		
+		em.getTransaction().begin();
+		em.persist(address);
+		em.getTransaction().commit();
+	}
+
+	@Override
+	public void change(TOAddress object) {
+		Address address = this.convertToModel(object);
+		
+		em.getTransaction().begin();
+		em.merge(address);
+		em.getTransaction().commit();
+	}
+
+	@Override
+	public void remove(TOAddress object) {
+		Address address = this.convertToModel(object);
+		
+		em.getTransaction().begin();
+		em.remove(em.contains(address) ? address : em.merge(address));
+		em.getTransaction().commit();
+	}
+
+	@Override
+	public TOAddress findByIdTO(int id) {
+		return this.convertToDTO(this.findById(id));
+	}
+
+	@Override
+	public List<TOAddress> list() {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" SELECT A FROM ").append(Address.class.getName()).append(" A ");
+		
+		List<Address> results = em.createQuery(sql.toString(), Address.class)
+								  .getResultList();
+		
+		return this.convertModelResults(results);
 	}
 
 	//Getters and Setters

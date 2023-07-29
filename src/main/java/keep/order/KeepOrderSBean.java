@@ -28,6 +28,8 @@ public class KeepOrderSBean extends AbstractManter<ClientOrder, TOClientOrder> i
 		
 		ClientOrder model = this.convertToModel(object);
 		
+		model.setClient_id(object.getClient().getId());
+		
 		this.getCartSBean().change(object.getCart());
 		
 		em.getTransaction().begin();
@@ -116,8 +118,10 @@ public class KeepOrderSBean extends AbstractManter<ClientOrder, TOClientOrder> i
 		   .append(ClientOrder.class.getName()).append(" O ")
 		   .append(" WHERE status = 'A confirmar' ");
 		
-		return em.createQuery(sql.toString(), Number.class)
+		Number number = em.createQuery(sql.toString(), Number.class)
 				.getSingleResult();
+		
+		return number != null ? number : 0;
 	}
 
 	@Override
@@ -128,8 +132,10 @@ public class KeepOrderSBean extends AbstractManter<ClientOrder, TOClientOrder> i
 		   .append(ClientOrder.class.getName()).append(" O ")
 		   .append(" WHERE status = 'Em preparo' ");
 		
-		return em.createQuery(sql.toString(), Number.class)
+		Number number = em.createQuery(sql.toString(), Number.class)
 				.getSingleResult();
+		
+		return number != null ? number : 0;
 	}
 
 	@Override
@@ -140,8 +146,10 @@ public class KeepOrderSBean extends AbstractManter<ClientOrder, TOClientOrder> i
 		   .append(ClientOrder.class.getName()).append(" O ")
 		   .append(" WHERE status = 'Enviado' ");
 		
-		return em.createQuery(sql.toString(), Number.class)
+		Number number = em.createQuery(sql.toString(), Number.class)
 				.getSingleResult();
+		
+		return number != null ? number : 0;
 	}
 
 	@Override
@@ -152,8 +160,10 @@ public class KeepOrderSBean extends AbstractManter<ClientOrder, TOClientOrder> i
 		   .append(ClientOrder.class.getName()).append(" O ")
 		   .append(" WHERE status = 'Finalizado' ");
 		
-		return em.createQuery(sql.toString(), Number.class)
+		Number number = em.createQuery(sql.toString(), Number.class)
 				.getSingleResult();
+		
+		return number != null ? number : 0;
 	}
 
 	@Override
@@ -164,8 +174,10 @@ public class KeepOrderSBean extends AbstractManter<ClientOrder, TOClientOrder> i
 		   .append(ClientOrder.class.getName()).append(" O ")
 		   .append(" WHERE status = 'Cancelado' ");
 		
-		return em.createQuery(sql.toString(), Number.class)
+		Number number = em.createQuery(sql.toString(), Number.class)
 				.getSingleResult();
+		
+		return number != null ? number : 0;
 	}
 	
 	@Override

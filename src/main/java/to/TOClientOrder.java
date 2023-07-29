@@ -3,9 +3,6 @@ package to;
 import java.io.Serializable;
 import java.util.Date;
 
-import model.Address;
-import model.Cart;
-import model.Payment;
 import utils.AbstractObject;
 
 public class TOClientOrder extends AbstractObject implements Serializable {
@@ -17,9 +14,9 @@ public class TOClientOrder extends AbstractObject implements Serializable {
 	private String status;
 	private Date finishedDate;
 	private Date timeSent;
-	private Cart cart;
-	private Address address;
-	private Payment payment;
+	private TOCart cart;
+	private TOAddress address;
+	private TOPayment payment;
 	
 	// Getters and Setters
 	public int getId() {
@@ -46,24 +43,6 @@ public class TOClientOrder extends AbstractObject implements Serializable {
 	public void setFinishedDate(Date finishedDate) {
 		this.finishedDate = finishedDate;
 	}
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	public Payment getPayment() {
-		return payment;
-	}
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	}
 	public Date getTimeSent() {
 		return timeSent;
 	}
@@ -75,5 +54,23 @@ public class TOClientOrder extends AbstractObject implements Serializable {
 	}
 	public void setClient_id(int client_id) {
 		this.client_id = client_id;
+	}
+	public TOAddress getAddress() {
+		return address;
+	}
+	public void setAddress(TOAddress address) {
+		this.address = address;
+	}
+	public TOPayment getPayment() {
+		return payment;
+	}
+	public void setPayment(TOPayment payment) {
+		this.payment = payment;
+	}
+	public TOCart getCart() {
+		return cart;
+	}
+	public void setCart(TOCart cart) {
+		this.cart = cart;
 	}
 }

@@ -12,6 +12,7 @@ import org.primefaces.PrimeFaces;
 
 import keep.address.KeepAddressSBean;
 import model.Address;
+import to.TOAddress;
 import utils.AbstractBean;
 import utils.CepUtil;
 import utils.MessageUtil;
@@ -21,17 +22,17 @@ import utils.MessageUtil;
 public class MBAddress extends AbstractBean {
 	private static final long serialVersionUID = 434357587597049751L;
 	
-	private Address address;
-	private Address selectedAddress;
-	private List<Address> clientAddress;
+	private TOAddress address;
+	private TOAddress selectedAddress;
+	private List<TOAddress> clientAddress;
 	private KeepAddressSBean addressSBean;
 	
 	private boolean newAddressVisible;
 	
 	public MBAddress() {
-		this.setAddress(new Address());
+		this.setAddress(new TOAddress());
 		this.setAddressSBean(new KeepAddressSBean());
-		this.setClientAddress(new ArrayList<Address>());
+		this.setClientAddress(new ArrayList<TOAddress>());
 		this.setNewAddressVisible(false);
 		
 		this.updateClientAddresses();
@@ -39,7 +40,7 @@ public class MBAddress extends AbstractBean {
 	
 	public void save() {
 		this.getAddressSBean().save(this.getAddress(), getClient().getId());
-		this.setAddress(new Address());
+		this.setAddress(new TOAddress());
 		
 		this.updateClientAddresses();
 	}
@@ -89,7 +90,7 @@ public class MBAddress extends AbstractBean {
 	}
 	
 	public void selectAddress(int id) {
-		Address address = this.getAddressSBean().findById(id);
+		TOAddress address = this.getAddressSBean().findByIdTO(id);
 		
 		this.setSelectedAddress(address);
 		
@@ -97,18 +98,6 @@ public class MBAddress extends AbstractBean {
 	}
 
 	//Getters and Setters
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	public List<Address> getClientAddress() {
-		return clientAddress;
-	}
-	public void setClientAddress(List<Address> clientAddress) {
-		this.clientAddress = clientAddress;
-	}
 	public KeepAddressSBean getAddressSBean() {
 		return addressSBean;
 	}
@@ -121,10 +110,22 @@ public class MBAddress extends AbstractBean {
 	public void setNewAddressVisible(boolean newAddressVisible) {
 		this.newAddressVisible = newAddressVisible;
 	}
-	public Address getSelectedAddress() {
+	public List<TOAddress> getClientAddress() {
+		return clientAddress;
+	}
+	public void setClientAddress(List<TOAddress> clientAddress) {
+		this.clientAddress = clientAddress;
+	}
+	public TOAddress getAddress() {
+		return address;
+	}
+	public void setAddress(TOAddress address) {
+		this.address = address;
+	}
+	public TOAddress getSelectedAddress() {
 		return selectedAddress;
 	}
-	public void setSelectedAddress(Address selectedAddress) {
+	public void setSelectedAddress(TOAddress selectedAddress) {
 		this.selectedAddress = selectedAddress;
 	}
 }

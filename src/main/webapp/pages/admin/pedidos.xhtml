@@ -160,6 +160,7 @@
 								<div class='horizontal-left'>
 									<p:selectOneMenu
 										id="fieldAddress"
+										value="#{MBClientOrder.manualOrder.address}"
 										converter="simpleEntityConverter"
 										style="width: 200px;"
 										styleClass="mg-r-5">
@@ -186,6 +187,7 @@
 									value="#{label.payment_method}" />
 								
 								<p:selectOneMenu 
+									value="#{MBClientOrder.manualOrder.payment}"
 									converter="simpleEntityConverter"
 									style="width: 242.7px;">
 									
@@ -211,7 +213,9 @@
 							
 							<p:commandButton 
 								id="btnConfirmOrder"
+								action="#{MBClientOrder.sendNewOrder}"
 								value="#{label.confirm_order}"
+								update="@form, formCardInsights, formOrders"
 								icon="pi pi-check"
 								styleClass="mg-t-10"/>
 						</div>

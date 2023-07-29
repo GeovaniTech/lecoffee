@@ -1,47 +1,32 @@
-package model;
+package to;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import model.Item;
+import utils.AbstractObject;
 
-@Entity
-public class Cart {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TOCart extends AbstractObject implements Serializable {
+	private static final long serialVersionUID = -8483086496195469625L;
+	
 	private int id;
 	private boolean finished;
 	private Date creationDate;
 	private Date completionDate;
 	private Double total; 
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	@Column(unique = false)
 	private List<Item> items;
 	
-	public Cart() {
+	public TOCart() {
 		this.setItems(new ArrayList<Item>());
 	}
 	
-	// Getters and Setters
-	public int getId() {	
+	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public List<Item> getItems() {
-		return items;
-	}
-	public void setItems(List<Item> items) {
-		this.items = items;
 	}
 	public boolean isFinished() {
 		return finished;
@@ -66,5 +51,11 @@ public class Cart {
 	}
 	public void setTotal(Double total) {
 		this.total = total;
+	}
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 }

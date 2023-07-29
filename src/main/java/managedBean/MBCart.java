@@ -11,9 +11,9 @@ import org.primefaces.PrimeFaces;
 import keep.cart.KeepCartSBean;
 import keep.cart.item.KeepItemSBean;
 import keep.product.KeepProductSBean;
-import model.Cart;
 import model.Item;
 import model.Product;
+import to.TOCart;
 import to.TOClient;
 import utils.AbstractBean;
 import utils.Cookies;
@@ -23,7 +23,7 @@ import utils.Cookies;
 public class MBCart extends AbstractBean {
 	private static final long serialVersionUID = -5497296575605508749L;
 	
-	private Cart cart;
+	private TOCart cart;
 	private KeepCartSBean cartSBean;
 	private KeepItemSBean itemSBean;
 	private KeepProductSBean productSBean;
@@ -34,7 +34,7 @@ public class MBCart extends AbstractBean {
 		this.setItemSBean(new KeepItemSBean());
 		this.setProductSBean(new KeepProductSBean());
 		
-		this.setCart(new Cart());
+		this.setCart(new TOCart());
 		this.createCart();
 	}
 	
@@ -123,7 +123,7 @@ public class MBCart extends AbstractBean {
 	}
 	
 	public void generateNewCart() {
-		Cart newCart = newCart();
+		TOCart newCart = newCart();
 		
 		this.setCart(newCart);
 		
@@ -142,14 +142,14 @@ public class MBCart extends AbstractBean {
 	public void createCart() {
 		Integer id = Cookies.getCartIdFromCookie();
 
-		Cart newCart = new Cart();
+		TOCart newCart = new TOCart();
 		
 		if(id == null) {
 			newCart = newCart();
 			id = newCart.getId();
 		}
 		
-		newCart = this.getCartSBean().findById(id);
+		newCart = this.getCartSBean().findByIdTO(id);
 		
 		if(newCart == null) {
 			newCart = newCart();
@@ -166,8 +166,8 @@ public class MBCart extends AbstractBean {
 		response.addCookie(cookie);
 	}
 	
-	public Cart newCart() {
-		Cart cart = new Cart();
+	public TOCart newCart() {
+		TOCart cart = new TOCart();
 		this.getCartSBean().save(cart);
 		
 		return cart;
@@ -184,12 +184,6 @@ public class MBCart extends AbstractBean {
 	}
 
 	//Getters and Setters
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
 	public KeepCartSBean getCartSBean() {
 		return cartSBean;
 	}
@@ -207,5 +201,11 @@ public class MBCart extends AbstractBean {
 	}
 	public void setProductSBean(KeepProductSBean productSBean) {
 		this.productSBean = productSBean;
+	}
+	public TOCart getCart() {
+		return cart;
+	}
+	public void setCart(TOCart cart) {
+		this.cart = cart;
 	}
 }

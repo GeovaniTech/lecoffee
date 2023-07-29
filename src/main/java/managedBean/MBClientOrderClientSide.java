@@ -8,8 +8,8 @@ import javax.inject.Named;
 import keep.client.KeepClientSBean;
 import keep.order.KeepOrderSBean;
 import keep.payment.KeepPaymentSBean;
-import model.Address;
-import model.Cart;
+import to.TOAddress;
+import to.TOCart;
 import to.TOClientOrder;
 import to.TOPayment;
 import utils.AbstractBean;
@@ -41,10 +41,10 @@ public class MBClientOrderClientSide extends AbstractBean  {
 		this.setFinishedOrders(this.getOrderSBean().listFinishedsByClientId(this.getClient().getId()));
 	}
 	
-	public void finishOrder(Address address, TOPayment payment, Cart cart) {
+	public void finishOrder(TOAddress address, TOPayment payment, TOCart cart) {
 		this.getClientOrder().setAddress(address);
 		this.getClientOrder().setCart(cart);
-		this.getClientOrder().setPayment(this.getPaymentSBean().findModelById(payment.getId()));
+		this.getClientOrder().setPayment(this.getPaymentSBean().findById(payment.getId()));
 		this.getClientOrder().setClient(this.getClient());
 		this.getClientOrder().setClient_id(this.getClient().getId());
 		this.getClientOrder().setStatus("A confirmar");

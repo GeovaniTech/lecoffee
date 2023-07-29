@@ -3,11 +3,11 @@ package to;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-import model.Address;
-import model.Cart;
+import converter.BaseEntity;
 
-public class TOClient implements Serializable {
+public class TOClient implements Serializable, BaseEntity {
 	private static final long serialVersionUID = 7799424873449345678L;
 	
 	private int id;
@@ -23,8 +23,8 @@ public class TOClient implements Serializable {
 	private String street;
 	private String complement;
 	private Integer house_number;
-	private List<Cart> carts;
-	private List<Address> addresses;
+	private List<TOCart> carts;
+	private List<TOAddress> addresses;
 	private boolean blocked;
 	private boolean completedRegistration;
 	private String phone_number;
@@ -59,12 +59,6 @@ public class TOClient implements Serializable {
 	}
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
-	}
-	public List<Cart> getCarts() {
-		return carts;
-	}
-	public void setCarts(List<Cart> carts) {
-		this.carts = carts;
 	}
 	public boolean isCompletedRegistration() {
 		return completedRegistration;
@@ -150,11 +144,52 @@ public class TOClient implements Serializable {
 	public void setInactivationDate(Date inactivationDate) {
 		this.inactivationDate = inactivationDate;
 	}
-	public List<Address> getAddresses() {
+	public List<TOCart> getCarts() {
+		return carts;
+	}
+	public void setCarts(List<TOCart> carts) {
+		this.carts = carts;
+	}
+	public List<TOAddress> getAddresses() {
 		return addresses;
 	}
-	public void setAddresses(List<Address> addresses) {
+	public void setAddresses(List<TOAddress> addresses) {
 		this.addresses = addresses;
+	}
+
+	@Override
+	public Long getIdBase() {
+		return (long) this.getId();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountChangeDate, accountCreationDate, addresses, blocked, carts, cep, changePassword,
+				complement, completedRegistration, email, house_number, id, inactivationDate, lastLogin, neighborhood,
+				nivel, nome, phone_number, street, totalOrders);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TOClient other = (TOClient) obj;
+		return Objects.equals(accountChangeDate, other.accountChangeDate)
+				&& Objects.equals(accountCreationDate, other.accountCreationDate)
+				&& Objects.equals(addresses, other.addresses) && blocked == other.blocked
+				&& Objects.equals(carts, other.carts) && Objects.equals(cep, other.cep)
+				&& changePassword == other.changePassword && Objects.equals(complement, other.complement)
+				&& completedRegistration == other.completedRegistration && Objects.equals(email, other.email)
+				&& Objects.equals(house_number, other.house_number) && id == other.id
+				&& Objects.equals(inactivationDate, other.inactivationDate)
+				&& Objects.equals(lastLogin, other.lastLogin) && Objects.equals(neighborhood, other.neighborhood)
+				&& Objects.equals(nivel, other.nivel) && Objects.equals(nome, other.nome)
+				&& Objects.equals(phone_number, other.phone_number) && Objects.equals(street, other.street)
+				&& Objects.equals(totalOrders, other.totalOrders);
 	}
 }
 

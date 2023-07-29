@@ -3,9 +3,11 @@ package keep.cart;
 import javax.ejb.Local;
 
 import model.Cart;
+import to.TOCart;
+import utils.IMainMethodsKeep;
 
 @Local
-public interface IkeepCartSBean {
+public interface IkeepCartSBean extends IMainMethodsKeep<Cart, TOCart> {
 	public void save(Cart cart);
 	public void change(Cart cart);
 	public void remove(Cart cart);

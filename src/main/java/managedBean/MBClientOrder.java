@@ -17,6 +17,7 @@ import model.Cart;
 import model.ClientOrder;
 import model.Item;
 import model.Product;
+import to.TOCart;
 import to.TOClient;
 import to.TOClientOrder;
 import utils.AbstractFilterBean;
@@ -34,7 +35,7 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	private TOClientOrder orderSelected;
 	private LovClient lovClient;
 	private TOClientOrder manualOrder;
-	private Cart manualCart;
+	private TOCart manualCart;
 	private Boolean startNewOrder;
 
 	public MBClientOrder() {
@@ -109,16 +110,6 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 		return 0;
 	}
 	
-	public Double getTotalOrder() {
-		Double value = this.getCartSBean().getTotalOrder(this.getManualCart().getId());
-		
-		if(value == null) {
-			value = 0.0;
-		}
-		
-		return value;
-	}
-	
 	public int getTotalQuantityOfProdctsFromCart() {
 		int total = 0;
 		
@@ -131,8 +122,9 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	
 	public void initOrder() {
 		this.setStartNewOrder(true);
-		this.setManualCart(new Cart());
+		this.setManualCart(new TOCart());
 		this.setManualOrder(new TOClientOrder());
+		this.getLovClient().setClientSelected(new TOClient());
 		
 		this.getCartSBean().save(this.getManualCart());
 	}
@@ -143,7 +135,13 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	}
 	
 	public void sendNewOrder() {
+		this.getManualOrder().setCart(this.getManualCart());
+		this.getManualOrder().setClient(this.getLovClient().getClientSelected());
 		this.getManualOrder().setStatus("Em preparo");
+		
+		this.save();
+		
+		this.initOrder();
 	}
 	
 	public void acceptOrder(int orderId) {
@@ -210,7 +208,7 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	
 	@Override
 	public void save() {
-		
+		this.getOrderSBean().save(this.getManualOrder());
 	}
 
 	@Override
@@ -225,8 +223,8 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 		
 	}
 	
-	public Double getTotalOrder(int cart_id) {
-		Double value = this.getCartSBean().getTotalOrder(cart_id);
+	public Double getTotalOrder() {
+		Double value = this.getCartSBean().getTotalOrder(this.getManualCart().getId());
 		
 		if(value == null) {
 			value = 0.0;
@@ -278,12 +276,6 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	public void setManualOrder(TOClientOrder manualOrder) {
 		this.manualOrder = manualOrder;
 	}
-	public Cart getManualCart() {
-		return manualCart;
-	}
-	public void setManualCart(Cart manualCart) {
-		this.manualCart = manualCart;
-	}
 	public Boolean getStartNewOrder() {
 		return startNewOrder;
 	}
@@ -295,5 +287,11 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	}
 	public void setProductSBean(KeepProductSBean productSBean) {
 		this.productSBean = productSBean;
+	}
+	public TOCart getManualCart() {
+		return manualCart;
+	}
+	public void setManualCart(TOCart manualCart) {
+		this.manualCart = manualCart;
 	}
 }
