@@ -203,10 +203,10 @@
 							
 							<p:panelGrid columns="2" width="600px">
 								<p>#{label.total_items}</p>
-								<p>#{MBCart.totalQuantityOfProdctsFromCart}</p>
+								<p>#{MBClientOrder.totalQuantityOfProdctsFromCart}</p>
 								
 								<p>#{label.total_order}</p>
-								<p>#{MBAppConfigs.getBrazilianCurrency(MBCart.totalOrder)}</p>
+								<p>#{MBAppConfigs.getBrazilianCurrency(MBClientOrder.totalOrder)}</p>
 							</p:panelGrid>
 							
 							<p:commandButton 
@@ -238,7 +238,11 @@
 								imageBytes="#{product.imageBytes}"
 								rating="#{product.rating}"
 								status="#{product.status}"
-								optionsRendered="false" />
+								optionsRendered="false"
+								addProduct="#{MBClientOrder.addProduct(product.id)}"
+								removeProduct="#{MBClientOrder.removeProduct(product.id)}"
+								totalQuantityOfProduct="#{MBClientOrder.getQuantityOfProduct(product.id)}"
+								update="@form" />
 						</ui:repeat>
 					</div>
 				</h:form>

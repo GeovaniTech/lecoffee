@@ -8,8 +8,13 @@
   	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:components="http://java.sun.com/jsf/composite/components">
 	
-	<composite:interface>
-		<composite:attribute name="productId"></composite:attribute>
+	<composite:interface>		
+		<composite:attribute name="totalQuantityOfProduct" />
+		<composite:attribute name="addProduct" method-signature="void addProduct(int)" />
+		<composite:attribute name="removeProduct" method-signature="void addProduct(int)" />
+		<composite:attribute name="oncomplete" />
+		<composite:attribute name="update" />
+		<composite:attribute name="productId" />
 		<composite:attribute name="name" />
 		<composite:attribute name="price" />
 		<composite:attribute name="description" />
@@ -46,7 +51,9 @@
 				<div class="vertical-center">
 					<div class="buttons desktop-hidden vertical-center">
 						<p:commandLink 
-							action="#{MBCart.removeProduct(cc.attrs.productId)}"
+							action="#{cc.attrs.removeProduct}"
+							update="#{cc.attrs.update}"
+							oncomplete="#{cc.attrs.oncomplete}"
 							class="minus"
 							rendered="#{cc.attrs.optionsRendered == true ? false : true}">
 							
@@ -56,11 +63,13 @@
 						</p:commandLink>
 						
 	                    <div id="counter_#{cc.attrs.productId}" class="count">
-	                        <h:outputText value="#{MBCart.getQuantityOfProduct(cc.attrs.productId)}" rendered="#{cc.attrs.optionsRendered == true ? false : true}" />
+	                        <h:outputText value="#{cc.attrs.totalQuantityOfProduct == null ? 0 : cc.attrs.totalQuantityOfProduct}" rendered="#{cc.attrs.optionsRendered == true ? false : true}" />
 	                    </div>
 						
 						<p:commandLink 
-							action="#{MBCart.addProduct(cc.attrs.productId)}"
+							action="#{cc.attrs.addProduct}"
+							update="#{cc.attrs.update}"
+							oncomplete="#{cc.attrs.oncomplete}"
 							class="more"
 							rendered="#{cc.attrs.optionsRendered == true ? false : true}">
 	                        

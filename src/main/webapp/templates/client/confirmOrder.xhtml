@@ -58,7 +58,10 @@
 							imageBytes="#{item.product.imageBytes}"
 							rating="#{item.product.rating}"
 							status="#{item.product.status}"
-							optionsRendered="false" />
+							optionsRendered="false"
+							addProduct="#{MBCart.addProduct(item.product.id)}"
+							removeProduct="#{MBCart.removeProduct(item.product.id)}"
+							totalQuantityOfProduct="#{MBCart.getQuantityOfProduct(item.product.id)}" />
 					</ui:repeat>
 					
 					<div style="height: 190px;">

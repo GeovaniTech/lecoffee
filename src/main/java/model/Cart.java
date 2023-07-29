@@ -30,26 +30,6 @@ public class Cart {
 		this.setItems(new ArrayList<Item>());
 	}
 	
-	public int getTotalQuantityOfProdctsFromCart() {
-		int total = 0;
-		
-		for(Item item : this.getItems()) {
-			total += item.getAmount();
-		}
-		
-		return total;
-	}
-	
-	public Integer getQuantityOfProduct(int id) {
-		for(Item item : this.getItems()) {
-			if(item.getProduct().getId() == id) {
-				return item.getAmount();
-			}
-		}
-		
-		return 0;
-	}
-	
 	// Getters and Setters
 	public int getId() {	
 		return id;
