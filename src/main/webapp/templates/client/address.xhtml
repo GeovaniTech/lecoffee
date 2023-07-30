@@ -61,7 +61,7 @@
 						<p style="font-size: 20px;">#{label.select_an_address}</p>
 					</div>
 					
-					<ui:repeat var="address" value="#{MBAddress.clientAddress}">						
+					<ui:repeat var="address" value="#{MBListOrders.clientAddress}">						
 						<div class="card-address horizontal-between">
 							<p:commandLink 
 								action="#{MBAddress.selectAddress(address.id)}"
