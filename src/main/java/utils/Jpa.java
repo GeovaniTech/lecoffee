@@ -8,6 +8,7 @@ import javax.persistence.PersistenceUnit;
 @PersistenceUnit(unitName = "lecoffee")
 public class Jpa {
 	private static EntityManagerFactory emf = null;
+	private static EntityManager em;
 
 	static {
 		if(emf == null) {
@@ -16,6 +17,10 @@ public class Jpa {
 	}
 	
 	public static EntityManager getEntityManager() {
-		return emf.createEntityManager();
+		if(em == null) {
+			em = emf.createEntityManager();
+		}
+		
+		return em;
 	}
 }
