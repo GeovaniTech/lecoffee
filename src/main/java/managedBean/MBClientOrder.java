@@ -1,10 +1,12 @@
 package managedBean;
 
+import java.awt.TrayIcon.MessageType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
@@ -22,6 +24,7 @@ import to.TOClient;
 import to.TOClientOrder;
 import utils.AbstractFilterBean;
 import utils.IMainMethodsBean;
+import utils.MessageUtil;
 
 @Named("MBClientOrder")
 @SessionScoped
@@ -135,6 +138,12 @@ public class MBClientOrder extends AbstractFilterBean<TOClientOrder, ClientOrder
 	}
 	
 	public void sendNewOrder() {
+		if(this.getManualCart().getItems().size() == 0) {
+			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("there_is_no_product"), null, FacesMessage.SEVERITY_WARN);
+			
+			return;
+		}
+		
 		this.getManualOrder().setCart(this.getManualCart());
 		this.getManualOrder().setClient(this.getLovClient().getClientSelected());
 		this.getManualOrder().setStatus("Em preparo");

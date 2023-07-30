@@ -50,8 +50,14 @@
 						</span>
 						
 						<div class="horizontal-left-centers">
-							<h:outputText value="#{cc.attrs.street}, #{cc.attrs.house_number} - " />
-							<h:outputText value="#{cc.attrs.neighborhood}" style="font-size: 14px;" />
+							<h:outputText value="#{cc.attrs.street}, #{cc.attrs.house_number} - " 
+										  rendered="#{cc.attrs.street == null or cc.attrs.street eq '' ? false : true}" />
+							
+							<h:outputText value="#{cc.attrs.neighborhood}" 
+										  rendered="#{cc.attrs.street == null or cc.attrs.street eq '' ? false : true}" />
+										  
+							<h:outputText value="#{label.not_registered}"
+										  rendered="#{cc.attrs.street == null or cc.attrs.street eq '' ? true : false}" />
 						</div>
 					</div>
 				</div>
@@ -77,7 +83,14 @@
 					person
 				</span>
 				
-				<h:outputText value="#{cc.attrs.clientName eq '' or cc.attrs.clientName == null ? cc.attrs.clientEmail : cc.attrs.clientName}" />	
+				<h:outputText value="#{cc.attrs.clientName}"
+							  rendered="#{cc.attrs.clientName == null or cc.attrs.clientName eq '' ? false : true}" />	
+							  
+				<h:outputText value="#{cc.attrs.clientEmail}"	
+							  rendered="#{cc.attrs.clientName != null and cc.attrs.clientName != '' or cc.attrs.clientEmail == null or cc.attrs.clientEmail eq '' ? false : true}" />	
+				
+				<h:outputText value="#{label.not_registered}"	
+							  rendered="#{cc.attrs.clientEmail == null or cc.attrs.clientEmail eq '' ? true : false}" />	
 			</div>
 			
 			<p:accordionPanel styleClass="mg-t-20" activeIndex="1">

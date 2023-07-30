@@ -119,6 +119,13 @@
 					</div>
 				</h:form>
 				
+				<h:form id="messages" style="margin-left: 415px;">
+					<p:messages 
+						showDetail="false"
+						showIcon="false"
+		        		autoUpdate="true"  />
+				</h:form>
+				
 				<h:form style="margin-left: 415px;" styleClass="vertical-left">
 					<div class="order-top-buttons">
 						<p:commandButton 
@@ -215,7 +222,7 @@
 								id="btnConfirmOrder"
 								action="#{MBClientOrder.sendNewOrder}"
 								value="#{label.confirm_order}"
-								update="@form, formCardInsights, formOrders"
+								update="@form, formCardInsights, formOrders, messages"
 								icon="pi pi-check"
 								styleClass="mg-t-10"/>
 						</div>
