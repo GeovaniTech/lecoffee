@@ -78,6 +78,8 @@
 					
 						<p:remoteCommand 
 							name="updateOrdersAdmin"
+							onstart="saveScrollPosition();"
+							oncomplete="restoreScrollPosition();"
 							update="@form" />
 						
 						<div id="container-orders" class="container-orders">

@@ -112,7 +112,6 @@
 						value="#{label.accept}"
 						action="#{MBClientOrder.acceptOrder(cc.attrs.orderId)}"
 						styleClass="mg-r-5"
-						update="@form"
 						oncomplete="updateCards(); updateOrdersAdmin();"
 						rendered="#{cc.attrs.status eq 'A confirmar' ? true : false}" />
 
@@ -120,7 +119,6 @@
 						icon="pi pi-send"
 						value="#{label.send}"
 						action="#{MBClientOrder.sendOrder(cc.attrs.orderId)}"
-						update="@form"
 						styleClass="mg-r-5"
 						oncomplete="updateCards(); updateOrdersAdmin();"
 						rendered="#{cc.attrs.status eq 'Em preparo'}" />
@@ -129,7 +127,6 @@
 						icon="pi pi-check-square"
 						value="#{label.finish}"
 						action="#{MBClientOrder.finishOrder(cc.attrs.orderId)}"
-						update="@form"
 						styleClass="mg-r-5"
 						oncomplete="updateCards(); updateOrdersAdmin();"
 						rendered="#{cc.attrs.status eq 'Enviado'}" />
@@ -139,7 +136,6 @@
 						value="#{label.cancel}"
 						action="#{MBClientOrder.cancelOrder(cc.attrs.orderId)}"
 						styleClass="deleteStyle mg-r-5"
-						update="@form"
 						oncomplete="updateCards(); updateOrdersAdmin();"
 						rendered="#{cc.attrs.status != 'Finalizado' and cc.attrs.status != 'Cancelado' ? true : false}" />					
 				</f:facet>
