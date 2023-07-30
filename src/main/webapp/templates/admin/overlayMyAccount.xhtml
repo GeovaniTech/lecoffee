@@ -51,10 +51,6 @@
 					#{label.my_orders}
 				</p:commandLink>
 				
-				<p:commandLink styleClass="buttonMyAccount">
-					#{label.personal_data}
-				</p:commandLink>
-				
 				<h:panelGroup rendered="#{MBAppConfigs.userLogged ? true : false}">
 					<p:commandLink
 						value="#{label.administrative_panel}"
@@ -99,10 +95,6 @@
 					styleClass="buttonMyAccount">
 					
 					#{label.my_orders}
-				</p:commandLink>
-				
-				<p:commandLink styleClass="buttonMyAccount">
-					#{label.personal_data}
 				</p:commandLink>
 				
 				<h:panelGroup rendered="#{MBAppConfigs.userLogged ? true : false}">
