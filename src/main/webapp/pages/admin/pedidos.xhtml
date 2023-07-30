@@ -17,6 +17,18 @@
 			</ui:define>
 			
 			<ui:define name="body">
+				<script>
+			        var scrollPosition = 0;
+	
+			        function saveScrollPosition() {
+			            scrollPosition = document.getElementById('container-orders').scrollTop;
+			        }
+
+			        function restoreScrollPosition() {
+			            document.getElementById('container-orders').scrollTop = scrollPosition;
+			        }
+				</script>
+				
 				<h:outputStylesheet library="css" name="/products/product.css"  />
 				<h:outputStylesheet library="css" name="/client/address/address.css" />
 				
@@ -56,35 +68,38 @@
 				<h:outputStylesheet library="css" name="/simpleCard/simpleCard.css" />
 				<h:outputStylesheet library="css" name="/cardOrder/cardOrder.css" />
 				
-				<h:form id="formOrders">
-					<p:poll 
-						interval="10"
-						update="@form"
-						oncomplete="updateCards();"/>
+				<div id="scrollTeste">
+					<h:form id="formOrders">
+						<p:poll 
+							interval="10"
+							update="@form"
+							onstart="saveScrollPosition();"
+							oncomplete="updateCards(); restoreScrollPosition(); "/>
 					
-					<p:remoteCommand 
-						name="updateOrdersAdmin"
-						update="@form" />
-					
-					<div class="container-orders">
-						<ui:repeat var="order" value="#{MBListOrders.allOrdersAdmin}">
-							<components:order 
-								orderId="#{order.id}"
-								clientName="#{order.client.nome}"
-								clientEmail="#{order.client.email}"
-								street="#{order.address.street}"
-								house_number="#{order.address.house_number}"
-								neighborhood="#{order.address.neighborhood}"
-								cartId="#{order.cart.id}"
-								requestDate="#{order.creationDate}"
-								status="#{order.status}"
-								paymentName="#{order.payment.name}"
-								paymentIcon="#{order.payment.icon}"
-								items="#{order.cart.items}"
-								renderAdminOptions="true" />
-						</ui:repeat>
-					</div>
-				</h:form>
+						<p:remoteCommand 
+							name="updateOrdersAdmin"
+							update="@form" />
+						
+						<div id="container-orders" class="container-orders">
+							<ui:repeat var="order" value="#{MBListOrders.allOrdersAdmin}">
+								<components:order 
+									orderId="#{order.id}"
+									clientName="#{order.client.nome}"
+									clientEmail="#{order.client.email}"
+									street="#{order.address.street}"
+									house_number="#{order.address.house_number}"
+									neighborhood="#{order.address.neighborhood}"
+									cartId="#{order.cart.id}"
+									requestDate="#{order.creationDate}"
+									status="#{order.status}"
+									paymentName="#{order.payment.name}"
+									paymentIcon="#{order.payment.icon}"
+									items="#{order.cart.items}"
+									renderAdminOptions="true" />
+							</ui:repeat>
+						</div>
+					</h:form>
+				</div>
 				
 				<h:form id="formCardInsights" style="margin-left: 375px;">
 					<p:remoteCommand 
@@ -132,14 +147,14 @@
 							icon="pi pi-plus"
 							value="#{label.new_order}" 
 							action="#{MBClientOrder.initOrder()}"
-							update="@form"
+							update="@form, messages"
 							styleClass="mg-r-5" />
 						
 						<p:commandButton 
 							icon="pi pi-times"
 							value="#{label.cancel_changes}"
 							action="#{MBClientOrder.disableOrder()}"
-							update="@form"
+							update="@form, messages"
 							styleClass="deleteStyle"
 							disabled="#{!MBClientOrder.startNewOrder}" />
 					</div>
@@ -222,6 +237,8 @@
 								id="btnConfirmOrder"
 								action="#{MBClientOrder.sendNewOrder}"
 								value="#{label.confirm_order}"
+								onstart="saveScrollPosition();"
+								oncomplete="restoreScrollPosition();"
 								update="@form, formCardInsights, formOrders, messages"
 								icon="pi pi-check"
 								styleClass="mg-t-10"/>
