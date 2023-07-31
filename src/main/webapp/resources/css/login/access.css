@@ -83,6 +83,7 @@ form {
 }
 
 form .field {
+    width: 330px !important;
     border: 0px;
     font-size: 18px;
     padding-bottom: 5px;

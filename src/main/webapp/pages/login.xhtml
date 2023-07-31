@@ -72,12 +72,21 @@
 							requiredMessage="#{label.email_required}"
 							class="field" />
 						
-			            <h:inputSecret 
-				           	value="#{MBLogin.password}"
-				           	required="true" 
-				           	requiredMessage="#{label.password_required}"
-				           	a:placeholder="#{label.password}"
-				           	class="field" />
+						<div>
+				            <h:inputSecret 
+				            	id="password"
+					           	value="#{MBLogin.password}"
+					           	required="true" 
+					           	requiredMessage="#{label.password_required}"
+					           	a:placeholder="#{label.password}"
+					           	class="field" />
+						
+    						<p:commandButton 	
+				             	action="#{MBLogin.changeSeePassword}"
+				             	icon="#{MBLogin.seePassword ? 'pi pi-eye-slash' : 'pi pi-eye'}"
+				             	process="@this"
+				             	update="@this" />
+						</div>
 			
 			            <p:commandButton
 				           	id="btnRegister"

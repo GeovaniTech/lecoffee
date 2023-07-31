@@ -46,6 +46,14 @@
 					autoRun="true"
 					action="#{MBRegister.cadastrar()}"
 					update=":formRegister"/>
+					
+				<p:remoteCommand 
+					autoRun="true"
+					action="#{MBRegister.changeSeePassword(true)}" />
+				
+				<p:remoteCommand 
+					autoRun="true"
+					action="#{MBRegister.changeSeeRepeatPassword(true)}" />
 			</h:form>
 			
 			<div class="container">
@@ -71,19 +79,37 @@
 		                	a:placeholder="#{label.email}" 
 		                	class="field" />
 		                
-		                <h:inputSecret 
-		                	value="#{MBRegister.senha}"
-		                	required="true" 
-		                	requiredMessage="#{label.password_required}"
-		                	a:placeholder="#{label.password}" 
-		                	class="field" />
+						<div>
+			                <h:inputSecret 
+			                	id="password"
+			                	value="#{MBRegister.senha}"
+			                	required="true" 
+			                	requiredMessage="#{label.password_required}"
+			                	a:placeholder="#{label.password}"
+			                	class="field" />
+			                	
+    						<p:commandButton 	
+				             	action="#{MBRegister.changeSeePassword(false)}"
+				             	icon="#{MBRegister.seePassword ? 'pi pi-eye-slash' : 'pi pi-eye'}"
+				             	process="@this"
+				             	update="@this" />
+						</div>
 		                
-		                <h:inputSecret 
-		                	value="#{MBRegister.confirmaSenha}"
-			                required="true" 
-			                requiredMessage="#{label.repeat_password_required}"
-			                a:placeholder="#{label.repeat_password}" 
-			                class="field" />
+						<div>
+			                <h:inputSecret 
+			                	id="repeatPassword"
+			                	value="#{MBRegister.confirmaSenha}"
+				                required="true" 
+				                requiredMessage="#{label.repeat_password_required}"
+				                a:placeholder="#{label.repeat_password}" 
+				                class="field" />
+				                
+				             <p:commandButton 
+				             	action="#{MBRegister.changeSeeRepeatPassword(false)}"
+				             	icon="#{MBRegister.seeRepeatPassword ? 'pi pi-eye-slash' : 'pi pi-eye'}"
+				             	process="@this"
+				             	update="@this" />
+						</div>
 			                
 	       		        <p:commandButton
 		                	id="btnRegister"
