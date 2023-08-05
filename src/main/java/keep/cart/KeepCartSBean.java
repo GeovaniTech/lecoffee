@@ -124,7 +124,9 @@ public class KeepCartSBean extends AbstractManter<Cart, TOCart> implements Ikeep
 
 	@Override
 	public TOCart findByIdTO(int id) {
-		return this.convertToDTO(this.findById(id));
+		Cart cart = this.findById(id);
+		
+		return cart != null ? this.convertToDTO(cart) : null;
 	}
 
 	@Override

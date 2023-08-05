@@ -59,6 +59,8 @@ public class MBCart extends AbstractBean {
 	}
 	
 	public Double getTotalOrder() {
+		this.validCart();
+		
 		Double value = this.getCartSBean().getTotalOrder(this.getCart().getId());
 		
 		if(value == null) {
@@ -69,6 +71,8 @@ public class MBCart extends AbstractBean {
 	}
 	
 	public void addProduct(int id) {
+		this.validCart();
+		
 		Product product = this.getProductSBean().findById(id);
 		
 		for(int i = 0;  i < this.getCart().getItems().size(); i++) {
@@ -97,6 +101,8 @@ public class MBCart extends AbstractBean {
 	}
 	
 	public void removeProduct(int id) {
+		this.validCart();
+		
 		Product product = this.getProductSBean().findById(id);
 		
 		for(int i = 0; i < this.getCart().getItems().size(); i++) {
@@ -137,6 +143,14 @@ public class MBCart extends AbstractBean {
 		
 		PrimeFaces.current().executeScript("counterTotalProducts(); updateBottomCard(); counterTotalProductsDesktop(); updateProductsCart(); updateProductsCategories(); updateProductsOrder(); updateBottomCardOrder();");
 		PrimeFaces.current().executeScript("orderFlow('cart'); orderFlow('address'); orderFlow('payment'); orderFlow('confirmOrder');");
+	}
+	
+	public void validCart() {
+		TOCart cart = this.getCartSBean().findByIdTO(this.getCart().getId());
+		
+		if(cart == null) {
+			this.createCart();
+		}
 	}
 	
 	public void createCart() {
