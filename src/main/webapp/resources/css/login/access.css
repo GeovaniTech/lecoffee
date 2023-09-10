@@ -20,7 +20,7 @@
 }
 
 h2, h5 {
-	color: var(--text-mouse);
+	color: var(--text);
 }
 
 h5 {
@@ -33,7 +33,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
-	background-color: var(--background-body);
+	background-image: url('/lecoffee/resources/images/back4.avif');
 }
 
 .container {
@@ -47,7 +47,7 @@ body {
 	
 	padding: 30px;
 	border-radius: 15px;
-	background-color: var(--background-general-mouse);
+	background-color: var(--background-general);
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 4px 16px 0 rgba(0,0,0,0.15);
 }
 
@@ -61,7 +61,7 @@ body {
 
 .center > * {
 	width: 100%;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .container > * {
@@ -82,24 +82,14 @@ form {
 	justify-content: center;
 }
 
-form .field {
+.field {
     width: 330px !important;
-    border: 0px;
-    font-size: 18px;
-    padding-bottom: 5px;
-    background-color: var(--background-general-mouse);
-    border-bottom: 2px solid var(--text-mouse);
-    outline: none;
-    color: var(--text-mouse);
-}
-
-form > .field, button {
-	width: 100%;
-	margin-bottom: 20px;
+	background-color: var(--background-general-mouse) !important;
+	font-size: 18px !important;
 }
 
 .container a {
-	color: var(--text-mouse);
+	color: var(--text);
 	transition: 0.4s;
 	font-size: 18px;
 }
@@ -112,7 +102,7 @@ form > .field, button {
 	text-align: center;
     text-decoration: none;
     margin-right: 10px;
-    color: var(--text-mouse);
+    color: var(--text);
     font-size: 35px;
     transition: 0.4s;
 }

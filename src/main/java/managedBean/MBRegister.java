@@ -22,38 +22,9 @@ public class MBRegister extends AbstractBean {
 	private String confirmaSenha;
 	private KeepClientSBean sbean;
 	private String token;
-	private boolean seePassword;
-	private boolean seeRepeatPassword;
 	
 	public MBRegister() {
 		sbean = new KeepClientSBean();
-		this.setSeePassword(false);
-		this.setSeeRepeatPassword(false);
-	}
-	
-	public void changeSeePassword(boolean onlyUpdate) {
-		if(!onlyUpdate) {
-			this.setSeePassword(!this.isSeePassword());
-		}
-		
-		
-		if(this.isSeePassword()) {
-			PrimeFaces.current().executeScript("document.getElementById('formRegister:password').type = 'TEXT';");
-		} else {
-			PrimeFaces.current().executeScript("document.getElementById('formRegister:password').type = 'PASSWORD';");
-		}
-	}
-	
-	public void changeSeeRepeatPassword(boolean onlyUpdate) {
-		if(!onlyUpdate) {
-			this.setSeeRepeatPassword(!this.isSeeRepeatPassword());
-		}
-		
-		if(this.isSeeRepeatPassword()) {
-			PrimeFaces.current().executeScript("document.getElementById('formRegister:repeatPassword').type = 'TEXT';");
-		} else {
-			PrimeFaces.current().executeScript("document.getElementById('formRegister:repeatPassword').type = 'PASSWORD';");
-		}
 	}
 	
 	public boolean fazerValidacoes() {
@@ -152,17 +123,5 @@ public class MBRegister extends AbstractBean {
 	}
 	public void setToken(String token) {
 		this.token = token;
-	}
-	public boolean isSeePassword() {
-		return seePassword;
-	}
-	public void setSeePassword(boolean seePassword) {
-		this.seePassword = seePassword;
-	}
-	public boolean isSeeRepeatPassword() {
-		return seeRepeatPassword;
-	}
-	public void setSeeRepeatPassword(boolean seeRepeatPassword) {
-		this.seeRepeatPassword = seeRepeatPassword;
 	}
 }

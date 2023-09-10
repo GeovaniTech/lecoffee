@@ -65,27 +65,27 @@
 			        		showIcon="false"
 			        		showDetail="false" />
 			
-						<h:inputText 
-							value="#{MBLogin.email}"
-							a:placeholder="#{label.email}"
-							required="true"
-							requiredMessage="#{label.email_required}"
-							class="field" />
+						<div>
+							<p:outputLabel for="email" value="#{label.email}"/>
+							<p:inputText 
+								id="email"
+								value="#{MBLogin.email}"
+								placeholder="#{label.email}"
+								required="true"
+								requiredMessage="#{label.email_required}"
+								styleClass="field mg-b-10" />
+						</div>
 						
 						<div>
-				            <h:inputSecret 
-				            	id="password"
+							<p:outputLabel for="password" value="#{label.password}"/>
+				            <p:password 
+	    						id="password"
 					           	value="#{MBLogin.password}"
 					           	required="true" 
 					           	requiredMessage="#{label.password_required}"
-					           	a:placeholder="#{label.password}"
-					           	class="field" />
-						
-    						<p:commandButton 	
-				             	action="#{MBLogin.changeSeePassword}"
-				             	icon="#{MBLogin.seePassword ? 'pi pi-eye-slash' : 'pi pi-eye'}"
-				             	process="@this"
-				             	update="@this" />
+					           	placeholder="#{label.password}"
+					           	toggleMask="true"
+					           	styleClass="field" />
 						</div>
 			
 			            <p:commandButton
@@ -94,8 +94,10 @@
 				           	widgetVar="btnRegister"
 				           	action="#{MBLogin.logar()}"
 				           	update="messages"
-				           	styleClass="buttonClass"
-				           	style="margin-bottom: 15px;" />
+				           	styleClass="buttonClass mg-t-15 mg-b-10"
+				            style="width: 100%; margin-top: 15px !important; margin-bottom: 10px !important;" />
+				           	
+						<p:defaultCommand target="btnRegister" />
 					</h:form>						
 					
 					<div class="horizontal-between">

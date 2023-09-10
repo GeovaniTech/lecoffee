@@ -31,21 +31,10 @@ public class MBLogin extends AbstractBean {
 	private String password;
 	private KeepClientSBean sBean;
 	private String registerFinished;
-	private boolean seePassword;
 	
 	public MBLogin() {		
 		this.setsBean(new KeepClientSBean());
 		redirectUserFromCookie();
-	}
-
-	public void changeSeePassword() {
-		this.setSeePassword(!this.isSeePassword());
-
-		if(this.isSeePassword()) {
-			PrimeFaces.current().executeScript("document.getElementById('formLogin:password').type = 'TEXT';");
-		} else {
-			PrimeFaces.current().executeScript("document.getElementById('formLogin:password').type = 'PASSWORD';");
-		}
 	}
 	
 	public void logar() {
@@ -171,13 +160,5 @@ public class MBLogin extends AbstractBean {
 
 	public void setRegisterFinished(String registerFinished) {
 		this.registerFinished = registerFinished;
-	}
-
-	public boolean isSeePassword() {
-		return seePassword;
-	}
-
-	public void setSeePassword(boolean seePassword) {
-		this.seePassword = seePassword;
 	}
 }
