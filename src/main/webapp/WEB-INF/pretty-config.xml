@@ -29,7 +29,7 @@
 	
 	<url-mapping id="adminPedidos">
 		<pattern value="/admin/pedidos" />
-		<view-id value="/pages/admin/pedidos.xhtml"/>
+		<view-id value="/pages/admin/orders/pedidos.xhtml"/>
 	</url-mapping>
 	
 	<url-mapping id="adminProdutos">
