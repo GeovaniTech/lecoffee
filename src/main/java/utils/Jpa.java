@@ -17,9 +17,7 @@ public class Jpa {
 	}
 	
 	public static EntityManager getEntityManager() {
-		if(em == null) {
-			em = emf.createEntityManager();
-		}
+		em = emf.createEntityManager();
 		
 		return em;
 	}
