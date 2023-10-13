@@ -66,9 +66,11 @@
 					<p:commandLink 
 						id="menu-pedidos"
 						action="#{MBAppConfigs.redirectTo('/lecoffee/admin/pedidos')}">
+						
 						<span class="material-symbols-outlined google-icons">
 							bakery_dining
 						</span>
+						
 						#{label.orders}
 					</p:commandLink>
 					
@@ -86,32 +88,45 @@
 					<p:commandLink 
 						id="payments"
 						action="#{MBAppConfigs.redirectTo('/lecoffee/admin/payments')}">
+						
 						<span class="material-symbols-outlined google-icons">
 							credit_card
 						</span>
+						
 						#{label.payment}s
 					</p:commandLink>
 					
-					<a href="/lecoffee/admin/ganhos" id="menu-ganhos">
+					<p:commandLink 
+						id="menu-ganhos"
+						action="#{MBAppConfigs.redirectTo('/lecoffee/admin/earnings')}">
+						
 						<span class="material-symbols-outlined google-icons">
 							currency_bitcoin
 						</span>
+						
 						#{label.earnings}
-					</a>
+					</p:commandLink>
 					
-					<a href="/lecoffee/admin/clientes" id="menu-clientes">
+					<p:commandLink 
+						id="menu-clientes"
+						action="#{MBAppConfigs.redirectTo('/lecoffee/admin/users')}">
+						
 						<span class="material-symbols-outlined google-icons">
 							group
 						</span>
-						#{label.customers}
-					</a>
-	
-					<a href="/lecoffee/home">
-						<span class="material-symbols-outlined google-icons">
-							web
+						
+						#{label.users}
+					</p:commandLink>
+
+					<p:commandLink
+						action="#{MBAppConfigs.redirectTo('/lecoffee/home')}">
+						
+						<span class="material-symbols-outlined google-icons"> 
+							web 
 						</span>
+						
 						#{label.landing_page}
-					</a>
+					</p:commandLink>
 				</div>
 			</p:scrollPanel>
 		</div>

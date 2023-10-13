@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	lang="#{MBAppConfigs.appConfigs.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	
+	<ui:composition>
+		<style>
+			h3 {
+				margin: 10px 5px;
+			}
+		</style>
+	
+		<p:dialog
+			id="dialogClientInfo"
+			widgetVar="dialogClientInfoVW"
+			header="#{label.client}"
+			dynamic="true"
+			resizable="false"
+			draggable="false"
+			position="center"
+			modal="true">
+		
+			<p:scrollPanel
+				mode="native" 
+				style="max-height: 80vh;">
+			
+			<h:form id="infosClient">
+	        	<p:messages 
+	        		id="messages" 
+	        		autoUpdate="true" 
+	        		style="width: 98%;"
+	        		showIcon="false"
+	        		showDetail="false" />
+				
+				<p:tabView dynamic="true">
+					<p:tab title="#{label.general}">
+						<div class="general-infos">
+							<h3>#{label.general_information}</h3>
+						
+							<div class="horizontal-left-center">
+								<div class="search-group">
+									<p:outputLabel value="#{label.name}" for="name" />
+									<p:inputText 
+										id="name"
+										placeholder="#{label.name}"
+										value="#{MBClient.client.nome}"
+										required="true"
+										requiredMessage="#{label.name_is_required}" />
+								</div>
+								
+								<div class="search-group">
+									<p:outputLabel value="#{label.email}" for="email" />
+									<p:inputText 
+										id="email"
+										placeholder="#{label.email}"
+										value="#{MBClient.client.nome}"
+										required="true"
+										requiredMessage="#{label.email_is_required}" />
+								</div>
+								
+								<div class="search-group">
+									<p:outputLabel value="#{label.phone_number}" for="phoneNumber" />
+									<p:inputMask 
+										id="phoneNumber"
+										value="#{MBClient.client.phone_number}"
+										placeholder="#{label.phone_number}"
+										mask="(99) 9 9999-9999" />
+								</div>
+							</div>
+						</div>
+						
+						<div class="security">
+							<h3>#{label.security}</h3>
+							
+							<div class="horizontal-left-bottom">
+								<div class="search-group">
+									<p:outputLabel value="#{label.level}" for="level" />
+									
+									<p:selectOneRadio id="level">					
+										<f:selectItem 
+											itemLabel="#{label.client}"
+											itemValue="client" />
+										
+										<f:selectItem 
+											itemLabel="#{label.admin}"
+											itemValue="admin" />
+									</p:selectOneRadio>
+								</div>
+								
+								<div class="search-group">
+									<div class="horizontal-left">
+										<p:selectBooleanCheckbox 
+											id="blocked"
+											value="#{MBClient.client.blocked}"
+											styleClass="mg-r-5" />
+											
+										<p:outputLabel value="#{label.blocked}" for="blocked"/>	
+									</div>
+								</div>
+								
+								<div class="search-group">
+									<div class="horizontal-left">
+										<p:selectBooleanCheckbox 
+											id="change_password"
+											value="#{MBClient.client.changePassword}"
+											styleClass="mg-r-5" />
+										
+										<p:outputLabel value="#{label.change_password_next_login}" for="change_password"/>		
+									</div>			
+								</div>
+							</div>
+						</div>				
+					</p:tab>
+					
+					<p:tab title="#{label.adresses}">
+						<div class="adresses">
+							<h3>#{label.delivery_adresses}</h3>
+							
+							<div class="horizontal-left-center">
+								<div class="search-group">
+									<p:outputLabel value="#{label.cep}" for="cep" />
+									<div class="horizontal-left">
+										<p:inputMask
+											id="cep"
+											value="#{MBClient.address.cep}"
+											placeholder="#{label.cep}"
+											mask="99999-999"
+											style="width: 150px;"
+											styleClass="mg-r-5"
+											required="true"
+											requiredMessage="#{label.cep_is_required}" />
+										
+										<p:commandButton 
+											icon="pi pi-search"
+											action="#{MBClient.getCEPInformations()}"
+											process="@this, cep"
+											update="addressInfos"
+											styleClass="mg-r-5"
+											style="height: 39px; width: 42px;"/>
+											
+										<p:commandButton 
+											icon="pi pi-save"
+											action="#{MBClient.onSaveAddress}"
+											value="#{label.add}"
+											style="height: 39px;"
+											update="adresses, addressInfos"
+											process="@this, addressInfos, cep" />
+									</div>
+								</div>
+							</div>
+							
+							<div jsf:id="addressInfos" class="horizontal-left-center">
+								<div class="search-group">
+									<p:outputLabel value="#{label.neighborhood}" for="neighborhood" />
+									<p:inputText 
+										id="neighborhood"
+										value="#{MBClient.address.neighborhood}"
+										placeholder="#{label.neighborhood}"
+										disabled="true" />					
+								</div>
+								
+								<div class="search-group">
+									<p:outputLabel value="#{label.street}" for="street" />
+									<p:inputText 
+										id="street"
+										value="#{MBClient.address.street}" 
+										placeholder="#{label.street}"
+										disabled="true" />
+								</div>
+								
+								<div class="search-group">
+									<p:outputLabel value="#{label.complement_word}" for="complement" />
+									<p:inputText 
+										id="complement"
+										value="#{MBClient.address.complement}"
+										placeholder="#{label.complement}" />
+								</div>
+								
+								<div class="search-group">
+									<p:outputLabel value="#{label.house_number}" for="house_number" />
+									<p:inputNumber
+										id="house_number" 
+										value="#{MBClient.address.house_number}"
+										placeholder="#{label.house_number}"
+										style="width: 70px;"
+										required="true"
+										requiredMessage="#{label.house_number_is_required}" />
+								</div>
+							</div>
+							
+							<p:dataTable 
+								id="adresses"
+								value="#{MBClient.client.addresses}"
+								var="address"
+								rowKey="#{address.id}">
+		
+								<p:column headerText="#{label.cep}">
+									<h:outputText value="#{address.cep}" />
+								</p:column>	
+								
+								<p:column headerText="#{label.neighborhood}">
+									<h:outputText value="#{address.neighborhood}" />
+								</p:column>	
+								
+								<p:column headerText="#{label.street}">
+									<h:outputText value="#{address.street}" />
+								</p:column>
+								
+								<p:column headerText="#{label.complement}">
+									<h:outputText value="#{address.complement}" />
+								</p:column>
+								
+								<p:column headerText="#{label.house_number}">
+									<h:outputText value="#{address.house_number}" />
+								</p:column>
+							</p:dataTable>
+						</div>				
+					</p:tab>
+					
+					<p:tab title="#{label.last_orders}">
+						<div class="orders">
+							<h3>#{label.orders}</h3>
+						</div>
+					</p:tab>
+				</p:tabView>
+				
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton
+							value="#{label.save}"
+							action="#{MBClient.save()}" 
+							icon="pi pi-save"
+							update="@form" />
+					</f:facet>
+				</p:toolbar>
+			</h:form>
+			</p:scrollPanel>
+		</p:dialog>
+	</ui:composition>
+</html>

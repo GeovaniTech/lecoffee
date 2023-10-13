@@ -1,9 +1,12 @@
 package to;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
+import javax.mail.Address;
 
 import converter.BaseEntity;
 
@@ -19,20 +22,16 @@ public class TOClient implements Serializable, BaseEntity {
 	private Date accountCreationDate;
 	private Date accountChangeDate;
 	private Date inactivationDate;
-	private String cep;
-	private String street;
-	private String complement;
-	private Integer house_number;
 	private List<TOCart> carts;
 	private List<TOAddress> addresses;
 	private boolean blocked;
 	private boolean completedRegistration;
 	private String phone_number;
-	private String neighborhood;
 	private boolean changePassword;
 	
 	public TOClient() {
 		this.email = "";
+		this.setAddresses(new ArrayList<TOAddress>());
 	}
 	
 	//Getters and Setters
@@ -90,42 +89,6 @@ public class TOClient implements Serializable, BaseEntity {
 	public void setAccountChangeDate(Date accountChangeDate) {
 		this.accountChangeDate = accountChangeDate;
 	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
-	}
-	public String getComplement() {
-		return complement;
-	}
-	public void setComplement(String complement) {
-		this.complement = complement;
-	}
-	public Integer getHouse_number() {
-		return house_number;
-	}
-	public void setHouse_number(Integer house_number) {
-		this.house_number = house_number;
-	}
-	public boolean isBlocked() {
-		return blocked;
-	}
-	public void setBlocked(boolean blocked) {
-		this.blocked = blocked;
-	}
-	public String getNeighborhood() {
-		return neighborhood;
-	}
-	public void setNeighborhood(String neighborhood) {
-		this.neighborhood = neighborhood;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
 	public String getPhone_number() {
 		return phone_number;
 	}
@@ -162,11 +125,18 @@ public class TOClient implements Serializable, BaseEntity {
 		return (long) this.getId();
 	}
 
+	public boolean isBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountChangeDate, accountCreationDate, addresses, blocked, carts, cep, changePassword,
-				complement, completedRegistration, email, house_number, id, inactivationDate, lastLogin, neighborhood,
-				nivel, nome, phone_number, street, totalOrders);
+		return Objects.hash(accountChangeDate, accountCreationDate, addresses, blocked, carts, changePassword,
+				completedRegistration, email, id, inactivationDate, lastLogin, nivel, nome, phone_number, totalOrders);
 	}
 
 	@Override
@@ -181,15 +151,13 @@ public class TOClient implements Serializable, BaseEntity {
 		return Objects.equals(accountChangeDate, other.accountChangeDate)
 				&& Objects.equals(accountCreationDate, other.accountCreationDate)
 				&& Objects.equals(addresses, other.addresses) && blocked == other.blocked
-				&& Objects.equals(carts, other.carts) && Objects.equals(cep, other.cep)
-				&& changePassword == other.changePassword && Objects.equals(complement, other.complement)
+				&& Objects.equals(carts, other.carts) && changePassword == other.changePassword
 				&& completedRegistration == other.completedRegistration && Objects.equals(email, other.email)
-				&& Objects.equals(house_number, other.house_number) && id == other.id
-				&& Objects.equals(inactivationDate, other.inactivationDate)
-				&& Objects.equals(lastLogin, other.lastLogin) && Objects.equals(neighborhood, other.neighborhood)
-				&& Objects.equals(nivel, other.nivel) && Objects.equals(nome, other.nome)
-				&& Objects.equals(phone_number, other.phone_number) && Objects.equals(street, other.street)
+				&& id == other.id && Objects.equals(inactivationDate, other.inactivationDate)
+				&& Objects.equals(lastLogin, other.lastLogin) && Objects.equals(nivel, other.nivel)
+				&& Objects.equals(nome, other.nome) && Objects.equals(phone_number, other.phone_number)
 				&& Objects.equals(totalOrders, other.totalOrders);
 	}
+
 }
 

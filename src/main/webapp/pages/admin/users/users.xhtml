@@ -19,26 +19,21 @@
 			<ui:define name="body">
 				<h:outputStylesheet library="css" name="/customers/customers.css" />
 				
-				<p:remoteCommand 
-					name="updateTableClient"
-					update=":formTableClient"/>
+				<h:form id="clients">
+					<p:remoteCommand 
+						name="updateTableClients"
+						update="tableClients"/>
 				
-				<p:remoteCommand 
-					name="openDialogChange"
-					update="dialog-change-client"
-					oncomplete="PF('dialog-change-client').show()" />
-		
-				<div class="top-buttons mg-b-10">
-					<h:form class="form-top-buttons">
+					<div class="top-buttons mg-b-10">
 						<p:commandButton 
-							oncomplete="PF('dialog-new-client').show()"
+							action="#{MBClient.initNewClient}"
+							oncomplete="PF('dialogClientInfoVW').show()"
 							icon="pi pi-plus" 
 							styleClass="optionsButtonStyle" />
-					</h:form>
-				</div>
-				
-				<h:form id="formTableClient">
+					</div>
+					
 					<p:dataTable
+						id="tableClients"
 						widgetVar="tableCustomers"
 						var="client"
 						value="#{MBClient.customers}"
@@ -57,7 +52,7 @@
 							<f:facet name="header">
 								<p:commandLink
 									action="#{MBClient.changeToggleFilter()}"
-									oncomplete="updateTableClient();">
+									oncomplete="updateTableClients();">
 									
 									<i class="pi pi-filter"></i>
 								</p:commandLink>
@@ -163,81 +158,6 @@
 						</p:column>
 						
 						<p:column 
-							headerText="#{label.cep}"
-							filterBy="#{client.cep}">
-							
-							<f:facet name="filter">
-								<p:inputNumber>
-									<p:ajax 
-										delay="500"
-										event="keyup" 
-										oncomplete="PF('tableProducts').filter()" />
-								</p:inputNumber>
-							</f:facet>
-							<h:outputText value="#{client.cep == null ? label.not_registered : client.cep}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.street}"
-							filterBy="#{client.street}">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										delay="500"
-										event="keyup" 
-										oncomplete="PF('tableProducts').filter()" />
-								</p:inputText>
-							</f:facet>
-							<h:outputText value="#{client.street == null ? label.not_registered : client.street}" />
-						</p:column>
-
-						<p:column 
-							headerText="#{label.neighborhood}"
-							filterBy="#{client.neighborhood}">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										delay="500"
-										event="keyup" 
-										oncomplete="PF('tableProducts').filter()" />
-								</p:inputText>
-							</f:facet>
-							<h:outputText value="#{client.neighborhood == null ? label.not_registered : client.neighborhood}" />
-						</p:column>
-					
-						<p:column 
-							headerText="#{label.complement}"
-							filterBy="#{client.complement}">
-							
-							<f:facet name="filter">
-								<p:inputText>
-									<p:ajax 
-										delay="500"
-										event="keyup" 
-										oncomplete="PF('tableProducts').filter()" />
-								</p:inputText>
-							</f:facet>
-							<h:outputText value="#{client.complement == null ? label.not_registered : client.complement}" />
-						</p:column>
-						
-						<p:column 
-							headerText="#{label.house_number}"
-							filterBy="#{client.house_number}">
-							
-							<f:facet name="filter">
-								<p:inputNumber>
-									<p:ajax 
-										delay="500"
-										event="keyup" 
-										oncomplete="PF('tableProducts').filter()" />
-								</p:inputNumber>
-							</f:facet>
-							<h:outputText value="#{client.house_number == null ? label.not_registered : client.house_number}" />
-						</p:column>
-						
-						<p:column 
 							headerText="#{label.last_login}"
 							filterBy="#{client.lastLogin}">
 							
@@ -323,12 +243,11 @@
 							<h:outputText value="#{client.inactivationDate == null ? label.not_registered : client.inactivationDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 							</h:outputText>
-						</p:column>						
+						</p:column>	
 					</p:dataTable>
 				</h:form>
 			
-				<ui:include src="dialog-new-client.xhtml" />
-				<ui:include src="dialog-change-client.xhtml" />
+				<ui:include src="user_info.xhtml" />
 			</ui:define>
 		</ui:composition>
 	</h:body>

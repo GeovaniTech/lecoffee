@@ -94,7 +94,7 @@
   	left: 50%;
  	transform: translate(-50%, -50%); 
  	min-width: 520px !important;
- 	max-width: 9999px;
+ 	max-width: 100vw !important;
 }
 
 .ui-dialog-titlebar {
@@ -208,8 +208,8 @@ body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepi
 }
 
 .ui-tabs-panel {
-	border-color: var(--background-general-mouse) !important;
-	background-color: var(--background-general-mouse) !important;	
+	border-color: var(--second-color-widget) !important;
+	background-color: var(--second-color-widget) !important;	
 }
 
 .ui-tabs-selected a {

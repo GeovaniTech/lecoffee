@@ -24,14 +24,8 @@ public class Client  {
 	private Date accountCreationDate;
 	private Date accountChangeDate;
 	private Date inactivationDate;
-	private String cep;
-	private String street;
-	private String complement;
-	private Integer house_number;
 	private boolean blocked;
-	private boolean completedRegistration;
 	private String phone_number;
-	private String neighborhood;
 	private boolean changePassword;
 	
 	@OneToMany
@@ -135,41 +129,5 @@ public class Client  {
 	}
 	public void setInactivationDate(Date inactivationDate) {
 		this.inactivationDate = inactivationDate;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
-	}
-	public String getComplement() {
-		return complement;
-	}
-	public void setComplement(String complement) {
-		this.complement = complement;
-	}
-	public Integer getHouse_number() {
-		return house_number;
-	}
-	public void setHouse_number(Integer house_number) {
-		this.house_number = house_number;
-	}
-	public boolean isCompletedRegistration() {
-		return completedRegistration;
-	}
-	public void setCompletedRegistration(boolean completedRegistration) {
-		this.completedRegistration = completedRegistration;
-	}
-	public String getNeighborhood() {
-		return neighborhood;
-	}
-	public void setNeighborhood(String neighborhood) {
-		this.neighborhood = neighborhood;
 	}
 }

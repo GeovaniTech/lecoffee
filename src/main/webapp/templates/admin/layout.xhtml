@@ -13,7 +13,7 @@
 	<h:head>
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>LeCoffee</title>
+		<title>LeCoffee - <ui:insert name="name_page" /></title>
 		
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css' />
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&#38;display=swap" rel="stylesheet"></link>
@@ -54,14 +54,6 @@
 			</div>
 			
 			<script src="/lecoffee/resources/js/orderFlow.js" />	
-			
-			<components:seeProductDetails 
-				productId="#{MBProduct.product.id}"
-				description="#{MBProduct.product.description}"
-				imageBytes="#{MBProduct.product.imageBytes}"
-				name="#{MBProduct.product.name}"
-				price="#{MBProduct.product.price}"
-				valueRating="#{MBProduct.product.rating}" /> 
 		</f:view>
 	</h:body>
 </html>

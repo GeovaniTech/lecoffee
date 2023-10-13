@@ -80,12 +80,27 @@
 	align-items: center;
 }
 
+.horizontal-left-bottom {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
 
 .vertical-right {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;
+}
+
+.search-group {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	margin: 10px 5px; 
 }
 
 /* #################### MARGINS #################### */

@@ -42,9 +42,9 @@
 		<view-id value="/pages/admin/payments/payments.xhtml"/>
 	</url-mapping>	
 	
-	<url-mapping id="adminGanhos">
-		<pattern value="/admin/ganhos" />
-		<view-id value="/pages/admin/ganhos.xhtml"/>
+	<url-mapping id="adminEarnings">
+		<pattern value="/admin/earnings" />
+		<view-id value="/pages/admin/earnings.xhtml"/>
 	</url-mapping>	
 	
 	<url-mapping id="adminAvaliacoes">
@@ -52,9 +52,9 @@
 		<view-id value="/pages/admin/avaliacoes.xhtml"/>
 	</url-mapping>	
 
-	<url-mapping id="adminClientes">
-		<pattern value="/admin/clientes" />
-		<view-id value="/pages/admin/clients/clientes.xhtml"/>
+	<url-mapping id="adminUsers">
+		<pattern value="/admin/users" />
+		<view-id value="/pages/admin/users/users.xhtml"/>
 	</url-mapping>	
 
 	<url-mapping id="adminChats">
