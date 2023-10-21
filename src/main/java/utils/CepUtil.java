@@ -1,35 +1,25 @@
 package utils;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 
 import javax.faces.application.FacesMessage;
 
-import org.json.JSONObject;
-
 public class CepUtil {
-	public static JSONObject getCEPInformations(String cep) {
+	public static String getCepJSON(String cep) {
 		try {
-			URL url = new URL("https://viacep.com.br/ws/" + cep + "/json/");
+			String url = "https://viacep.com.br/ws/" + cep + "/json/";
 			
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod("GET");
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
 			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			StringBuilder response = new StringBuilder();
+		    HttpResponse<String> response = client
+				     .send(request, BodyHandlers.ofString()); 
 			
-			String line;
-			
-			while((line = reader.readLine()) != null) {
-				response.append(line);
-			}
-			
-			reader.close();
-			connection.disconnect();
-			
-			return new JSONObject(response.toString());
+			return response.body();
 		} catch (Exception e) {
 			e.printStackTrace();
 			MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("error_get_cep_informations"), cep, FacesMessage.SEVERITY_ERROR);

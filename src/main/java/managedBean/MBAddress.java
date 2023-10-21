@@ -7,14 +7,17 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 
-import org.json.JSONObject;
 import org.primefaces.PrimeFaces;
+
+import com.google.gson.Gson;
 
 import keep.address.KeepAddressSBean;
 import model.Address;
 import to.TOAddress;
+import to.TOCepAPIViaCep;
 import utils.AbstractBean;
 import utils.CepUtil;
+import utils.JsonUtil;
 import utils.MessageUtil;
 
 @Named("MBAddress")
@@ -77,15 +80,16 @@ public class MBAddress extends AbstractBean {
 	
 	public void getCEPInformations() {
 		if(this.getAddress().getCep() != null && !this.getAddress().getCep().toString().equals("")) {
-			JSONObject informations = CepUtil.getCEPInformations(this.getAddress().getCep().toString());
 			
-			if(!informations.getString("localidade").equals("Blumenau")) {
+			TOCepAPIViaCep cep = JsonUtil.convertJson(CepUtil.getCepJSON(this.getAddress().getCep()), TOCepAPIViaCep.class);
+			
+			if(!cep.getLocalidade().equals("Blumenau")) {
 				MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("cep_from_other_city"), null, FacesMessage.SEVERITY_ERROR);
 				return;
 			}
 			
-			this.getAddress().setNeighborhood(informations.getString("bairro"));
-			this.getAddress().setStreet(informations.getString("logradouro"));
+			this.getAddress().setNeighborhood(cep.getBairro());
+			this.getAddress().setStreet(cep.getLogradouro());
 		}
 	}
 	

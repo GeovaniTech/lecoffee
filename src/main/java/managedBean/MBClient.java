@@ -8,15 +8,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import org.json.JSONObject;
-
 import keep.client.KeepClientSBean;
 import model.Client;
 import to.TOAddress;
+import to.TOCepAPIViaCep;
 import to.TOClient;
 import utils.AbstractFilterBean;
 import utils.CepUtil;
 import utils.EmailUtil;
+import utils.JsonUtil;
 import utils.MessageUtil;
 import utils.StringUtil;
 
@@ -117,15 +117,15 @@ public class MBClient extends AbstractFilterBean<TOClient, Client> implements Se
 	public void getCEPInformations() {
 		if(this.getAddress().getCep() != null && !this.getAddress().getCep().toString().equals("")) {
 			try {
-				JSONObject informations = CepUtil.getCEPInformations(this.getAddress().getCep().toString());
+				TOCepAPIViaCep cep = JsonUtil.convertJson(CepUtil.getCepJSON(this.getAddress().getCep()), TOCepAPIViaCep.class);
 				
-				if(!informations.getString("localidade").equals("Blumenau")) {
+				if(!cep.getLocalidade().equals("Blumenau")) {
 					MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("cep_from_other_city"), null, FacesMessage.SEVERITY_ERROR);
 					return;
 				}
 				
-				this.getAddress().setNeighborhood(informations.getString("bairro"));
-				this.getAddress().setStreet(informations.getString("logradouro"));
+				this.getAddress().setNeighborhood(cep.getBairro());
+				this.getAddress().setStreet(cep.getLogradouro());
 			} catch (Exception e) {
 				MessageUtil.sendMessage(MessageUtil.getMessageFromProperties("cep_not_found"), null, FacesMessage.SEVERITY_ERROR);
 				e.printStackTrace();
