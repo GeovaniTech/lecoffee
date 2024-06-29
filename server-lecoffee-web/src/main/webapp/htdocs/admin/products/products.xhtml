@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+
+<ui:composition>
+	<h:outputStylesheet library="css" name="/client/products/products.css" />
+
+	<h:form id="formProducts">
+		<p:remoteCommand 
+			name="updateTableProducts"
+			update="formProducts:tableProducts:tableProducts" />
+
+		<div class="top-buttons mg-b-10">
+			<p:commandButton 
+				id="btnInitNewProduct"
+				action="#{MBProduct.initProduct}"
+				oncomplete="PF('dialogProductInfoVW').show();" 
+				icon="pi pi-plus"
+				styleClass="optionsButtonStyle mg-r-5" />
+
+			<p:commandButton 
+				id="btnFiltersProduct" 
+				icon="pi pi-filter"
+				styleClass="optionsButtonStyle mg-r-10" />
+		</div>
+
+		<p:overlayPanel 
+			id="overlayFilters" 
+			for="btnFiltersProduct">
+			
+			<div class="horizontal-left-center">
+				<div class="search-group">
+					<components:inputFilter 
+						label="#{label.name}"
+						toInputFilter="#{MBProduct.filter.name}" />
+				</div>
+			</div>
+
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton 
+						id="btnSearchResults" 
+						icon="pi pi-search"
+						value="#{label.search}" 
+						update="@form"
+						onclick="PF('tableProductsVW').filter();" 
+						styleClass="mg-r-5" />
+
+					<p:commandButton 
+						icon="pi pi-filter-slash"
+						value="#{label.clear_filters}" 
+						action="#{MBProduct.clearFilters}"
+						update="@form" />
+
+					<p:defaultCommand target="btnSearchResults" />
+				</f:facet>
+			</p:toolbar>
+		</p:overlayPanel>
+
+		<components:datatableSingleSelection id="tableProducts"
+			widgetVar="tableProductsVW" selection="#{MBProduct.product}"
+			mBean="#{MBProduct}" oncomplete="PF('dialogProductInfoVW').show();">
+
+			<p:column headerText="#{label.name}">
+				<h:outputText value="#{to.name}" />
+			</p:column>
+		</components:datatableSingleSelection>
+	</h:form>
+
+<!-- 	<ui:include src="/htdocs/admin/products/product_info.xhtml" /> -->
+</ui:composition>
+</html>

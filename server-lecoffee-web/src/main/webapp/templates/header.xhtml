@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	
+	<h:body>
+		<h:outputStylesheet library="css" name="/template/header.css" />
+		<h:outputStylesheet library="css" name="/configs/configs.css" />
+		
+		<script>
+		  // @see https://docs.headwayapp.co/widget for more configuration options.
+		  var HW_config = {
+		    selector: ".notifications", // CSS selector where to inject the badge
+		    account:  "72bQq7"
+		  }
+		</script>
+		
+		<script src="https://cdn.headwayapp.co/widget.js"></script>
+		
+		<div class="top-header" id="top-header">
+			<div class="left-items horizontal-center">
+				<div class="btn-menu" onclick="openMenu();">
+					<span class="material-symbols-outlined">
+						menu
+					</span>
+				</div>
+				
+				<div class="name-page">
+					<ui:insert name="name_page" />
+				</div>
+			</div>
+			
+			<div class="right-items horizontal-center">
+				<p:commandLink id="my_account" style="text-decoration: none;">
+					<div class="horizontal-center">
+						<span class="material-symbols-outlined google-icons">
+							account_circle
+						</span>
+					</div>			
+				</p:commandLink>
+			
+				<div class="horizontal-center ">
+					<span class="material-symbols-outlined google-icons notifications">
+						notifications
+					</span>
+				</div>
+				
+				<div class="horizontal-center">
+					<p:commandLink
+						id="options"
+						style="text-decoration: none;"
+						styleClass="horizontal-center">
+						
+						<span class="material-symbols-outlined google-icons">
+							settings
+						</span>
+					</p:commandLink>
+				</div>
+			</div>
+		</div>
+		
+		<div id="header" class="header">
+			<h:form id="formLogo">
+				<div class="logo" jsf:id="logo">
+					<h1><a href="/lecoffee/home" style="display: flex;"><span>Le</span>Coffee</a></h1>
+				</div>
+			</h:form>
+			
+			<h:form id="investme-menu">
+				<p:menu model="#{MBMenuLecoffee.menu}" toggleable="true" />
+			</h:form>
+		</div>
+		
+		<ui:include src="overlayOptions.xhtml" />
+		<ui:include src="overlayMyAccount.xhtml" />
+		<script src="/lecoffee/resources/js/menu.js"/>	
+	</h:body>
+</html>

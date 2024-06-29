@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.menu-categories {
+	background-color: var(--green) !important;
+}
+
+.menu-categories:hover {
+	background-color: var(--green-mouse) !important;
+}
+
+.menu-categories .ui-menuitem-text {
+	color: var(--white) !important;
+}
+
+.menu-categories .ui-menuitem-icon {
+	color: var(--white) !important;
+}

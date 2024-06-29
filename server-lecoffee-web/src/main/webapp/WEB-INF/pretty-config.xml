@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config
+	xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<!-- INIT LOGIN -->
+
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/htdocs/home/login.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="loginMessage">
+		<pattern value="/login/#{messageParam}" />
+		<view-id value="/htdocs/home/login.xhtml?messageParam=#{messageParam}" />
+	</url-mapping>
+	
+	<url-mapping id="register">
+		<pattern value="/register" />
+		<view-id value="/htdocs/home/register.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="registerToken">
+		<pattern value="/register/#{finished}" />
+		<view-id value="/htdocs/home/register.xhtml?finished=#{finished}" />
+	</url-mapping>
+	
+	<url-mapping id="newPassword">
+		<pattern value="/newpassword/#{token}" />
+		<view-id value="/htdocs/home/new_password.xhtml?token=#{token}" />
+	</url-mapping>
+	
+	<!-- ADMIN -->
+	
+	<url-mapping id="orders">
+		<pattern value="/admin/orders" />
+		<view-id value="/htdocs/admin/orders/orders.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="products">
+		<pattern value="/admin/products" />
+		<view-id value="/htdocs/admin/products/tabview_products.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="users">
+		<pattern value="/admin/users" />
+		<view-id value="/htdocs/admin/users/users.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="logs">
+		<pattern value="/admin/logs" />
+		<view-id value="/htdocs/admin/logs/logs.xhtml" />
+	</url-mapping>
+</pretty-config>

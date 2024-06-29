@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<h:body>
+		<p:overlayPanel for="options">
+			<h:form id="preferences">
+				<p:remoteCommand 
+					autoRun="false"
+					name="updateConfigs"
+					update="formLogo:logo"
+					action="#{MBAppConfigs.updateUserConfigs()}" />
+			
+				 <div class="horizontal-left-center">
+					<div class="search-group">
+						<p:outputLabel for="language" value="#{label.language}"/>
+						<p:selectOneMenu
+							id="language" 
+							value="#{MBAppConfigs.appConfigs.language}"
+							style="width: 200px;">
+	
+							<f:selectItems 
+								var="language" 
+								value="#{MBAppConfigs.localeList}"
+								itemLabel="#{language.language eq 'pt_br' ? label.portuguese : label.english}"
+								itemValue="#{language.language}" />
+							
+								<p:ajax 
+									render="all" 
+									listener="#{MBAppConfigs.refreshPage()}"
+									oncomplete="updateConfigs();" />
+						</p:selectOneMenu>
+					</div>
+					
+					<div class="search-group">
+						<p:outputLabel for="darkMode" value="#{label.dark_mode}"/>
+						<p:toggleSwitch 
+							id="darkMode"
+							value="#{MBAppConfigs.appConfigs.darkMode}"
+							onIcon="pi pi-sun" 
+							offIcon="pi pi-moon" 
+							styleClass="dark-mode">
+	
+							<p:ajax 
+								event="change" 
+								process="@form"
+								oncomplete="updateConfigs();" />
+						</p:toggleSwitch>
+					</div>
+				</div>		
+			</h:form>
+		</p:overlayPanel>
+	</h:body>
+</html>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<ui:composition>
+		<style>
+			.buttonMyAccount {
+				width: 100%;
+				margin: 5px;
+				padding: 10px;
+				background-color: var(--background-general-mouse);
+				border-radius: 5px;
+				color: var(--text) !important;
+			}
+			
+			.buttonMyAccount:hover {
+				color: var(--text-mouse) !important;
+			}
+			
+			.container-img-delete {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+			
+			.sure-delete {
+				font-weight: bold;
+				font-size: 20px;
+				margin-bottom: 10px;
+			}
+			
+			.msg-delete {
+				margin: 20px 50px 50px 50px;
+			}
+		</style>	
+	
+		<p:overlayPanel 
+			id="overlayMyAccount"
+			for="my_account">
+			
+			<div class="horizontal-left mg-b-10" style="flex-wrap: nowrap;">
+				<div class="vertical-left mg-r-10">
+					<p:avatar label="#{MBAppConfigs.userLogged ? MBAppConfigs.clientLogged.email.toUpperCase().substring(0, 1) : 'U'}" size="large" style="background-color: var(--green); color:#fff" />
+				</div>
+				
+				<div class="vertical-left">
+					<strong style="color: var(--text-mouse);"><h:outputLabel value="#{label.user}" for="email" /></strong>
+					<p id="email" style="display: #{MBAppConfigs.userLogged ? 'flex' : 'none'}">#{MBAppConfigs.clientLogged.email}</p>
+					<p:commandLink
+						value="#{label.do_login}"
+						action="#{MBAppConfigs.redirectTo('/investme/login')}"
+						rendered="#{MBAppConfigs.isUserLogged() ? false : true}" />
+				</div>
+			</div>
+			
+			<div class="vertical-center" style="width: 100%;">	
+				<h:panelGroup rendered="#{MBAppConfigs.userLogged ? true : false}">					
+					<p:commandLink 
+						styleClass="buttonMyAccount"
+						onclick="PF('dialogConfirmDeleteAccount').show();"
+						disabled="#{MBAppConfigs.isUserAdmin() ?  true : false}">
+						
+						#{label.delete_account}
+					</p:commandLink>
+				</h:panelGroup>
+				
+				<h:panelGroup rendered="#{MBAppConfigs.userLogged ? true : false}">					
+					<p:commandLink 
+						action="#{MBAppConfigs.logout()}"
+						styleClass="buttonMyAccount">
+						
+						#{label.logout}
+					</p:commandLink>
+				</h:panelGroup>
+			</div>
+		</p:overlayPanel>
+		
+		<components:dialog
+			header="#{label.delete_account}"
+			widgetVar="dialogConfirmDeleteAccount"> 
+			
+			<div class="container-img-delete">
+				<p:graphicImage 
+					library="images" 
+					name="delete_account.svg"
+					width="300"
+					height="300" />
+
+				<h:outputText class="sure-delete" value="#{label.sure_delete_account}" escape="false"/>
+	
+				<p class="msg-delete">#{label.msg_confirm_delete_account}</p>
+			</div>
+
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton 
+						value="#{label.delete_account}"
+						action="#{MBAppConfigs.deleteAccount}"
+						styleClass="deleteStyle mg-r-5" />
+	
+					<p:commandButton 
+						value="#{label.cancel}"
+						onclick="PF('dialogConfirmDeleteAccount').hide();" />
+				</f:facet>
+			</p:toolbar>
+		</components:dialog>
+	</ui:composition>
+</html>
