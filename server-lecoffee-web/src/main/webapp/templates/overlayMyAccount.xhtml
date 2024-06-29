@@ -65,7 +65,7 @@
 					<p:commandLink 
 						styleClass="buttonMyAccount"
 						onclick="PF('dialogConfirmDeleteAccount').show();"
-						disabled="#{MBAppConfigs.isUserAdmin() ?  true : false}">
+						disabled="#{MBAppConfigs.isUserAdminLogged() ?  true : false}">
 						
 						#{label.delete_account}
 					</p:commandLink>
