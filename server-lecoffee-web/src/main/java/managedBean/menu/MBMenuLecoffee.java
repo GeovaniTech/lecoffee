@@ -40,6 +40,13 @@ public class MBMenuLecoffee extends AbstractMBean {
                     .url(this.createUrlMenu("admin/products"))
                     .build();
             
+            DefaultMenuItem payments = DefaultMenuItem.builder()
+            		.styleClass("menu-payments")
+                    .value(this.getLabel("payments"))
+                    .icon("pi pi-credit-card")
+                    .url(this.createUrlMenu("admin/payments"))
+                    .build();
+            
             DefaultMenuItem users = DefaultMenuItem.builder()
             		.styleClass("menu-users")
                     .value(this.getLabel("users"))
@@ -49,6 +56,7 @@ public class MBMenuLecoffee extends AbstractMBean {
             
             this.getMenu().getElements().add(orders);
             this.getMenu().getElements().add(products);
+            this.getMenu().getElements().add(payments);
             this.getMenu().getElements().add(users);
         } 
         

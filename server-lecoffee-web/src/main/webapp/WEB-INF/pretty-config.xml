@@ -51,4 +51,9 @@
 		<pattern value="/admin/logs" />
 		<view-id value="/htdocs/admin/logs/logs.xhtml" />
 	</url-mapping>
+	
+	<url-mapping id="payments">
+		<pattern value="/admin/payments" />
+		<view-id value="/htdocs/admin/payments/payments.xhtml" />
+	</url-mapping>
 </pretty-config>

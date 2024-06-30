@@ -13,7 +13,7 @@
 		<class>model.AppConfig</class>
 		<class>model.Log</class>
 		<class>model.category.Category</class>
-<!-- 		<class>model.Payment</class> -->
+		<class>model.Payment</class>
 <!-- 		<class>model.Address</class> -->
 <!-- 		<class>model.Cart</class> -->
 <!-- 		<class>model.Item</class> -->
