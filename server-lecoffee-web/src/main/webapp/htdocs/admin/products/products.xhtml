@@ -35,11 +35,46 @@
 			id="overlayFilters" 
 			for="btnFiltersProduct">
 			
-			<div class="horizontal-left-center">
-				<div class="search-group">
+			<div class="line">
+				<div class="field">
 					<components:inputFilter 
 						label="#{label.name}"
 						toInputFilter="#{MBProduct.filter.name}" />
+				</div>
+				
+				<div class="field">
+					<components:inputFilter 
+						label="#{label.description}"
+						toInputFilter="#{MBProduct.filter.description}" />
+				</div>
+				
+				<div class="field">
+					<p:outputLabel for="category" value="#{label.category}"/>
+					<p:selectOneMenu
+						id="category"
+						value="#{MBProduct.filter.idCategory}"
+						filter="true"
+						style="width: 200px;">
+						
+						<f:selectItem 
+							itemLabel="#{label.all}"
+							itemValue="#{null}"/>
+						
+						<f:selectItems 
+							var="category"
+							value="#{MBProduct.categories}"
+							itemLabel="#{category.name}"
+							itemValue="#{category.id}"/>
+					</p:selectOneMenu>
+
+				</div>
+			</div>
+			
+			<div class="line">
+				<div class="field">
+					<components:numberRange 
+						label="#{label.price}"
+						toInputNumberFilter="#{MBProduct.filter.price}" />
 				</div>
 			</div>
 

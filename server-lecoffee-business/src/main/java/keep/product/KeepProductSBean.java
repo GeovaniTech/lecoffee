@@ -58,6 +58,7 @@ public class KeepProductSBean extends AbstractKeep<Product, TOProduct> implement
 			.append(this.getWhereProducts(params, filter));
 		
 		Query query = this.getEntityManager().createQuery(sql.toString());
+		setParameters(query, params);
 		
 		Number value;
 		
@@ -84,6 +85,7 @@ public class KeepProductSBean extends AbstractKeep<Product, TOProduct> implement
 		Query query = this.getEntityManager().createQuery(sql.toString());
 		query.setFirstResult(filter.getFirstResult());
 		query.setMaxResults(filter.getMaxResults());
+		setParameters(query, params);
 		
 		return this.convertModelResults(query.getResultList());
 	}
@@ -122,6 +124,13 @@ public class KeepProductSBean extends AbstractKeep<Product, TOProduct> implement
 		
 		sql.append(" WHERE 1 = 1 ");
 		sql.append(SimpleWhere.queryFilter("P.name", filter.getName()));
+		sql.append(SimpleWhere.queryFilter("P.description", filter.getDescription()));
+		sql.append(SimpleWhere.queryFilterNumberRange("P.price", filter.getPrice()));
+		
+		if (StringUtil.isNotNull(filter.getIdCategory())) {
+			sql.append(" AND P.category.id = :idCategory ");
+			params.add(new TOParameter("idCategory", filter.getIdCategory()));
+		}
 		
 		return sql.toString();
 	}

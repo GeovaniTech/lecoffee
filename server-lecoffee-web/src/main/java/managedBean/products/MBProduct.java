@@ -9,7 +9,9 @@ import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import keep.category.IKeepCategorySBean;
 import keep.product.IKeepProductSBean;
+import to.category.TOCategory;
 import to.product.TOFilterProduct;
 import to.product.TOProduct;
 
@@ -21,13 +23,18 @@ public class MBProduct extends AbstractFilterMBean<TOProduct, TOFilterProduct> {
 	public static final String MANAGED_BEAN_NAME = "MBProduct";
 
 	private TOProduct product;
+	private List<TOCategory> categories;
 	
 	@EJB
 	private IKeepProductSBean productSBean;
+	
+	@EJB
+	private IKeepCategorySBean categorySBean;
 
 	@PostConstruct
 	@Override
 	public void init() {
+		this.setCategories(this.getCategorySBean().searchAllCategories());
 		this.clearFilters();
 		this.searchResults();
 	}
@@ -75,5 +82,21 @@ public class MBProduct extends AbstractFilterMBean<TOProduct, TOFilterProduct> {
 
 	public void setProduct(TOProduct product) {
 		this.product = product;
+	}
+
+	public List<TOCategory> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<TOCategory> categories) {
+		this.categories = categories;
+	}
+
+	public IKeepCategorySBean getCategorySBean() {
+		return categorySBean;
+	}
+
+	public void setCategorySBean(IKeepCategorySBean categorySBean) {
+		this.categorySBean = categorySBean;
 	}
 }
