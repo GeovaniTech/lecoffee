@@ -10,7 +10,6 @@ public class TOProduct extends AbstractTOObject {
 	private String name;
 	private String description;
 	private Double price;
-	private String status;	
 	private Integer rating;
 	private TOCategory category;
 	private byte[] imageBytes;
@@ -32,12 +31,6 @@ public class TOProduct extends AbstractTOObject {
 	}
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	public Integer getRating() {
 		return rating;

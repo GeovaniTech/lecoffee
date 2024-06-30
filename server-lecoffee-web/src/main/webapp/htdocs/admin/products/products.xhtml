@@ -64,16 +64,27 @@
 			</p:toolbar>
 		</p:overlayPanel>
 
-		<components:datatableSingleSelection id="tableProducts"
-			widgetVar="tableProductsVW" selection="#{MBProduct.product}"
-			mBean="#{MBProduct}" oncomplete="PF('dialogProductInfoVW').show();">
+		<components:datatableSingleSelection 
+			id="tableProducts"
+			widgetVar="tableProductsVW" 
+			selection="#{MBProduct.product}"
+			mBean="#{MBProduct}" 
+			oncomplete="PF('dialogProductInfoVW').show();">
 
 			<p:column headerText="#{label.name}">
 				<h:outputText value="#{to.name}" />
 			</p:column>
+			
+			<p:column headerText="#{label.price}">
+				<h:outputText value="#{MBAppConfigs.getBrazilianCurrency(to.price)}" />
+			</p:column>
+			
+			<p:column headerText="#{label.category}">
+				<h:outputText value="#{to.category.name}" />
+			</p:column>
 		</components:datatableSingleSelection>
 	</h:form>
 
-<!-- 	<ui:include src="/htdocs/admin/products/product_info.xhtml" /> -->
+	<ui:include src="/htdocs/admin/products/product_info.xhtml" />
 </ui:composition>
 </html>

@@ -102,7 +102,7 @@
 	align-items: center;
 }
 
-.search-group {
+.search-group, .field {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

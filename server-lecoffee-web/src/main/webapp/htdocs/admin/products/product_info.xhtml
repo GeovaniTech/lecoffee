@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:components="http://java.sun.com/jsf/composite/components"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">1
+
+<ui:composition>
+	<h:outputStylesheet library="css" name="/admin/products/product-info.css" />
+
+	<components:dialog
+		id="dialogProductInfo"
+		header="#{label.product}"
+		widgetVar="dialogProductInfoVW"
+		onHide="updateTableProducts();">
+		
+		<h:form id="form-product-info">	
+			<p:messages
+				id="productInfoMessages"
+				showIcon="false"
+				showDetail="false" />
+			
+	        <p:fileUpload 
+	        	widgetVar="productFileUpload" 
+	        	listener="#{MBProductInfo.handleFileUpload}"
+	        	auto="true"
+	        	style="display: none;"
+				update="form-product-info:product-example"
+				required="true"
+				requiredMessage="#{label.select_image_required}" />
+
+			<div class="line">
+				<div jsf:id="product-example" class="card-product">
+					<div class="img" onclick="PF('productFileUpload').show();return false;">
+						<img jsf:rendered="#{MBProductInfo.product.imageBytes == null}" src="/lecoffee/resources/images/lecoffee-logo-32-32.png" />
+						<img jsf:rendered="#{MBProductInfo.product.imageBytes != null}" src="data:image/png;base64,#{MBAppConfigs.getRenderedImage(MBProductInfo.product.imageBytes)}"/>
+					</div>
+					
+					<div class="infos">
+						<p id="product-name">#{MBProductInfo.product.name == null ? label.name : MBProductInfo.product.name}</p>
+						<p id="product-price">#{MBAppConfigs.getBrazilianCurrency(MBProductInfo.product.price)}</p>
+					</div>
+				</div>
+			</div>	
+		
+			<div class="line">
+				<div class="field">
+					<p:outputLabel for="name" value="#{label.name}" />
+					<p:inputText 
+						id="name"
+						value="#{MBProductInfo.product.name}"
+						required="true"
+						requiredMessage="#{label.name_required}">
+						
+						<p:ajax 
+							event="keyup"
+							delay="500"
+							update="form-product-info:product-example" />
+					</p:inputText>
+				</div>
+				
+				<div class="field">
+					<p:outputLabel for="price" value="#{label.price}" />
+					<p:inputNumber 
+						id="price"
+						value="#{MBProductInfo.product.price}"
+						decimalSeparator=","
+						thousandSeparator="." 
+						pattern="#.##0,00"
+						required="true"
+						requiredMessage="#{label.price_required}">
+						
+						<p:ajax 
+							event="keyup"
+							delay="500"
+							update="form-product-info:product-example" />
+					</p:inputNumber>
+				</div>
+				
+				<div class="field">
+					<p:outputLabel for="category" value="#{label.category}"/>
+					<p:selectOneMenu 
+						id="category"
+						value="#{MBProductInfo.idCategory}"
+						required="true"
+						requiredMessage="#{label.category_required}"
+						filter="true"
+						style="width: 200px;">
+						
+						<f:selectItems 
+							var="category"
+							value="#{MBProductInfo.categories}"
+							itemLabel="#{category.name}"
+							itemValue="#{category.id}"/>
+					</p:selectOneMenu>
+				</div>
+			</div>
+			
+			<div class="line">
+				<div class="field" style="width: 100%;">
+					<p:outputLabel for="description" value="#{label.description}"/>
+					<p:inputTextarea 
+						id="description"
+						style="width: 100%;"/>
+				</div>
+			</div>
+			
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton 
+						id="save"
+						value="#{label.save}"
+						action="#{MBProductInfo.save}"
+						update="form-product-info"
+						disabled="#{MBProductInfo.product.inactivationDate != null}"
+						icon="pi pi-save"
+						styleClass="mg-r-5" />
+						
+					<p:commandButton 
+						id="updateStatus"
+						value="#{MBProductInfo.product.inactivationDate == null ? label.disable : label.actived}"
+						action="#{MBProductInfo.updateStatus}"
+						update="form-product-info"
+						disabled="#{MBProduct.product.id == null}"
+						icon="pi pi-stop"
+						styleClass="mg-r-5 disableStyle" />
+						
+					<p:commandButton 
+						id="delete"
+						value="#{label.remove}"
+						action="#{MBProductInfo.remove}"
+						disabled="#{MBProduct.product.id == null or MBProductInfo.product.inactivationDate != null}"
+						oncomplete="PF('dialogProductInfoVW').hide();"
+						icon="pi pi-trash"
+						styleClass="deleteStyle" />
+				</f:facet>
+			</p:toolbar>
+		</h:form>
+	</components:dialog>
+</ui:composition>
+</html>

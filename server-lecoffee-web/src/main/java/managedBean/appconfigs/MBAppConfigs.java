@@ -188,7 +188,7 @@ public class MBAppConfigs extends AbstractMBean {
 	public String getBrazilianCurrency(Double value) {
 		Locale localeBR = new Locale("pt", "BR");
 		NumberFormat brazilianFormat = NumberFormat.getCurrencyInstance(localeBR);
-		String formattedValue = brazilianFormat.format(value);
+		String formattedValue = brazilianFormat.format(value == null ? 0.0 : value);
 
 		return formattedValue;
 	}

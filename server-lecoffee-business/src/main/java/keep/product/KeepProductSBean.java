@@ -1,5 +1,7 @@
 package keep.product;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import abstracts.AbstractKeep;
@@ -8,6 +10,8 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.persistence.Query;
 import model.product.Product;
+import query.SimpleWhere;
+import to.TOParameter;
 import to.product.TOFilterProduct;
 import to.product.TOProduct;
 import utils.StringUtil;
@@ -47,9 +51,11 @@ public class KeepProductSBean extends AbstractKeep<Product, TOProduct> implement
 	public Integer getCount(TOFilterProduct filter) {
 		StringBuilder sql = new StringBuilder();
 		
+		List<TOParameter> params = new ArrayList<TOParameter>();
+		
 		sql.append(" SELECT COUNT(P) ")
-		.append(this.getFromProducts())
-		.append(this.getWhereProducts());
+			.append(this.getFromProducts())
+			.append(this.getWhereProducts(params, filter));
 		
 		Query query = this.getEntityManager().createQuery(sql.toString());
 		
@@ -69,9 +75,11 @@ public class KeepProductSBean extends AbstractKeep<Product, TOProduct> implement
 	public List<TOProduct> searchProducts(TOFilterProduct filter) {
 		StringBuilder sql = new StringBuilder();
 		
+		List<TOParameter> params = new ArrayList<TOParameter>();
+		
 		sql.append(" SELECT P ")
 			.append(this.getFromProducts())
-			.append(this.getWhereProducts());
+			.append(this.getWhereProducts(params, filter));
 
 		Query query = this.getEntityManager().createQuery(sql.toString());
 		query.setFirstResult(filter.getFirstResult());
@@ -80,14 +88,40 @@ public class KeepProductSBean extends AbstractKeep<Product, TOProduct> implement
 		return this.convertModelResults(query.getResultList());
 	}
 	
+	@Override
+	public void disable(TOProduct product) {
+		Date date = new Date();
+		String user = this.getClientSession().getEmail();
+		
+		TOProduct model = this.findById(product.getId());
+		model.setInactivationDate(date);
+		model.setInactivationUser(user);
+		product.setInactivationDate(date);
+		product.setInactivationUser(user);
+		
+		this.save(model);
+	}
+
+	@Override
+	public void active(TOProduct product) {
+		TOProduct model = this.findById(product.getId());
+		model.setInactivationDate(null);
+		model.setInactivationUser(null);
+		product.setInactivationDate(null);
+		product.setInactivationUser(null);
+		
+		this.save(model);
+	}
+	
 	private String getFromProducts() { 
 		return " FROM " + Product.class.getSimpleName() + " P ";
 	}
 	
-	private String getWhereProducts() {
+	private String getWhereProducts(List<TOParameter> params, TOFilterProduct filter) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" WHERE 1 = 1 ");
+		sql.append(SimpleWhere.queryFilter("P.name", filter.getName()));
 		
 		return sql.toString();
 	}

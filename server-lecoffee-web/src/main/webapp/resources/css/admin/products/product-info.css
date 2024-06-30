@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.card-product {
+	display: flex;
+	flex-direction: row;
+	border-radius: 10px;
+	background-color: var(--background-general);
+	padding: 5px 10px 5px 5px;
+}
+
+.card-product .img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    border-radius: 5px 5px 5px 0px;
+    margin-right: 5px;
+    background-color: var(--background-general-mouse);
+    cursor: pointer;
+}
+
+.card-product .img img {
+    width: 32px;
+    height: 32px;
+}
+
+.card-product #product-name {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.card-product #product-price {
+	font-size: 12px;
+}

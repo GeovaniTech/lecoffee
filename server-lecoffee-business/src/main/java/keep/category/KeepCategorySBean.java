@@ -44,7 +44,7 @@ public class KeepCategorySBean extends AbstractKeep<Category, TOCategory> implem
 	}
 
 	@Override
-	public TOCategory findById(int id) {
+	public TOCategory findById(String id) {
 		return this.convertToDTO(this.getEntityManager().find(Category.class, id));
 	}
 
